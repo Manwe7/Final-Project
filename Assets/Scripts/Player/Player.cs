@@ -1,11 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class Player : MonoBehaviour
 {
-    [SerializeField] private GameObject PlayerExplosion = null;
-    [SerializeField] Slider _healthSlider = null;    
+    [SerializeField] private GameObject playerExplosion = null;
+    [SerializeField] Slider healthSlider = null;    
     
     private float _health, _fade = 0f;
     private Material _material = null;
@@ -14,7 +13,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _health = 100;
-        _healthSlider.maxValue = _health;
+        healthSlider.maxValue = _health;
 
         _material = GetComponent<SpriteRenderer>().material;
         _isFading = true;
@@ -23,7 +22,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         //_health
-        _healthSlider.value = _health;
+        healthSlider.value = _health;
         if (_health <= 0)
         {
             Killed();
@@ -65,12 +64,12 @@ public class Player : MonoBehaviour
         //Play sound
         FindObjectOfType<AudioManager>().Play("PlayerDeath");
         //Some particles
-        Instantiate(PlayerExplosion, transform.position, transform.rotation);
+        Instantiate(playerExplosion, transform.position, transform.rotation);
         //Some shake
         CameraShake.ShakeOnce = true;
         //_health is 0
         _health = 0;
-        _healthSlider.value = _health;
+        healthSlider.value = _health;
         //Turn off player
         gameObject.SetActive(false);
     }
