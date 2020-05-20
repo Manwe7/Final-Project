@@ -4,8 +4,9 @@ public class SpawnEnemies : MonoBehaviour
 {
     [SerializeField] GameObject enemy = null;
     [SerializeField] private float movementSpeed=0, movementDistance=0;
+    [SerializeField] private float maxTime = 0, minTime = 0;
 
-    private float _maxTime = 20, _minTime = 5, _time, _spawnTime;
+    private float _time, _spawnTime;
     private float _initialposX;
     private bool _goRight;
 
@@ -13,7 +14,7 @@ public class SpawnEnemies : MonoBehaviour
     {
         _initialposX = transform.position.x;
         SetRandomTime();
-        _time = _minTime;
+        _time = minTime;
     }
 
     private void FixedUpdate()
@@ -56,6 +57,6 @@ public class SpawnEnemies : MonoBehaviour
  
     private void SetRandomTime()
     {
-        _spawnTime = Random.Range(_minTime, _maxTime);
+        _spawnTime = Random.Range(minTime, maxTime);
     }
 }
