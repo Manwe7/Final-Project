@@ -304,7 +304,6 @@ GameObject:
   - component: {fileID: 6936943444921490521}
   - component: {fileID: 6936943444921490520}
   - component: {fileID: 6936943444921490503}
-  - component: {fileID: 6936943444921490502}
   m_Layer: 9
   m_Name: MegaEnemy
   m_TagString: Enemy
@@ -424,24 +423,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6936943444921490502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6936943444921490501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f6be3aa7d1ad2442bcd648692426b38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnemyExplosion: {fileID: 6163721950763462551, guid: d0924fad08d74d943813ef63229933e4,
-    type: 3}
-  MegaEnemyExplosion: {fileID: 6163721950763462551, guid: 76c7ded1f269feb448fb0808af3bba2b,
-    type: 3}
-  LittleEnemyExplosion: {fileID: 6163721950763462551, guid: 3fc0344637719544cb556c71ec2c4f19,
-    type: 3}
-  speed: 5
-  jumpForce: 1500
-  rb: {fileID: 6936943444921490503}
