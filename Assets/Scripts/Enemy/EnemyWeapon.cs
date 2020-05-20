@@ -5,25 +5,23 @@ public class EnemyWeapon : MonoBehaviour
     [SerializeField] GameObject Parent=null, bullet=null, barrel=null;
     
     private float _offset = 270;
-    private GameObject Player;
+    private GameObject _player;
 
     private void Start()
     {
         try
         {
-            Player = GameObject.FindGameObjectWithTag("Player");
+            _player = GameObject.FindGameObjectWithTag("Player");
         }
         catch (System.Exception)
-        {
-            //
-        }
+        { } //Player is dead
     }
     
     private void Update()
     {
-        if(Player != null)
+        if(_player != null)
         {
-            Vector3 PlayerPos = Player.transform.position;
+            Vector3 PlayerPos = _player.transform.position;
 
             //Change position depending in targets position
             if(PlayerPos.x < transform.position.x) 
@@ -45,7 +43,7 @@ public class EnemyWeapon : MonoBehaviour
     private void RightSide()
     {
         //Rotate and change position to right
-        Vector3 dir = Player.transform.position - transform.position;
+        Vector3 dir = _player.transform.position - transform.position;
         float rotZ = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0f, rotZ + _offset);  
 
@@ -55,7 +53,7 @@ public class EnemyWeapon : MonoBehaviour
     private void LeftSide()
     {
         //Rotate and change position to left
-        Vector3 dir = Player.transform.position - transform.position;
+        Vector3 dir = _player.transform.position - transform.position;
         float rotZ = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(-180f, 0f, -rotZ + _offset);  
 
