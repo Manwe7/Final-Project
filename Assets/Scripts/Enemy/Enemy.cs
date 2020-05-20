@@ -43,17 +43,17 @@ public class Enemy : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("EnemyDeath");
             if(gameObject.name == "Enemy(Clone)")
             { 
-                GameManager.CurrentScore += 10;
+                GameManager.Instance.CurrentScore += 10;
                 Instantiate(EnemyExplosion, transform.position, transform.rotation); 
             }
             else if(gameObject.name == "MegaEnemy(Clone)")
             { 
-                GameManager.CurrentScore += 15;
+                GameManager.Instance.CurrentScore += 15;
                 Instantiate(MegaEnemyExplosion, transform.position, transform.rotation); 
             }
             else if(gameObject.name == "LittleEnemy(Clone)")
             {
-                GameManager.CurrentScore += 5;
+                GameManager.Instance.CurrentScore += 5;
                 Instantiate(LittleEnemyExplosion, transform.position, transform.rotation); 
             }
             Destroy(gameObject);
