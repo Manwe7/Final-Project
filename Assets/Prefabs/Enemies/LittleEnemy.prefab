@@ -436,7 +436,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c9285bfa7d2c64a85f9de1d8f61587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  jumpForce: 0
+  speed: 3
   LittleEnemyExplosion: {fileID: 6163721950763462554, guid: 3fc0344637719544cb556c71ec2c4f19,
     type: 3}

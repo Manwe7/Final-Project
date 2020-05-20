@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float speed = 0, jumpForce = 0;
+    [SerializeField] private float speed = 0;// jumpForce = 0;
     
     protected Rigidbody2D _rigidbody2D;
     protected GameObject _player;
@@ -31,11 +31,11 @@ public class Enemy : MonoBehaviour
         {
             if (_player.transform.position.x > transform.position.x) //player is in right side
             {
-                _rigidbody2D.velocity = new Vector2(speed, 0f);
+                _rigidbody2D.velocity = new Vector2(speed, _rigidbody2D.velocity.y);
             }
             else if ((_player.transform.position.x < transform.position.x))
             {
-                _rigidbody2D.velocity = new Vector2(-speed, 0f);
+                _rigidbody2D.velocity = new Vector2(-speed, _rigidbody2D.velocity.y);
             }
         }
         else
