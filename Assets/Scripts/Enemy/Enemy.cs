@@ -59,15 +59,8 @@ public class Enemy : MonoBehaviour
 
     protected void GetDamage(float damage)
     {
-        Debug.Log("123");
         //Play sound
         FindObjectOfType<AudioManager>().Play("Hurt");
         _health -= damage;
     }
 }
-
-//Depending on enemy give _health
-/*if(gameObject.name == "Enemy(Clone)")
-{ _health = Random.Range(30, 60); }
-else if(gameObject.name == "MegaEnemy(Clone)")
-{ _health = Random.Range(60, 80); }    */
