@@ -2,9 +2,16 @@ using UnityEngine;
 
 public class SpawnEnemies : MonoBehaviour
 {
+    [Header("Object to spawn")]
     [SerializeField] GameObject enemy = null;
-    [SerializeField] private float movementSpeed=0, movementDistance=0;
-    [SerializeField] private float maxTime = 0, minTime = 0;
+    
+    [Header("Spawner move settings")]
+    [SerializeField] private float movementSpeed = 0;
+    [SerializeField] private float movementDistance = 0;
+
+    [Header("Min And Max reload time")]
+    [SerializeField] private float maxTime = 0; 
+    [SerializeField] private float minTime = 0;
 
     private float _time, _spawnTime;
     private float _initialposX;
