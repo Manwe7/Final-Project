@@ -2,19 +2,21 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {    
-    [SerializeField] private GameObject parent = null, bullet = null, barrel = null;
+    [SerializeField] private Transform parent = null, bullet = null, barrel = null;
     [SerializeField] private Joystick joystick = null;
     [SerializeField] private RectTransform joystickHandle = null;
+    [SerializeField] private float reloadTime = 0;
     private float _offset = 180;
-       
-    private void Update()
-    {
-        //Shoot when LMS is clicked
-        if (Input.GetMouseButtonDown(0))
-        {
-            Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
-        }
+    
+    private bool _reloaded;
 
+    private void Start()
+    {
+        _reloaded = true;
+    }
+
+    private void Update()
+    {     
         //Find mouse position
         Vector3 mouse = Input.mousePosition;
         Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(transform.position);
@@ -28,6 +30,20 @@ public class PlayerWeapon : MonoBehaviour
         {
             RightSide();
         }
+
+        //Shoot
+        if (_reloaded)
+        { 
+            Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
+            _reloaded = false;
+            Invoke("Reload", reloadTime);
+        }
+
+    }
+
+    private void Reload()
+    {
+        _reloaded = true;
     }
 
     private void RightSide()
