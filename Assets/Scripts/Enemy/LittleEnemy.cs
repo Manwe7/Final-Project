@@ -39,7 +39,7 @@ public class LittleEnemy : Enemy
     IEnumerator Reload()
     {
         _reloaded = false;
-        _reloadTime = Random.Range(3, 7);
+        _reloadTime = Random.Range(2, 5);
         yield return new WaitForSeconds(_reloadTime);
         _reloaded = true;
     }
