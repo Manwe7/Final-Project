@@ -32,9 +32,7 @@ public class MegaEnemy : Enemy
         if (_reloaded)
         {
             Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
-            StartCoroutine(Reload());
-            
-            Debug.Log("Mega");
+            StartCoroutine(Reload());            
         }
     }
 

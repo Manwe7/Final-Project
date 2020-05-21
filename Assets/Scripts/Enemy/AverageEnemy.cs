@@ -33,8 +33,6 @@ public class AverageEnemy : Enemy
         {
             Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
             StartCoroutine(Reload());
-
-            Debug.Log("Average");
         }
     }
 

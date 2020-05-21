@@ -33,8 +33,6 @@ public class LittleEnemy : Enemy
         {
             Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
             StartCoroutine(Reload());
-
-            Debug.Log("Little");
         }
     }
 
