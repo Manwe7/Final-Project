@@ -98,8 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Parent: {fileID: 6936943444921490501}
-  bullet: {fileID: 7444725418516393869, guid: d96bd5510566a08409706691545d68b9, type: 3}
-  barrel: {fileID: 6936943444870025400}
 --- !u!1 &6936943444296990145
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,5 +435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  bullet: {fileID: 7444725418516393870, guid: d96bd5510566a08409706691545d68b9, type: 3}
+  barrel: {fileID: 6936943444870025401}
   AverageEnemyExplosion: {fileID: 6163721950763462554, guid: d0924fad08d74d943813ef63229933e4,
     type: 3}
