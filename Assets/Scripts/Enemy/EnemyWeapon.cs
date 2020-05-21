@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyWeapon : MonoBehaviour
 {
-    [SerializeField] GameObject Parent=null, bullet=null, barrel=null;
+    [SerializeField] GameObject Parent = null;
     
     private float _offset = 270;
     private GameObject _player;
@@ -33,11 +33,6 @@ public class EnemyWeapon : MonoBehaviour
                 RightSide();
             }
         }
-    }
-
-    public void Fire()
-    {
-        Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
     }
 
     private void RightSide()

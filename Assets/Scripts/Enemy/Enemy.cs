@@ -6,10 +6,7 @@ public class Enemy : MonoBehaviour
     
     protected Rigidbody2D _rigidbody2D;
     protected GameObject _player;
-    protected float _health;
-
-    private int _reloadTime;
-    private bool _reloaded;
+    protected float _health;    
 
     private void Awake()
     {
@@ -20,12 +17,10 @@ public class Enemy : MonoBehaviour
             _player = GameObject.FindGameObjectWithTag("Player");
         }
         catch (System.Exception)
-        { } //player is dead
-
-        _reloaded = true;
+        { } //player is dead                
     }
                  
-    private void Update()
+    private void FixedUpdate()
     {        
         if (_player != null)
         {
@@ -39,23 +34,8 @@ public class Enemy : MonoBehaviour
             }
         }
         else
-        { _rigidbody2D.velocity = new Vector2(0f, 0f); }
-
-        if (_reloaded)
-        {
-            EnemyWeapon enemyWeapon = GameObject.FindGameObjectWithTag("Enemy").GetComponentInChildren<EnemyWeapon>();
-            enemyWeapon.Fire();
-            
-            _reloaded = false;
-            _reloadTime = Random.Range(3, 7);
-            Invoke("Reload", _reloadTime);
-        }
-    }
-
-    private void Reload()
-    {
-        _reloaded = true;
-    }
+        { _rigidbody2D.velocity = new Vector2(0f, 0f); }        
+    }    
 
     protected void GetDamage(float damage)
     {
