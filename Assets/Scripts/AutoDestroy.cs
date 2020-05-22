@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AutoDestroy : MonoBehaviour
 {
@@ -10,6 +9,6 @@ public class AutoDestroy : MonoBehaviour
 
     private void SelfDestroy()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
