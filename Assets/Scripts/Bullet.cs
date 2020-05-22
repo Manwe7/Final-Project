@@ -4,17 +4,19 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed = 0;
     [SerializeField] Rigidbody2D rb = null;
-    [SerializeField] GameObject PlayerBulletExp=null, LittleEnemyBulletExp=null, EnemyBulletExp=null, MegaEnemyBulletExp=null;
-    
-    // Start is called before the first frame update
-    void Start()
+
+    //Object Pooler
+    ObjectPooler objectPooler;
+
+    private void Start()
     {
         //Play sound
         FindObjectOfType<AudioManager>().Play("PlayerBullet");
+
+        objectPooler = ObjectPooler.objectPoolerInstance;
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         //Constant speed
         rb.velocity = transform.up * speed;
@@ -53,20 +55,20 @@ public class Bullet : MonoBehaviour
     {
         //Depending on bullet instantiate corresponding particles
         if(gameObject.name == "PlayerBullet(Clone)")
-        {
-            Instantiate(PlayerBulletExp, transform.position, transform.rotation);
+        {            
+            objectPooler.SpawnFromPool("PlayerBulletExplosion", transform.position, Quaternion.identity);
         }
         else if(gameObject.name == "EnemyBullet(Clone)")
-        {
-            Instantiate(EnemyBulletExp, transform.position, transform.rotation);
+        {         
+            objectPooler.SpawnFromPool("LittleEnemyBulletExplosion", transform.position, Quaternion.identity);
         }
         else if(gameObject.name == "LittleEnemyBullet(Clone)")
-        {
-            Instantiate(LittleEnemyBulletExp, transform.position, transform.rotation);
+        {         
+            objectPooler.SpawnFromPool("AverageEnemyBulletExplosion", transform.position, Quaternion.identity);
         }
         else if(gameObject.name == "MegaEnemyBullet(Clone)")
-        {
-            Instantiate(MegaEnemyBulletExp, transform.position, transform.rotation);
+        {         
+            objectPooler.SpawnFromPool("MegaEnemyBulletExplosion", transform.position, Quaternion.identity);
         }
         Destroy(gameObject);
     }
