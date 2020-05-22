@@ -7,26 +7,28 @@ public class LittleEnemy : Enemy
     [SerializeField] private Transform bullet = null;
     [SerializeField] private Transform barrel = null;
 
-    [Header("Explision particles")]
-    [SerializeField] private Transform LittleEnemyExplosion = null;
-
     private int _reloadTime;
     private bool _reloaded;
+
+    //Object Pooler
+    ObjectPooler objectPooler;
 
     private void Start()
     {
         _health = Random.Range(10, 20);
 
         StartCoroutine(Reload());
+
+        objectPooler = ObjectPooler.objectPoolerInstance;
     }
 
     private void Update()
     {
         if (_health <= 0)
         {
-            GameManager.Instance.CurrentScore += 5;
-            Instantiate(LittleEnemyExplosion, transform.position, transform.rotation);
-            Destroy(gameObject);
+            GameManager.gameManagerInstance.CurrentScore += 5;
+            objectPooler.SpawnFromPool("LittleEnemyExplosion", transform.position, Quaternion.identity);
+            gameObject.SetActive(false);
         }
 
         if (_reloaded)

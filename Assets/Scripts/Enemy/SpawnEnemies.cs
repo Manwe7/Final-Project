@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class SpawnEnemies : MonoBehaviour
 {
-    [Header("Object to spawn")]
-    [SerializeField] GameObject enemy = null;
-    
+    //[Header("Object to spawn")]
+    //[SerializeField] GameObject enemy = null;
+
+    [Header("Spawn object Name")]
+    [SerializeField] string objectName = null;
+
     [Header("Spawner move settings")]
     [SerializeField] private float movementSpeed = 0;
     [SerializeField] private float movementDistance = 0;
@@ -17,11 +20,16 @@ public class SpawnEnemies : MonoBehaviour
     private float _initialposX;
     private bool _goRight;
 
+    //Object Pooler
+    ObjectPooler objectPooler;
+
     private void Start()
     {
         _initialposX = transform.position.x;
         SetRandomTime();
         _time = minTime;
+
+        objectPooler = ObjectPooler.objectPoolerInstance;
     }
 
     private void FixedUpdate()
@@ -59,7 +67,8 @@ public class SpawnEnemies : MonoBehaviour
     //Spawn enemy
     private void SpawnObject(){
         _time = 0;
-        Instantiate (enemy, transform.position, transform.rotation);
+        //Instantiate (enemy, transform.position, transform.rotation);
+        objectPooler.SpawnFromPool(objectName, transform.position, Quaternion.identity);
     }
  
     private void SetRandomTime()

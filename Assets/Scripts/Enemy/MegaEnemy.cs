@@ -7,26 +7,28 @@ public class MegaEnemy : Enemy
     [SerializeField] private Transform bullet = null;
     [SerializeField] private Transform barrel = null;
 
-    [Header("Explision particles")]
-    [SerializeField] private Transform MegaEnemyExplosion = null;
-
     private int _reloadTime;
     private bool _reloaded;
+
+    //Object Pooler
+    ObjectPooler objectPooler;
 
     private void Start()
     {
         _health = Random.Range(50, 60);
 
         StartCoroutine(Reload());
+
+        objectPooler = ObjectPooler.objectPoolerInstance;
     }
 
     private void Update()
     {
         if (_health <= 0)
         {
-            GameManager.Instance.CurrentScore += 15;
-            Instantiate(MegaEnemyExplosion, transform.position, transform.rotation);
-            Destroy(gameObject);
+            GameManager.gameManagerInstance.CurrentScore += 15;
+            objectPooler.SpawnFromPool("MegaEnemyExplosion", transform.position, Quaternion.identity);
+            gameObject.SetActive(false);
         }
 
         if (_reloaded)
