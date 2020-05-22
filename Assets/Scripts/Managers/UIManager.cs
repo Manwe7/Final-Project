@@ -21,9 +21,9 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance._player.activeSelf == false)
+        if (GameManager.gameManagerInstance._player.activeSelf == false)
         {
-            GameManager.Instance.SaveRecord();
+            GameManager.gameManagerInstance.SaveRecord();
             Time.timeScale = 0.5f;
             Invoke("OpenDefeatMenu", 1.5f);
         }
@@ -32,14 +32,14 @@ public class UIManager : MonoBehaviour
     private void OpenDefeatMenu()
     {
         //Open defeat menu
-        GameManager.Instance.SaveRecord();
+        GameManager.gameManagerInstance.SaveRecord();
         DefeatMenuPanel.SetActive(true);
         Time.timeScale = 0f;
     }
 
     public void Restart()
     {
-        GameManager.Instance.SaveRecord();
+        GameManager.gameManagerInstance.SaveRecord();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1f;
     }
@@ -52,7 +52,7 @@ public class UIManager : MonoBehaviour
 
     public void Exit()
     {
-        GameManager.Instance.SaveRecord();
+        GameManager.gameManagerInstance.SaveRecord();
         SceneManager.LoadScene("Menu");
     }
 }

@@ -12,10 +12,10 @@ public class GameManager : MonoBehaviour
     public float CurrentScore;
 
     #region Singleton 
-    public static GameManager Instance;
+    public static GameManager gameManagerInstance;
     private void Awake()
     {
-        Instance = this;
+        gameManagerInstance = this;
     }
     #endregion
 
