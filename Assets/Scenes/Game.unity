@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -522,7 +522,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &83794037
 GameObject:
@@ -683,7 +683,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &132967515
 MonoBehaviour:
@@ -1163,9 +1163,8 @@ GameObject:
   m_Component:
   - component: {fileID: 387906017}
   - component: {fileID: 387906016}
-  - component: {fileID: 387906018}
   m_Layer: 0
-  m_Name: Managers
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1201,20 +1200,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &387906018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 387906015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1402ac5baf13b5245a71305a3947a3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PauseMenuPanel: {fileID: 1914135829}
-  DefeatMenuPanel: {fileID: 1719492560}
 --- !u!1 &417914740
 GameObject:
   m_ObjectHideFlags: 0
@@ -1563,7 +1548,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 387906018}
+      - m_Target: {fileID: 496909789}
         m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
@@ -1692,6 +1677,51 @@ Transform:
   - {fileID: 1853284762}
   m_Father: {fileID: 0}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &496909788
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 496909790}
+  - component: {fileID: 496909789}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &496909789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496909788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1402ac5baf13b5245a71305a3947a3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PauseMenuPanel: {fileID: 1914135829}
+  DefeatMenuPanel: {fileID: 1719492560}
+--- !u!4 &496909790
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496909788}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &501055701
 GameObject:
@@ -2037,7 +2067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b130907db1ab09240b6cbfbd08b639ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 6936943444921490501, guid: c1d7e25e15138994897b3fd5ee4c9bae, type: 3}
+  objectName: AverageEnemy
   movementSpeed: 2.5
   movementDistance: 10
   maxTime: 10
@@ -2117,6 +2147,90 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 631901050}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &685225111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 685225112}
+  - component: {fileID: 685225113}
+  m_Layer: 0
+  m_Name: ObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &685225112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685225111}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &685225113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685225111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 023799f04be01554c9d7b7d97257f0b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - name: LittleEnemy
+    prefab: {fileID: 6936943444921490501, guid: 7a1f9264141a91340bd1cc43decd5ced,
+      type: 3}
+    size: 10
+  - name: AverageEnemy
+    prefab: {fileID: 6936943444921490501, guid: c1d7e25e15138994897b3fd5ee4c9bae,
+      type: 3}
+    size: 10
+  - name: MegaEnemy
+    prefab: {fileID: 6936943444921490501, guid: 8b63c8d354c14c54ea6a1cf1892376a4,
+      type: 3}
+    size: 10
+  - name: PlayerBulletExplosion
+    prefab: {fileID: 6163721950763462551, guid: 4c1b4a4573f20964bb8ac44bb818984c,
+      type: 3}
+    size: 10
+  - name: LittleEnemyBulletExplosion
+    prefab: {fileID: 6163721950763462551, guid: 7e729291e00d7d041a5d74759cdd8a24,
+      type: 3}
+    size: 5
+  - name: AverageEnemyBulletExplosion
+    prefab: {fileID: 6163721950763462551, guid: 05acbfa993974dd4ab0a8cf7e93b444a,
+      type: 3}
+    size: 5
+  - name: MegaEnemyBulletExplosion
+    prefab: {fileID: 6163721950763462551, guid: ef5d5da408ccb1e4492bf84b8070eb16,
+      type: 3}
+    size: 5
+  - name: LittleEnemyExplosion
+    prefab: {fileID: 6163721950763462551, guid: 3fc0344637719544cb556c71ec2c4f19,
+      type: 3}
+    size: 5
+  - name: AverageEnemyExplosion
+    prefab: {fileID: 6163721950763462551, guid: d0924fad08d74d943813ef63229933e4,
+      type: 3}
+    size: 5
+  - name: MegaEnemyExplosion
+    prefab: {fileID: 6163721950763462551, guid: 76c7ded1f269feb448fb0808af3bba2b,
+      type: 3}
+    size: 5
 --- !u!1 &710722848
 GameObject:
   m_ObjectHideFlags: 0
@@ -7342,7 +7456,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 387906018}
+      - m_Target: {fileID: 496909789}
         m_MethodName: Exit
         m_Mode: 1
         m_Arguments:
@@ -7434,7 +7548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b130907db1ab09240b6cbfbd08b639ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 6936943444921490501, guid: 8b63c8d354c14c54ea6a1cf1892376a4, type: 3}
+  objectName: MegaEnemy
   movementSpeed: -3
   movementDistance: 10
   maxTime: 15
@@ -7842,7 +7956,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 387906018}
+      - m_Target: {fileID: 496909789}
         m_MethodName: Exit
         m_Mode: 1
         m_Arguments:
@@ -8207,7 +8321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 0
+  m_AmplitudeGain: 3
   m_FrequencyGain: 3
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1234875103
@@ -8589,7 +8703,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 387906018}
+      - m_Target: {fileID: 496909789}
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
@@ -8878,7 +8992,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 387906018}
+      - m_Target: {fileID: 496909789}
         m_MethodName: PauseBtn
         m_Mode: 1
         m_Arguments:
@@ -9122,7 +9236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b130907db1ab09240b6cbfbd08b639ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 6936943444921490501, guid: 7a1f9264141a91340bd1cc43decd5ced, type: 3}
+  objectName: LittleEnemy
   movementSpeed: -1
   movementDistance: 7
   maxTime: 5
@@ -10250,7 +10364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b130907db1ab09240b6cbfbd08b639ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 6936943444921490501, guid: 7a1f9264141a91340bd1cc43decd5ced, type: 3}
+  objectName: LittleEnemy
   movementSpeed: -1
   movementDistance: 7
   maxTime: 5
@@ -10687,7 +10801,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 387906018}
+      - m_Target: {fileID: 496909789}
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
@@ -15574,7 +15688,7 @@ GameObject:
   - component: {fileID: 2087924738}
   - component: {fileID: 2087924737}
   m_Layer: 0
-  m_Name: AverageEnem
+  m_Name: AverageEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15592,7 +15706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b130907db1ab09240b6cbfbd08b639ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 6936943444921490501, guid: c1d7e25e15138994897b3fd5ee4c9bae, type: 3}
+  objectName: AverageEnemy
   movementSpeed: 2.5
   movementDistance: 10
   maxTime: 10
