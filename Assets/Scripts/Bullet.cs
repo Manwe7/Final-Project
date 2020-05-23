@@ -70,6 +70,7 @@ public class Bullet : MonoBehaviour
         {         
             objectPooler.SpawnFromPool("MegaEnemyBulletExplosion", transform.position, Quaternion.identity);
         }
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

@@ -56,6 +56,7 @@ public class ObjectPooler : MonoBehaviour
         GameObject objectToSpawn = poolDictionary[name].Dequeue();
         if (objectToSpawn.activeSelf)
         {
+            Debug.Log(objectToSpawn);
             InstantiatePoolObjects();
             
             objectToSpawn = poolDictionary[name].Dequeue();

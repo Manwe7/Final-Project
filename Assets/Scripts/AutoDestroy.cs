@@ -2,9 +2,9 @@
 
 public class AutoDestroy : MonoBehaviour
 {
-    private void Start()
+    private void OnEnable()
     {
-        Invoke("SelfDestroy", 5f);       
+        Invoke("SelfDestroy", 4f);       
     }
 
     private void SelfDestroy()
