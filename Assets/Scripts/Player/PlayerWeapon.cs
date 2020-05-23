@@ -10,9 +10,14 @@ public class PlayerWeapon : MonoBehaviour
     
     private bool _reloaded;
 
+    //Object Pooler
+    ObjectPooler objectPooler;
+
     private void Start()
     {
         _reloaded = true;
+
+        objectPooler = ObjectPooler.objectPoolerInstance;
     }
 
     private void Update()
@@ -33,8 +38,9 @@ public class PlayerWeapon : MonoBehaviour
 
         //Shoot
         if (_reloaded)
-        { 
-            Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
+        {
+            //Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
+            objectPooler.SpawnFromPool("PlayerBullet", barrel.transform.position, barrel.transform.rotation);
             _reloaded = false;
             Invoke("Reload", reloadTime);
         }
