@@ -4,7 +4,7 @@ using System.Collections;
 public class LittleEnemy : Enemy
 {
     [Header("Buttet and barrel")]
-    [SerializeField] private Transform bullet = null;
+    //[SerializeField] private Transform bullet = null;
     [SerializeField] private Transform barrel = null;
 
     private int _reloadTime;
@@ -33,7 +33,8 @@ public class LittleEnemy : Enemy
 
         if (_reloaded)
         {
-            Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
+            objectPooler.SpawnFromPool("LittleEnemyBullet", barrel.transform.position, barrel.transform.rotation);
+            //Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
             StartCoroutine(Reload());
         }
     }

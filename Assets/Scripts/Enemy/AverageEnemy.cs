@@ -4,7 +4,7 @@ using System.Collections;
 public class AverageEnemy : Enemy
 {
     [Header("Buttet and barrel")]
-    [SerializeField] private Transform bullet = null;
+    //[SerializeField] private Transform bullet = null;
     [SerializeField] private Transform barrel = null;
 
     private int _reloadTime;
@@ -33,7 +33,8 @@ public class AverageEnemy : Enemy
 
         if (_reloaded)
         {
-            Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
+            objectPooler.SpawnFromPool("AverageEnemyBullet", barrel.transform.position, barrel.transform.rotation);
+            //Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
             StartCoroutine(Reload());
         }
     }
