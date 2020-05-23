@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2206,31 +2206,47 @@ MonoBehaviour:
   - name: PlayerBulletExplosion
     prefab: {fileID: 6163721950763462551, guid: 4c1b4a4573f20964bb8ac44bb818984c,
       type: 3}
-    size: 10
+    size: 20
   - name: LittleEnemyBulletExplosion
     prefab: {fileID: 6163721950763462551, guid: 7e729291e00d7d041a5d74759cdd8a24,
       type: 3}
-    size: 5
+    size: 10
   - name: AverageEnemyBulletExplosion
     prefab: {fileID: 6163721950763462551, guid: 05acbfa993974dd4ab0a8cf7e93b444a,
       type: 3}
-    size: 5
+    size: 10
   - name: MegaEnemyBulletExplosion
     prefab: {fileID: 6163721950763462551, guid: ef5d5da408ccb1e4492bf84b8070eb16,
       type: 3}
-    size: 5
+    size: 10
   - name: LittleEnemyExplosion
     prefab: {fileID: 6163721950763462551, guid: 3fc0344637719544cb556c71ec2c4f19,
       type: 3}
-    size: 5
+    size: 7
   - name: AverageEnemyExplosion
     prefab: {fileID: 6163721950763462551, guid: d0924fad08d74d943813ef63229933e4,
       type: 3}
-    size: 5
+    size: 7
   - name: MegaEnemyExplosion
     prefab: {fileID: 6163721950763462551, guid: 76c7ded1f269feb448fb0808af3bba2b,
       type: 3}
-    size: 5
+    size: 7
+  - name: PlayerBullet
+    prefab: {fileID: 7444725418516393869, guid: bf81422569591f34b9f89c4007ea2d6a,
+      type: 3}
+    size: 20
+  - name: LittleEnemyBullet
+    prefab: {fileID: 7444725418516393869, guid: 6034abc6a4127184291822f8e5610c97,
+      type: 3}
+    size: 10
+  - name: AverageEnemyBullet
+    prefab: {fileID: 7444725418516393869, guid: d96bd5510566a08409706691545d68b9,
+      type: 3}
+    size: 10
+  - name: MegaEnemyBullet
+    prefab: {fileID: 7444725418516393869, guid: 1b1c7a62a5d117f4594780ebc82a6025,
+      type: 3}
+    size: 10
 --- !u!1 &710722848
 GameObject:
   m_ObjectHideFlags: 0
@@ -8321,7 +8337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 3
+  m_AmplitudeGain: 0
   m_FrequencyGain: 3
   mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1234875103
