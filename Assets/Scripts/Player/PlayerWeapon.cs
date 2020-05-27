@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {    
-    [SerializeField] private Transform parent = null, bullet = null, barrel = null;
+    [SerializeField] private Transform parent = null, barrel = null;
     [SerializeField] private Joystick joystick = null;
     [SerializeField] private RectTransform joystickHandle = null;
     [SerializeField] private float reloadTime = 0;

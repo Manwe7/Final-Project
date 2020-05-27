@@ -2247,6 +2247,10 @@ MonoBehaviour:
     prefab: {fileID: 7444725418516393869, guid: 1b1c7a62a5d117f4594780ebc82a6025,
       type: 3}
     size: 10
+  - name: PlayerExplosion
+    prefab: {fileID: 6163721950763462551, guid: 37afc425dadc19140800cd83bb7b1ef3,
+      type: 3}
+    size: 10
 --- !u!1 &710722848
 GameObject:
   m_ObjectHideFlags: 0

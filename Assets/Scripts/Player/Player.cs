@@ -3,12 +3,14 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private GameObject playerExplosion = null;
     [SerializeField] Slider healthSlider = null;    
     
     private float _health, _fade = 0f;
     private Material _material = null;
     private bool _isFading;
+
+    //Object Pooler
+    ObjectPooler objectPooler;
 
     private void Start()
     {
@@ -17,6 +19,8 @@ public class Player : MonoBehaviour
 
         _material = GetComponent<SpriteRenderer>().material;
         _isFading = true;
+
+        objectPooler = ObjectPooler.objectPoolerInstance;
     }
 
     private void Update()
@@ -64,7 +68,7 @@ public class Player : MonoBehaviour
         //Play sound
         FindObjectOfType<AudioManager>().Play("PlayerDeath");
         //Some particles
-        Instantiate(playerExplosion, transform.position, transform.rotation);
+        objectPooler.SpawnFromPool("PlayerExplosion", transform.position, transform.rotation);
         //Some shake
         CameraShake.ShakeOnce = true;
         //_health is 0
