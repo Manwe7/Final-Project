@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2174,7 +2174,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1845280465}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2190,6 +2191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 023799f04be01554c9d7b7d97257f0b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ObjectContainer: {fileID: 1845280464}
   pools:
   - name: LittleEnemy
     prefab: {fileID: 6936943444921490501, guid: 7a1f9264141a91340bd1cc43decd5ced,
@@ -2250,7 +2252,7 @@ MonoBehaviour:
   - name: PlayerExplosion
     prefab: {fileID: 6163721950763462551, guid: 37afc425dadc19140800cd83bb7b1ef3,
       type: 3}
-    size: 10
+    size: 2
 --- !u!1 &710722848
 GameObject:
   m_ObjectHideFlags: 0
@@ -8442,7 +8444,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 2108073679}
-  bullet: {fileID: 7444725418516393870, guid: bf81422569591f34b9f89c4007ea2d6a, type: 3}
   barrel: {fileID: 1618587422}
   joystick: {fileID: 4002015611852823098}
   joystickHandle: {fileID: 4002015611033934285}
@@ -10259,6 +10260,36 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1845280464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1845280465}
+  m_Layer: 0
+  m_Name: ObjectContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1845280465
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845280464}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 685225112}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1853284760
 GameObject:
   m_ObjectHideFlags: 0
@@ -15892,8 +15923,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e912c0fa8fb100d44aedc052b1b0bf39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerExplosion: {fileID: 6163721950763462551, guid: 37afc425dadc19140800cd83bb7b1ef3,
-    type: 3}
   healthSlider: {fileID: 710722850}
 --- !u!114 &2108073681
 MonoBehaviour:
