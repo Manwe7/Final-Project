@@ -20,7 +20,7 @@ public class SpawnEnemies : MonoBehaviour
     private Vector2 _pointA, _pointB;
 
     //Object Pooler
-    EnemyPooler enemyPooler;
+    Pooler pooler;
 
     private void Start()
     {
@@ -28,7 +28,7 @@ public class SpawnEnemies : MonoBehaviour
         SetRandomTime();
         _time = minTime;
 
-        enemyPooler = EnemyPooler._instance;
+        pooler = Pooler.Instance;
 
         _pointA = new Vector2(transform.position.x + movementDistance, transform.position.y);
         _pointB = new Vector2(transform.position.x - movementDistance, transform.position.y);
@@ -53,7 +53,12 @@ public class SpawnEnemies : MonoBehaviour
     //Spawn enemy
     private void SpawnObject(){
         _time = 0;
-        enemyPooler.SpawnFromPool(objectName, transform.position, Quaternion.identity);
+
+        //Pooler
+        GameObject explosion = pooler.GetPooledObject(objectName);
+        explosion.transform.position = transform.position;
+        explosion.transform.rotation = Quaternion.identity;
+        explosion.SetActive(true); //end
     }
  
     private void SetRandomTime()
