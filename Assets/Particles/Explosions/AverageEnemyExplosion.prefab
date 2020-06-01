@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6163721950763462553}
   - component: {fileID: 6163721950763462552}
   m_Layer: 0
-  m_Name: EnemyExplosion
+  m_Name: AverageEnemyExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
