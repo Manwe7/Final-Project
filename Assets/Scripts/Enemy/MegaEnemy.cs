@@ -10,8 +10,7 @@ public class MegaEnemy : Enemy
     private bool _reloaded;
 
     //Object Pooler
-    ExplosionPooler explosionPooler;
-    BulletPooler bulletPooler;
+    Pooler pooler;
 
     private void Start()
     {
@@ -19,8 +18,7 @@ public class MegaEnemy : Enemy
 
         StartCoroutine(Reload());
 
-        explosionPooler = ExplosionPooler._instance;
-        bulletPooler = BulletPooler._instance;
+        pooler = Pooler.Instance;
     }
 
     private void Update()
@@ -28,14 +26,24 @@ public class MegaEnemy : Enemy
         if (_health <= 0)
         {
             GameManager.gameManagerInstance.CurrentScore += 15;
-            explosionPooler.SpawnFromPool("MegaEnemyExplosion", transform.position, Quaternion.identity);
+
+            //Pooler
+            GameObject explosion = pooler.GetPooledObject("MegaEnemyExplosion");
+            explosion.transform.position = transform.position;
+            explosion.transform.rotation = Quaternion.identity;
+            explosion.SetActive(true); //end
+            
             gameObject.SetActive(false);
         }
 
         if (_reloaded)
         {
-            bulletPooler.SpawnFromPool("MegaEnemyBullet", barrel.transform.position, barrel.transform.rotation);
-            //Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
+            //Pooler
+            GameObject explosion = pooler.GetPooledObject("MegaEnemyBullet");
+            explosion.transform.position = barrel.transform.position;
+            explosion.transform.rotation = barrel.transform.rotation;
+            explosion.SetActive(true); //end
+           
             StartCoroutine(Reload());            
         }
     }
