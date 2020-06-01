@@ -52,8 +52,7 @@ public class PlayerMovement : MonoBehaviour
         fuelSlider.value = _fuelCapacity;
         _verticalMove = joystick.Vertical;
 
-
-        if (_verticalMove > 0.3f && _fuelCapacity > 0)
+        if (_verticalMove > 0.22f && _fuelCapacity > 0)
         {
             fuelParticles.SetActive(true);
             _fuelCapacity -= 0.1f;
