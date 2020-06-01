@@ -413,7 +413,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 30
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 9
@@ -435,7 +435,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  bullet: {fileID: 7444725418516393870, guid: d96bd5510566a08409706691545d68b9, type: 3}
   barrel: {fileID: 6936943444870025401}
-  AverageEnemyExplosion: {fileID: 6163721950763462554, guid: d0924fad08d74d943813ef63229933e4,
-    type: 3}
