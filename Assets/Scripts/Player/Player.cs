@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     private bool _isFading;
 
     //Object Pooler
-    ExplosionPooler explosionPooler;
+    Pooler pooler;
 
     private void Start()
     {
@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
         _material = GetComponent<SpriteRenderer>().material;
         _isFading = true;
 
-        explosionPooler = ExplosionPooler._instance;
+        pooler = Pooler.Instance;
     }
 
     private void Update()
@@ -68,7 +68,12 @@ public class Player : MonoBehaviour
         //Play sound
         FindObjectOfType<AudioManager>().Play("PlayerDeath");
         //Some particles
-        explosionPooler.SpawnFromPool("PlayerExplosion", transform.position, transform.rotation);
+        //Pooler
+        GameObject explosion = pooler.GetPooledObject("PlayerExplosion");
+        explosion.transform.position = transform.position;
+        explosion.transform.rotation = Quaternion.identity;
+        explosion.SetActive(true); //end
+
         //Some shake
         CameraShake.ShakeOnce = true;
         //_health is 0

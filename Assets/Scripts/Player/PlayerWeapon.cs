@@ -11,13 +11,12 @@ public class PlayerWeapon : MonoBehaviour
     private bool _reloaded;
 
     //Object Pooler
-    BulletPooler bulletPooler;
+    Pooler pooler;
 
     private void Start()
     {
         _reloaded = true;
-
-        bulletPooler = BulletPooler._instance;
+        pooler = Pooler.Instance;
     }
 
     private void Update()
@@ -39,7 +38,12 @@ public class PlayerWeapon : MonoBehaviour
         //Shoot
         if (_reloaded)
         {
-            bulletPooler.SpawnFromPool("PlayerBullet", barrel.transform.position, barrel.transform.rotation);
+            //Pooler
+            GameObject bullet = pooler.GetPooledObject("PlayerBullet");
+            bullet.transform.position = barrel.transform.position;
+            bullet.transform.rotation = barrel.transform.rotation;
+            bullet.SetActive(true); //end
+
             _reloaded = false;
             Invoke("Reload", reloadTime);
         }
