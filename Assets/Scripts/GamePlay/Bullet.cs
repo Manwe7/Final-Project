@@ -6,14 +6,14 @@ public class Bullet : MonoBehaviour
     [SerializeField] private Rigidbody2D rb = null;
 
     //Object Pooler
-    BulletExplosionPooler bulletExplosionPooler;
+    Pooler pooler;
 
     private void Start()
     {
         //Play sound
         FindObjectOfType<AudioManager>().Play("PlayerBullet");
 
-        bulletExplosionPooler = BulletExplosionPooler._instance;
+        pooler = Pooler.Instance;
     }
 
     private void FixedUpdate()
@@ -49,21 +49,33 @@ public class Bullet : MonoBehaviour
     void Explode()
     {
         //Depending on bullet instantiate corresponding particles
-        if(gameObject.name == "PlayerBullet(Clone)")
+        if(gameObject.name == "PlayerBullet")
         {
-            bulletExplosionPooler.SpawnFromPool("PlayerBulletExplosion", transform.position, Quaternion.identity);
+            GameObject explosion = pooler.GetPooledObject("PlayerBulletExplosion");
+            explosion.transform.position = transform.position;
+            explosion.transform.rotation = Quaternion.identity;
+            explosion.SetActive(true);
         }
-        else if(gameObject.name == "EnemyBullet(Clone)")
+        else if(gameObject.name == "LittleEnemyBullet")
         {
-            bulletExplosionPooler.SpawnFromPool("LittleEnemyBulletExplosion", transform.position, Quaternion.identity);
+            GameObject explosion = pooler.GetPooledObject("LittleEnemyBulletExplosion");
+            explosion.transform.position = transform.position;
+            explosion.transform.rotation = Quaternion.identity;
+            explosion.SetActive(true);
         }
-        else if(gameObject.name == "LittleEnemyBullet(Clone)")
+        else if(gameObject.name == "AverageEnemyBullet")
         {
-            bulletExplosionPooler.SpawnFromPool("AverageEnemyBulletExplosion", transform.position, Quaternion.identity);
+            GameObject explosion = pooler.GetPooledObject("AverageEnemyBulletExplosion");
+            explosion.transform.position = transform.position;
+            explosion.transform.rotation = Quaternion.identity;
+            explosion.SetActive(true);
         }
-        else if(gameObject.name == "MegaEnemyBullet(Clone)")
+        else if(gameObject.name == "MegaEnemyBullet")
         {
-            bulletExplosionPooler.SpawnFromPool("MegaEnemyBulletExplosion", transform.position, Quaternion.identity);
+            GameObject explosion = pooler.GetPooledObject("MegaEnemyBulletExplosion");
+            explosion.transform.position = transform.position;
+            explosion.transform.rotation = Quaternion.identity;
+            explosion.SetActive(true);
         }
         gameObject.SetActive(false);
     }
