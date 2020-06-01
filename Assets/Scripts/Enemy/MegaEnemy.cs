@@ -4,14 +4,14 @@ using System.Collections;
 public class MegaEnemy : Enemy
 {
     [Header("Buttet and barrel")]
-    //[SerializeField] private Transform bullet = null;
     [SerializeField] private Transform barrel = null;
 
     private int _reloadTime;
     private bool _reloaded;
 
     //Object Pooler
-    ObjectPooler objectPooler;
+    ExplosionPooler explosionPooler;
+    BulletPooler bulletPooler;
 
     private void Start()
     {
@@ -19,7 +19,8 @@ public class MegaEnemy : Enemy
 
         StartCoroutine(Reload());
 
-        objectPooler = ObjectPooler.objectPoolerInstance;
+        explosionPooler = ExplosionPooler._instance;
+        bulletPooler = BulletPooler._instance;
     }
 
     private void Update()
@@ -27,13 +28,13 @@ public class MegaEnemy : Enemy
         if (_health <= 0)
         {
             GameManager.gameManagerInstance.CurrentScore += 15;
-            objectPooler.SpawnFromPool("MegaEnemyExplosion", transform.position, Quaternion.identity);
+            explosionPooler.SpawnFromPool("MegaEnemyExplosion", transform.position, Quaternion.identity);
             gameObject.SetActive(false);
         }
 
         if (_reloaded)
         {
-            objectPooler.SpawnFromPool("MegaEnemyBullet", barrel.transform.position, barrel.transform.rotation);
+            bulletPooler.SpawnFromPool("MegaEnemyBullet", barrel.transform.position, barrel.transform.rotation);
             //Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
             StartCoroutine(Reload());            
         }
