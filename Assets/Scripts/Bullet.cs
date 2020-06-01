@@ -44,11 +44,6 @@ public class Bullet : MonoBehaviour
 
             Explode();
         }
-        if(other.gameObject.CompareTag("Bullet"))
-        {
-            other.gameObject.SendMessageUpwards("Explode");
-            Explode();
-        }
     }
 
     void Explode()
