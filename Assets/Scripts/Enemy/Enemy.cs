@@ -6,7 +6,9 @@ public class Enemy : MonoBehaviour
     
     protected Rigidbody2D _rigidbody2D;
     protected GameObject _player;
-    protected float _health;    
+    protected float _health;
+
+    protected float _distance;
 
     private void Awake()
     {
@@ -18,21 +20,27 @@ public class Enemy : MonoBehaviour
         }
         catch (System.Exception)
         { } //player is dead                
+        
     }
-                 
+
+    private void Start()
+    {
+        _distance = Random.Range(1f, 12f);
+    }
+
     private void FixedUpdate()
     {        
         if (_player != null)
         {
-            if (_player.transform.position.x > transform.position.x) //player is in right side
+            if (_player.transform.position.x + _distance > transform.position.x) //player is in right side
             {
                 _rigidbody2D.velocity = new Vector2(speed, _rigidbody2D.velocity.y);
             }
-            else if ((_player.transform.position.x < transform.position.x))
+            else if ((_player.transform.position.x - _distance < transform.position.x)) //player is in right side
             {
                 _rigidbody2D.velocity = new Vector2(-speed, _rigidbody2D.velocity.y);
             }
-        }
+        }        
         else
         { _rigidbody2D.velocity = new Vector2(0f, 0f); }        
     }    
