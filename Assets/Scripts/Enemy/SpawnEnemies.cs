@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class SpawnEnemies : MonoBehaviour
 {
-    //[Header("Object to spawn")]
-    //[SerializeField] GameObject enemy = null;
-
     [Header("Spawn object Name")]
     [SerializeField] string objectName = null;
 
@@ -20,8 +17,10 @@ public class SpawnEnemies : MonoBehaviour
     private float _initialposX;
     private bool _goRight;
 
+    private Vector2 _pointA, _pointB;
+
     //Object Pooler
-    ObjectPooler objectPooler;
+    EnemyPooler enemyPooler;
 
     private void Start()
     {
@@ -29,7 +28,10 @@ public class SpawnEnemies : MonoBehaviour
         SetRandomTime();
         _time = minTime;
 
-        objectPooler = ObjectPooler.objectPoolerInstance;
+        enemyPooler = EnemyPooler._instance;
+
+        _pointA = new Vector2(transform.position.x + movementDistance, transform.position.y);
+        _pointB = new Vector2(transform.position.x - movementDistance, transform.position.y);
     }
 
     private void FixedUpdate()
@@ -45,30 +47,13 @@ public class SpawnEnemies : MonoBehaviour
         }
 
         //Move right and left
-        if(transform.position.x > _initialposX + movementDistance)
-        {
-            _goRight = false;
-        }
-        else if (transform.position.x < _initialposX - movementDistance)
-        {
-            _goRight = true;
-        }
-
-        if(_goRight == true)
-        {
-            transform.position += Vector3.right * Time.deltaTime * movementSpeed;
-        }
-        else
-        {
-            transform.position += Vector3.left * Time.deltaTime * movementSpeed;
-        }
+        transform.position = Vector3.Lerp(_pointA, _pointB, Mathf.PingPong(Time.time / movementSpeed, 1));
     }
 
     //Spawn enemy
     private void SpawnObject(){
         _time = 0;
-        //Instantiate (enemy, transform.position, transform.rotation);
-        objectPooler.SpawnFromPool(objectName, transform.position, Quaternion.identity);
+        enemyPooler.SpawnFromPool(objectName, transform.position, Quaternion.identity);
     }
  
     private void SetRandomTime()
