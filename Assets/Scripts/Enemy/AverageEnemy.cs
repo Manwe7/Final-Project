@@ -10,8 +10,7 @@ public class AverageEnemy : Enemy
     private bool _reloaded;
 
     //Object Pooler
-    ExplosionPooler explosionPooler;
-    BulletPooler bulletPooler;
+    Pooler pooler;
 
     private void Start()
     {
@@ -19,8 +18,7 @@ public class AverageEnemy : Enemy
 
         StartCoroutine(Reload());
 
-        explosionPooler = ExplosionPooler._instance;
-        bulletPooler = BulletPooler._instance;
+        pooler = Pooler.Instance;
     }
 
     private void Update()
@@ -28,14 +26,24 @@ public class AverageEnemy : Enemy
         if (_health <= 0)
         {
             GameManager.gameManagerInstance.CurrentScore += 10;
-            explosionPooler.SpawnFromPool("AverageEnemyExplosion", transform.position, Quaternion.identity);            
+
+            //Pooler
+            GameObject explosion = pooler.GetPooledObject("AverageEnemyExplosion");
+            explosion.transform.position = transform.position;
+            explosion.transform.rotation = Quaternion.identity;
+            explosion.SetActive(true); //end
+
             gameObject.SetActive(false);
         }
 
         if (_reloaded)
         {
-            bulletPooler.SpawnFromPool("AverageEnemyBullet", barrel.transform.position, barrel.transform.rotation);
-            //Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
+            //Pooler
+            GameObject explosion = pooler.GetPooledObject("AverageEnemyBullet");
+            explosion.transform.position = barrel.transform.position;
+            explosion.transform.rotation = barrel.transform.rotation;
+            explosion.SetActive(true); //end
+
             StartCoroutine(Reload());
         }
     }
