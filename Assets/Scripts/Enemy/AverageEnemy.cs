@@ -4,14 +4,14 @@ using System.Collections;
 public class AverageEnemy : Enemy
 {
     [Header("Buttet and barrel")]
-    //[SerializeField] private Transform bullet = null;
     [SerializeField] private Transform barrel = null;
 
     private int _reloadTime;
     private bool _reloaded;
 
     //Object Pooler
-    ObjectPooler objectPooler;
+    ExplosionPooler explosionPooler;
+    BulletPooler bulletPooler;
 
     private void Start()
     {
@@ -19,7 +19,8 @@ public class AverageEnemy : Enemy
 
         StartCoroutine(Reload());
 
-        objectPooler = ObjectPooler.objectPoolerInstance;
+        explosionPooler = ExplosionPooler._instance;
+        bulletPooler = BulletPooler._instance;
     }
 
     private void Update()
@@ -27,13 +28,13 @@ public class AverageEnemy : Enemy
         if (_health <= 0)
         {
             GameManager.gameManagerInstance.CurrentScore += 10;
-            objectPooler.SpawnFromPool("AverageEnemyExplosion", transform.position, Quaternion.identity);            
+            explosionPooler.SpawnFromPool("AverageEnemyExplosion", transform.position, Quaternion.identity);            
             gameObject.SetActive(false);
         }
 
         if (_reloaded)
         {
-            objectPooler.SpawnFromPool("AverageEnemyBullet", barrel.transform.position, barrel.transform.rotation);
+            bulletPooler.SpawnFromPool("AverageEnemyBullet", barrel.transform.position, barrel.transform.rotation);
             //Instantiate(bullet, barrel.transform.position, barrel.transform.rotation);
             StartCoroutine(Reload());
         }
@@ -46,6 +47,4 @@ public class AverageEnemy : Enemy
         yield return new WaitForSeconds(_reloadTime);
         _reloaded = true;
     }
-
-
 }
