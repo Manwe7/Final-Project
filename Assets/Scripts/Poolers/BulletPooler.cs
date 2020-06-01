@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPooler : MonoBehaviour
+public class BulletPooler : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject ObjectContainer = null;
-
     [System.Serializable]
     public class Pool
     {
@@ -14,15 +11,18 @@ public class ObjectPooler : MonoBehaviour
         public int size;
     }
 
-    public static ObjectPooler objectPoolerInstance;
+    [SerializeField]
+    private GameObject BulletContainer = null;
+
+    public List<Pool> bulletPools;
+    public Dictionary<string, Queue<GameObject>> bulletPoolDictionary;
+
+    public static BulletPooler _instance;
 
     private void Awake()
     {
-        objectPoolerInstance = this;
+        _instance = this;
     }
-
-    public List<Pool> pools;
-    public Dictionary<string, Queue<GameObject>> poolDictionary;
 
     private void Start()
     {
@@ -31,46 +31,45 @@ public class ObjectPooler : MonoBehaviour
 
     private void InstantiatePoolObjects()
     {
-        poolDictionary = new Dictionary<string, Queue<GameObject>>();
+        bulletPoolDictionary = new Dictionary<string, Queue<GameObject>>();
 
-        foreach (Pool pool in pools)
+        foreach (Pool pool in bulletPools)
         {
             Queue<GameObject> objectPool = new Queue<GameObject>();
 
             for (int i = 0; i < pool.size; i++)
             {
                 GameObject obj = Instantiate(pool.prefab);
-                obj.transform.parent = ObjectContainer.transform;
+                obj.transform.parent = BulletContainer.transform;
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
 
-            poolDictionary.Add(pool.name, objectPool);
+            bulletPoolDictionary.Add(pool.name, objectPool);
         }
     }
 
     public GameObject SpawnFromPool(string name, Vector3 position, Quaternion rotation)
     {
-        if (!poolDictionary.ContainsKey(name))
+        if (!bulletPoolDictionary.ContainsKey(name))
         {
             Debug.Log("This name " + name + " does not excist");
             return null;
         }
-        
-        GameObject objectToSpawn = poolDictionary[name].Dequeue();
+
+        GameObject objectToSpawn = bulletPoolDictionary[name].Dequeue();
         if (objectToSpawn.activeSelf)
         {
             Debug.Log(objectToSpawn);
             InstantiatePoolObjects();
-            
-            objectToSpawn = poolDictionary[name].Dequeue();
+            objectToSpawn = bulletPoolDictionary[name].Dequeue();
         }
 
         objectToSpawn.SetActive(true);
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
 
-        poolDictionary[name].Enqueue(objectToSpawn);
+        bulletPoolDictionary[name].Enqueue(objectToSpawn);
 
         return objectToSpawn;
     }
