@@ -18,6 +18,10 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Game");
     }
+    public void PlayO()
+    {
+        SceneManager.LoadScene("GameOnline");
+    }
 
     public void Settings()
     {
