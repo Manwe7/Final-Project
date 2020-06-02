@@ -5,6 +5,16 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] GameObject PauseMenuPanel = null, DefeatMenuPanel = null;
 
+    private void Awake()
+    {
+        Player.defeated += Defeat;    
+    }
+
+    private void OnDisable()
+    {
+        Player.defeated -= Defeat;
+    }
+
     public void PauseBtn()
     {
         if (!PauseMenuPanel.activeSelf)
@@ -19,7 +29,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    /*private void Update()
     {
         if (GameManager.gameManagerInstance._player.activeSelf == false)
         {
@@ -27,6 +37,13 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 0.5f;
             Invoke("OpenDefeatMenu", 1.5f);
         }
+    }*/
+
+    private void Defeat()
+    {
+        GameManager.gameManagerInstance.SaveRecord();
+        Time.timeScale = 0.5f;
+        Invoke("OpenDefeatMenu", 1.5f);
     }
 
     private void OpenDefeatMenu()

@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
     private Material _material = null;
     private bool _isFading;
 
+    public delegate void Defeat();
+    public static event Defeat defeated;
+
     //Object Pooler
     Pooler pooler;
 
@@ -65,6 +68,8 @@ public class Player : MonoBehaviour
 
     void Killed()
     {
+        if (defeated != null)
+        { defeated(); }
         //Play sound
         FindObjectOfType<AudioManager>().Play("PlayerDeath");
         //Some particles
