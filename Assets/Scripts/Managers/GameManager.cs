@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
     private bool _recordIsNew = false;    
     private float _oldRecord;
     
-    public GameObject _player;
     public float CurrentScore;
 
     #region Singleton 
@@ -24,7 +23,6 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         _oldRecord = PlayerPrefs.GetFloat("ScoreRecord", 0);
-        _player = GameObject.FindGameObjectWithTag("Player");
 
         CurrentScore = 0;
     }
