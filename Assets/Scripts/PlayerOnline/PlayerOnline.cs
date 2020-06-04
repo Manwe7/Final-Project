@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using Cinemachine;
 using Mirror;
 
-public class PlayerOnline : NetworkBehaviour
+public class PlayerOnline : MonoBehaviour
 {
     private Slider healthSlider = null;
 
@@ -19,9 +19,9 @@ public class PlayerOnline : NetworkBehaviour
 
     private void OnEnable()
     {
-        var vcam = GameObject.Find("Main Camera/CM vcam1").GetComponent<CinemachineVirtualCamera>();
+        /*var vcam = GameObject.Find("Main Camera/CM vcam1").GetComponent<CinemachineVirtualCamera>();
         vcam.LookAt = gameObject.transform;
-        vcam.Follow = gameObject.transform;
+        vcam.Follow = gameObject.transform;*/
     }
 
     private void Start()
@@ -39,8 +39,8 @@ public class PlayerOnline : NetworkBehaviour
 
     private void Update()
     {
-        if (!hasAuthority)
-        { return; }
+        /*if (!hasAuthority)
+        { return; }*/
 
         //_health
         healthSlider.value = _health;
