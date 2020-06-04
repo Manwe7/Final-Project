@@ -26,12 +26,9 @@ public class PlayerOnlineWeapon : NetworkBehaviour
 
     private void Update()
     {
-        if (!hasAuthority)
-        { return; }
-
-        //Find mouse position
-        Vector3 mouse = Input.mousePosition;
-        Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(transform.position);
+        //Find mouse position for PC
+        /*Vector3 mouse = Input.mousePosition;
+        Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(transform.position);*/
 
         //Change position depending on mouse position
         if (joystickHandle.anchoredPosition.x < 0)//(mouse.x < playerScreenPoint.x) 
