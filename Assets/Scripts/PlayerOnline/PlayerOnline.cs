@@ -39,9 +39,6 @@ public class PlayerOnline : MonoBehaviour
 
     private void Update()
     {
-        /*if (!hasAuthority)
-        { return; }*/
-
         //_health
         healthSlider.value = _health;
         if (_health <= 0)
