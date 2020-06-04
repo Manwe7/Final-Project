@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
 
-public class PlayerOnlineMovement : NetworkBehaviour
+public class PlayerOnlineMovement : MonoBehaviour
 {
     [SerializeField] private GameObject fuelParticles = null;
 
@@ -39,9 +39,6 @@ public class PlayerOnlineMovement : NetworkBehaviour
 
     private void FixedUpdate()
     {
-        if (!hasAuthority)
-        { return; }
-
         //Movement
         _horizontalMove = joystick.Horizontal;
 
