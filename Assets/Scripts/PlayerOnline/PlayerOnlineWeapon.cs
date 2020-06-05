@@ -44,10 +44,10 @@ public class PlayerOnlineWeapon : NetworkBehaviour
         if (_reloaded)
         {
             //Pooler
-            GameObject bullet = pooler.GetPooledObject("PlayerBullet");
+            /*GameObject bullet = pooler.GetPooledObject("PlayerBullet");
             bullet.transform.position = barrel.transform.position;
             bullet.transform.rotation = barrel.transform.rotation;
-            bullet.SetActive(true); //end
+            bullet.SetActive(true);*/ //end
 
             _reloaded = false;
             Invoke("Reload", reloadTime);
