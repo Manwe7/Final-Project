@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -972,7 +972,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &114751342
 Transform:
   m_ObjectHideFlags: 0
@@ -1935,7 +1935,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &275148154
 Transform:
   m_ObjectHideFlags: 0
@@ -10900,7 +10900,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &927162265
 Transform:
   m_ObjectHideFlags: 0
@@ -13712,7 +13712,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310259561}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a6f2f8af5d824c4babc861f580ddd4e, type: 3}
   m_Name: 
@@ -15638,8 +15638,8 @@ MonoBehaviour:
   startOnHeadless: 1
   showDebugMessages: 0
   serverTickRate: 30
-  offlineScene: Assets/Scenes/GameOnline.unity
-  onlineScene: Assets/Scenes/GameOnline.unity
+  offlineScene: 
+  onlineScene: 
   transport: {fileID: 1518641363}
   networkAddress: localhost
   maxConnections: 4
