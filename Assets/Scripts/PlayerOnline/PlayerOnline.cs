@@ -79,8 +79,7 @@ public class PlayerOnline : MonoBehaviour
 
     void Killed()
     {
-        if (defeated != null)
-        { defeated(); }
+        /*defeated?.Invoke();
         //Play sound
         FindObjectOfType<AudioManager>().Play("PlayerDeath");
         //Some particles
@@ -96,6 +95,6 @@ public class PlayerOnline : MonoBehaviour
         _health = 0;
         healthSlider.value = _health;
         //Turn off player
-        gameObject.SetActive(false);
+        gameObject.SetActive(false);*/
     }
 }
