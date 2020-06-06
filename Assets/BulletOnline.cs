@@ -35,15 +35,16 @@ public class BulletOnline : NetworkBehaviour
         }
         else if (other.gameObject.CompareTag("Player"))
         {
-            CmdPlayerShot(other.gameObject.name);            
+            CmdPlayerShot(other.gameObject.name);
+            Debug.Log(other.gameObject.name);
         }
     }
 
     [Command]
-    void CmdPlayerShot(string _id)
+    void CmdPlayerShot(string _playerID)
     {
         Debug.Log("Player");
-        Debug.Log(_id + " has been shot");        
+        Debug.Log(_playerID + " has been shot");        
     }
 
     void Explode()
