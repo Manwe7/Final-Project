@@ -2659,7 +2659,6 @@ GameObject:
   - component: {fileID: 387906016}
   - component: {fileID: 387906018}
   - component: {fileID: 387906019}
-  - component: {fileID: 387906020}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2717,18 +2716,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 387906015}
   m_Enabled: 1
---- !u!114 &387906020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 387906015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d71a1a33158d75488c35de1e2bc3b6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &431668896 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 434520154385673294, guid: fa2c9c9c3370bb742822a3a89ad9f096,
@@ -13973,7 +13960,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1343594452}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: -11.6, z: 0}
+  m_LocalPosition: {x: 3, y: -11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1518641365}
@@ -15650,7 +15637,7 @@ MonoBehaviour:
   runInBackground: 1
   startOnHeadless: 1
   showDebugMessages: 0
-  serverTickRate: 30
+  serverTickRate: 60
   offlineScene: 
   onlineScene: 
   transport: {fileID: 1518641363}
@@ -15664,6 +15651,7 @@ MonoBehaviour:
   autoCreatePlayer: 1
   playerSpawnMethod: 1
   spawnPrefabs:
+  - {fileID: 7444725418516393869, guid: 99054d9069f61124ea5baf811a76a97c, type: 3}
   - {fileID: 7444725418516393869, guid: 99054d9069f61124ea5baf811a76a97c, type: 3}
 --- !u!4 &1518641365
 Transform:
