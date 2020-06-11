@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 using Mirror;
 
-public class PlayerOnlineWeapon : NetworkBehaviour
+public class PlayerOnlineWeapon : MonoBehaviour
 {
-    [SerializeField] private Transform parent = null, barrel = null;
+    [SerializeField] private Transform parent = null;// barrel = null;
     private FixedJoystick joystick = null;
     private RectTransform joystickHandle = null;
     private float reloadTime = 0;
     private float _offset = 180;
 
     private bool _reloaded;
+
+    public delegate void Shooted();
+    public static event Shooted Shoot;
 
     //Object Pooler
     Pooler pooler;
@@ -19,7 +22,7 @@ public class PlayerOnlineWeapon : NetworkBehaviour
         joystick = GameObject.Find("Canvas/RotationJoystick").GetComponent<FixedJoystick>();
         joystickHandle = GameObject.Find("Canvas/RotationJoystick/Handle").GetComponent<RectTransform>();
 
-        reloadTime = 0.3f;
+        reloadTime = 0.5f;
         _reloaded = true;
         pooler = Pooler.Instance;
     }
@@ -42,12 +45,8 @@ public class PlayerOnlineWeapon : NetworkBehaviour
 
         //Shoot
         if (_reloaded)
-        {            
-            //Pooler
-            GameObject bullet = pooler.GetPooledObject("PlayerBullet");
-            bullet.transform.position = barrel.transform.position;
-            bullet.transform.rotation = barrel.transform.rotation;
-            bullet.SetActive(true); //end
+        {
+            Shoot();
 
             _reloaded = false;
             Invoke("Reload", reloadTime);
