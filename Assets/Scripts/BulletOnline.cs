@@ -1,7 +1,4 @@
 ﻿using Mirror;
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class BulletOnline : NetworkBehaviour
@@ -9,8 +6,11 @@ public class BulletOnline : NetworkBehaviour
     [SerializeField] private float speed = 0;
     [SerializeField] private Rigidbody2D rb = null;
 
+    public delegate void Damaged(int damage);        
+    public static event Damaged EventDamage;
+
     //Object Pooler
-    Pooler pooler;
+    Pooler pooler;    
 
     private void Start()
     {
@@ -26,27 +26,28 @@ public class BulletOnline : NetworkBehaviour
         rb.velocity = transform.up * speed;
     }
 
-    [Client]
-    private void OnCollisionEnter2D(Collision2D other)
+    [ServerCallback]
+    private void OnTriggerEnter2D(Collider2D other)
     {        
         if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Lava"))
         {
             Explode();
         }
         else if (other.gameObject.CompareTag("Player"))
-        {
-            CmdPlayerShot(other.gameObject.name);
-            Debug.Log(other.gameObject.name);
+        {            
+            CmdPlayerShot();
+            Debug.Log(other.gameObject.name + " has been shot");
+            Explode();
         }
     }
 
     [Command]
-    void CmdPlayerShot(string _playerID)
+    void CmdPlayerShot()
     {
-        Debug.Log("Player");
-        Debug.Log(_playerID + " has been shot");        
+        EventDamage(5);      
     }
 
+    [Server]
     void Explode()
     {
         //Depending on bullet instantiate corresponding particles        
@@ -54,7 +55,7 @@ public class BulletOnline : NetworkBehaviour
         explosion.transform.position = transform.position;
         explosion.transform.rotation = Quaternion.identity;
         explosion.SetActive(true);
-
-        gameObject.SetActive(false);
+        
+        NetworkManager.Destroy(gameObject);
     }
 }
