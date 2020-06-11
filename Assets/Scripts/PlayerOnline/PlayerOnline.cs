@@ -3,26 +3,35 @@ using UnityEngine.UI;
 using Cinemachine;
 using Mirror;
 
-public class PlayerOnline : MonoBehaviour
+public class PlayerOnline : NetworkBehaviour
 {
+    [SerializeField] private GameObject BulletPrefab = null;
+    [SerializeField] private Transform barrel = null;
+
     private Slider healthSlider = null;
 
     private float _health, _fade = 0f;
     private Material _material = null;
     private bool _isFading;
 
-    public delegate void Defeat();
-    public static event Defeat defeated;
-
-    //Object Pooler
-    Pooler pooler;
+    /*public delegate void Defeat();
+    public static event Defeat defeated;*/
 
     private void OnEnable()
     {
-        /*var vcam = GameObject.Find("Main Camera/CM vcam1").GetComponent<CinemachineVirtualCamera>();
-        vcam.LookAt = gameObject.transform;
-        vcam.Follow = gameObject.transform;*/
+        PlayerOnlineWeapon.Shoot += CmdFire;
+        BulletOnline.EventDamage += GetDamage;     
     }
+
+    private void OnDisable()
+    {
+        PlayerOnlineWeapon.Shoot -= CmdFire;
+        BulletOnline.EventDamage -= GetDamage;        
+    }
+
+    /*var vcam = GameObject.Find("Main Camera/CM vcam1").GetComponent<CinemachineVirtualCamera>();
+    vcam.LookAt = gameObject.transform;
+    vcam.Follow = gameObject.transform;*/
 
     private void Start()
     {
@@ -33,12 +42,13 @@ public class PlayerOnline : MonoBehaviour
 
         _material = GetComponent<SpriteRenderer>().material;
         _isFading = true;
-
-        pooler = Pooler.Instance;
     }
 
     private void Update()
     {
+        if (!isLocalPlayer)
+            return;
+
         //_health
         healthSlider.value = _health;
         if (_health <= 0)
@@ -61,6 +71,15 @@ public class PlayerOnline : MonoBehaviour
         }
     }
 
+    // this is called on the server
+    [Command]
+    void CmdFire()
+    {
+        GameObject bullet = Instantiate(BulletPrefab, barrel.position, barrel.rotation);                
+        NetworkServer.Spawn(bullet);        
+    }
+
+    [ServerCallback]
     private void OnCollisionEnter2D(Collision2D other)
     {
         //If touched lava - DIE
@@ -70,15 +89,19 @@ public class PlayerOnline : MonoBehaviour
         }
     }
 
-    void GetDamage(float damage)
+    [ServerCallback]
+    void GetDamage(int damage)
     {
         //Play sound
         FindObjectOfType<AudioManager>().Play("Hurt");
         _health -= damage;
     }
 
+    [Server]
     void Killed()
     {
+        NetworkServer.Destroy(gameObject);
+        gameObject.SetActive(false);
         /*defeated?.Invoke();
         //Play sound
         FindObjectOfType<AudioManager>().Play("PlayerDeath");
