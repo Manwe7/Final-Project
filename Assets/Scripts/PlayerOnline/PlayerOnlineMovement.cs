@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
 
-public class PlayerOnlineMovement : MonoBehaviour
+public class PlayerOnlineMovement : NetworkBehaviour
 {
     [SerializeField] private GameObject fuelParticles = null;
 
@@ -39,6 +39,9 @@ public class PlayerOnlineMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!isLocalPlayer)
+            return;
+
         //Movement
         _horizontalMove = joystick.Horizontal;
 
@@ -57,6 +60,9 @@ public class PlayerOnlineMovement : MonoBehaviour
 
     private void Update()
     {
+        if (!isLocalPlayer)
+            return;
+
         fuelSlider.value = _fuelCapacity;
         _verticalMove = joystick.Vertical;
 
