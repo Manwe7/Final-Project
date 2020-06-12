@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Mirror;
 
 public class PlayerOnlineWeapon : MonoBehaviour
 {
@@ -14,9 +13,6 @@ public class PlayerOnlineWeapon : MonoBehaviour
     public delegate void Shooted();
     public static event Shooted Shoot;
 
-    //Object Pooler
-    Pooler pooler;
-
     private void Start()
     {
         joystick = GameObject.Find("Canvas/RotationJoystick").GetComponent<FixedJoystick>();
@@ -24,7 +20,6 @@ public class PlayerOnlineWeapon : MonoBehaviour
 
         reloadTime = 0.5f;
         _reloaded = true;
-        pooler = Pooler.Instance;
     }
 
     private void Update()
