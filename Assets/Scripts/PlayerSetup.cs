@@ -8,7 +8,6 @@ public class PlayerSetup : NetworkBehaviour
     [SerializeField] private PlayerOnlineMovement playerOnlineMovement = null;
     [SerializeField] private PlayerOnlineWeapon playerOnlineWeapon = null;
     [SerializeField] private GameObject cameraPlayer = null;
-    [SerializeField] private string remoteLayerName = "RemotePlayer";
 
     Camera sceneCamera;
 
@@ -24,11 +23,15 @@ public class PlayerSetup : NetworkBehaviour
             playerOnlineMovement.enabled = false;
             playerOnlineWeapon.enabled = false;
             cameraPlayer.SetActive(false);
-
-            gameObject.layer = LayerMask.NameToLayer(remoteLayerName);
+            
+            gameObject.name = "RemotePlayer";
+            gameObject.layer = LayerMask.NameToLayer("RemotePlayer");
         }
         else
         {
+            gameObject.name = "LocalPlayer";
+            gameObject.layer = LayerMask.NameToLayer("LocalPlayer");
+
             sceneCamera = Camera.main;
             if (sceneCamera != null)
             {
