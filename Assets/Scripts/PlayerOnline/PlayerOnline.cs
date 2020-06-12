@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using Cinemachine;
 using Mirror;
 
 public class PlayerOnline : NetworkBehaviour
@@ -29,11 +28,7 @@ public class PlayerOnline : NetworkBehaviour
     private void OnDisable()
     {
         PlayerOnlineWeapon.Shoot -= CmdFire;
-    }
-
-    /*var vcam = GameObject.Find("Main Camera/CM vcam1").GetComponent<CinemachineVirtualCamera>();
-    vcam.LookAt = gameObject.transform;
-    vcam.Follow = gameObject.transform;*/
+    }    
 
     private void Start()
     {
@@ -52,7 +47,7 @@ public class PlayerOnline : NetworkBehaviour
         healthSlider.value = _health;
         if (_health <= 0)
         {
-            Killed();
+            CmdKilled();
         }
 
         //_fade
@@ -85,7 +80,7 @@ public class PlayerOnline : NetworkBehaviour
         //If touched lava - DIE
         if (other.gameObject.CompareTag("Lava"))
         {
-            Killed();
+            CmdKilled();
         }
     }
 
@@ -97,8 +92,8 @@ public class PlayerOnline : NetworkBehaviour
         _health -= damage;
     }
 
-    [Server]
-    void Killed()
+    [Command]
+    void CmdKilled()
     {
         _health = 0;
         NetworkServer.Destroy(gameObject);
