@@ -5004,7 +5004,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &746933837885668541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5022,6 +5022,7 @@ MonoBehaviour:
   BulletPrefab: {fileID: 7444725418516393869, guid: 99054d9069f61124ea5baf811a76a97c,
     type: 3}
   barrel: {fileID: 7237156481264855370}
+  _health: 0
 --- !u!114 &8012040252768472259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5055,7 +5056,6 @@ MonoBehaviour:
   playerOnlineMovement: {fileID: 8012040252768472259}
   playerOnlineWeapon: {fileID: 9122758963737139490}
   cameraPlayer: {fileID: 8117225738950080517}
-  remoteLayerName: RemotePlayer
 --- !u!114 &7237156481712922773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5492,12 +5492,12 @@ GameObject:
   - component: {fileID: 8117225738950080762}
   - component: {fileID: 8117225738950080760}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8117225738950080761
 Transform:
   m_ObjectHideFlags: 0
