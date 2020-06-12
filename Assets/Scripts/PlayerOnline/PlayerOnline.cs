@@ -10,7 +10,11 @@ public class PlayerOnline : NetworkBehaviour
 
     private Slider healthSlider = null;
 
-    private float _health, _fade = 0f;
+    [SyncVar]
+    [HideInInspector]
+    public float _health;
+
+    private float _fade = 0f;
     private Material _material = null;
     private bool _isFading;
 
@@ -20,13 +24,11 @@ public class PlayerOnline : NetworkBehaviour
     private void OnEnable()
     {
         PlayerOnlineWeapon.Shoot += CmdFire;
-        BulletOnline.EventDamage += GetDamage;     
     }
 
     private void OnDisable()
     {
         PlayerOnlineWeapon.Shoot -= CmdFire;
-        BulletOnline.EventDamage -= GetDamage;        
     }
 
     /*var vcam = GameObject.Find("Main Camera/CM vcam1").GetComponent<CinemachineVirtualCamera>();
@@ -46,9 +48,6 @@ public class PlayerOnline : NetworkBehaviour
 
     private void Update()
     {
-        if (!isLocalPlayer)
-            return;
-
         //_health
         healthSlider.value = _health;
         if (_health <= 0)
@@ -75,7 +74,8 @@ public class PlayerOnline : NetworkBehaviour
     [Command]
     void CmdFire()
     {
-        GameObject bullet = Instantiate(BulletPrefab, barrel.position, barrel.rotation);                
+        GameObject bullet = Instantiate(BulletPrefab, barrel.position, barrel.rotation);
+        bullet.name = gameObject.name + "Bullet";
         NetworkServer.Spawn(bullet);        
     }
 
@@ -100,6 +100,7 @@ public class PlayerOnline : NetworkBehaviour
     [Server]
     void Killed()
     {
+        _health = 0;
         NetworkServer.Destroy(gameObject);
         gameObject.SetActive(false);
         /*defeated?.Invoke();
