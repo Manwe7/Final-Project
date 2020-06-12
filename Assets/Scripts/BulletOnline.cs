@@ -5,19 +5,11 @@ public class BulletOnline : NetworkBehaviour
 {
     [SerializeField] private float speed = 0;
     [SerializeField] private Rigidbody2D rb = null;
-
-    public delegate void Damaged(int damage);        
-    public static event Damaged EventDamage;
-
-    //Object Pooler
-    Pooler pooler;    
-
+   
     private void Start()
     {
         //Play sound
         FindObjectOfType<AudioManager>().Play("PlayerBullet");
-
-        pooler = Pooler.Instance;
     }
 
     private void FixedUpdate()
@@ -34,27 +26,25 @@ public class BulletOnline : NetworkBehaviour
             Explode();
         }
         else if (other.gameObject.CompareTag("Player"))
-        {            
-            CmdPlayerShot();
+        {
+            if (other.name == "LocalPlayer" && gameObject.name == "LocalPlayerBullet")
+            { return; }
+            if (other.name == "RemotePlayer" && gameObject.name == "RemotePlayerBullet")
+            { return; }
+
+            other.gameObject.GetComponent<PlayerOnline>()._health -= 5;
             Debug.Log(other.gameObject.name + " has been shot");
             Explode();
         }
     }
 
-    [Command]
-    void CmdPlayerShot()
-    {
-        EventDamage(5);      
-    }
-
     [Server]
     void Explode()
     {
-        //Depending on bullet instantiate corresponding particles        
-        GameObject explosion = pooler.GetPooledObject("PlayerBulletExplosion");
+        /*GameObject explosion = pooler.GetPooledObject("PlayerBulletExplosion");
         explosion.transform.position = transform.position;
         explosion.transform.rotation = Quaternion.identity;
-        explosion.SetActive(true);
+        explosion.SetActive(true);*/
         
         NetworkManager.Destroy(gameObject);
     }
