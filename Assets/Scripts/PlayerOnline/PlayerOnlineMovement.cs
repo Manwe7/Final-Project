@@ -13,7 +13,7 @@ public class PlayerOnlineMovement : NetworkBehaviour
 
     private Rigidbody2D _rigidbody2D = null;
 
-    private bool _facingLeft = true, _reloadFuel;
+    private bool _reloadFuel;
     private float _horizontalMove, _verticalMove;
     private float _fuelCapacity;
 
@@ -39,30 +39,24 @@ public class PlayerOnlineMovement : NetworkBehaviour
 
     private void FixedUpdate()
     {
-        if (!isLocalPlayer)
-            return;
-
         //Movement
         _horizontalMove = joystick.Horizontal;
 
         _rigidbody2D.velocity = new Vector2(_horizontalMove * moveSpeed, _rigidbody2D.velocity.y);
 
         //Check for sides
-        if (_horizontalMove > 0 && !_facingLeft)
+        /*if (_horizontalMove > 0 && !_facingLeft)
         {
             Flip();
         }
         else if (_horizontalMove < 0 && _facingLeft)
         {
             Flip();
-        }
+        }*/
     }
 
     private void Update()
     {
-        if (!isLocalPlayer)
-            return;
-
         fuelSlider.value = _fuelCapacity;
         _verticalMove = joystick.Vertical;
 
@@ -90,12 +84,5 @@ public class PlayerOnlineMovement : NetworkBehaviour
         _reloadFuel = false;
         yield return new WaitForSeconds(2f);
         _reloadFuel = true;
-    }
-
-    private void Flip()
-    {
-        //Flip sides
-        _facingLeft = !_facingLeft;
-        transform.Rotate(0f, 180f, 0f);
     }
 }
