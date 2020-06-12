@@ -4060,7 +4060,7 @@ MonoBehaviour:
   objectName: AverageEnemy
   movementSpeed: 5
   movementDistance: 10
-  maxTime: 12
+  maxTime: 15
   minTime: 22
 --- !u!1001 &556888229
 PrefabInstance:
@@ -15920,7 +15920,7 @@ MonoBehaviour:
   objectName: LittleEnemy
   movementSpeed: 5
   movementDistance: 7
-  maxTime: 7
+  maxTime: 10
   minTime: 17
 --- !u!1001 &1531400221
 PrefabInstance:
@@ -18398,7 +18398,7 @@ MonoBehaviour:
   objectName: LittleEnemy
   movementSpeed: 5
   movementDistance: 7
-  maxTime: 7
+  maxTime: 10
   minTime: 17
 --- !u!1001 &1883269576
 PrefabInstance:
@@ -24682,7 +24682,7 @@ MonoBehaviour:
   objectName: AverageEnemy
   movementSpeed: 5
   movementDistance: 10
-  maxTime: 12
+  maxTime: 15
   minTime: 22
 --- !u!4 &2087924738
 Transform:
