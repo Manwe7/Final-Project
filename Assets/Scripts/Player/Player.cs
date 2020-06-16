@@ -3,9 +3,9 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] Slider healthSlider = null;    
-    
     private float _health, _fade = 0f;
+
+    private Slider _healthSlider = null;           
     private Material _material = null;
     private bool _isFading;
 
@@ -15,12 +15,17 @@ public class Player : MonoBehaviour
     //Object Pooler
     Pooler pooler;
 
+    private void Awake()
+    {
+        _healthSlider = GameObject.Find("Canvas/PlayerHealthSlider").GetComponent<Slider>();
+        _material = GetComponent<SpriteRenderer>().material;
+    }
+
     private void Start()
     {
         _health = 100;
-        healthSlider.maxValue = _health;
-
-        _material = GetComponent<SpriteRenderer>().material;
+        _healthSlider.maxValue = _health;
+        
         _isFading = true;
 
         pooler = Pooler.Instance;
@@ -29,7 +34,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         //_health
-        healthSlider.value = _health;
+        _healthSlider.value = _health;
         if (_health <= 0)
         {
             Killed();
@@ -83,7 +88,7 @@ public class Player : MonoBehaviour
         CameraShake.ShakeOnce = true;
         //_health is 0
         _health = 0;
-        healthSlider.value = _health;
+        _healthSlider.value = _health;
         //Turn off player
         gameObject.SetActive(false);
     }
