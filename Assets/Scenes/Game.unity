@@ -4060,7 +4060,7 @@ MonoBehaviour:
   objectName: AverageEnemy
   movementSpeed: 5
   movementDistance: 10
-  maxTime: 15
+  maxTime: 12
   minTime: 22
 --- !u!1001 &556888229
 PrefabInstance:
@@ -13366,8 +13366,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 2108073679}
   barrel: {fileID: 1618587422}
-  joystick: {fileID: 4002015611852823098}
-  joystickHandle: {fileID: 4002015611033934285}
   reloadTime: 0.3
 --- !u!1001 &1238108711
 PrefabInstance:
@@ -15920,7 +15918,7 @@ MonoBehaviour:
   objectName: LittleEnemy
   movementSpeed: 5
   movementDistance: 7
-  maxTime: 10
+  maxTime: 7
   minTime: 17
 --- !u!1001 &1531400221
 PrefabInstance:
@@ -17709,7 +17707,7 @@ GameObject:
   - component: {fileID: 1803450226}
   - component: {fileID: 1803450225}
   m_Layer: 5
-  m_Name: 'MovementJoystick '
+  m_Name: MovementJoystick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18398,7 +18396,7 @@ MonoBehaviour:
   objectName: LittleEnemy
   movementSpeed: 5
   movementDistance: 7
-  maxTime: 10
+  maxTime: 7
   minTime: 17
 --- !u!1001 &1883269576
 PrefabInstance:
@@ -24682,7 +24680,7 @@ MonoBehaviour:
   objectName: AverageEnemy
   movementSpeed: 5
   movementDistance: 10
-  maxTime: 15
+  maxTime: 12
   minTime: 22
 --- !u!4 &2087924738
 Transform:
@@ -24926,7 +24924,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e912c0fa8fb100d44aedc052b1b0bf39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthSlider: {fileID: 710722850}
 --- !u!114 &2108073681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24939,11 +24936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f884c6aba77164a86e34b0114ea045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 17
-  maxfuelCapacity: 50
   fuelParticles: {fileID: 2041822307}
-  joystick: {fileID: 1803450225}
-  fuelSlider: {fileID: 1709646366}
 --- !u!1001 &2113349140
 PrefabInstance:
   m_ObjectHideFlags: 0
