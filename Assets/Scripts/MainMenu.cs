@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] GameObject SettingsPanel=null;
+    [SerializeField] GameObject SettingsPanel = null;
     [SerializeField] Text record = null;
     private float _oldRecord;
 
@@ -17,6 +17,11 @@ public class MainMenu : MonoBehaviour
     public void Play()
     {
         SceneManager.LoadScene("Game");
+    }
+
+    public void Lobby()
+    {
+        SceneManager.LoadScene("Lobby");
     }
 
     public void Settings()
