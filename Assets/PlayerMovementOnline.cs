@@ -13,7 +13,7 @@ public class PlayerMovementOnline : MonoBehaviour
 
     private float moveSpeed = 17;
     private float maxfuelCapacity = 50;
-    private bool _facingLeft = true, _reloadFuel;
+    private bool _facingLeft = true, _reloadFuel, flying;
     private float _horizontalMove, _verticalMove;
     private float _fuelCapacity;
     private PhotonView _photonView;
@@ -34,20 +34,31 @@ public class PlayerMovementOnline : MonoBehaviour
         _fuelCapacity = maxfuelCapacity;
         _fuelSlider.maxValue = maxfuelCapacity;
     }
-
-    private void FixedUpdate()
+    
+    private void Update()
     {
         if (!_photonView.IsMine)
         { return; }
 
-        //Movement
+        _fuelSlider.value = _fuelCapacity;
+        _verticalMove = _fixedjoystick.Vertical;
         _horizontalMove = _fixedjoystick.Horizontal;
 
-        _rigidbody2D.velocity = new Vector2(_horizontalMove * moveSpeed, _rigidbody2D.velocity.y);
-        /*if (_horizontalMove != 0)
-        { transform.Translate(Vector3.right * Time.deltaTime * moveSpeed); }
+        if (_verticalMove > 0.22f && _fuelCapacity > 0)
+        {
+            fuelParticles.SetActive(true);
+            _fuelCapacity -= 0.1f;
+        }
         else
-        { transform.Translate(new Vector2(0, 0)); }*/
+        {
+            flying = false;
+            //_rigidbody2D.gravityScale = 5;
+            fuelParticles.SetActive(false);
+            if (_fuelCapacity < maxfuelCapacity && _reloadFuel)
+            {
+                _fuelCapacity += 0.1f;
+            }
+        }
 
         //Check for sides
         if (_horizontalMove > 0 && !_facingLeft)
@@ -58,37 +69,36 @@ public class PlayerMovementOnline : MonoBehaviour
         {
             Flip();
         }
+
+        if (_fuelCapacity <= 0 && _reloadFuel == true)
+        { StartCoroutine(ReloadFuel()); }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (!_photonView.IsMine)
         { return; }
 
-        _fuelSlider.value = _fuelCapacity;
-        _verticalMove = _fixedjoystick.Vertical;
+        //Movement
+        _rigidbody2D.velocity = new Vector2(_horizontalMove * moveSpeed, _rigidbody2D.velocity.y);
+        /*if (_horizontalMove > 0)
+        { transform.Translate(Time.deltaTime * 10, 0, 0); }
+        if (_horizontalMove < 0)
+        { transform.Translate(-Time.deltaTime * 10, 0, 0); }
+        */
+        if (flying)
+        { _rigidbody2D.velocity = Vector2.up * 10; }
 
         if (_verticalMove > 0.22f && _fuelCapacity > 0)
         {
-            fuelParticles.SetActive(true);
-            _fuelCapacity -= 0.1f;
-            _rigidbody2D.velocity = Vector2.up * 10;
-            /*if (_verticalMove > 0)
-            { transform.Translate(Vector3.up * Time.deltaTime * 10); }
-            _rigidbody2D.gravityScale = 0;*/
+            //_rigidbody2D.velocity = Vector2.up * 10; 
+            transform.Translate(0, Time.deltaTime * 8, 0);
+            _rigidbody2D.gravityScale = 0;
         }
         else
         {
-            //_rigidbody2D.gravityScale = 5;
-            fuelParticles.SetActive(false);
-            if (_fuelCapacity < maxfuelCapacity && _reloadFuel)
-            {
-                _fuelCapacity += 0.1f;
-            }
+            _rigidbody2D.gravityScale = 5;
         }
-
-        if (_fuelCapacity <= 0 && _reloadFuel == true)
-        { StartCoroutine(ReloadFuel()); }
     }
 
     IEnumerator ReloadFuel()
