@@ -45,4 +45,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         LogText.text += "\n";
         LogText.text += message;
     }
+
+    //Exit button
+    public void Menu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 }
