@@ -37,12 +37,17 @@ public class PlayerMovementOnline : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!_photonView.IsMine) { return; }
+        if (!_photonView.IsMine)
+        { return; }
 
         //Movement
         _horizontalMove = _fixedjoystick.Horizontal;
 
         _rigidbody2D.velocity = new Vector2(_horizontalMove * moveSpeed, _rigidbody2D.velocity.y);
+        /*if (_horizontalMove != 0)
+        { transform.Translate(Vector3.right * Time.deltaTime * moveSpeed); }
+        else
+        { transform.Translate(new Vector2(0, 0)); }*/
 
         //Check for sides
         if (_horizontalMove > 0 && !_facingLeft)
@@ -53,6 +58,12 @@ public class PlayerMovementOnline : MonoBehaviour
         {
             Flip();
         }
+    }
+
+    private void Update()
+    {
+        if (!_photonView.IsMine)
+        { return; }
 
         _fuelSlider.value = _fuelCapacity;
         _verticalMove = _fixedjoystick.Vertical;
@@ -62,11 +73,13 @@ public class PlayerMovementOnline : MonoBehaviour
             fuelParticles.SetActive(true);
             _fuelCapacity -= 0.1f;
             _rigidbody2D.velocity = Vector2.up * 10;
-            _rigidbody2D.gravityScale = 0;
+            /*if (_verticalMove > 0)
+            { transform.Translate(Vector3.up * Time.deltaTime * 10); }
+            _rigidbody2D.gravityScale = 0;*/
         }
         else
         {
-            _rigidbody2D.gravityScale = 5;
+            //_rigidbody2D.gravityScale = 5;
             fuelParticles.SetActive(false);
             if (_fuelCapacity < maxfuelCapacity && _reloadFuel)
             {
