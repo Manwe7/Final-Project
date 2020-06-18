@@ -3,7 +3,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed = 0;
-    [SerializeField] private Rigidbody2D rb = null;
+    [SerializeField] private Rigidbody2D _rigidbody2D = null;
 
     //Object Pooler
     Pooler pooler;
@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
     private void FixedUpdate()
     {
         //Constant speed
-        rb.velocity = transform.up * speed;
+        _rigidbody2D.velocity = transform.up * speed;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
