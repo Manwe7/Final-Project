@@ -7,9 +7,8 @@ public class BulletOnline : MonoBehaviour
     
     private Rigidbody2D _rigidbody2D = null;
 
-    private void Start()
+    private void Awake()
     {
-        //Play sound
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
@@ -24,7 +23,7 @@ public class BulletOnline : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Lava"))
         {
-            Explode();
+            Explode();            
         }
         //If player send damage
         if (other.gameObject.CompareTag("Player"))
@@ -42,10 +41,9 @@ public class BulletOnline : MonoBehaviour
         }
     }
 
-    [PunRPC]
-    void Explode()
+    public void Explode()
     {
-        //PhotonNetwork.Destroy(gameObject);
-        Destroy(gameObject);
+        PhotonNetwork.Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }
