@@ -110,7 +110,7 @@ public class PlayerMovementOnline : MonoBehaviour
     private void Flip()
     {
         //Flip sides
-        _facingLeft = !_facingLeft;
-        transform.Rotate(0f, 180f, 0f);
+        /*_facingLeft = !_facingLeft;
+        transform.Rotate(0f, 180f, 0f);*/
     }
 }
