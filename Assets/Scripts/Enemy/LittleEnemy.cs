@@ -12,7 +12,7 @@ public class LittleEnemy : Enemy
     //Object Pooler
     Pooler pooler;
 
-    private void Start()
+    private void OnEnable()
     {
         _health = Random.Range(10, 20);
 

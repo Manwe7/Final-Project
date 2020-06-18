@@ -12,7 +12,7 @@ public class MegaEnemy : Enemy
     //Object Pooler
     Pooler pooler;
 
-    private void Start()
+    private void OnEnable()
     {
         _health = Random.Range(50, 60);
 
