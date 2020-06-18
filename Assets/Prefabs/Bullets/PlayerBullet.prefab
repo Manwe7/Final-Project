@@ -145,11 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 25
-  rb: {fileID: 5518891196149967445}
-  playerBulletExp: playerBulletExp
-  littleEnemyBulletExp: littleEnemyBulletExp
-  avergaeEnemyBulletExp: avergaeEnemyBulletExp
-  megaEnemyBulletExp: megaEnemyBulletExp
+  _rigidbody2D: {fileID: 5518891196149967445}
 --- !u!1001 &4327688169793999168
 PrefabInstance:
   m_ObjectHideFlags: 0

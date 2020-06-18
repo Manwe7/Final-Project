@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5518891196149967445}
   - component: {fileID: -3461732624809974626}
   m_Layer: 9
-  m_Name: EnemyBullet
+  m_Name: AverageEnemyBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,15 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 25
-  rb: {fileID: 5518891196149967445}
-  PlayerBulletExp: {fileID: 6163721950763462551, guid: 4c1b4a4573f20964bb8ac44bb818984c,
-    type: 3}
-  LittleEnemyBulletExp: {fileID: 6163721950763462551, guid: 7e729291e00d7d041a5d74759cdd8a24,
-    type: 3}
-  EnemyBulletExp: {fileID: 6163721950763462551, guid: 05acbfa993974dd4ab0a8cf7e93b444a,
-    type: 3}
-  MegaEnemyBulletExp: {fileID: 6163721950763462551, guid: ef5d5da408ccb1e4492bf84b8070eb16,
-    type: 3}
+  _rigidbody2D: {fileID: 5518891196149967445}
 --- !u!1001 &8037526464948097600
 PrefabInstance:
   m_ObjectHideFlags: 0
