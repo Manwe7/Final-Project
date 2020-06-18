@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using Photon.Pun;
 using System.Collections;
+using Cinemachine;
 
 public class PlayerOnline : MonoBehaviour, IPunObservable
 {
@@ -23,6 +24,8 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
     /*public delegate void Defeat();
     public static event Defeat defeated;*/
 
+    CinemachineVirtualCamera _cinemachineVirtualCamera;
+
     private void Awake()
     {
         _healthSlider = GameObject.Find("Canvas/PlayerHealthSlider").GetComponent<Slider>();
@@ -33,6 +36,14 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _boxCollider2D = GetComponent<BoxCollider2D>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
+
+        _cinemachineVirtualCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInChildren<CinemachineVirtualCamera>();
+
+        if (_photonView.IsMine)
+        {
+            _cinemachineVirtualCamera.Follow = gameObject.transform;
+            _cinemachineVirtualCamera.LookAt = gameObject.transform;
+        }
     }
 
     private void Start()
@@ -100,8 +111,7 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
 
             StartCoroutine("WaitForRespawn");
             //Some shake
-            // CameraShake.ShakeOnce = true;
-            //_health is 0
+            //CameraShake.ShakeOnce = true;
             _health = 0;
             _healthSlider.value = _health;
             //Turn off player
