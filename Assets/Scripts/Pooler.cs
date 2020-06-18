@@ -31,7 +31,7 @@ public class Pooler : MonoBehaviour
         {
             for (int i = 0; i < item.amountToPool; i++)
             {
-                GameObject obj = (GameObject)Instantiate(item.objectToPool);
+                GameObject obj = Instantiate(item.objectToPool);
                 obj.transform.parent = Container;
                 obj.name = item.objectName;
                 obj.SetActive(false);
@@ -55,7 +55,7 @@ public class Pooler : MonoBehaviour
             {
                 if (item.shouldExpand)
                 {
-                    GameObject obj = (GameObject)Instantiate(item.objectToPool);
+                    GameObject obj = Instantiate(item.objectToPool);
                     obj.transform.parent = Container;
                     obj.name = item.objectName;
                     obj.SetActive(false);
