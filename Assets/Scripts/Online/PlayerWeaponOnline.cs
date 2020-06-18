@@ -4,6 +4,7 @@ using Photon.Pun;
 public class PlayerWeaponOnline : MonoBehaviour
 {
     [SerializeField] private Transform parent = null, barrel = null;
+    [SerializeField] private GameObject BulletOnline = null;
     [SerializeField] private float reloadTime = 0;
 
     private Joystick _fixedjoystick = null;
@@ -12,9 +13,6 @@ public class PlayerWeaponOnline : MonoBehaviour
     private float _offset = 180;
 
     private bool _reloaded;
-
-    //Object Pooler
-    Pooler pooler;
 
     private void Awake()
     {
@@ -26,36 +24,39 @@ public class PlayerWeaponOnline : MonoBehaviour
     private void Start()
     {
         _reloaded = true;
-        pooler = Pooler.Instance;
     }
 
     private void Update()
     {
-        if (!_photonView.IsMine) { return; }
-
-        //Change position depending on mouse position
-        if (_joystickHandle.anchoredPosition.x < 0 && _joystickHandle.anchoredPosition.x != 0)//(mouse.x < playerScreenPoint.x) 
+        if (_photonView.IsMine)
         {
-            LeftSide();
-        }
-        else if (_joystickHandle.anchoredPosition.x > 0)
-        {
-            RightSide();
-        }
 
-        //Shoot
-        if (_reloaded)
-        {
-            //Pooler
-            GameObject bullet = pooler.GetPooledObject("PlayerBullet");
-            bullet.transform.position = barrel.transform.position;
-            bullet.transform.rotation = barrel.transform.rotation;
-            bullet.SetActive(true); //end
+            //Change position depending on mouse position
+            if (_joystickHandle.anchoredPosition.x < 0 && _joystickHandle.anchoredPosition.x != 0)//(mouse.x < playerScreenPoint.x) 
+            {
+                LeftSide();
+            }
+            else if (_joystickHandle.anchoredPosition.x > 0)
+            {
+                RightSide();
+            }
 
-            _reloaded = false;
-            Invoke("Reload", reloadTime);
+            //Shoot
+            if (_reloaded)
+            {
+                //Instantiate(BulletOnline, barrel.position, barrel.rotation);
+                Shoot();
+                _reloaded = false;
+                Invoke("Reload", reloadTime);
+            }
         }
+    }
 
+    [PunRPC]
+    private void Shoot()
+    {
+        GameObject bullet = PhotonNetwork.Instantiate(BulletOnline.name, barrel.position, barrel.rotation);
+        bullet.name = parent.gameObject.name + "Bullet";
     }
 
     private void Reload()

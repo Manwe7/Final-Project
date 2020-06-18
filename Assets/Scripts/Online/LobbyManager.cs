@@ -6,12 +6,10 @@ using UnityEngine.SceneManagement;
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Text LogText = null;
+    [SerializeField] private InputField nicknameInput = null;
 
     private void Start()
-    {
-        PhotonNetwork.NickName = "Player " + Random.Range(100, 999);
-        Log("Player name is " + PhotonNetwork.NickName);
-
+    {        
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.GameVersion = "1";
         PhotonNetwork.ConnectUsingSettings();
@@ -24,12 +22,32 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void CreateRoom()
     {
-        PhotonNetwork.CreateRoom(null, new Photon.Realtime.RoomOptions { MaxPlayers = 2 });
+        if (nicknameInput.text == null)
+        {
+            Debug.Log("Empty");
+            return;
+        }
+        else
+        {
+            Debug.Log(nicknameInput.text);
+            PhotonNetwork.NickName = nicknameInput.text;
+            PhotonNetwork.CreateRoom(null, new Photon.Realtime.RoomOptions { MaxPlayers = 2 });
+        }
     }
 
     public void RandomRoom()
     {
-        PhotonNetwork.JoinRandomRoom();
+        if (nicknameInput.text == null)
+        {
+            Debug.Log("Empty");
+            return;
+        }
+        else
+        {
+            Debug.Log(nicknameInput.text);
+            PhotonNetwork.NickName = nicknameInput.text;
+            PhotonNetwork.JoinRandomRoom();
+        }
     }
 
     public override void OnJoinedRoom()

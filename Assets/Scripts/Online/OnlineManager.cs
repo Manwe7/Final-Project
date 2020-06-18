@@ -8,7 +8,8 @@ public class OnlineManager : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        PhotonNetwork.Instantiate(Player.name, Vector3.zero, Quaternion.identity);
+        GameObject player = PhotonNetwork.Instantiate(Player.name, Vector3.zero, Quaternion.identity);
+        player.name = "Player" + PhotonNetwork.NickName;
     }
 
     public void LeaveRoom()

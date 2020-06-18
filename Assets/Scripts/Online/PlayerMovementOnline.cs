@@ -13,7 +13,7 @@ public class PlayerMovementOnline : MonoBehaviour
 
     private float moveSpeed = 17;
     private float maxfuelCapacity = 50;
-    private bool _facingLeft = true, _reloadFuel, flying;
+    private bool _facingLeft = true, _reloadFuel;
     private float _horizontalMove, _verticalMove;
     private float _fuelCapacity;
     private PhotonView _photonView;
@@ -51,7 +51,6 @@ public class PlayerMovementOnline : MonoBehaviour
         }
         else
         {
-            flying = false;
             //_rigidbody2D.gravityScale = 5;
             fuelParticles.SetActive(false);
             if (_fuelCapacity < maxfuelCapacity && _reloadFuel)
@@ -76,28 +75,28 @@ public class PlayerMovementOnline : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!_photonView.IsMine)
-        { return; }
+        if (_photonView.IsMine)
+        {            
+            //Movement
+            _rigidbody2D.velocity = new Vector2(_horizontalMove * moveSpeed, _rigidbody2D.velocity.y);
+            /*if (_horizontalMove > 0)
+            { transform.Translate(Time.deltaTime * 10, 0, 0); }
+            if (_horizontalMove < 0)
+            { transform.Translate(-Time.deltaTime * 10, 0, 0); }
+            */
+            /*if (flying)
+            { _rigidbody2D.velocity = Vector2.up * 10; }*/
 
-        //Movement
-        _rigidbody2D.velocity = new Vector2(_horizontalMove * moveSpeed, _rigidbody2D.velocity.y);
-        /*if (_horizontalMove > 0)
-        { transform.Translate(Time.deltaTime * 10, 0, 0); }
-        if (_horizontalMove < 0)
-        { transform.Translate(-Time.deltaTime * 10, 0, 0); }
-        */
-        if (flying)
-        { _rigidbody2D.velocity = Vector2.up * 10; }
-
-        if (_verticalMove > 0.22f && _fuelCapacity > 0)
-        {
-            //_rigidbody2D.velocity = Vector2.up * 10; 
-            transform.Translate(0, Time.deltaTime * 8, 0);
-            _rigidbody2D.gravityScale = 0;
-        }
-        else
-        {
-            _rigidbody2D.gravityScale = 5;
+            if (_verticalMove > 0.22f && _fuelCapacity > 0)
+            {
+                //_rigidbody2D.velocity = Vector2.up * 10; 
+                transform.Translate(0, Time.deltaTime * 8, 0);
+                _rigidbody2D.gravityScale = 0;
+            }
+            else
+            {
+                _rigidbody2D.gravityScale = 5;
+            }
         }
     }
 
