@@ -7,9 +7,12 @@ public class BulletOnline : MonoBehaviour
     
     private Rigidbody2D _rigidbody2D = null;
 
+    PhotonView _photonView;
+
     private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _photonView = GetComponent<PhotonView>();
     }
 
     private void FixedUpdate()
@@ -19,20 +22,16 @@ public class BulletOnline : MonoBehaviour
     }
 
     [PunRPC]
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Lava"))
+        if (other.CompareTag("Ground") || other.gameObject.CompareTag("Lava"))
         {
             Explode();            
         }
         //If player send damage
-        if (other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            if (gameObject.name == other.gameObject.name + "Bullet")
-            {
-                return;
-            }
-            else
+            if (gameObject.name != other.gameObject.name + "Bullet")
             {
                 other.gameObject.SendMessageUpwards("GetDamage", 10);
                 //CameraShake.ShakeOnce = true;
@@ -40,10 +39,12 @@ public class BulletOnline : MonoBehaviour
             }
         }
     }
-
+    
     public void Explode()
     {
-        PhotonNetwork.Destroy(gameObject);
+        gameObject.SetActive(false);
+        if (_photonView.IsMine)
+        { PhotonNetwork.Destroy(gameObject); }
         //Destroy(gameObject);
     }
 }
