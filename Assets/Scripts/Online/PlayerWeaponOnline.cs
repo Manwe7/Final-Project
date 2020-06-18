@@ -51,9 +51,8 @@ public class PlayerWeaponOnline : MonoBehaviour
             }
         }
     }
-
-    [PunRPC]
-    private void Shoot()
+    
+    public void Shoot()
     {
         GameObject bullet = PhotonNetwork.Instantiate(BulletOnline.name, barrel.position, barrel.rotation);
         bullet.name = parent.gameObject.name + "Bullet";
