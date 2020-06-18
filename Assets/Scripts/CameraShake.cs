@@ -40,7 +40,6 @@ public class CameraShake : MonoBehaviour
                 // Set Cinemachine Camera Noise parameters
                 virtualCameraNoise.m_AmplitudeGain = ShakeAmplitude;
                 virtualCameraNoise.m_FrequencyGain = ShakeFrequency;
-
                 // Update Shake Timer
                 ShakeElapsedTime -= Time.deltaTime;
             }
