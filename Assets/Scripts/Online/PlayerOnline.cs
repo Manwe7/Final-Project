@@ -20,7 +20,7 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
     private BoxCollider2D _boxCollider2D;
     private Rigidbody2D _rigidbody2D;
 
-    private bool respawned;
+    private bool respawned, killed;
     /*public delegate void Defeat();
     public static event Defeat defeated;*/
 
@@ -48,10 +48,14 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
 
     private void Start()
     {
-        _health = 100;
-        _healthSlider.maxValue = _health;
+        if (_photonView.IsMine)
+        {
+            _health = 100;
+            _healthSlider.maxValue = _health;
 
-        _isFading = true;
+            _isFading = true;
+            killed = false;
+        }
     }
 
     private void Update()
@@ -60,9 +64,10 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
         {
             //_health
             _healthSlider.value = _health;
-            if (_health <= 0)
+            if (_health <= 0 && !killed)
             {
-                Killed();
+                //Killed();
+                _photonView.RPC("Killed", RpcTarget.AllViaServer);
             }
 
             //_fade
@@ -86,11 +91,12 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
         //If touched lava - DIE
         if (other.gameObject.CompareTag("Lava"))
         {
-            Killed();
+            //Killed();
+            _photonView.RPC("Killed", RpcTarget.AllViaServer);
         }
     }
 
-    void GetDamage(float damage)
+    public void GetDamage(float damage)
     {
         if (_photonView.IsMine)
         {
@@ -99,24 +105,25 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
     }
 
     [PunRPC]
-    void Killed()
+    public void Killed()
     {
         if (_photonView.IsMine)
         {
+            killed = true;
+
             weapon.SetActive(false);
             _playerMovementOnline.enabled = false;
             _spriteRenderer.enabled = false;
             _boxCollider2D.enabled = false;
             _rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
-
-            StartCoroutine("WaitForRespawn");
+            
             //Some shake
             //CameraShake.ShakeOnce = true;
             _health = 0;
             _healthSlider.value = _health;
-            //Turn off player
-            //gameObject.SetActive(false);
             respawned = false;
+
+            StartCoroutine("WaitForRespawn");
         }
     }
 
@@ -128,7 +135,7 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
     }
 
     [PunRPC]
-    private void RespawnPlayer()
+    public void RespawnPlayer()
     {
         if (!respawned)
         {
