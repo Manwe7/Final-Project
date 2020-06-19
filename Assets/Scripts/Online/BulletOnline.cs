@@ -23,10 +23,10 @@ public class BulletOnline : MonoBehaviour
 
     [PunRPC]
     private void OnTriggerEnter2D(Collider2D other)
-    {
+    {        
         if (other.CompareTag("Ground") || other.gameObject.CompareTag("Lava"))
         {
-            Explode();            
+            Explode();
         }
         //If player send damage
         if (other.CompareTag("Player"))
