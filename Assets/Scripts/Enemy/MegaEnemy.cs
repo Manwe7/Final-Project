@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//same comments as for previous class
 public class MegaEnemy : Enemy
 {
     [Header("Buttet and barrel")]
