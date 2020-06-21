@@ -20,7 +20,8 @@ public class LittleEnemy : Enemy
 
         pooler = Pooler.Instance;
     }
-
+    
+    //same comment as before
     private void Update()
     {
         if (_health <= 0)
@@ -47,7 +48,8 @@ public class LittleEnemy : Enemy
             StartCoroutine(Reload());
         }
     }
-
+    //I saw reload method in another enemy class. follow DRY principle
+    //you can encapsulate this into base abstract class
     IEnumerator Reload()
     {
         _reloaded = false;
