@@ -11,6 +11,7 @@ public class BulletOnline : MonoBehaviour
 
     private void Awake()
     {
+        //you can assign them in Unity Inspector
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _photonView = GetComponent<PhotonView>();
     }
@@ -31,8 +32,10 @@ public class BulletOnline : MonoBehaviour
         //If player send damage
         if (other.CompareTag("Player"))
         {
+            //comparing by string name is not the best option, I would check tags or components of the bject
             if (gameObject.name != other.gameObject.name + "Bullet")
             {
+                //are you sure that there is not other way to explicitly call the method? send message is costly
                 other.gameObject.SendMessageUpwards("GetDamage", 10);
                 //CameraShake.ShakeOnce = true;
                 Explode();
@@ -44,7 +47,9 @@ public class BulletOnline : MonoBehaviour
     {
         gameObject.SetActive(false);
         if (_photonView.IsMine)
-        { PhotonNetwork.Destroy(gameObject); }
+        { 
+            PhotonNetwork.Destroy(gameObject); 
+        }
         //Destroy(gameObject);
     }
 }
