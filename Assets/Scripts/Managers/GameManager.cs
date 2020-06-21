@@ -3,8 +3,11 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {    
+    //why do you set them as NULL?
     [SerializeField] Text ScoreText = null, defeatRecordText = null;
     
+    //naming.. does not sound as English
+    //_isNewRecord sounds better
     private bool _recordIsNew = false;    
     private float _oldRecord;
     
@@ -12,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     #region Singleton 
     public static GameManager gameManagerInstance;
+    //singleton is not complete. refer to my ObjecPoolManager example
     private void Awake()
     {
         Application.targetFrameRate = 60;
@@ -43,6 +47,7 @@ public class GameManager : MonoBehaviour
     
     public void SaveRecord()
     {
+        //simply if(_recordIsNew)
         if (_recordIsNew == true)
         {
             PlayerPrefs.SetFloat("ScoreRecord", CurrentScore);
