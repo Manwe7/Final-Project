@@ -1,18 +1,27 @@
 using UnityEngine;
+using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float speed = 0;// jumpForce = 0;
-    
+    [SerializeField] private float speed = 0;
+
+    private AudioManager _audioManager;
+
     protected Rigidbody2D _rigidbody2D;
     protected GameObject _player;
     protected float _health;
 
     protected float _distance;
 
+    protected int _reloadTime;
+    protected bool _reloaded;
+
     private void Awake()
     {
+        //Components
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _audioManager = FindObjectOfType<AudioManager>();
+
         //why do you need try catch if you don't handle exceptions?
         try
         {
@@ -43,7 +52,7 @@ public class Enemy : MonoBehaviour
             }
         }        
         else
-        { //don't be greedy on lines)
+        {
             _rigidbody2D.velocity = new Vector2(0f, 0f); 
         }        
     }    
@@ -51,8 +60,15 @@ public class Enemy : MonoBehaviour
     protected void GetDamage(float damage)
     {
         //Play sound
-        //cache Audio Manager
-        FindObjectOfType<AudioManager>().Play("Hurt");
+        _audioManager.Play("Hurt");        
         _health -= damage;
+    }
+
+    protected IEnumerator Reload()
+    {
+        _reloaded = false;
+        _reloadTime = Random.Range(2, 5);
+        yield return new WaitForSeconds(_reloadTime);
+        _reloaded = true;
     }
 }
