@@ -1,13 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class LittleEnemy : Enemy
 {
     [Header("Buttet and barrel")]
     [SerializeField] private Transform barrel = null;
-
-    private int _reloadTime;
-    private bool _reloaded;
 
     //Object Pooler
     Pooler pooler;
@@ -21,8 +17,13 @@ public class LittleEnemy : Enemy
         pooler = Pooler.Instance;
     }
     
-    //same comment as before
     private void Update()
+    {
+        CheckHealth();
+        Shooting();
+    }
+
+    private void CheckHealth()
     {
         if (_health <= 0)
         {
@@ -36,7 +37,10 @@ public class LittleEnemy : Enemy
 
             gameObject.SetActive(false);
         }
+    }
 
+    private void Shooting()
+    {
         if (_reloaded)
         {
             //Pooler
@@ -47,14 +51,5 @@ public class LittleEnemy : Enemy
 
             StartCoroutine(Reload());
         }
-    }
-    //I saw reload method in another enemy class. follow DRY principle
-    //you can encapsulate this into base abstract class
-    IEnumerator Reload()
-    {
-        _reloaded = false;
-        _reloadTime = Random.Range(2, 5);
-        yield return new WaitForSeconds(_reloadTime);
-        _reloaded = true;
     }
 }
