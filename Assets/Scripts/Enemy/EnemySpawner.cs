@@ -1,7 +1,7 @@
 using UnityEngine;
 
 //naming... EnemySpawner or EnemyManager sound better and shows purpose of the class
-public class SpawnEnemies : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
     [Header("Spawn object Name")]
     [SerializeField] string objectName = null;
