@@ -20,7 +20,8 @@ public class AverageEnemy : Enemy
 
         pooler = Pooler.Instance;
     }
-
+    //update should be clean
+    //extract the logic in separate functions and call them
     private void Update()
     {
         if (_health <= 0)

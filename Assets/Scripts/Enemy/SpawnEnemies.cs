@@ -1,5 +1,6 @@
 using UnityEngine;
 
+//naming... EnemySpawner or EnemyManager sound better and shows purpose of the class
 public class SpawnEnemies : MonoBehaviour
 {
     [Header("Spawn object Name")]
@@ -37,7 +38,7 @@ public class SpawnEnemies : MonoBehaviour
     private void FixedUpdate()
     {
         //Counts up
-        _time += Time.deltaTime;    
+        _time += Time.deltaTime; //are you sure that fixed update is right place for deltaTime?   
 
         //Check if its the right time to spawn the object
         if(_time >= _spawnTime)

@@ -48,6 +48,10 @@ public class Bullet : MonoBehaviour
 
     void Explode()
     {
+        //tones of if by name....
+        //1 - better create a property (type Enum) with predefined values
+        //2 - even better solution - use strategy pattern and inject proper explosion type whe you initialize the object
+        //3 - the logic in if is 75% the same. the difference is only which object you got from pool, this requires refactoring
         //Depending on bullet instantiate corresponding particles
         if(gameObject.name == "PlayerBullet")
         {

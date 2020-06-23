@@ -75,6 +75,7 @@ public class PlayerMovementOnline : MonoBehaviour
 
     private void FixedUpdate()
     {
+    //you can invert if to avoid nesting. i.e. if(!IsMine) return
         if (_photonView.IsMine)
         {            
             //Movement
