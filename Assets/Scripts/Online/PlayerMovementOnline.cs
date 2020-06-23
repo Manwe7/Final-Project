@@ -12,10 +12,10 @@ public class PlayerMovementOnline : MonoBehaviour
     private Rigidbody2D _rigidbody2D = null;
 
     private float moveSpeed = 17;
-    private float maxfuelCapacity = 50;
-    private bool _facingLeft = true, _reloadFuel;
+    private float maxfuelCapacity = 50;    
     private float _horizontalMove, _verticalMove;
     private float _fuelCapacity;
+    private bool _reloadFuel;
     private PhotonView _photonView;
 
     private void Awake()
@@ -51,22 +51,11 @@ public class PlayerMovementOnline : MonoBehaviour
         }
         else
         {
-            //_rigidbody2D.gravityScale = 5;
             fuelParticles.SetActive(false);
             if (_fuelCapacity < maxfuelCapacity && _reloadFuel)
             {
                 _fuelCapacity += 0.1f;
             }
-        }
-
-        //Check for sides
-        if (_horizontalMove > 0 && !_facingLeft)
-        {
-            Flip();
-        }
-        else if (_horizontalMove < 0 && _facingLeft)
-        {
-            Flip();
         }
 
         if (_fuelCapacity <= 0 && _reloadFuel == true)
@@ -75,30 +64,22 @@ public class PlayerMovementOnline : MonoBehaviour
 
     private void FixedUpdate()
     {
-    //you can invert if to avoid nesting. i.e. if(!IsMine) return
-        if (_photonView.IsMine)
-        {            
-            //Movement
-            _rigidbody2D.velocity = new Vector2(_horizontalMove * moveSpeed, _rigidbody2D.velocity.y);
-            /*if (_horizontalMove > 0)
-            { transform.Translate(Time.deltaTime * 10, 0, 0); }
-            if (_horizontalMove < 0)
-            { transform.Translate(-Time.deltaTime * 10, 0, 0); }
-            */
-            /*if (flying)
-            { _rigidbody2D.velocity = Vector2.up * 10; }*/
+        if (!_photonView.IsMine)
+        { return; }
 
-            if (_verticalMove > 0.22f && _fuelCapacity > 0)
-            {
-                //_rigidbody2D.velocity = Vector2.up * 10; 
-                transform.Translate(0, Time.deltaTime * 8, 0);
-                _rigidbody2D.gravityScale = 0;
-            }
-            else
-            {
-                _rigidbody2D.gravityScale = 5;
-            }
+        //Movement
+        _rigidbody2D.velocity = new Vector2(_horizontalMove * moveSpeed, _rigidbody2D.velocity.y);
+
+        if (_verticalMove > 0.22f && _fuelCapacity > 0)
+        {
+            transform.Translate(0, Time.deltaTime * 8, 0);
+            _rigidbody2D.gravityScale = 0;
         }
+        else
+        {
+            _rigidbody2D.gravityScale = 5;
+        }
+
     }
 
     IEnumerator ReloadFuel()
@@ -106,12 +87,5 @@ public class PlayerMovementOnline : MonoBehaviour
         _reloadFuel = false;
         yield return new WaitForSeconds(2f);
         _reloadFuel = true;
-    }
-
-    private void Flip()
-    {
-        //Flip sides
-        /*_facingLeft = !_facingLeft;
-        transform.Rotate(0f, 180f, 0f);*/
     }
 }
