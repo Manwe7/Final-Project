@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
 {
     private float _health, _fade = 0f;
 
-    private Slider _healthSlider = null;           
+    private Slider _healthSlider = null;
     private Material _material = null;
     private bool _isFading;
 
@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     {
         _health = 100;
         _healthSlider.maxValue = _health;
-        
+
         _isFading = true;
 
         pooler = Pooler.Instance;
@@ -33,17 +33,15 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        //_health
-        _healthSlider.value = _health;
-        if (_health <= 0)
-        {
-            Killed();
-        }
+        MaterialAnimation();
+    }
 
+    private void MaterialAnimation()
+    {
         //_fade
         if (_isFading == true)
         {
-            _fade += Time.deltaTime/2;
+            _fade += Time.deltaTime / 2;
 
             if (_fade >= 1)
             {
@@ -64,11 +62,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    void GetDamage(float damage)
+    public void GetDamage(float damage)
     {
         //Play sound
         FindObjectOfType<AudioManager>().Play("Hurt");
         _health -= damage;
+
+        //Show changed values
+        _healthSlider.value = _health;
+        if (_health <= 0)
+        {
+            Killed();
+        }
     }
 
     void Killed()
