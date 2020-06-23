@@ -27,17 +27,27 @@ public class PlayerWeapon : MonoBehaviour
     }
 
     private void Update()
-    {     
+    {
+        WeaponPosition();
+
+        Shooting();
+    }
+
+    private void WeaponPosition()
+    {
         //Change position depending on mouse position
-        if(_joystickHandle.anchoredPosition.x < 0 && _joystickHandle.anchoredPosition.x != 0)//(mouse.x < playerScreenPoint.x) 
+        if (_joystickHandle.anchoredPosition.x < 0 && _joystickHandle.anchoredPosition.x != 0)//(mouse.x < playerScreenPoint.x) 
         {
             LeftSide();
-        } 
-        else if(_joystickHandle.anchoredPosition.x > 0)
+        }
+        else if (_joystickHandle.anchoredPosition.x > 0)
         {
             RightSide();
         }
+    }
 
+    private void Shooting()
+    {
         //Shoot
         if (_reloaded)
         {
@@ -50,7 +60,6 @@ public class PlayerWeapon : MonoBehaviour
             _reloaded = false;
             Invoke("Reload", reloadTime);
         }
-
     }
 
     private void Reload()
