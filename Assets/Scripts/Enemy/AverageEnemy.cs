@@ -1,13 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class AverageEnemy : Enemy
 {
     [Header("Buttet and barrel")]
     [SerializeField] private Transform barrel = null;
-
-    private int _reloadTime;
-    private bool _reloaded;
 
     //Object Pooler
     Pooler pooler;
@@ -20,9 +16,14 @@ public class AverageEnemy : Enemy
 
         pooler = Pooler.Instance;
     }
-    //update should be clean
-    //extract the logic in separate functions and call them
+
     private void Update()
+    {
+        CheckHealth();
+        Shooting();   
+    }
+
+    private void CheckHealth()
     {
         if (_health <= 0)
         {
@@ -36,7 +37,10 @@ public class AverageEnemy : Enemy
 
             gameObject.SetActive(false);
         }
+    }
 
+    private void Shooting()
+    {
         if (_reloaded)
         {
             //Pooler
@@ -47,13 +51,5 @@ public class AverageEnemy : Enemy
 
             StartCoroutine(Reload());
         }
-    }
-
-    IEnumerator Reload()
-    {
-        _reloaded = false;
-        _reloadTime = Random.Range(3, 5);
-        yield return new WaitForSeconds(_reloadTime);
-        _reloaded = true;
     }
 }
