@@ -1,14 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-//same comments as for previous class
 public class MegaEnemy : Enemy
 {
     [Header("Buttet and barrel")]
     [SerializeField] private Transform barrel = null;
-
-    private int _reloadTime;
-    private bool _reloaded;
 
     //Object Pooler
     Pooler pooler;
@@ -24,6 +19,12 @@ public class MegaEnemy : Enemy
 
     private void Update()
     {
+        CheckHealth();
+        Shooting();
+    }
+
+    private void CheckHealth()
+    {
         if (_health <= 0)
         {
             GameManager.gameManagerInstance.CurrentScore += 15;
@@ -33,10 +34,13 @@ public class MegaEnemy : Enemy
             explosion.transform.position = transform.position;
             explosion.transform.rotation = Quaternion.identity;
             explosion.SetActive(true); //end
-            
+
             gameObject.SetActive(false);
         }
+    }
 
+    private void Shooting()
+    {
         if (_reloaded)
         {
             //Pooler
@@ -44,16 +48,8 @@ public class MegaEnemy : Enemy
             explosion.transform.position = barrel.transform.position;
             explosion.transform.rotation = barrel.transform.rotation;
             explosion.SetActive(true); //end
-           
-            StartCoroutine(Reload());            
-        }
-    }
 
-    IEnumerator Reload()
-    {
-        _reloaded = false;
-        _reloadTime = Random.Range(3, 6);
-        yield return new WaitForSeconds(_reloadTime);
-        _reloaded = true;
+            StartCoroutine(Reload());
+        }
     }
 }
