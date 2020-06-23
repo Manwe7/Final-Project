@@ -1,6 +1,5 @@
 using UnityEngine;
 
-//naming... EnemySpawner or EnemyManager sound better and shows purpose of the class
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Spawn object Name")]
@@ -15,8 +14,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float minTime = 0;
 
     private float _time, _spawnTime;
-    private float _initialposX;
-    private bool _goRight;
 
     private Vector2 _pointA, _pointB;
 
@@ -25,7 +22,6 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        _initialposX = transform.position.x;
         SetRandomTime();
         _time = minTime;
 
@@ -35,10 +31,10 @@ public class EnemySpawner : MonoBehaviour
         _pointB = new Vector2(transform.position.x - movementDistance, transform.position.y);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         //Counts up
-        _time += Time.deltaTime; //are you sure that fixed update is right place for deltaTime?   
+        _time += Time.deltaTime;
 
         //Check if its the right time to spawn the object
         if(_time >= _spawnTime)
