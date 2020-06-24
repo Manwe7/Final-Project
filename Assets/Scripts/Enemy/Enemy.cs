@@ -22,15 +22,7 @@ public class Enemy : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _audioManager = FindObjectOfType<AudioManager>();
 
-        //why do you need try catch if you don't handle exceptions?
-        try
-        {
-            //Find _player
-            _player = GameObject.FindGameObjectWithTag("Player");
-        }
-        catch (System.Exception)
-        { } //player is dead                
-        
+        _player = GameObject.FindGameObjectWithTag("Player");                
     }
 
     private void Start()
@@ -53,7 +45,7 @@ public class Enemy : MonoBehaviour
         }        
         else
         {
-            _rigidbody2D.velocity = new Vector2(0f, 0f); 
+            _rigidbody2D.velocity = new Vector2(0f, _rigidbody2D.velocity.y); 
         }        
     }    
 
