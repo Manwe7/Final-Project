@@ -3,25 +3,40 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {    
-    //why do you set them as NULL?
     [SerializeField] Text ScoreText = null, defeatRecordText = null;
     
-    //naming.. does not sound as English
-    //_isNewRecord sounds better
-    private bool _recordIsNew = false;    
+    private bool _isNewRecord = false;    
     private float _oldRecord;
     
     public float CurrentScore;
 
     #region Singleton 
-    public static GameManager gameManagerInstance;
-    //singleton is not complete. refer to my ObjecPoolManager example
+    public static GameManager gameManagerInstance { get; private set; }
+
     private void Awake()
     {
         Application.targetFrameRate = 60;
-        gameManagerInstance = this;
+
+        if (gameManagerInstance == null)
+        {
+            gameManagerInstance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     #endregion
+
+    private void OnEnable()
+    {
+        Player.defeated += SaveRecord;
+    }
+
+    private void OnDisable()
+    {
+        Player.defeated -= SaveRecord;
+    }
 
     private void Start()
     {
@@ -37,7 +52,7 @@ public class GameManager : MonoBehaviour
         if (_oldRecord < CurrentScore)
         {
             _oldRecord = CurrentScore;
-            _recordIsNew = true;
+            _isNewRecord = true;
         }
 
         defeatRecordText.text = _oldRecord.ToString();
@@ -46,9 +61,8 @@ public class GameManager : MonoBehaviour
     }    
     
     public void SaveRecord()
-    {
-        //simply if(_recordIsNew)
-        if (_recordIsNew == true)
+    {        
+        if (_isNewRecord)
         {
             PlayerPrefs.SetFloat("ScoreRecord", CurrentScore);
         }
