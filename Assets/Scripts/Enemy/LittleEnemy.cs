@@ -49,7 +49,10 @@ public class LittleEnemy : Enemy
             explosion.transform.rotation = barrel.transform.rotation;
             explosion.SetActive(true); //end
 
-            StartCoroutine(Reload());
+            if (gameObject.activeSelf)
+            {
+                StartCoroutine(Reload());
+            }
         }
     }
 }
