@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
         }        
     }    
 
-    protected void GetDamage(float damage)
+    public void GetDamage(float damage)
     {
         //Play sound
         _audioManager.Play("Hurt");        
