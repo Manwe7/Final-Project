@@ -21,19 +21,25 @@ public class AudioManager: MonoBehaviour
             s.source.spatialBlend = s.spacialBlend;
         }    
     }
-    //remove empty methods. even emty methods are executed. will slgihtly decrease load
-    private void Start()
+    
+    /*private void Start()
     {
-        //Play("MainSound");
-    }
+        Play("MainSound");
+    }*/
     
     //better to use Enum instead of string. wrong string == no sound
-    //+ check if such sound exists in the collection
     public void Play(string name)
     {
         //Find the right audio and play it
         Sounds s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound " + name + " not found!");
+            return;
+        }
+        
         s.source.Play();
+        
     }
     
 }
