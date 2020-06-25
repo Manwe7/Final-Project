@@ -35,8 +35,7 @@ public class BulletOnline : MonoBehaviour
             //comparing by string name is not the best option, I would check tags or components of the bject
             if (gameObject.name != other.gameObject.name + "Bullet")
             {
-                //are you sure that there is not other way to explicitly call the method? send message is costly
-                other.gameObject.SendMessageUpwards("GetDamage", 10);
+                other.gameObject.GetComponent<PlayerOnline>().GetDamage(10);
                 //CameraShake.ShakeOnce = true;
                 Explode();
             }
