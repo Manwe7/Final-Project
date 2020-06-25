@@ -26,24 +26,24 @@ public class Bullet : MonoBehaviour
         _rigidbody2D.velocity = transform.up * speed;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Lava"))
+        if(other.CompareTag("Ground") || other.CompareTag("Lava"))
         {
             Explode();
         }
         //If player send damage
         if(other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.SendMessageUpwards("GetDamage", 10);
+            other.GetComponent<Player>().GetDamage(10);
             CameraShake.ShakeOnce = true;
             
             Explode();
         }
         //If enemy send damage
-        if(other.gameObject.CompareTag("Enemy"))
+        if(other.CompareTag("Enemy"))
         {
-            other.gameObject.SendMessageUpwards("GetDamage", 10);
+            other.gameObject.GetComponent<Enemy>().GetDamage(10);
             CameraShake.ShakeOnce = true;
 
             Explode();
