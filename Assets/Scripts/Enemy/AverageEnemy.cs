@@ -2,7 +2,7 @@
 
 public class AverageEnemy : Enemy
 {
-    [Header("Buttet and barrel")]
+    [Header("Barrel")]
     [SerializeField] private Transform barrel = null;
 
     //Object Pooler
@@ -27,13 +27,10 @@ public class AverageEnemy : Enemy
     {
         if (_health <= 0)
         {
-            GameManager.gameManagerInstance.CurrentScore += 10;
+            ScoreManager.Instance.CurrentScore += 10;
 
             //Pooler
-            GameObject explosion = pooler.GetPooledObject("AverageEnemyExplosion");
-            explosion.transform.position = transform.position;
-            explosion.transform.rotation = Quaternion.identity;
-            explosion.SetActive(true); //end
+            pooler.GetPooledObject("AverageEnemyExplosion", transform.position, Quaternion.identity);            
 
             gameObject.SetActive(false);
         }
@@ -44,10 +41,7 @@ public class AverageEnemy : Enemy
         if (_reloaded)
         {
             //Pooler
-            GameObject explosion = pooler.GetPooledObject("AverageEnemyBullet");
-            explosion.transform.position = barrel.transform.position;
-            explosion.transform.rotation = barrel.transform.rotation;
-            explosion.SetActive(true); //end
+            pooler.GetPooledObject("AverageEnemyBullet", barrel.position, barrel.rotation);            
 
             if (gameObject.activeSelf)
             {
