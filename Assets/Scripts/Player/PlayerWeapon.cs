@@ -13,6 +13,7 @@ public class PlayerWeapon : MonoBehaviour
 
     //Object Pooler
     Pooler pooler;
+    ObjectPool objectPool;
 
     private void Awake()
     {
@@ -24,6 +25,7 @@ public class PlayerWeapon : MonoBehaviour
     {
         _reloaded = true;
         pooler = Pooler.Instance;
+        objectPool = ObjectPool.Instance;
     }
 
     private void Update()
@@ -52,10 +54,11 @@ public class PlayerWeapon : MonoBehaviour
         if (_reloaded)
         {
             //Pooler
-            GameObject bullet = pooler.GetPooledObject("PlayerBullet");
+            objectPool.GetGameObjectFromPool(ObjectPoolItem.ObjectType.PlayerBullet, barrel.transform.position, barrel.transform.rotation);
+            /*GameObject bullet = pooler.GetPooledObject("PlayerBullet");
             bullet.transform.position = barrel.transform.position;
             bullet.transform.rotation = barrel.transform.rotation;
-            bullet.SetActive(true); //end
+            bullet.SetActive(true);*/ //end
 
             _reloaded = false;
             Invoke("Reload", reloadTime);
