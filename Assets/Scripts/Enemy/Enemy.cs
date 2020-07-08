@@ -31,23 +31,28 @@ public class Enemy : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {        
+    {
+        CheckForPlayerPosition();
+    }
+
+    private void CheckForPlayerPosition()
+    {
         if (_player != null)
         {
             if (_player.transform.position.x + _distance > transform.position.x) //player is in right side
             {
                 _rigidbody2D.velocity = new Vector2(speed, _rigidbody2D.velocity.y);
             }
-            else if ((_player.transform.position.x - _distance < transform.position.x)) //player is in right side
+            else if ((_player.transform.position.x - _distance < transform.position.x)) //player is in left side
             {
                 _rigidbody2D.velocity = new Vector2(-speed, _rigidbody2D.velocity.y);
             }
-        }        
+        }
         else
         {
-            _rigidbody2D.velocity = new Vector2(0f, _rigidbody2D.velocity.y); 
-        }        
-    }    
+            _rigidbody2D.velocity = new Vector2(0f, _rigidbody2D.velocity.y);
+        }
+    }
 
     public void GetDamage(float damage)
     {
