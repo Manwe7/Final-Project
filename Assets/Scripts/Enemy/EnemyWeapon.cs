@@ -9,12 +9,7 @@ public class EnemyWeapon : MonoBehaviour
 
     private void Start()
     {
-        try
-        {
-            _player = GameObject.FindGameObjectWithTag("Player");
-        }
-        catch (System.Exception)
-        { } //Player is dead
+        _player = GameObject.FindGameObjectWithTag("Player");       
     }
     
     private void Update()
@@ -52,6 +47,6 @@ public class EnemyWeapon : MonoBehaviour
         float rotZ = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(-180f, 0f, -rotZ + _offset);  
 
-        transform.position = new Vector3(Parent.transform.position.x -0.3f, Parent.transform.transform.position.y, Parent.transform.position.z);
+        transform.position = new Vector3(Parent.transform.position.x - 0.3f, Parent.transform.position.y, Parent.transform.position.z);
     }
 }
