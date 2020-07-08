@@ -52,10 +52,7 @@ public class EnemySpawner : MonoBehaviour
         _time = 0;
 
         //Pooler
-        GameObject explosion = pooler.GetPooledObject(objectName);
-        explosion.transform.position = transform.position;
-        explosion.transform.rotation = Quaternion.identity;
-        explosion.SetActive(true); //end
+        GameObject explosion = pooler.GetPooledObject(objectName, transform.position, Quaternion.identity);        
     }
  
     private void SetRandomTime()
