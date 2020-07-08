@@ -52,10 +52,10 @@ public class Bullet : MonoBehaviour
 
     void Explode()
     {
-        GameObject explosion = pooler.GetPooledObject(_explosionName);
+        /*GameObject explosion = pooler.GetPooledObject(_explosionName);
         explosion.transform.position = transform.position;
         explosion.transform.rotation = Quaternion.identity;
-        explosion.SetActive(true);
+        explosion.SetActive(true);*/
 
         gameObject.SetActive(false);
     }
