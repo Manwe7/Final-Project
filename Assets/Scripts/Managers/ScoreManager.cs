@@ -1,33 +1,38 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
-{    
-    [SerializeField] Text ScoreText = null, defeatRecordText = null;
+public class ScoreManager : MonoBehaviour
+{
+    [Header("Score in Game")]
+    [SerializeField] Text ScoreText = null;
+    
+    [Header("Record on defeat panel")]
+    [SerializeField] Text defeatRecordText = null;
     
     private bool _isNewRecord = false;    
     private float _oldRecord;
     
     public float CurrentScore;
-
-    #region Singleton 
-    public static GameManager gameManagerInstance { get; private set; }
+    
+    public static ScoreManager Instance { get; private set; }
 
     private void Awake()
     {
         Application.targetFrameRate = 60;
 
-        if (gameManagerInstance == null)
+        #region Singleton
+        if (Instance == null)
         {
-            gameManagerInstance = this;
+            Instance = this;
         }
         else
         {
             Destroy(gameObject);
         }
+        #endregion
     }
-    #endregion
 
+    #region (Un)Subscribe to player defeat event
     private void OnEnable()
     {
         Player.defeated += SaveRecord;
@@ -37,6 +42,7 @@ public class GameManager : MonoBehaviour
     {
         Player.defeated -= SaveRecord;
     }
+    #endregion
 
     private void Start()
     {
