@@ -1,4 +1,3 @@
-using UnityEngine.Audio;
 using UnityEngine;
 using System;
 
@@ -21,11 +20,6 @@ public class AudioManager: MonoBehaviour
             s.source.spatialBlend = s.spacialBlend;
         }    
     }
-    
-    /*private void Start()
-    {
-        Play("MainSound");
-    }*/
     
     //better to use Enum instead of string. wrong string == no sound
     public void Play(string name)
