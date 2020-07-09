@@ -3,10 +3,10 @@ using UnityEngine.UI;
 
 public class FPS : MonoBehaviour
 {
-    [SerializeField] Text fpsText = null;
-    float deltaTime;
+    [SerializeField] private Text fpsText = null;
+    private float deltaTime;
 
-    void Update()
+    private void Update()
     {
         deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
         float fps = 1.0f / deltaTime;
