@@ -2,7 +2,7 @@
 
 public class MegaEnemy : Enemy
 {
-    [Header("Buttet and barrel")]
+    [Header("Barrel")]
     [SerializeField] private Transform barrel = null;
 
     //Object Pooler
@@ -27,13 +27,10 @@ public class MegaEnemy : Enemy
     {
         if (_health <= 0)
         {
-            GameManager.gameManagerInstance.CurrentScore += 15;
+            ScoreManager.Instance.CurrentScore += 15;
 
             //Pooler
-            GameObject explosion = pooler.GetPooledObject("MegaEnemyExplosion");
-            explosion.transform.position = transform.position;
-            explosion.transform.rotation = Quaternion.identity;
-            explosion.SetActive(true); //end
+            pooler.GetPooledObject("MegaEnemyExplosion", transform.position, Quaternion.identity);            
 
             gameObject.SetActive(false);
         }
@@ -44,10 +41,7 @@ public class MegaEnemy : Enemy
         if (_reloaded)
         {
             //Pooler
-            GameObject explosion = pooler.GetPooledObject("MegaEnemyBullet");
-            explosion.transform.position = barrel.transform.position;
-            explosion.transform.rotation = barrel.transform.rotation;
-            explosion.SetActive(true); //end
+            pooler.GetPooledObject("MegaEnemyBullet", barrel.position, barrel.rotation);            
 
             if (gameObject.activeSelf)
             {
