@@ -7,17 +7,24 @@ public class Bullet : MonoBehaviour
 
     private string _explosionName;
 
-    //Object Pooler
-    Pooler pooler;
+    //Object _pooler
+    Pooler _pooler;
+
+    //Audio Manager
+    AudioManager _audioManager;
+
+    private void Awake()
+    {
+        _pooler = Pooler.Instance;
+        _audioManager = FindObjectOfType<AudioManager>();
+    }
 
     private void Start()
     {
         //Play sound
-        FindObjectOfType<AudioManager>().Play("PlayerBullet");
+        _audioManager.Play("PlayerBullet");
 
-        _explosionName = gameObject.name + "Explosion";
-
-        pooler = Pooler.Instance;
+        _explosionName = gameObject.name + "Explosion";        
     }
 
     private void FixedUpdate()
@@ -33,7 +40,7 @@ public class Bullet : MonoBehaviour
             Explode();
         }
         //If player send damage
-        if(other.gameObject.CompareTag("Player"))
+        if(other.CompareTag("Player"))
         {
             other.GetComponent<Player>().GetDamage(10);
             CameraShake.ShakeOnce = true;
@@ -52,10 +59,7 @@ public class Bullet : MonoBehaviour
 
     void Explode()
     {
-        /*GameObject explosion = pooler.GetPooledObject(_explosionName);
-        explosion.transform.position = transform.position;
-        explosion.transform.rotation = Quaternion.identity;
-        explosion.SetActive(true);*/
+        GameObject explosion = _pooler.GetPooledObject(_explosionName, transform.position, Quaternion.identity);        
 
         gameObject.SetActive(false);
     }
