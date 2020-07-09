@@ -5,7 +5,8 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] GameObject PauseMenuPanel = null, DefeatMenuPanel = null;
 
-    private void Awake()
+    #region (Un)Subscribe to player defeat event
+    private void OnEnable()
     {
         Player.defeated += Defeat;    
     }
@@ -14,7 +15,22 @@ public class UIManager : MonoBehaviour
     {
         Player.defeated -= Defeat;
     }
-    
+    #endregion
+
+    //When player dies, slow timescale and open defeat panel
+    private void Defeat()
+    {
+        Time.timeScale = 0.5f;
+        Invoke("OpenDefeatMenu", 1.5f);
+    }
+
+    private void OpenDefeatMenu()
+    {
+        DefeatMenuPanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    #region Buttons
     public void PauseBtn()
     {
         if (!PauseMenuPanel.activeSelf)
@@ -24,22 +40,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void Defeat()
-    {
-        Time.timeScale = 0.5f;
-        Invoke("OpenDefeatMenu", 1.5f);
-    }
-
-    private void OpenDefeatMenu()
-    {
-        //Open defeat menu
-        DefeatMenuPanel.SetActive(true);
-        Time.timeScale = 0f;
-    }
-
     public void Restart()
     {
-        GameManager.gameManagerInstance.SaveRecord();
+        ScoreManager.Instance.SaveRecord();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1f;
     }
@@ -52,7 +55,8 @@ public class UIManager : MonoBehaviour
 
     public void Exit()
     {
-        GameManager.gameManagerInstance.SaveRecord();
+        ScoreManager.Instance.SaveRecord();
         SceneManager.LoadScene("Menu");
     }
+    #endregion
 }
