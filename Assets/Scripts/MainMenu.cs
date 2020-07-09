@@ -6,6 +6,7 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] GameObject SettingsPanel = null;
     [SerializeField] Text record = null;
+    
     private float _oldRecord;
 
     private void Start()
@@ -14,6 +15,7 @@ public class MainMenu : MonoBehaviour
         record.text = _oldRecord.ToString();
     }
 
+    #region Buttons
     public void Play()
     {
         SceneManager.LoadScene("Game");
@@ -45,4 +47,5 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+    #endregion
 }
