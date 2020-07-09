@@ -2,7 +2,7 @@
 
 public class LittleEnemy : Enemy
 {
-    [Header("Buttet and barrel")]
+    [Header("Barrel")]
     [SerializeField] private Transform barrel = null;
 
     //Object Pooler
@@ -27,13 +27,10 @@ public class LittleEnemy : Enemy
     {
         if (_health <= 0)
         {
-            GameManager.gameManagerInstance.CurrentScore += 5;
+            ScoreManager.Instance.CurrentScore += 5;
 
             //Pooler
-            GameObject explosion = pooler.GetPooledObject("LittleEnemyExplosion");
-            explosion.transform.position = transform.position;
-            explosion.transform.rotation = Quaternion.identity;
-            explosion.SetActive(true); //end
+            pooler.GetPooledObject("LittleEnemyExplosion", transform.position, Quaternion.identity);            
 
             gameObject.SetActive(false);
         }
@@ -44,10 +41,7 @@ public class LittleEnemy : Enemy
         if (_reloaded)
         {
             //Pooler
-            GameObject explosion = pooler.GetPooledObject("LittleEnemyBullet");
-            explosion.transform.position = barrel.transform.position;
-            explosion.transform.rotation = barrel.transform.rotation;
-            explosion.SetActive(true); //end
+            pooler.GetPooledObject("LittleEnemyBullet", barrel.position, barrel.rotation);            
 
             if (gameObject.activeSelf)
             {
