@@ -3,18 +3,15 @@ using Photon.Pun;
 
 public class BulletOnline : MonoBehaviour
 {
+    [Header("Explosion")]
+    [SerializeField] private GameObject BulletExplosion = null;
+
+    [Header("Movement speed")]
     [SerializeField] private float speed = 0;
     
-    private Rigidbody2D _rigidbody2D = null;
-
-    PhotonView _photonView;
-
-    private void Awake()
-    {
-        //you can assign them in Unity Inspector
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-        _photonView = GetComponent<PhotonView>();
-    }
+    [Header("Components")]
+    [SerializeField] private Rigidbody2D _rigidbody2D = null;
+    [SerializeField] private PhotonView _photonView;
 
     private void FixedUpdate()
     {
@@ -43,10 +40,11 @@ public class BulletOnline : MonoBehaviour
     }
     
     public void Explode()
-    {
+    {        
         gameObject.SetActive(false);
         if (_photonView.IsMine)
-        { 
+        {
+            PhotonNetwork.Instantiate(BulletExplosion.name, transform.position, Quaternion.identity);
             PhotonNetwork.Destroy(gameObject); 
         }
         //Destroy(gameObject);
