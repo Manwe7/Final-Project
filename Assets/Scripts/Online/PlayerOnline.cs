@@ -21,8 +21,6 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
     private Rigidbody2D _rigidbody2D;
 
     private bool respawned, killed;
-    /*public delegate void Defeat();
-    public static event Defeat defeated;*/
 
     CinemachineVirtualCamera _cinemachineVirtualCamera;
 
@@ -46,7 +44,7 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
         }
     }
 
-    private void Start()
+    private void OnEnable()
     {
         if (_photonView.IsMine)
         {
@@ -66,7 +64,6 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
             _healthSlider.value = _health;
             if (_health <= 0 && !killed)
             {
-                //Killed();
                 _photonView.RPC("Killed", RpcTarget.AllViaServer);
             }
 
@@ -107,24 +104,26 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
     [PunRPC]
     public void Killed()
     {
-        if (_photonView.IsMine)
+        /*if (_photonView.IsMine)
         {
-            killed = true;
-
-            weapon.SetActive(false);
-            _playerMovementOnline.enabled = false;
-            _spriteRenderer.enabled = false;
-            _boxCollider2D.enabled = false;
-            _rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
             
-            //Some shake
-            //CameraShake.ShakeOnce = true;
-            _health = 0;
-            _healthSlider.value = _health;
-            respawned = false;
+        }*/
 
-            StartCoroutine("WaitForRespawn");
-        }
+        killed = true;
+
+        weapon.SetActive(false);
+        _playerMovementOnline.enabled = false;
+        _spriteRenderer.enabled = false;
+        _boxCollider2D.enabled = false;
+        _rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
+
+        //Some shake
+        //CameraShake.ShakeOnce = true;
+        _health = 0;
+        _healthSlider.value = _health;
+        respawned = false;
+
+        StartCoroutine("WaitForRespawn");
     }
 
     private IEnumerator WaitForRespawn()
@@ -151,7 +150,6 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
             _health = 100;
 
             respawned = true;
-            //gameObject.SetActive(true);
         }
     }
 
