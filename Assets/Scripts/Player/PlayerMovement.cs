@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Movement()
     {
-        //Movement
+        //Horizontal Movement
         _horizontalMove = _fixedjoystick.Horizontal;
         _rigidbody2D.velocity = new Vector2(_horizontalMove * _moveSpeed, _rigidbody2D.velocity.y);
     }
@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
         { StartCoroutine(ReloadFuel()); }
     }
 
-    IEnumerator ReloadFuel()
+    private IEnumerator ReloadFuel()
     {        
         _reloadFuel = false;
         yield return new WaitForSeconds(2f);
