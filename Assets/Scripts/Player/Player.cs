@@ -4,10 +4,11 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     private float _health, _fade = 0f;
-
-    private Slider _healthSlider = null;
-    private Material _material = null;
     private bool _isFading;
+
+    private AudioManager _audioManager;
+    private Slider _healthSlider;
+    private Material _material;    
 
     public delegate void Defeat();
     public static event Defeat defeated;
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
     {
         _healthSlider = GameObject.Find("Canvas/PlayerHealthSlider").GetComponent<Slider>();
         _material = GetComponent<SpriteRenderer>().material;
+        _audioManager = FindObjectOfType<AudioManager>();
     }
 
     private void Start()
@@ -65,7 +67,7 @@ public class Player : MonoBehaviour
     public void GetDamage(float damage)
     {
         //Play sound
-        FindObjectOfType<AudioManager>().Play("Hurt");
+        _audioManager.Play("Hurt");
         _health -= damage;
 
         //Show changed values
@@ -76,24 +78,22 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Killed()
+    private void Killed()
     {
-        if (defeated != null)
-        { defeated(); }
+        defeated();
+
         //Play sound
-        FindObjectOfType<AudioManager>().Play("PlayerDeath");
-        //Some particles
+        _audioManager.Play("PlayerDeath");
+        
         //Pooler
-        GameObject explosion = pooler.GetPooledObject("PlayerExplosion");
-        explosion.transform.position = transform.position;
-        explosion.transform.rotation = Quaternion.identity;
-        explosion.SetActive(true); //end
+        pooler.GetPooledObject("PlayerExplosion", transform.position, Quaternion.identity);        
 
         //Some shake
         CameraShake.ShakeOnce = true;
-        //_health is 0
+                
         _health = 0;
         _healthSlider.value = _health;
+        
         //Turn off player
         gameObject.SetActive(false);
     }
