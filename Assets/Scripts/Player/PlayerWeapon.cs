@@ -13,7 +13,6 @@ public class PlayerWeapon : MonoBehaviour
 
     //Object Pooler
     Pooler pooler;
-    ObjectPool objectPool;
 
     private void Awake()
     {
@@ -25,7 +24,6 @@ public class PlayerWeapon : MonoBehaviour
     {
         _reloaded = true;
         pooler = Pooler.Instance;
-        objectPool = ObjectPool.Instance;
     }
 
     private void Update()
@@ -53,12 +51,8 @@ public class PlayerWeapon : MonoBehaviour
         //Shoot
         if (_reloaded)
         {
-            //Pooler
-            objectPool.GetGameObjectFromPool(ObjectPoolItem.ObjectType.PlayerBullet, barrel.transform.position, barrel.transform.rotation);
-            /*GameObject bullet = pooler.GetPooledObject("PlayerBullet");
-            bullet.transform.position = barrel.transform.position;
-            bullet.transform.rotation = barrel.transform.rotation;
-            bullet.SetActive(true);*/ //end
+            //Pooler          
+            GameObject bullet = pooler.GetPooledObject("PlayerBullet", barrel.position, barrel.rotation);            
 
             _reloaded = false;
             Invoke("Reload", reloadTime);
@@ -72,11 +66,6 @@ public class PlayerWeapon : MonoBehaviour
 
     private void RightSide()
     {
-        //Rotate and change position to right
-        /*Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position; 
-        float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);*/
-
         Vector3 direction = Vector3.up * _fixedjoystick.Vertical + Vector3.right * _fixedjoystick.Horizontal;
         float rotZ = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
         if (rotZ != 0)
@@ -87,11 +76,6 @@ public class PlayerWeapon : MonoBehaviour
 
     private void LeftSide()
     {
-        //Rotate and change position to left
-        /*Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position; 
-        float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(-180f, 0f, -rotZ + offset);  */
-
         Vector3 direction = Vector3.up * _fixedjoystick.Vertical + Vector3.right * _fixedjoystick.Horizontal;
         float rotZ = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
         if (rotZ != 0)
