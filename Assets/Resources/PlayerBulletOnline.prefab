@@ -183,7 +183,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 333435424f5a41a438977fcd390d2553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BulletExplosion: {fileID: 6163721950763462551, guid: 67fab149359909e47892c87b16cb1d09,
+    type: 3}
   speed: 25
+  _rigidbody2D: {fileID: 5518891196149967445}
+  _photonView: {fileID: -6247200342417290527}
 --- !u!1001 &4327688169793999168
 PrefabInstance:
   m_ObjectHideFlags: 0
