@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5927531301834169616}
   - component: {fileID: 5927531301834169617}
   m_Layer: 0
-  m_Name: EnemyBulletPaticles
+  m_Name: EnemyBulletTale
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.17
       minScalar: 5
       maxCurve:
         serializedVersion: 2
