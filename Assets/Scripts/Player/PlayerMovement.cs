@@ -18,8 +18,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        _fixedjoystick = GameObject.Find("Canvas/MovementJoystick").GetComponent<FixedJoystick>();
-        _fuelSlider = GameObject.Find("Canvas/PlayerFuelSlider").GetComponent<Slider>();
+        _fixedjoystick = GameObject.Find("CanvasUI/MovementJoystick").GetComponent<FixedJoystick>();
+        _fuelSlider = GameObject.Find("CanvasUI/PlayerFuelSlider").GetComponent<Slider>();
         _rigidbody2D = GetComponent<Rigidbody2D>();        
     }
 
