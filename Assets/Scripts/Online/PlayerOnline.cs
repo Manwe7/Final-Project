@@ -15,6 +15,7 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
 
     //Components to DeActivate
     [SerializeField] private GameObject weapon = null;
+    [SerializeField] private GameObject fuelParticles = null;
     private PlayerMovementOnline _playerMovementOnline;
     private SpriteRenderer _spriteRenderer;
     private BoxCollider2D _boxCollider2D;
@@ -26,6 +27,8 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
 
     private void Awake()
     {
+        if (!_photonView.IsMine) { return; }
+
         _healthSlider = GameObject.Find("Canvas/PlayerHealthSlider").GetComponent<Slider>();
         _material = GetComponent<SpriteRenderer>().material;
         _photonView = GetComponent<PhotonView>();
@@ -46,49 +49,56 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
 
     private void OnEnable()
     {
-        if (_photonView.IsMine)
-        {
-            _health = 100;
-            _healthSlider.maxValue = _health;
+        if (!_photonView.IsMine) { return; }
+      
+        _health = 100;
+        _healthSlider.maxValue = _health;
 
-            _isFading = true;
-            killed = false;
-        }
+        _isFading = true;
+        killed = false;
     }
 
     private void Update()
     {
-        if (_photonView.IsMine)
+        if (!_photonView.IsMine) { return; }
+
+        CheckHealth();
+        Fading();        
+    }
+
+    #region Update methods
+    private void CheckHealth()
+    {
+        _healthSlider.value = _health;
+        if (_health <= 0 && !killed)
         {
-            //_health
-            _healthSlider.value = _health;
-            if (_health <= 0 && !killed)
-            {
-                _photonView.RPC("Killed", RpcTarget.AllViaServer);
-            }
-
-            //_fade
-            if (_isFading == true)
-            {
-                _fade += Time.deltaTime / 2;
-
-                if (_fade >= 1)
-                {
-                    _fade = 1;
-                    _isFading = false;
-                }
-
-                _material.SetFloat("__fade", _fade);
-            }
+            _photonView.RPC("Killed", RpcTarget.AllViaServer);
         }
     }
+
+    private void Fading()
+    {
+        //_fade
+        if (_isFading == true)
+        {
+            _fade += Time.deltaTime / 2;
+
+            if (_fade >= 1)
+            {
+                _fade = 1;
+                _isFading = false;
+            }
+
+            _material.SetFloat("__fade", _fade);
+        }
+    }
+    #endregion
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         //If touched lava - DIE
         if (other.gameObject.CompareTag("Lava"))
         {
-            //Killed();
             _photonView.RPC("Killed", RpcTarget.AllViaServer);
         }
     }
@@ -104,14 +114,10 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
     [PunRPC]
     public void Killed()
     {
-        /*if (_photonView.IsMine)
-        {
-            
-        }*/
-
         killed = true;
 
         weapon.SetActive(false);
+        fuelParticles.SetActive(false);
         _playerMovementOnline.enabled = false;
         _spriteRenderer.enabled = false;
         _boxCollider2D.enabled = false;
@@ -141,6 +147,7 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
             gameObject.transform.position = new Vector3(0, 0, 0);
 
             weapon.SetActive(true);
+            fuelParticles.SetActive(true);
             _spriteRenderer.enabled = true;
             _boxCollider2D.enabled = true;
             _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
