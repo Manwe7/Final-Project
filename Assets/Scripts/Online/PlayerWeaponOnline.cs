@@ -16,6 +16,8 @@ public class PlayerWeaponOnline : MonoBehaviour
 
     private void Awake()
     {
+        if (!_photonView.IsMine) { return; }
+
         _fixedjoystick = GameObject.Find("Canvas/RotationJoystick").GetComponent<FixedJoystick>();
         _joystickHandle = GameObject.Find("Canvas/RotationJoystick/Handle").GetComponent<RectTransform>();
         _photonView = parent.gameObject.GetComponent<PhotonView>();
@@ -28,28 +30,27 @@ public class PlayerWeaponOnline : MonoBehaviour
 
     private void Update()
     {
-        if (_photonView.IsMine)
+        if (!_photonView.IsMine) { return; }
+
+        //Change position depending on mouse position
+        if (_joystickHandle.anchoredPosition.x < 0 && _joystickHandle.anchoredPosition.x != 0)//(mouse.x < playerScreenPoint.x) 
         {
-
-            //Change position depending on mouse position
-            if (_joystickHandle.anchoredPosition.x < 0 && _joystickHandle.anchoredPosition.x != 0)//(mouse.x < playerScreenPoint.x) 
-            {
-                LeftSide();
-            }
-            else if (_joystickHandle.anchoredPosition.x > 0)
-            {
-                RightSide();
-            }
-
-            //Shoot
-            if (_reloaded)
-            {
-                //Instantiate(BulletOnline, barrel.position, barrel.rotation);
-                Shoot();
-                _reloaded = false;
-                Invoke("Reload", reloadTime);
-            }
+            LeftSide();
         }
+        else if (_joystickHandle.anchoredPosition.x > 0)
+        {
+            RightSide();
+        }
+
+        //Shoot
+        if (_reloaded)
+        {
+            //Instantiate(BulletOnline, barrel.position, barrel.rotation);
+            Shoot();
+            _reloaded = false;
+            Invoke("Reload", reloadTime);
+        }
+
     }
     
     public void Shoot()
