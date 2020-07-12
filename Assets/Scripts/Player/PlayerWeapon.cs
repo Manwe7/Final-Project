@@ -16,8 +16,8 @@ public class PlayerWeapon : MonoBehaviour
 
     private void Awake()
     {
-        _fixedjoystick = GameObject.Find("Canvas/RotationJoystick").GetComponent<FixedJoystick>();
-        _joystickHandle = GameObject.Find("Canvas/RotationJoystick/Handle").GetComponent<RectTransform>();
+        _fixedjoystick = GameObject.Find("CanvasUI/RotationJoystick").GetComponent<FixedJoystick>();
+        _joystickHandle = GameObject.Find("CanvasUI/RotationJoystick/Handle").GetComponent<RectTransform>();
     }
 
     private void Start()
@@ -52,7 +52,7 @@ public class PlayerWeapon : MonoBehaviour
         if (_reloaded)
         {
             //Pooler          
-            GameObject bullet = pooler.GetPooledObject("PlayerBullet", barrel.position, barrel.rotation);            
+            pooler.GetPooledObject("PlayerBullet", barrel.position, barrel.rotation);            
 
             _reloaded = false;
             Invoke("Reload", reloadTime);
