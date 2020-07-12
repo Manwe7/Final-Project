@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        _healthSlider = GameObject.Find("Canvas/PlayerHealthSlider").GetComponent<Slider>();
+        _healthSlider = GameObject.Find("CanvasUI/PlayerHealthSlider").GetComponent<Slider>();
         _material = GetComponent<SpriteRenderer>().material;
         _audioManager = FindObjectOfType<AudioManager>();
     }
