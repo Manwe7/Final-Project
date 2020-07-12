@@ -20,6 +20,8 @@ public class PlayerMovementOnline : MonoBehaviour
 
     private void Awake()
     {
+        if (!_photonView.IsMine) { return; }
+
         _fixedjoystick = GameObject.Find("Canvas/MovementJoystick").GetComponent<FixedJoystick>();
         _fuelSlider = GameObject.Find("Canvas/PlayerFuelSlider").GetComponent<Slider>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -28,6 +30,8 @@ public class PlayerMovementOnline : MonoBehaviour
 
     private void Start()
     {
+        if (!_photonView.IsMine) { return; }
+
         _reloadFuel = true;
         fuelParticles.SetActive(false);
 
@@ -59,7 +63,9 @@ public class PlayerMovementOnline : MonoBehaviour
         }
 
         if (_fuelCapacity <= 0 && _reloadFuel == true)
-        { StartCoroutine(ReloadFuel()); }
+        { 
+            StartCoroutine(ReloadFuel()); 
+        }
     }
 
     private void FixedUpdate()
@@ -72,7 +78,7 @@ public class PlayerMovementOnline : MonoBehaviour
 
         if (_verticalMove > 0.22f && _fuelCapacity > 0)
         {
-            transform.Translate(0, Time.deltaTime * 8, 0);
+            _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _verticalMove * 8);
             _rigidbody2D.gravityScale = 0;
         }
         else
