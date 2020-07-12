@@ -8,6 +8,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     [SerializeField] private Text LogText = null;
     [SerializeField] private InputField nicknameInput = null;
 
+    private bool connectedToMaster = false;
+
     private void Start()
     {        
         PhotonNetwork.AutomaticallySyncScene = true;
@@ -18,6 +20,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to master");
+        connectedToMaster = true;
     }
 
     public void CreateRoom()
@@ -29,9 +32,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         }
         else
         {
-            Debug.Log(nicknameInput.text);
-            PhotonNetwork.NickName = nicknameInput.text;
-            PhotonNetwork.CreateRoom(null, new Photon.Realtime.RoomOptions { MaxPlayers = 2 });
+            if (connectedToMaster)
+            {
+                PhotonNetwork.NickName = nicknameInput.text;
+                PhotonNetwork.CreateRoom(null, new Photon.Realtime.RoomOptions { MaxPlayers = 2 });
+            }
         }
     }
 
@@ -44,9 +49,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         }
         else
         {
-            Debug.Log(nicknameInput.text);
-            PhotonNetwork.NickName = nicknameInput.text;
-            PhotonNetwork.JoinRandomRoom();
+            if (connectedToMaster)
+            {             
+                PhotonNetwork.NickName = nicknameInput.text;
+                PhotonNetwork.JoinRandomRoom();
+            }
         }
     }
 
