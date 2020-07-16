@@ -434,5 +434,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95972d9f279a9494f85b037e6b3ff5cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rigidbody2D: {fileID: 6936943444921490503}
   speed: 2
   barrel: {fileID: 6936943444870025401}
