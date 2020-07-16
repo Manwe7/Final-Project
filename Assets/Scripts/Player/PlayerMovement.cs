@@ -4,81 +4,108 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private GameObject fuelParticles = null;    
-    
-    private FixedJoystick _fixedjoystick = null;
-    private Slider _fuelSlider = null;    
-    private Rigidbody2D _rigidbody2D = null;
+    [SerializeField] private FixedJoystick _movementJoystick = null;
+    [SerializeField] private Slider _playerFuelSlider = null;
+    [SerializeField] private Rigidbody2D _rigidbody2D = null;
+    [SerializeField] private GameObject fuelParticles = null;
 
     private float _moveSpeed = 17;
     private float _maxfuelCapacity = 50;
-    private bool  _reloadFuel;
-    private float _horizontalMove, _verticalMove;    
+    private float _horizontalMove, _verticalMove;
     private float _fuelCapacity;
-
-    private void Awake()
-    {
-        _fixedjoystick = GameObject.Find("CanvasUI/MovementJoystick").GetComponent<FixedJoystick>();
-        _fuelSlider = GameObject.Find("CanvasUI/PlayerFuelSlider").GetComponent<Slider>();
-        _rigidbody2D = GetComponent<Rigidbody2D>();        
-    }
+    
+    private bool _delayFuelRestoring;
 
     private void Start()
     {
-        _reloadFuel = true;
+        _delayFuelRestoring = true;
         fuelParticles.SetActive(false);
 
         _fuelCapacity = _maxfuelCapacity;
-        _fuelSlider.maxValue = _maxfuelCapacity;
+        _playerFuelSlider.maxValue = _maxfuelCapacity;
     }
-    
+
     private void Update()
     {
-        Flying();
+        SetDirections();
+        ControlFuel();
     }
 
     private void FixedUpdate()
-    {
+    {        
         Movement();
+        Flying();
     }
 
-    private void Movement()
+    #region Update methods
+    private void SetDirections()
     {
-        //Horizontal Movement
-        _horizontalMove = _fixedjoystick.Horizontal;
-        _rigidbody2D.velocity = new Vector2(_horizontalMove * _moveSpeed, _rigidbody2D.velocity.y);
+        _horizontalMove = _movementJoystick.Horizontal;
+        _verticalMove = _movementJoystick.Vertical;
     }
 
-    private void Flying()
+    private void ControlFuel()
     {
-        //Slider value
-        _fuelSlider.value = _fuelCapacity;
+        _playerFuelSlider.value = _fuelCapacity;
 
-        _verticalMove = _fixedjoystick.Vertical;
-
-        if (_verticalMove > 0.22f && _fuelCapacity > 0)
+        if (CanFly())
         {
-            fuelParticles.SetActive(true);
             _fuelCapacity -= 0.1f;
-            _rigidbody2D.velocity = Vector2.up * 10;
+            fuelParticles.SetActive(true);
         }
         else
         {
             fuelParticles.SetActive(false);
-            if (_fuelCapacity < _maxfuelCapacity && _reloadFuel)
+
+            if (IsRestoringFuel())
             {
                 _fuelCapacity += 0.1f;
             }
         }
 
-        if (_fuelCapacity <= 0 && _reloadFuel == true)
-        { StartCoroutine(ReloadFuel()); }
+        if (CanRestoreFuel())
+        {
+            StartCoroutine(ReloadFuel());
+        }
+    }
+    #endregion
+
+    #region FixedUpdate methods
+    private void Movement()
+    {                
+        _rigidbody2D.velocity = new Vector2(_horizontalMove * _moveSpeed, _rigidbody2D.velocity.y);
     }
 
+    private void Flying()
+    {                
+        if (CanFly())
+        {
+            _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _verticalMove * 10);
+        }        
+    }
+    #endregion
+
+    #region Bools
+    private bool CanFly()
+    {
+        return _verticalMove > 0.22f && _fuelCapacity > 0;
+    }
+
+    private bool IsRestoringFuel()
+    { 
+        return _fuelCapacity < _maxfuelCapacity && _delayFuelRestoring;
+    }
+
+    private bool CanRestoreFuel()
+    {
+        return _fuelCapacity <= 0 && _delayFuelRestoring;
+    }
+    #endregion
+
     private IEnumerator ReloadFuel()
-    {        
-        _reloadFuel = false;
-        yield return new WaitForSeconds(2f);
-        _reloadFuel = true;
+    {
+        _delayFuelRestoring = false;
+        yield return new WaitForSeconds(1f);
+        _delayFuelRestoring = true;
     }
 }

@@ -3,23 +3,18 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    private float _health, _fade = 0f;
-    private bool _isFading;
+    [SerializeField] private Slider _healthSlider;
 
     private AudioManager _audioManager;
-    private Slider _healthSlider;
-    private Material _material;    
+    private Pooler pooler;
 
+    private float _health;
+    
     public delegate void Defeat();
-    public static event Defeat defeated;
-
-    //Object Pooler
-    Pooler pooler;
+    public static event Defeat defeated;    
 
     private void Awake()
     {
-        _healthSlider = GameObject.Find("CanvasUI/PlayerHealthSlider").GetComponent<Slider>();
-        _material = GetComponent<SpriteRenderer>().material;
         _audioManager = FindObjectOfType<AudioManager>();
     }
 
@@ -28,31 +23,7 @@ public class Player : MonoBehaviour
         _health = 100;
         _healthSlider.maxValue = _health;
 
-        _isFading = true;
-
         pooler = Pooler.Instance;
-    }
-
-    private void Update()
-    {
-        MaterialAnimation();
-    }
-
-    private void MaterialAnimation()
-    {
-        //_fade
-        if (_isFading == true)
-        {
-            _fade += Time.deltaTime / 2;
-
-            if (_fade >= 1)
-            {
-                _fade = 1;
-                _isFading = false;
-            }
-
-            _material.SetFloat("__fade", _fade);
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -66,11 +37,9 @@ public class Player : MonoBehaviour
 
     public void GetDamage(float damage)
     {
-        //Play sound
         _audioManager.Play("Hurt");
-        _health -= damage;
 
-        //Show changed values
+        _health -= damage;
         _healthSlider.value = _health;
         if (_health <= 0)
         {
