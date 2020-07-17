@@ -97,7 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eaf4032ff54a904fbb80bcf34cf89d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  barrel: {fileID: 6936943444870025401}
   Parent: {fileID: 6936943444921490501}
+  bullet: {fileID: 7444725418516393869, guid: 6034abc6a4127184291822f8e5610c97, type: 3}
 --- !u!1 &6936943444296990145
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,4 +438,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody2D: {fileID: 6936943444921490503}
   speed: 3
-  barrel: {fileID: 6936943444870025401}
