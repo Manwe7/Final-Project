@@ -1,21 +1,40 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyWeapon : MonoBehaviour
 {
-    [SerializeField] GameObject Parent = null;
+    [Header("Barrel")]
+    [SerializeField] private Transform barrel = null;
+
+    [SerializeField] private GameObject Parent = null;
+
+    [SerializeField] private GameObject bullet = null;
     
     private float _offset = 270;
     private GameObject _player;
 
+    protected int _reloadTime;
+    protected bool _reloaded;
+
+    private Pooler pooler;
+
     private void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player");       
+        _player = GameObject.FindGameObjectWithTag("Player");
+        pooler = Pooler.Instance;
     }
-    
+
+    private void OnEnable()
+    {
+        StartCoroutine(Reload());
+    }
+
     private void Update()
     {
         if(_player != null)
         {
+            Shoote();
+
             Vector3 PlayerPos = _player.transform.position;
 
             //Change position depending in targets position
@@ -28,6 +47,27 @@ public class EnemyWeapon : MonoBehaviour
                 RightSide();
             }
         }
+    }
+
+    private void Shoote()
+    {
+        if (_reloaded)
+        {
+            pooler.GetPooledObject(bullet.name, barrel.position, barrel.rotation);
+
+            if (gameObject.activeSelf)
+            {
+                StartCoroutine(Reload());
+            }
+        }
+    }
+
+    protected IEnumerator Reload()
+    {
+        _reloaded = false;
+        _reloadTime = Random.Range(2, 5);
+        yield return new WaitForSeconds(_reloadTime);
+        _reloaded = true;
     }
 
     private void RightSide()

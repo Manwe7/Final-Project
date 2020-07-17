@@ -1,25 +1,19 @@
 using UnityEngine;
-using System.Collections;
 
-public class Enemy : MonoBehaviour
-{
-    [SerializeField] private float speed = 0;
+public abstract class Enemy : MonoBehaviour
+{ 
+    [SerializeField] protected Rigidbody2D _rigidbody2D;
+    [SerializeField] private float _speed = 0;
 
     private AudioManager _audioManager;
-
-    protected Rigidbody2D _rigidbody2D;
+    
     protected GameObject _player;
+    protected Pooler _pooler;    
     protected float _health;
-
     protected float _distance;
-
-    protected int _reloadTime;
-    protected bool _reloaded;
-
+    
     private void Awake()
-    {
-        //Components
-        _rigidbody2D = GetComponent<Rigidbody2D>();
+    {        
         _audioManager = FindObjectOfType<AudioManager>();
 
         _player = GameObject.FindGameObjectWithTag("Player");                
@@ -27,6 +21,8 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        _pooler = Pooler.Instance;
+
         _distance = Random.Range(1f, 12f);
     }
 
@@ -41,11 +37,11 @@ public class Enemy : MonoBehaviour
         {
             if (_player.transform.position.x + _distance > transform.position.x) //player is in right side
             {
-                _rigidbody2D.velocity = new Vector2(speed, _rigidbody2D.velocity.y);
+                _rigidbody2D.velocity = new Vector2(_speed, _rigidbody2D.velocity.y);
             }
             else if ((_player.transform.position.x - _distance < transform.position.x)) //player is in left side
             {
-                _rigidbody2D.velocity = new Vector2(-speed, _rigidbody2D.velocity.y);
+                _rigidbody2D.velocity = new Vector2(-_speed, _rigidbody2D.velocity.y);
             }
         }
         else
@@ -59,13 +55,5 @@ public class Enemy : MonoBehaviour
         //Play sound
         _audioManager.Play("Hurt");        
         _health -= damage;
-    }
-
-    protected IEnumerator Reload()
-    {
-        _reloaded = false;
-        _reloadTime = Random.Range(2, 5);
-        yield return new WaitForSeconds(_reloadTime);
-        _reloaded = true;
-    }
+    }    
 }
