@@ -7,18 +7,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private FixedJoystick _movementJoystick = null;
     [SerializeField] private Slider _playerFuelSlider = null;
     [SerializeField] private Rigidbody2D _rigidbody2D = null;
-    [SerializeField] private GameObject fuelParticles = null;
+    [SerializeField] private GameObject fuelParticles = null;    
 
     private float _moveSpeed = 17;
+    private float _flySpeed = 10;
     private float _maxfuelCapacity = 50;
     private float _horizontalMove, _verticalMove;
     private float _fuelCapacity;
     
-    private bool _delayFuelRestoring;
+    private bool _shouldDelayFuelRestoring;
 
     private void Start()
     {
-        _delayFuelRestoring = true;
+        _shouldDelayFuelRestoring = false;
         fuelParticles.SetActive(false);
 
         _fuelCapacity = _maxfuelCapacity;
@@ -32,8 +33,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {        
-        Movement();
+    {
+        HorizontalMovement();
         Flying();
     }
 
@@ -71,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region FixedUpdate methods
-    private void Movement()
+    private void HorizontalMovement()
     {                
         _rigidbody2D.velocity = new Vector2(_horizontalMove * _moveSpeed, _rigidbody2D.velocity.y);
     }
@@ -80,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
     {                
         if (CanFly())
         {
-            _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _verticalMove * 10);
+            _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _verticalMove * _flySpeed);
         }        
     }
     #endregion
@@ -93,19 +94,19 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsRestoringFuel()
     { 
-        return _fuelCapacity < _maxfuelCapacity && _delayFuelRestoring;
+        return _fuelCapacity < _maxfuelCapacity && !_shouldDelayFuelRestoring;
     }
 
     private bool CanRestoreFuel()
     {
-        return _fuelCapacity <= 0 && _delayFuelRestoring;
+        return _fuelCapacity <= 0 && !_shouldDelayFuelRestoring;
     }
     #endregion
 
     private IEnumerator ReloadFuel()
     {
-        _delayFuelRestoring = false;
+        _shouldDelayFuelRestoring = true;
         yield return new WaitForSeconds(1f);
-        _delayFuelRestoring = true;
+        _shouldDelayFuelRestoring = false;
     }
 }

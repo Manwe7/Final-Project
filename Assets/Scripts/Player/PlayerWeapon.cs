@@ -4,19 +4,17 @@ public class PlayerWeapon : MonoBehaviour
 {
     [SerializeField] private Joystick _weaponJoystick = null;
     [SerializeField] private RectTransform _joystickHandle = null;
-    [SerializeField] private Transform parent = null, barrel = null;
-    
-    [SerializeField] private float reloadTime = 0;
+    [SerializeField] private Transform _parent = null, _barrel = null;    
+    [SerializeField] private float _reloadTime = 0;
     
     private float _offset = 180;    
     private bool _reloaded;
-
-    private Pooler pooler;
+    private Pooler _pooler;
 
     private void Start()
     {
         _reloaded = true;
-        pooler = Pooler.Instance;
+        _pooler = Pooler.Instance;
     }
 
     private void Update()
@@ -42,10 +40,10 @@ public class PlayerWeapon : MonoBehaviour
     {
         if (_reloaded)
         {
-            pooler.GetPooledObject("PlayerBullet", barrel.position, barrel.rotation);            
+            _pooler.GetPooledObject("PlayerBullet", _barrel.position, _barrel.rotation);            
 
             _reloaded = false;
-            Invoke("Reload", reloadTime);
+            Invoke("Reload", _reloadTime);
         }
     }
 
@@ -63,7 +61,7 @@ public class PlayerWeapon : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, 0f, -rotZ);
         }
 
-        transform.position = new Vector3(parent.transform.position.x + 0.3f, parent.transform.position.y, parent.transform.position.z);
+        transform.position = new Vector3(_parent.transform.position.x + 0.3f, _parent.transform.position.y, _parent.transform.position.z);
     }
 
     private void SetToLeftSide()
@@ -75,6 +73,6 @@ public class PlayerWeapon : MonoBehaviour
             transform.rotation = Quaternion.Euler(-180f, 0f, rotZ + _offset);
         }
 
-        transform.position = new Vector3(parent.transform.position.x -0.3f, parent.transform.transform.position.y, parent.transform.position.z);
+        transform.position = new Vector3(_parent.transform.position.x -0.3f, _parent.transform.transform.position.y, _parent.transform.position.z);
     }
 }

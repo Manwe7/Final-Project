@@ -6,8 +6,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Slider _healthSlider;
 
     private AudioManager _audioManager;
-    private Pooler pooler;
-
+    private Pooler _pooler;
     private float _health;
     
     public delegate void Defeat();
@@ -22,8 +21,9 @@ public class Player : MonoBehaviour
     {
         _health = 100;
         _healthSlider.maxValue = _health;
+        _healthSlider.value = _health;
 
-        pooler = Pooler.Instance;
+        _pooler = Pooler.Instance;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
         _audioManager.Play("PlayerDeath");
         
         //Pooler
-        pooler.GetPooledObject("PlayerExplosion", transform.position, Quaternion.identity);        
+        _pooler.GetPooledObject("PlayerExplosion", transform.position, Quaternion.identity);        
 
         //Some shake
         CameraShake.ShakeOnce = true;
