@@ -17,7 +17,6 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
-    //When player dies, slow timescale and open defeat panel
     private void Defeat()
     {
         Time.timeScale = 0.5f;

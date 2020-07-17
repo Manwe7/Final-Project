@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-//Map sections
 public class MapSections : MonoBehaviour
 {
     [Header("Sections")]
@@ -12,22 +11,36 @@ public class MapSections : MonoBehaviour
 
     private void Start()
     {
-        //DeActivate all sections
+        DeActivateAllSections();
+
+        SelectRandomMap();
+
+        ActivateChoosenMap();        
+    }
+
+    #region Custom Methods
+    private void DeActivateAllSections()
+    {
         for (int i = 0; i < LeftSection.Length; i++)
         {
             LeftSection[i].SetActive(false);
             CenterSection[i].SetActive(false);
             RightSection[i].SetActive(false);
         }
+    }
 
-        //Choose random map in each section
+    private void SelectRandomMap()
+    {
         _leftSectionMap = Random.Range(0, LeftSection.Length);
         _CenterSectionMap = Random.Range(0, CenterSection.Length);
         _rightSectionMap = Random.Range(0, RightSection.Length);
+    }
 
-        //Activate chosen map in each section
+    private void ActivateChoosenMap()
+    {
         LeftSection[_leftSectionMap].SetActive(true);
         CenterSection[_CenterSectionMap].SetActive(true);
         RightSection[_rightSectionMap].SetActive(true);
     }
+    #endregion
 }
