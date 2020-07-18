@@ -4,10 +4,9 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rigidbody2D = null;
     [SerializeField] private float _speed = 0;
-    
-    private string _explosionName;
-
+        
     private AudioManager _audioManager;
+    private string _explosionName;
     private Pooler _pooler;
     
     private void Awake()
