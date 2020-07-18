@@ -4,7 +4,7 @@ public class LittleEnemy : Enemy
 {
     private void OnEnable()
     {
-        _health = Random.Range(10, 20);         
+        _health = Random.Range(10, 20);
     }
     
     private void Update()
@@ -16,9 +16,9 @@ public class LittleEnemy : Enemy
     {
         if (_health <= 0)
         {
-            ScoreManager.Instance.CurrentScore += 5;
+            _scoreManager.AddScore(15);
 
-            _pooler.GetPooledObject("LittleEnemyExplosion", transform.position, Quaternion.identity);            
+            _pooler.GetPooledObject(_enemyExplosion.name, transform.position, Quaternion.identity);            
 
             gameObject.SetActive(false);
         }

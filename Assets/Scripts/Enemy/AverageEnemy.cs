@@ -16,9 +16,9 @@ public class AverageEnemy : Enemy
     {
         if (_health <= 0)
         {
-            ScoreManager.Instance.CurrentScore += 10;
+            _scoreManager.AddScore(10);
 
-            _pooler.GetPooledObject("AverageEnemyExplosion", transform.position, Quaternion.identity);            
+            _pooler.GetPooledObject(_enemyExplosion.name, transform.position, Quaternion.identity);            
 
             gameObject.SetActive(false);
         }

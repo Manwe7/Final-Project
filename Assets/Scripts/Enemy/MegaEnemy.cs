@@ -4,7 +4,7 @@ public class MegaEnemy : Enemy
 {
     private void OnEnable()
     {
-        _health = Random.Range(50, 60);    
+        _health = Random.Range(50, 60);
     }
 
     private void Update()
@@ -16,9 +16,9 @@ public class MegaEnemy : Enemy
     {
         if (_health <= 0)
         {
-            ScoreManager.Instance.CurrentScore += 15;
+            _scoreManager.AddScore(15);
 
-            _pooler.GetPooledObject("MegaEnemyExplosion", transform.position, Quaternion.identity);            
+            _pooler.GetPooledObject(_enemyExplosion.name, transform.position, Quaternion.identity);            
 
             gameObject.SetActive(false);
         }
