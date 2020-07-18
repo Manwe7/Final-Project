@@ -2,11 +2,13 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 { 
+    [SerializeField] protected GameObject _enemyExplosion;
     [SerializeField] protected Rigidbody2D _rigidbody2D;
     [SerializeField] private float _speed = 0;
 
     private AudioManager _audioManager;
     
+    protected ScoreManager _scoreManager;
     protected GameObject _player;
     protected Pooler _pooler;    
     protected float _health;
@@ -14,7 +16,8 @@ public abstract class Enemy : MonoBehaviour
     
     private void Awake()
     {        
-        _audioManager = FindObjectOfType<AudioManager>();
+        _scoreManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<ScoreManager>();
+        _audioManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<AudioManager>();
 
         _player = GameObject.FindGameObjectWithTag("Player");                
     }
@@ -23,7 +26,7 @@ public abstract class Enemy : MonoBehaviour
     {
         _pooler = Pooler.Instance;
 
-        _distance = Random.Range(1f, 12f);
+        _distance = Random.Range(3f, 12f);
     }
 
     private void FixedUpdate()
@@ -52,8 +55,7 @@ public abstract class Enemy : MonoBehaviour
 
     public void GetDamage(float damage)
     {
-        //Play sound
-        _audioManager.Play("Hurt");        
+        _audioManager.Play("Hurt");
         _health -= damage;
     }    
 }

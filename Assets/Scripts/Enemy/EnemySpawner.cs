@@ -3,22 +3,21 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Spawn object Name")]
-    [SerializeField] string objectName = null;    
+    [SerializeField] GameObject _enemyToSpawn = null;
 
     [Header("Min And Max reload time")]
-    [SerializeField] private float maxTime = 0; 
+    [SerializeField] private float maxTime = 0;
     [SerializeField] private float minTime = 0;
 
-    private float _time, _spawnTime;    
-
-    Pooler pooler;
+    private float _time, _spawnTime;
+    private Pooler _pooler;
 
     private void Start()
     {
         SetRandomTime();
         _time = minTime;
 
-        pooler = Pooler.Instance;        
+        _pooler = Pooler.Instance;        
     }
 
     private void Update()
@@ -35,7 +34,7 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnObject()
     {
         _time = 0;
-        pooler.GetPooledObject(objectName, transform.position, Quaternion.identity);        
+        _pooler.GetPooledObject(_enemyToSpawn.name, transform.position, Quaternion.identity);        
     }
  
     private void SetRandomTime()

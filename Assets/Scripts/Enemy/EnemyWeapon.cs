@@ -5,17 +5,17 @@ public class EnemyWeapon : MonoBehaviour
 {
     [Header("Barrel")]
     [SerializeField] private Transform barrel = null;
-
     [SerializeField] private GameObject Parent = null;
-
     [SerializeField] private GameObject bullet = null;
-    
+
+    [Header("Min and Max realod time")]
+    [SerializeField] private int minReloadTime;
+    [SerializeField] private int maxReloadTime;
+
     private float _offset = 270;
     private GameObject _player;
-
-    protected int _reloadTime;
-    protected bool _reloaded;
-
+    private int _reloadTime;
+    private bool _reloaded;
     private Pooler pooler;
 
     private void Start()
@@ -65,7 +65,7 @@ public class EnemyWeapon : MonoBehaviour
     protected IEnumerator Reload()
     {
         _reloaded = false;
-        _reloadTime = Random.Range(2, 5);
+        _reloadTime = Random.Range(minReloadTime, maxReloadTime);
         yield return new WaitForSeconds(_reloadTime);
         _reloaded = true;
     }
