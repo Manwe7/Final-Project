@@ -3,74 +3,51 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
+    [Header("Player")]
+    [SerializeField] private Player _player;
+
     [Header("Score in Game")]
-    [SerializeField] Text ScoreText = null;
-    
-    [Header("Record on defeat panel")]
-    [SerializeField] Text defeatRecordText = null;
+    [SerializeField] private Text _scoreText;
     
     private bool _isNewRecord = false;    
-    private float _oldRecord;
+    private int _record;    
+    private int _score;
     
-    public float CurrentScore;
-    
-    public static ScoreManager Instance { get; private set; }
-
     private void Awake()
     {
         Application.targetFrameRate = 60;
 
-        #region Singleton
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-        #endregion
-    }
-
-    #region (Un)Subscribe to player defeat event
-    private void OnEnable()
-    {
-        Player.defeated += SaveRecord;
-    }
-
-    private void OnDisable()
-    {
-        Player.defeated -= SaveRecord;
-    }
-    #endregion
+        _player.OnPlayerDefeated += SaveRecord;
+    }            
 
     private void Start()
     {
-        Time.timeScale = 1f;
-        _oldRecord = PlayerPrefs.GetFloat("ScoreRecord", 0);
-
-        CurrentScore = 0;
-    }
-
-    private void Update()
-    {
-        //If record is broken, update it 
-        if (_oldRecord < CurrentScore)
-        {
-            _oldRecord = CurrentScore;
-            _isNewRecord = true;
-        }
-
-        defeatRecordText.text = _oldRecord.ToString();
-
-        ScoreText.text = CurrentScore.ToString();          
+        Time.timeScale = 1f;        
+        _score = 0;
     }    
+
+    private void OnDisable()
+    {
+        _player.OnPlayerDefeated -= SaveRecord;
+    }
     
-    public void SaveRecord()
+    private void SaveRecord()
     {        
         if (_isNewRecord)
         {
-            PlayerPrefs.SetFloat("ScoreRecord", CurrentScore);
+            PlayerPrefs.SetInt("Record", _score);
         }
+    }
+
+    public void AddScore(int score)
+    {
+        _score += score;
+        _scoreText.text = _score.ToString();
+
+        if (_record < _score)
+        {
+            _record = _score;
+            _isNewRecord = true;
+        }        
     }
 }

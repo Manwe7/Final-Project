@@ -1,60 +1,67 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] GameObject PauseMenuPanel = null, DefeatMenuPanel = null;
+    [Header("Player")]
+    [SerializeField] private Player _player;
+    
+    [Header("Panels")]
+    [SerializeField] private GameObject _pauseMenuPanel = null;
+    [SerializeField] private GameObject  _defeatMenuPanel = null;
 
-    #region (Un)Subscribe to player defeat event
+    [Header("Record on defeat panel")]
+    [SerializeField] private Text _defeatRecordText;
+
+    private int _record;
+
     private void OnEnable()
     {
-        Player.defeated += Defeat;    
+        _player.OnPlayerDefeated += Defeat;    
     }
 
     private void OnDisable()
     {
-        Player.defeated -= Defeat;
+        _player.OnPlayerDefeated -= Defeat;
     }
-    #endregion
 
     private void Defeat()
-    {
+    {        
         Time.timeScale = 0.5f;
         Invoke("OpenDefeatMenu", 1.5f);
     }
 
     private void OpenDefeatMenu()
     {
-        DefeatMenuPanel.SetActive(true);
+        _record = PlayerPrefs.GetInt("Record", 0);
+        _defeatRecordText.text = _record.ToString();
+        
+        _defeatMenuPanel.SetActive(true);
         Time.timeScale = 0f;
     }
 
     #region Buttons
     public void PauseBtn()
-    {
-        if (!PauseMenuPanel.activeSelf)
-        {
-            PauseMenuPanel.SetActive(true);
-            Time.timeScale = 0f;
-        }
+    {        
+        _pauseMenuPanel.SetActive(true);
+        Time.timeScale = 0f;        
     }
 
     public void Restart()
     {
-        ScoreManager.Instance.SaveRecord();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1f;
     }
 
     public void Resume()
     {
-        PauseMenuPanel.SetActive(false);
+        _pauseMenuPanel.SetActive(false);
         Time.timeScale = 1f;
     }
 
     public void Exit()
     {
-        ScoreManager.Instance.SaveRecord();
         SceneManager.LoadScene("Menu");
     }
     #endregion
