@@ -100,6 +100,8 @@ MonoBehaviour:
   barrel: {fileID: 6936943444870025401}
   Parent: {fileID: 6936943444921490501}
   bullet: {fileID: 7444725418516393869, guid: 1b1c7a62a5d117f4594780ebc82a6025, type: 3}
+  minReloadTime: 5
+  maxReloadTime: 9
 --- !u!1 &6936943444296990145
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,5 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141ad9d7e897dff47a51188fa5b70737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyExplosion: {fileID: 6163721950763462551, guid: 76c7ded1f269feb448fb0808af3bba2b,
+    type: 3}
   _rigidbody2D: {fileID: 6936943444921490503}
-  speed: 1
+  _speed: 2
