@@ -6,20 +6,19 @@ public class Pooler : MonoBehaviour
     [System.Serializable]
     public class GameObjectToPool
     {
-        public string objectName;
         public GameObject objectToPool;
         public int amountToPool;
-        public bool shouldExpand;
     }
 
 
-    [SerializeField] private Transform Container = null;    
+    [SerializeField] private Transform _container = null;    
+    
+    public List<GameObjectToPool> _itemsToPool;
+    private List<GameObject> _pooledObjects;
 
     public static Pooler Instance;
-    public List<GameObjectToPool> itemsToPool;
-    private List<GameObject> pooledObjects;
 
-    void Awake()
+    private void Awake()
     {
         #region Singleton
         if (Instance == null)
@@ -33,50 +32,46 @@ public class Pooler : MonoBehaviour
         #endregion
     }
 
-    // Use this for initialization
-    void Start()
+    private void Start()
     {       
-        pooledObjects = new List<GameObject>();
-        foreach (GameObjectToPool item in itemsToPool)
+        _pooledObjects = new List<GameObject>();
+        foreach (GameObjectToPool item in _itemsToPool)
         {
             for (int i = 0; i < item.amountToPool; i++)
             {
                 GameObject obj = Instantiate(item.objectToPool);
-                obj.transform.parent = Container;
-                obj.name = item.objectName;
+                obj.transform.parent = _container;
+                obj.name = item.objectToPool.name;                
                 obj.SetActive(false);
-                pooledObjects.Add(obj);
+                _pooledObjects.Add(obj);
             }
         }
     }
 
-    public GameObject GetPooledObject(string name, Vector3 _position, Quaternion _rotation)
+    public GameObject GetPooledObject(string name, Vector3 position, Quaternion rotation)
     {
-        for (int i = 0; i < pooledObjects.Count; i++)
+        for (int i = 0; i < _pooledObjects.Count; i++)
         {
-            if (!pooledObjects[i].activeInHierarchy && pooledObjects[i].name == name)
+            if (!_pooledObjects[i].activeInHierarchy && _pooledObjects[i].name == name)
             {
-                pooledObjects[i].transform.position = _position;
-                pooledObjects[i].transform.rotation = _rotation;
-                pooledObjects[i].SetActive(true);
-                return pooledObjects[i];
+                _pooledObjects[i].transform.position = position;
+                _pooledObjects[i].transform.rotation = rotation;
+                _pooledObjects[i].SetActive(true);
+                return _pooledObjects[i];
             }
         }
-        foreach (GameObjectToPool item in itemsToPool)
+        foreach (GameObjectToPool item in _itemsToPool)
         {
             if (item.objectToPool.name == name)
             {
-                if (item.shouldExpand)
-                {
-                    GameObject gameObject = Instantiate(item.objectToPool);
-                    gameObject.transform.parent = Container;
-                    gameObject.name = item.objectName;
-                    gameObject.transform.position = _position;
-                    gameObject.transform.rotation = _rotation;
-                    gameObject.SetActive(true);
-                    pooledObjects.Add(gameObject);
-                    //return obj;
-                }
+                GameObject gameObject = Instantiate(item.objectToPool);
+                gameObject.transform.parent = _container;
+                gameObject.name = item.objectToPool.name;
+                gameObject.transform.position = position;
+                gameObject.transform.rotation = rotation;
+                gameObject.SetActive(true);
+                _pooledObjects.Add(gameObject);
+                return gameObject;
             }
         }
         return null;
