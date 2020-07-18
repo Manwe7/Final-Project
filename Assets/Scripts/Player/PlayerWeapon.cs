@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
-    [SerializeField] private Joystick _weaponJoystick = null;
-    [SerializeField] private RectTransform _joystickHandle = null;
-    [SerializeField] private Transform _parent = null, _barrel = null;    
+    [SerializeField] private Joystick _weaponJoystick;
+    [SerializeField] private RectTransform _joystickHandle;
+    [SerializeField] private Transform _parent, _barrel;    
     [SerializeField] private float _reloadTime = 0;
+    
+    [Header("Bullet")]
+    [SerializeField] private GameObject _playerBullet;
     
     private float _offset = 180;    
     private bool _reloaded;
@@ -40,7 +43,7 @@ public class PlayerWeapon : MonoBehaviour
     {
         if (_reloaded)
         {
-            _pooler.GetPooledObject("PlayerBullet", _barrel.position, _barrel.rotation);            
+            _pooler.GetPooledObject(_playerBullet.name, _barrel.position, _barrel.rotation);            
 
             _reloaded = false;
             Invoke("Reload", _reloadTime);

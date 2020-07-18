@@ -1,16 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Slider _healthSlider;
+    [SerializeField] private Slider _healthSlider;   
+    [SerializeField] private GameObject _playerExplosion;
 
     private AudioManager _audioManager;
     private Pooler _pooler;
     private float _health;
     
-    public delegate void Defeat();
-    public static event Defeat defeated;    
+    public event Action OnPlayerDefeated;
 
     private void Awake()
     {
@@ -49,13 +50,13 @@ public class Player : MonoBehaviour
 
     private void Killed()
     {
-        defeated();
+        OnPlayerDefeated();
 
         //Play sound
         _audioManager.Play("PlayerDeath");
         
         //Pooler
-        _pooler.GetPooledObject("PlayerExplosion", transform.position, Quaternion.identity);        
+        _pooler.GetPooledObject(_playerExplosion.name, transform.position, Quaternion.identity);        
 
         //Some shake
         CameraShake.ShakeOnce = true;
