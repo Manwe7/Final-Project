@@ -1,16 +1,11 @@
 using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
-{
-    [SerializeField] private Joystick _weaponJoystick;
-    [SerializeField] private RectTransform _joystickHandle;
-    [SerializeField] private Transform _parent, _barrel;    
-    [SerializeField] private float _reloadTime = 0;
-    
-    [Header("Bullet")]
+{   
     [SerializeField] private GameObject _playerBullet;
-    
-    private float _offset = 180;    
+    [SerializeField] private Transform _barrel;
+    [SerializeField] private float _reloadTime = 0;
+
     private bool _reloaded;
     private Pooler _pooler;
 
@@ -21,22 +16,8 @@ public class PlayerWeapon : MonoBehaviour
     }
 
     private void Update()
-    {
-        ChangeWeaponPosition();
-
+    {        
         Shoote();
-    }
-
-    private void ChangeWeaponPosition()
-    {
-        if (_joystickHandle.anchoredPosition.x < 0 && _joystickHandle.anchoredPosition.x != 0)
-        {
-            SetToLeftSide();
-        }
-        else if (_joystickHandle.anchoredPosition.x > 0)
-        {
-            SetToRightSide();
-        }
     }
 
     private void Shoote()
@@ -53,29 +34,5 @@ public class PlayerWeapon : MonoBehaviour
     private void Reload()
     {
         _reloaded = true;
-    }
-
-    private void SetToRightSide()
-    {
-        Vector3 direction = Vector3.up * _weaponJoystick.Vertical + Vector3.right * _weaponJoystick.Horizontal;
-        float rotZ = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
-        if (rotZ != 0)
-        {
-            transform.rotation = Quaternion.Euler(0f, 0f, -rotZ);
-        }
-
-        transform.position = new Vector3(_parent.transform.position.x + 0.3f, _parent.transform.position.y, _parent.transform.position.z);
-    }
-
-    private void SetToLeftSide()
-    {
-        Vector3 direction = Vector3.up * _weaponJoystick.Vertical + Vector3.right * _weaponJoystick.Horizontal;
-        float rotZ = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
-        if (rotZ != 0)
-        { 
-            transform.rotation = Quaternion.Euler(-180f, 0f, rotZ + _offset);
-        }
-
-        transform.position = new Vector3(_parent.transform.position.x -0.3f, _parent.transform.transform.position.y, _parent.transform.position.z);
     }
 }

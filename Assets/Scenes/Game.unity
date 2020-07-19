@@ -13140,6 +13140,7 @@ GameObject:
   - component: {fileID: 1234875105}
   - component: {fileID: 1234875104}
   - component: {fileID: 1234875106}
+  - component: {fileID: 1234875107}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -13226,13 +13227,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2403b59367aa6084381dbadff08afcff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerBullet: {fileID: 7444725418516393869, guid: bf81422569591f34b9f89c4007ea2d6a,
+    type: 3}
+  _barrel: {fileID: 1618587422}
+  _reloadTime: 0.4
+--- !u!114 &1234875107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234875103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bded79de0ad80d3468538c10cc9fc621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _weaponJoystick: {fileID: 4002015611852823098}
   _joystickHandle: {fileID: 4002015611033934285}
   _parent: {fileID: 2108073679}
-  _barrel: {fileID: 1618587422}
-  _reloadTime: 0.4
-  _playerBullet: {fileID: 7444725418516393869, guid: bf81422569591f34b9f89c4007ea2d6a,
-    type: 3}
 --- !u!1001 &1238108711
 PrefabInstance:
   m_ObjectHideFlags: 0

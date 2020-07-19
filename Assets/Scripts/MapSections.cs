@@ -18,7 +18,6 @@ public class MapSections : MonoBehaviour
         ActivateChoosenMap();        
     }
 
-    #region Custom Methods
     private void DeActivateAllSections()
     {
         for (int i = 0; i < LeftSection.Length; i++)
@@ -42,5 +41,4 @@ public class MapSections : MonoBehaviour
         CenterSection[_CenterSectionMap].SetActive(true);
         RightSection[_rightSectionMap].SetActive(true);
     }
-    #endregion
 }

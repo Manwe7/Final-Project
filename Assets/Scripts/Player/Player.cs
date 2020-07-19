@@ -51,20 +51,16 @@ public class Player : MonoBehaviour
     private void Killed()
     {
         OnPlayerDefeated();
-
-        //Play sound
+    
         _audioManager.Play("PlayerDeath");
         
-        //Pooler
         _pooler.GetPooledObject(_playerExplosion.name, transform.position, Quaternion.identity);        
 
-        //Some shake
         CameraShake.ShakeOnce = true;
                 
         _health = 0;
         _healthSlider.value = _health;
         
-        //Turn off player
         gameObject.SetActive(false);
     }
 }
