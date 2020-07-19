@@ -454,4 +454,6 @@ MonoBehaviour:
   _enemyExplosion: {fileID: 6163721950763462551, guid: 3fc0344637719544cb556c71ec2c4f19,
     type: 3}
   _rigidbody2D: {fileID: 6936943444921490503}
+  _weapon: {fileID: 6936943443877824147}
+  _weaponPosition: {fileID: 4452619164892255958}
   _speed: 6
