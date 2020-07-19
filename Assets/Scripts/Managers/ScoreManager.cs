@@ -1,28 +1,25 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
     [Header("Player")]
     [SerializeField] private Player _player;
-
-    [Header("Score in Game")]
-    [SerializeField] private Text _scoreText;
+    [SerializeField] private GamePlayUI _gamePlayUI;
     
-    private bool _isNewRecord = false;    
-    private int _record;    
-    private int _score;
+    private bool _isNewRecord = false;
+    private int _record;
+    private int _score;   
     
     private void Awake()
     {
         Application.targetFrameRate = 60;
 
-        _player.OnPlayerDefeated += SaveRecord;
-    }            
+        _player.OnPlayerDefeated += SaveRecord;        
+    }
 
     private void Start()
     {
-        Time.timeScale = 1f;        
+        Time.timeScale = 1f;
         _score = 0;
     }    
 
@@ -42,7 +39,7 @@ public class ScoreManager : MonoBehaviour
     public void AddScore(int score)
     {
         _score += score;
-        _scoreText.text = _score.ToString();
+        _gamePlayUI.SetScoreText(_score);
 
         if (_record < _score)
         {
