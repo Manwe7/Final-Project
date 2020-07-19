@@ -8,9 +8,9 @@ public class EnemyWeaponPosition : MonoBehaviour
     private Vector3 _direction;
     private float _rotationZ;
 
-    private void Start()
+    public void Init(GameObject player)
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
+        _player = player;
     }
 
     private void Update()
@@ -36,12 +36,17 @@ public class EnemyWeaponPosition : MonoBehaviour
     private void SetToRightSide()
     {                
         transform.rotation = Quaternion.Euler(0, 0f, _rotationZ + _offset);  
-        transform.position = new Vector3(_parent.position.x + 0.3f, _parent.position.y, _parent.position.z);
+        transform.position = GetPosition(0.3f);
     }
 
     private void SetToLeftSide()
     {     
         transform.rotation = Quaternion.Euler(-180f, 0f, -_rotationZ + _offset);  
-        transform.position = new Vector3(_parent.position.x - 0.3f, _parent.position.y, _parent.position.z);
+        transform.position = GetPosition(-0.3f);
+    }
+
+    private Vector3 GetPosition(float offsetX)
+    {
+        return new Vector3(_parent.position.x + offsetX, _parent.position.y, _parent.position.z);
     }
 }

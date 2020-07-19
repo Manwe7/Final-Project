@@ -15,10 +15,10 @@ public class EnemyWeapon : MonoBehaviour
     private bool _reloaded;
     private Pooler _pooler;
 
-    private void Start()
+    public void Init(GameObject player, Pooler pooler)
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
-        _pooler = Pooler.Instance;
+        _player = player;
+        _pooler = pooler;
     }
 
     private void OnEnable()
@@ -30,11 +30,11 @@ public class EnemyWeapon : MonoBehaviour
     {
         if(_player != null)
         {
-            Shoote();
+            Shoot();
         }
     }
 
-    private void Shoote()
+    private void Shoot()
     {
         if (_reloaded)
         {

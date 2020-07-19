@@ -1,32 +1,34 @@
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour, IDamageable
 { 
     [SerializeField] protected GameObject _enemyExplosion;
     [SerializeField] protected Rigidbody2D _rigidbody2D;
-    [SerializeField] private float _speed = 0;
+    [SerializeField] private EnemyWeapon _weapon;
+    [SerializeField] private EnemyWeaponPosition _weaponPosition;
+    [SerializeField] private float _speed = 0;    
 
     private AudioManager _audioManager;
-    
     protected ScoreManager _scoreManager;
     protected GameObject _player;
-    protected Pooler _pooler;    
+    protected Pooler _pooler;
     protected float _health;
     protected float _distance;
-    
-    private void Awake()
-    {        
-        _scoreManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<ScoreManager>();
-        _audioManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<AudioManager>();
+    protected abstract int _scoreWeight { get; }
 
-        _player = GameObject.FindGameObjectWithTag("Player");                
+    public void Init(GameObject player, Pooler pooler, ScoreManager scoreManager, AudioManager audioManager)
+    {
+        _player = player;
+        _pooler = pooler;
+        _scoreManager = scoreManager;
+        _audioManager = audioManager;
+        _weapon.Init(player, pooler);
+        _weaponPosition.Init(player);
     }
-
+    
     private void Start()
     {
-        _pooler = Pooler.Instance;
-
-        _distance = Random.Range(3f, 12f);
+        _distance = UnityEngine.Random.Range(3f, 12f);
     }
 
     private void FixedUpdate()
@@ -38,14 +40,12 @@ public abstract class Enemy : MonoBehaviour
     {
         if (_player != null)
         {
-            if (_player.transform.position.x + _distance > transform.position.x) //player is in right side
+            var moveSpeed = _speed;
+            if(!IsPlayerOnRight())
             {
-                _rigidbody2D.velocity = new Vector2(_speed, _rigidbody2D.velocity.y);
+                moveSpeed *= -1f;
             }
-            else if ((_player.transform.position.x - _distance < transform.position.x)) //player is in left side
-            {
-                _rigidbody2D.velocity = new Vector2(-_speed, _rigidbody2D.velocity.y);
-            }
+            MoveToPlayer(moveSpeed);
         }
         else
         {
@@ -53,9 +53,28 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    public void GetDamage(float damage)
+    private bool IsPlayerOnRight()
+    {
+        return _player.transform.position.x + _distance > transform.position.x;
+    }
+
+    private void MoveToPlayer(float speed)
+    {
+        _rigidbody2D.velocity = new Vector2(speed, _rigidbody2D.velocity.y);
+    }
+
+    public void ApplyDamage(int damage)
     {
         _audioManager.Play("Hurt");
         _health -= damage;
+
+        if (_health <= 0)
+        {            
+            _scoreManager.AddScore(_scoreWeight);
+
+            _pooler.GetPooledObject(_enemyExplosion.name, transform.position, Quaternion.identity);            
+
+            gameObject.SetActive(false);
+        }
     }    
 }
