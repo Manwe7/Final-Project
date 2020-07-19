@@ -145,6 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody2D: {fileID: 5518891196149967445}
+  _explosionName: {fileID: 6163721950763462551, guid: 4c1b4a4573f20964bb8ac44bb818984c,
+    type: 3}
   _speed: 25
 --- !u!1001 &4327688169793999168
 PrefabInstance:
