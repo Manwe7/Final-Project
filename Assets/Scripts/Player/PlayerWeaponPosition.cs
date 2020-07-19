@@ -22,7 +22,7 @@ public class PlayerWeaponPosition : MonoBehaviour
 
         if(_rotationZ == 0) return;
 
-        if (_joystickHandle.anchoredPosition.x < 0 && _joystickHandle.anchoredPosition.x != 0)
+        if (_joystickHandle.anchoredPosition.x < 0)
         {
             SetToLeftSide();
         }
