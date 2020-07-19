@@ -2,7 +2,7 @@
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private FixedJoystick _joystick = null;    
+    [SerializeField] private FixedJoystick _joystick = null;
     [SerializeField] private Rigidbody2D _rigidbody2D = null;
 
     private float _moveSpeed = 17;

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
@@ -7,7 +8,7 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private float _reloadTime = 0;
 
     private bool _reloaded;
-    private Pooler _pooler;
+    private Pooler _pooler; // in inspector
 
     private void Start()
     {
@@ -17,22 +18,23 @@ public class PlayerWeapon : MonoBehaviour
 
     private void Update()
     {        
-        Shoote();
+        Shoot();
     }
 
-    private void Shoote()
+    private void Shoot()
     {
         if (_reloaded)
         {
-            _pooler.GetPooledObject(_playerBullet.name, _barrel.position, _barrel.rotation);            
+            _pooler.GetPooledObject(_playerBullet.name, _barrel.position, _barrel.rotation);
 
             _reloaded = false;
-            Invoke("Reload", _reloadTime);
+            StartCoroutine(Reload());
         }
     }
 
-    private void Reload()
-    {
+    private IEnumerator Reload()
+    {        
+        yield return new WaitForSeconds(_reloadTime);
         _reloaded = true;
     }
 }

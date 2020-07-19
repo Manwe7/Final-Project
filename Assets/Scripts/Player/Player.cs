@@ -1,65 +1,53 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System;
 
+[RequireComponent(typeof(PlayerHealth))]
 public class Player : MonoBehaviour
-{
-    [SerializeField] private Slider _healthSlider;   
+{    
     [SerializeField] private GameObject _playerExplosion;
+    [SerializeField] private AudioManager _audioManager;
+    [SerializeField] private Pooler _pooler;
 
-    private AudioManager _audioManager;
-    private Pooler _pooler;
-    private float _health;
+    private PlayerHealth _playerHealth;
     
     public event Action OnPlayerDefeated;
 
     private void Awake()
     {
-        _audioManager = FindObjectOfType<AudioManager>();
+        _playerHealth = GetComponent<PlayerHealth>();
+
+        _playerHealth.IsKilled += Killed;
     }
 
-    private void Start()
+    private void OnDisable()
     {
-        _health = 100;
-        _healthSlider.maxValue = _health;
-        _healthSlider.value = _health;
-
-        _pooler = Pooler.Instance;
+        _playerHealth.IsKilled += Killed;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        //If touched lava - DIE
         if (other.gameObject.CompareTag("Lava"))
         {
             Killed();
         }
     }
 
-    public void GetDamage(float damage)
+    public void GetDamage(int damage) //ApplyDamage
     {
         _audioManager.Play("Hurt");
 
-        _health -= damage;
-        _healthSlider.value = _health;
-        if (_health <= 0)
-        {
-            Killed();
-        }
+        _playerHealth.ApplyDamage(damage);
     }
-
+    
     private void Killed()
     {
         OnPlayerDefeated();
     
         _audioManager.Play("PlayerDeath");
         
-        _pooler.GetPooledObject(_playerExplosion.name, transform.position, Quaternion.identity);        
+        _pooler.GetPooledObject(_playerExplosion.name, transform.position, Quaternion.identity);
 
-        CameraShake.ShakeOnce = true;
-                
-        _health = 0;
-        _healthSlider.value = _health;
+        CameraShake.ShakeOnce = true;                        
         
         gameObject.SetActive(false);
     }

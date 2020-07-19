@@ -35,12 +35,17 @@ public class PlayerWeaponPosition : MonoBehaviour
     private void SetToRightSide()
     {       
         transform.rotation = Quaternion.Euler(0f, 0f, -_rotationZ);
-        transform.position = new Vector3(_parent.position.x + 0.3f, _parent.position.y, _parent.position.z);
+        transform.position = GetPosition(+0.3f);
     }
 
     private void SetToLeftSide()
     {
         transform.rotation = Quaternion.Euler(-180f, 0f, _rotationZ + _offset);
-        transform.position = new Vector3(_parent.position.x - 0.3f, _parent.transform.position.y, _parent.position.z);
+        transform.position = GetPosition(-0.3f);
+    }
+
+    private Vector3 GetPosition(float offsetX)
+    {
+        return new Vector3(_parent.position.x + offsetX, _parent.position.y, _parent.position.z);
     }
 }

@@ -4,7 +4,7 @@ using System.Collections;
 
 public class PlayerFlying : MonoBehaviour
 {
-    [SerializeField] private FixedJoystick _joystick = null;    
+    [SerializeField] private FixedJoystick _joystick = null;
     [SerializeField] private Rigidbody2D _rigidbody2D = null;
     [SerializeField] private Slider _playerFuelSlider = null;
     [SerializeField] private GameObject _fuelParticles = null;
@@ -13,7 +13,7 @@ public class PlayerFlying : MonoBehaviour
     private float _maxfuelCapacity = 50;
     private float _verticalMove;
     private bool _shouldDelayFuelRestoring;
-    private float _fuelCapacity;
+    private float _fuelCapacity; // Create new script to handle FUEL logic
 
     private void Start()
     {
@@ -32,7 +32,7 @@ public class PlayerFlying : MonoBehaviour
 
     private void FixedUpdate()
     {        
-        Flying();
+        Fly();
     }
 
     private void SetDirections()
@@ -61,11 +61,11 @@ public class PlayerFlying : MonoBehaviour
 
         if (CanRestoreFuel())
         {
-            StartCoroutine(ReloadFuel());
+            StartCoroutine(DelayRestoringFuel());
         }
     }
 
-    private void Flying()
+    private void Fly()
     {                
         if (CanFly())
         {
@@ -88,7 +88,7 @@ public class PlayerFlying : MonoBehaviour
         return _fuelCapacity <= 0 && !_shouldDelayFuelRestoring;
     }
 
-    private IEnumerator ReloadFuel()
+    private IEnumerator DelayRestoringFuel()
     {
         _shouldDelayFuelRestoring = true;
         yield return new WaitForSeconds(1f);
