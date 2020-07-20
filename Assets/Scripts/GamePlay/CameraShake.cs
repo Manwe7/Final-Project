@@ -12,7 +12,7 @@ public class CameraShake : MonoBehaviour
     private CinemachineBasicMultiChannelPerlin virtualCameraNoise = null;
     private float ShakeElapsedTime = 0f;
     
-    public static bool ShakeOnce = false;
+    public static bool ShakeOnce = false;// remove static
     
 	private void Start()
     {
