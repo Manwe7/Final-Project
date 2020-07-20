@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 
 [RequireComponent(typeof(PlayerHealth))]
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {    
     [SerializeField] private GameObject _playerExplosion;
     [SerializeField] private AudioManager _audioManager;
@@ -32,9 +32,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void GetDamage(int damage) //ApplyDamage
+    public void ApplyDamage(int damage)
     {
-        _audioManager.Play("Hurt");
+        _audioManager.Play(Sound.SoundNames.Hurt);
 
         _playerHealth.ApplyDamage(damage);
     }
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     {
         OnPlayerDefeated();
     
-        _audioManager.Play("PlayerDeath");
+        _audioManager.Play(Sound.SoundNames.PlayerDeath);
         
         _pooler.GetPooledObject(_playerExplosion.name, transform.position, Quaternion.identity);
 

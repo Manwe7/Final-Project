@@ -7,6 +7,8 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private Transform _barrel;
     [SerializeField] private float _reloadTime = 0;
 
+    [SerializeField] private AudioManager _audioManager;
+
     private bool _reloaded;
     private Pooler _pooler; // in inspector
 
@@ -25,6 +27,7 @@ public class PlayerWeapon : MonoBehaviour
     {
         if (_reloaded)
         {
+            _audioManager.Play(Sound.SoundNames.PlayerBullet);
             _pooler.GetPooledObject(_playerBullet.name, _barrel.position, _barrel.rotation);
 
             _reloaded = false;
