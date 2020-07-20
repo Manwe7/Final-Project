@@ -6,7 +6,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     [SerializeField] protected Rigidbody2D _rigidbody2D;
     [SerializeField] private EnemyWeapon _weapon;
     [SerializeField] private EnemyWeaponPosition _weaponPosition;
-    [SerializeField] private float _speed = 0;    
+    [SerializeField] private float _speed = 0;
 
     private AudioManager _audioManager;
     protected ScoreManager _scoreManager;
@@ -65,7 +65,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     public void ApplyDamage(int damage)
     {
-        _audioManager.Play("Hurt");
+        _audioManager.Play(Sound.SoundNames.Hurt);
         _health -= damage;
 
         if (_health <= 0)
