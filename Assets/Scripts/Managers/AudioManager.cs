@@ -3,37 +3,32 @@ using System;
 
 public class AudioManager: MonoBehaviour
 {
-    public Sounds[] sounds;
+    public Sound[] sounds;
 
-    //Get all settings for audio clips
     private void Awake()
     {
         foreach (var s in sounds)
         {
-            s.source = gameObject.AddComponent<AudioSource>();
+            s.Source = gameObject.AddComponent<AudioSource>();
 
-            s.source.clip = s.audioClip;
-
-            s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
-            s.source.loop = s.loop;
-            s.source.spatialBlend = s.spacialBlend;
+            s.Source.clip = s.AudioClip;
+            s.Source.volume = s.Volume;
+            s.Source.pitch = s.Pitch;
+            s.Source.loop = s.Loop;
+            s.Source.spatialBlend = s.SpacialBlend;
         }    
     }
     
-    //better to use Enum instead of string. wrong string == no sound
-    public void Play(string name)
+    public void Play(Sound.SoundNames soundName)
     {
-        //Find the right audio and play it
-        Sounds s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
+        Sound s = Array.Find(sounds, sound => sound.SoundName == soundName);
+        
+        if(s == null)
         {
             Debug.LogWarning("Sound " + name + " not found!");
             return;
         }
-        
-        s.source.Play();
-        
+        s.Source.Play();
     }
     
 }
