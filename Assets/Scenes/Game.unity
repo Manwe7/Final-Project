@@ -1081,34 +1081,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: PlayerDeath
-    audioClip: {fileID: 8300000, guid: eb7eeece060078941beb01e2a2bc20cd, type: 3}
-    volume: 0.7
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-    spacialBlend: 0.3
-  - name: EnemyDeath
-    audioClip: {fileID: 8300000, guid: 47eec9cde24b7fd44aab212f85d3d577, type: 3}
-    volume: 0.7
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-    spacialBlend: 0.3
-  - name: PlayerBullet
-    audioClip: {fileID: 8300000, guid: f6cb1f581b7444b23a05b613a16420d5, type: 3}
-    volume: 0.6
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-    spacialBlend: 0.3
-  - name: Hurt
-    audioClip: {fileID: 8300000, guid: 338a39b127db104418afd92c031739c3, type: 3}
-    volume: 1
-    pitch: 0.7
-    loop: 0
-    source: {fileID: 0}
-    spacialBlend: 0.3
+  - SoundName: 0
+    AudioClip: {fileID: 8300000, guid: eb7eeece060078941beb01e2a2bc20cd, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 0
+    Source: {fileID: 0}
+    SpacialBlend: 0
+  - SoundName: 2
+    AudioClip: {fileID: 8300000, guid: f6cb1f581b7444b23a05b613a16420d5, type: 3}
+    Volume: 0.5
+    Pitch: 1.7
+    Loop: 0
+    Source: {fileID: 0}
+    SpacialBlend: 0
+  - SoundName: 1
+    AudioClip: {fileID: 8300000, guid: 338a39b127db104418afd92c031739c3, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 0
+    Source: {fileID: 0}
+    SpacialBlend: 0
+  - SoundName: 3
+    AudioClip: {fileID: 8300000, guid: 42b1bfd52887c544c9cecdfc4a5a8aa5, type: 3}
+    Volume: 0.9
+    Pitch: 1
+    Loop: 0
+    Source: {fileID: 0}
+    SpacialBlend: 0
 --- !u!114 &132967517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13297,6 +13297,7 @@ MonoBehaviour:
     type: 3}
   _barrel: {fileID: 1618587422}
   _reloadTime: 0.4
+  _audioManager: {fileID: 132967515}
 --- !u!114 &1234875107
 MonoBehaviour:
   m_ObjectHideFlags: 0
