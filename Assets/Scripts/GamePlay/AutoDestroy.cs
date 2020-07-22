@@ -1,14 +1,16 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class AutoDestroy : MonoBehaviour
 {
     private void OnEnable()
     {
-        Invoke("SelfDestroy", 4f);       
+        StartCoroutine(SelfDestroy());
     }
 
-    private void SelfDestroy()
+    private IEnumerator SelfDestroy()
     {
+        yield return new WaitForSeconds(4f);
         gameObject.SetActive(false);
     }
 }
