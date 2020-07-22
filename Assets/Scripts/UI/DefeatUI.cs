@@ -5,29 +5,33 @@ using UnityEngine.UI;
 
 public class DefeatUI : MonoBehaviour
 {
-    [Header("Player")]
-    [SerializeField] protected Player _player;
+    [Header("Scripts")]
+    [SerializeField] private PlayerHealth _playerHealth;
+    [SerializeField] private GameSpeed _gameSpeed;
 
-    [SerializeField] protected GameObject  _defeatMenuPanel = null;
+    [Header("Defeat panel")]
+    [SerializeField] private GameObject _defeatMenuPanel = null;
 
     [Header("Record on defeat panel")]
-    [SerializeField] protected Text _defeatRecordText;
+    [SerializeField] private Text _defeatRecordText;
 
     private int _record;
 
-    private void OnEnable()
+    private void Start()
     {
-        _player.OnPlayerDefeated += Defeat;
+        _gameSpeed.ToNormal();
+        
+        _playerHealth.OnPlayerDefeated += Defeat;
     }
 
     private void OnDisable()
     {
-        _player.OnPlayerDefeated -= Defeat;
+        _playerHealth.OnPlayerDefeated -= Defeat;
     }
 
     private void Defeat()
     {        
-        Time.timeScale = 0.5f;
+        _gameSpeed.ToHalfSpeed();        
         StartCoroutine(OpenDefeatMenu());
     }
 
@@ -35,23 +39,23 @@ public class DefeatUI : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         
-        _record = PlayerPrefs.GetInt("Record", 0);
+        _record = PlayerPrefs.GetInt("Record", 0); // Create new script for Saving data
         _defeatRecordText.text = _record.ToString();
         
-        _defeatMenuPanel.SetActive(true);
-        Time.timeScale = 0f;
+        _defeatMenuPanel.SetActive(true);        
+        _gameSpeed.Stop();
         
     }
 
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);        
+        _gameSpeed.ToNormal();
     }    
 
 
     public void Exit()
     {
-        SceneManager.LoadScene(StaticStringNames.Menu);
+        SceneManager.LoadScene(SceneNames.Menu);
     }    
 }
