@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    [Header("Player")]
-    [SerializeField] private Player _player;
+    [Header("Scripts")]
+    [SerializeField] private PlayerHealth _playerHealth;
     [SerializeField] private GamePlayUI _gamePlayUI;
     
     private bool _isNewRecord = false;
@@ -14,18 +14,17 @@ public class ScoreManager : MonoBehaviour
     {
         Application.targetFrameRate = 60;
 
-        _player.OnPlayerDefeated += SaveRecord;        
+        _playerHealth.OnPlayerDefeated += SaveRecord;        
     }
 
     private void Start()
-    {
-        Time.timeScale = 1f;
+    {        
         _score = 0;
     }    
 
     private void OnDisable()
     {
-        _player.OnPlayerDefeated -= SaveRecord;
+        _playerHealth.OnPlayerDefeated -= SaveRecord;
     }
     
     private void SaveRecord()
