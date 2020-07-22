@@ -1,53 +1,63 @@
 using UnityEngine;
-using System;
+using UnityEngine.UI;
 
-[RequireComponent(typeof(PlayerHealth))]
-public class Player : MonoBehaviour, IDamageable
+public class Player : MonoBehaviour
 {    
+    [Header("Objects")]
     [SerializeField] private GameObject _playerExplosion;
+    
+    [SerializeField] private Slider _healthSlider;
+
+    [Header("Scipts")]
     [SerializeField] private AudioManager _audioManager;
+    
+    [SerializeField] private PlayerHealth _playerHealth;
+    
+    [SerializeField] private CameraShake _cameraShake;
+    
     [SerializeField] private Pooler _pooler;
 
-    private PlayerHealth _playerHealth;
+    [TagSelector] 
+    [SerializeField] private string Lava = "";
     
-    public event Action OnPlayerDefeated;
-
-    private void Awake()
-    {
-        _playerHealth = GetComponent<PlayerHealth>();
-
-        _playerHealth.IsKilled += Killed;
+    private void Awake()//where to set Slider max value?
+    {        
+        _playerHealth.OnPlayerDefeated += Killed;
+        _playerHealth.OnHealthChanged += ChangeHealthSliderValue;
     }
 
     private void OnDisable()
     {
-        _playerHealth.IsKilled += Killed;
+        _playerHealth.OnPlayerDefeated += Killed;
+        _playerHealth.OnHealthChanged -= ChangeHealthSliderValue;
+    }
+
+    private void PlayDamageSound()
+    {
+        _audioManager.Play(SoundNames.Hurt);
+    }
+
+    private void ChangeHealthSliderValue(float health)
+    {        
+        _healthSlider.value = health;
+        PlayDamageSound();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Lava"))
+        if (other.gameObject.CompareTag("Lava")) // create const string
         {
-            Killed();
+            _playerHealth.ApplyDamage(10000);
         }
     }
 
-    public void ApplyDamage(int damage)
-    {
-        _audioManager.Play(Sound.SoundNames.Hurt);
-
-        _playerHealth.ApplyDamage(damage);
-    }
-    
     private void Killed()
-    {
-        OnPlayerDefeated();
-    
-        _audioManager.Play(Sound.SoundNames.PlayerDeath);
+    {    
+        _audioManager.Play(SoundNames.PlayerDeath);
         
         _pooler.GetPooledObject(_playerExplosion.name, transform.position, Quaternion.identity);
 
-        CameraShake.ShakeOnce = true;                        
+        _cameraShake.ShakeCameraOnce();
         
         gameObject.SetActive(false);
     }
