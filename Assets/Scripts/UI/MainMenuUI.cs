@@ -1,17 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class MainMenuUI : MonoBehaviour
 {
-    //static class with const
     public void Play()
     {
-        SceneManager.LoadScene(StaticStringNames.Menu);
+        SceneManager.LoadScene(SceneNames.Menu);
     }
 
     public void Lobby()
     {
-        SceneManager.LoadScene(StaticStringNames.Lobby);
+        SceneManager.LoadScene(SceneNames.Lobby);
     }
 
     public void Exit()
