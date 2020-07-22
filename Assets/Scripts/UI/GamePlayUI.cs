@@ -9,10 +9,13 @@ public class GamePlayUI : MonoBehaviour
     [Header("Score in Game")]
     [SerializeField] private Text _scoreText;
 
+    [Header("Scripts")]
+    [SerializeField] private GameSpeed _gameSpeed;
+
     public void PauseBtn()
     {        
         _pauseMenuPanel.SetActive(true);
-        Time.timeScale = 0f;        
+        _gameSpeed.ToNormal();                
     }
 
     public void SetScoreText(int score)
