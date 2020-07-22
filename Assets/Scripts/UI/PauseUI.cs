@@ -4,13 +4,7 @@ using UnityEngine.SceneManagement;
 public class PauseUI : MonoBehaviour
 {
     [Header("Panels")]
-    [SerializeField] protected GameObject _pauseMenuPanel = null;
-    
-    public void Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        Time.timeScale = 1f;
-    }    
+    [SerializeField] protected GameObject _pauseMenuPanel = null;        
 
     public void Resume()
     {
@@ -18,8 +12,14 @@ public class PauseUI : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1f;
+    }
+
     public void Exit()
     {
-        SceneManager.LoadScene(StaticStringNames.Menu);
+        SceneManager.LoadScene(SceneNames.Menu);
     }
 }
