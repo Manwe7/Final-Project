@@ -9,6 +9,8 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     [SerializeField] private float _speed = 0;
 
     private AudioManager _audioManager;
+    private CameraShake _cameraShake;
+
     protected ScoreManager _scoreManager;
     protected GameObject _player;
     protected Pooler _pooler;
@@ -16,13 +18,15 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     protected float _distance;
     protected abstract int _scoreWeight { get; }
 
-    public void Init(GameObject player, Pooler pooler, ScoreManager scoreManager, AudioManager audioManager)
+    public void Init(GameObject player, Pooler pooler, CameraShake cameraShake, ScoreManager scoreManager, AudioManager audioManager)
     {
         _player = player;
         _pooler = pooler;
         _scoreManager = scoreManager;
         _audioManager = audioManager;
-        _weapon.Init(player, pooler);
+        _cameraShake = cameraShake;
+        
+        _weapon.Init(player, audioManager, pooler);
         _weaponPosition.Init(player);
     }
     
@@ -65,16 +69,23 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     public void ApplyDamage(int damage)
     {
-        _audioManager.Play(Sound.SoundNames.Hurt);
+        ShakeCamera();
+        _audioManager.Play(SoundNames.Hurt);
         _health -= damage;
 
         if (_health <= 0)
-        {            
+        {
+            _audioManager.Play(SoundNames.EnemyDeath); 
             _scoreManager.AddScore(_scoreWeight);
 
             _pooler.GetPooledObject(_enemyExplosion.name, transform.position, Quaternion.identity);            
 
             gameObject.SetActive(false);
         }
-    }    
+    }
+
+    public void ShakeCamera()
+    {
+        _cameraShake.ShakeCameraOnce();
+    }
 }
