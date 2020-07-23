@@ -3,19 +3,21 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {   
+    [Header("Scripts")]
+    [SerializeField] private AudioManager _audioManager;
+    [SerializeField] private Pooler _pooler;
+    
+    [Header("Objects")]
     [SerializeField] private GameObject _playerBullet;
     [SerializeField] private Transform _barrel;
-    [SerializeField] private float _reloadTime = 0;
 
-    [SerializeField] private AudioManager _audioManager;
+    [SerializeField] private float _reloadTime;        
 
-    private bool _reloaded;
-    private Pooler _pooler; // in inspector
+    private bool _reloaded;    
 
     private void Start()
     {
         _reloaded = true;
-        _pooler = Pooler.Instance;
     }
 
     private void Update()
@@ -27,8 +29,9 @@ public class PlayerWeapon : MonoBehaviour
     {
         if (_reloaded)
         {
-            _audioManager.Play(Sound.SoundNames.PlayerBullet);
-            _pooler.GetPooledObject(_playerBullet.name, _barrel.position, _barrel.rotation);
+            _audioManager.Play(SoundNames.PlayerBullet);
+            var bullet = _pooler.GetPooledObject(_playerBullet.name, _barrel.position, _barrel.rotation).GetComponent<Bullet>();
+            bullet.Init(_pooler);
 
             _reloaded = false;
             StartCoroutine(Reload());
