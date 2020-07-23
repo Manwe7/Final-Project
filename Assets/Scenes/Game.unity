@@ -739,7 +739,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea010b67ea728454ea954ca6cdd9da61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 2108073680}
+  _playerHealth: {fileID: 2108073683}
+  _gameSpeed: {fileID: 132967516}
   _defeatMenuPanel: {fileID: 1719492560}
   _defeatRecordText: {fileID: 1262428361}
 --- !u!114 &85062358
@@ -769,6 +770,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pauseMenuPanel: {fileID: 1914135829}
   _scoreText: {fileID: 1729503914}
+  _gameSpeed: {fileID: 132967516}
 --- !u!4 &85062360
 Transform:
   m_ObjectHideFlags: 0
@@ -1047,6 +1049,7 @@ GameObject:
   - component: {fileID: 132967514}
   - component: {fileID: 132967515}
   - component: {fileID: 132967517}
+  - component: {fileID: 132967516}
   m_Layer: 0
   m_Name: Managers
   m_TagString: GameController
@@ -1090,7 +1093,7 @@ MonoBehaviour:
     SpacialBlend: 0
   - SoundName: 2
     AudioClip: {fileID: 8300000, guid: f6cb1f581b7444b23a05b613a16420d5, type: 3}
-    Volume: 0.5
+    Volume: 0.4
     Pitch: 1.7
     Loop: 0
     Source: {fileID: 0}
@@ -1104,11 +1107,23 @@ MonoBehaviour:
     SpacialBlend: 0
   - SoundName: 3
     AudioClip: {fileID: 8300000, guid: 42b1bfd52887c544c9cecdfc4a5a8aa5, type: 3}
-    Volume: 0.9
+    Volume: 0.7
     Pitch: 1
     Loop: 0
     Source: {fileID: 0}
     SpacialBlend: 0
+--- !u!114 &132967516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132967513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b38a25099d245254b8d23f76771a6809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &132967517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1121,7 +1136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af93d3a327a102848b687da74e0df79d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 2108073680}
+  _playerHealth: {fileID: 2108073683}
   _gamePlayUI: {fileID: 85062359}
 --- !u!1 &152973416
 GameObject:
@@ -4021,6 +4036,7 @@ MonoBehaviour:
   _pooler: {fileID: 685225117}
   _scoreManager: {fileID: 132967517}
   _audioManager: {fileID: 132967515}
+  _cameraShake: {fileID: 519420034}
 --- !u!114 &532172422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11149,6 +11165,7 @@ MonoBehaviour:
   _pooler: {fileID: 685225117}
   _scoreManager: {fileID: 132967517}
   _audioManager: {fileID: 132967515}
+  _cameraShake: {fileID: 519420034}
 --- !u!114 &931269419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13293,11 +13310,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2403b59367aa6084381dbadff08afcff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioManager: {fileID: 132967515}
+  _pooler: {fileID: 685225117}
   _playerBullet: {fileID: 7444725418516393869, guid: bf81422569591f34b9f89c4007ea2d6a,
     type: 3}
   _barrel: {fileID: 1618587422}
   _reloadTime: 0.4
-  _audioManager: {fileID: 132967515}
 --- !u!114 &1234875107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15870,6 +15888,7 @@ MonoBehaviour:
   _pooler: {fileID: 685225117}
   _scoreManager: {fileID: 132967517}
   _audioManager: {fileID: 132967515}
+  _cameraShake: {fileID: 519420034}
 --- !u!114 &1527122969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18336,6 +18355,7 @@ MonoBehaviour:
   _pooler: {fileID: 685225117}
   _scoreManager: {fileID: 132967517}
   _audioManager: {fileID: 132967515}
+  _cameraShake: {fileID: 519420034}
 --- !u!114 &1876335775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24638,6 +24658,7 @@ MonoBehaviour:
   _pooler: {fileID: 685225117}
   _scoreManager: {fileID: 132967517}
   _audioManager: {fileID: 132967515}
+  _cameraShake: {fileID: 519420034}
 --- !u!4 &2087924738
 Transform:
   m_ObjectHideFlags: 0
@@ -24898,8 +24919,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerExplosion: {fileID: 6163721950763462551, guid: 37afc425dadc19140800cd83bb7b1ef3,
     type: 3}
+  _healthSlider: {fileID: 710722850}
   _audioManager: {fileID: 132967515}
+  _playerHealth: {fileID: 2108073683}
+  _cameraShake: {fileID: 519420034}
   _pooler: {fileID: 685225117}
+  Lava: Lava
 --- !u!114 &2108073681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24942,7 +24967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9a3da635d9cfae41b2194d1e1eda617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthSlider: {fileID: 710722850}
+  _cameraShake: {fileID: 519420034}
 --- !u!1001 &2113349140
 PrefabInstance:
   m_ObjectHideFlags: 0
