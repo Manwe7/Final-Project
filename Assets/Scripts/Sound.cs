@@ -3,15 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public class Sound
 {
-    public enum SoundNames
-    {
-        PlayerDeath,
-        EnemyDeath,
-        PlayerBullet,
-        Hurt
-    }
     public SoundNames SoundName;
-
 
     public AudioClip AudioClip;
     [Range(0f, 1f)] public float Volume;
@@ -20,3 +12,11 @@ public class Sound
     [HideInInspector] public AudioSource Source;
     [Range (0f, 1f)] public float SpacialBlend;
 }
+
+public enum SoundNames
+    {
+        PlayerDeath,
+        EnemyDeath,
+        PlayerBullet,
+        Hurt
+    }
