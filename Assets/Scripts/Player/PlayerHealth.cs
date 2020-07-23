@@ -1,31 +1,43 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using System;
+﻿using System;
+using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
-    [SerializeField] private Slider _healthSlider;
+    [SerializeField] CameraShake _cameraShake;
     private int _health;
-
-    public event Action IsKilled;
 
     private void Start()
     {
         _health = 100;
-        _healthSlider.maxValue = _health;
-        _healthSlider.value = _health;
+        ChangeHealth(_health);
+    }
+
+    private void ChangeHealth(float health)
+    {
+        OnHealthChanged?.Invoke(health);
+        if(health <= 0)
+        {
+            Killed();
+        }
+    }
+
+    private void Killed()
+    {
+        OnPlayerDefeated?.Invoke();
+        _health = 0;
     }
 
     public void ApplyDamage(int damage)
     {
-        _health -= damage;
-        _healthSlider.value = _health;
-    } 
+        ChangeHealth(_health -= damage);
+        ShakeCamera();
+    }
 
-    public void Killed()
-    {        
-        _health = 0;
-        _healthSlider.value = _health;
-        IsKilled();
-    }    
+    public void ShakeCamera()
+    {
+        _cameraShake.ShakeCameraOnce();
+    }
+
+    public event Action OnPlayerDefeated;
+    public event Action<float> OnHealthChanged;
 }
