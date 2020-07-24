@@ -3,8 +3,14 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rigidbody2D;
-    [SerializeField] private GameObject _explosionName;
+
+    [SerializeField] private GameObject _explosionName;    
+    
     [SerializeField] private float _speed = 0;
+
+    [TagSelector]
+    [SerializeField] private string _bulletTag;
+    
     
     private IDamageable _damageable;
     private Pooler _pooler;
@@ -21,6 +27,8 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if(other.CompareTag(_bulletTag)) { return; }
+
         _damageable = other.GetComponent<IDamageable>();
         if(_damageable != null)
         {
