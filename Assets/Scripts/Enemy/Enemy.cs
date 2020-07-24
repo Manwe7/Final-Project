@@ -45,9 +45,14 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         if (_player != null)
         {
             var moveSpeed = _speed;
-            if(!IsPlayerOnRight())
+            if(!IsPlayerOnRight() && !IsOnDistance())
             {
                 moveSpeed *= -1f;
+            }
+            else if(IsOnDistance())
+            {
+                _rigidbody2D.velocity = new Vector2(0f, _rigidbody2D.velocity.y);
+                return;
             }
             MoveToPlayer(moveSpeed);
         }
@@ -59,7 +64,12 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     private bool IsPlayerOnRight()
     {
-        return _player.transform.position.x + _distance > transform.position.x;
+        return Mathf.Round(_player.transform.position.x + _distance) > Mathf.Round(transform.position.x);
+    }
+
+    private bool IsOnDistance()
+    {
+        return Mathf.Round(_player.transform.position.x + _distance) == Mathf.Round(transform.position.x);
     }
 
     private void MoveToPlayer(float speed)
