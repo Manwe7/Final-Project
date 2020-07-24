@@ -50,6 +50,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -148,6 +149,7 @@ MonoBehaviour:
   _explosionName: {fileID: 6163721950763462551, guid: 05acbfa993974dd4ab0a8cf7e93b444a,
     type: 3}
   _speed: 25
+  _bulletTag: Bullet
 --- !u!1001 &8037526464948097600
 PrefabInstance:
   m_ObjectHideFlags: 0
