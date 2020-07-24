@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Pooler _pooler;
 
     [TagSelector] 
-    [SerializeField] private string Lava = "";
+    [SerializeField] private string _lava;
     
     private void Awake()//where to set Slider max value?
     {        
@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Lava")) // create const string
+        if (other.gameObject.CompareTag(_lava))
         {
             _playerHealth.ApplyDamage(10000);
         }
