@@ -5,6 +5,7 @@ public class ScoreManager : MonoBehaviour
     [Header("Scripts")]
     [SerializeField] private PlayerHealth _playerHealth;
     [SerializeField] private GamePlayUI _gamePlayUI;
+    [SerializeField] private SaveSystem _saveSystem;
     
     private bool _isNewRecord = false;
     private int _record;
@@ -31,7 +32,7 @@ public class ScoreManager : MonoBehaviour
     {        
         if (_isNewRecord)
         {
-            PlayerPrefs.SetInt("Record", _score);
+            _saveSystem.SaveRecord(_score);
         }
     }
 
