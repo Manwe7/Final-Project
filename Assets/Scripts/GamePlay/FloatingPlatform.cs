@@ -2,6 +2,12 @@
 
 public class FloatingPlatform : MonoBehaviour
 {
+    [TagSelector]
+    [SerializeField] private string _playerTag;
+
+    [TagSelector]
+    [SerializeField] private string _enemyTag;
+
     private Vector2 _pointA, _pointB;
 
     private void Start()
@@ -17,7 +23,7 @@ public class FloatingPlatform : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag(_playerTag) || other.gameObject.CompareTag(_enemyTag))
         {
             other.transform.parent = transform;
         }
@@ -25,7 +31,7 @@ public class FloatingPlatform : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag(_playerTag) || other.gameObject.CompareTag(_enemyTag))
         {
             other.transform.parent = null;
         }
