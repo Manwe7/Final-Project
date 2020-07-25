@@ -11,12 +11,16 @@ public class FuelHandler : MonoBehaviour
 
     [HideInInspector] public float _fuelCapacity;
 
-    private void Start()
+    private void Awake()
     {
-        _playerFlying.OnFuelCapacityChange += SliderValue;
+        _playerFlying.OnFuelCapacityChange += SliderValue;   
+    }
 
+    private void Start()
+    {        
         _fuelCapacity = _maxfuelCapacity;
         _playerFuelSlider.maxValue = _maxfuelCapacity;
+        SliderValue(_fuelCapacity);
     }
 
     private void OnDestroy()

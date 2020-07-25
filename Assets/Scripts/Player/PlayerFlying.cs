@@ -1,27 +1,27 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class PlayerFlying : MonoBehaviour
 {
-    [SerializeField] private FixedJoystick _joystick = null;
-    [SerializeField] private Rigidbody2D _rigidbody2D = null;
-    [SerializeField] private Slider _playerFuelSlider = null;
-    [SerializeField] private GameObject _fuelParticles = null;
+    [SerializeField] private FixedJoystick _joystick;
+    
+    [SerializeField] private Rigidbody2D _rigidbody2D;        
+    
+    [SerializeField] private GameObject _fuelParticles;
 
-    private float _flySpeed = 10;
-    private float _maxfuelCapacity = 50;
+    [SerializeField] private FuelHandler _fuelHandler;
+
+    [SerializeField] private float _flySpeed;
+
     private float _verticalMove;
-    private bool _shouldDelayFuelRestoring;
-    private float _fuelCapacity; // Create new script to handle FUEL logic
 
+    private bool _shouldDelayFuelRestoring;
+    
     private void Start()
     {
         _shouldDelayFuelRestoring = false;
-        _fuelParticles.SetActive(false);
-
-        _fuelCapacity = _maxfuelCapacity;
-        _playerFuelSlider.maxValue = _maxfuelCapacity;
+        _fuelParticles.SetActive(false);                        
     }
 
     private void Update()
@@ -41,12 +41,10 @@ public class PlayerFlying : MonoBehaviour
     }
 
     private void ControlFuel()
-    {
-        _playerFuelSlider.value = _fuelCapacity;
-
+    {        
         if (CanFly())
         {
-            _fuelCapacity -= 0.1f;
+            ChangeFuelCapacity(-0.1f);
             _fuelParticles.SetActive(true);
         }
         else
@@ -55,7 +53,7 @@ public class PlayerFlying : MonoBehaviour
 
             if (IsRestoringFuel())
             {
-                _fuelCapacity += 0.1f;
+                ChangeFuelCapacity(0.1f);
             }
         }
 
@@ -63,6 +61,11 @@ public class PlayerFlying : MonoBehaviour
         {
             StartCoroutine(DelayRestoringFuel());
         }
+    }
+
+    private void ChangeFuelCapacity(float value)
+    {        
+        OnFuelCapacityChange?.Invoke(_fuelHandler._fuelCapacity += value);
     }
 
     private void Fly()
@@ -75,17 +78,17 @@ public class PlayerFlying : MonoBehaviour
 
     private bool CanFly()
     {
-        return _verticalMove > 0.22f && _fuelCapacity > 0;
+        return _verticalMove > 0.22f && _fuelHandler._fuelCapacity > 0;
     }
 
     private bool IsRestoringFuel()
     { 
-        return _fuelCapacity < _maxfuelCapacity && !_shouldDelayFuelRestoring;
+        return _fuelHandler._fuelCapacity < _fuelHandler._maxfuelCapacity && !_shouldDelayFuelRestoring;
     }
 
     private bool CanRestoreFuel()
     {
-        return _fuelCapacity <= 0 && !_shouldDelayFuelRestoring;
+        return _fuelHandler._fuelCapacity <= 0 && !_shouldDelayFuelRestoring;
     }
 
     private IEnumerator DelayRestoringFuel()
@@ -94,4 +97,6 @@ public class PlayerFlying : MonoBehaviour
         yield return new WaitForSeconds(1f);
         _shouldDelayFuelRestoring = false;
     }
+
+    public event Action<float> OnFuelCapacityChange;
 }
