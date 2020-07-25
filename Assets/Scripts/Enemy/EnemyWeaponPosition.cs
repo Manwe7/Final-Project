@@ -1,35 +1,35 @@
 ﻿using UnityEngine;
 
-public class EnemyWeaponPosition : MonoBehaviour
-{
-    [SerializeField] private Transform _parent = null;
-    private float _offset = 270;
+public class EnemyWeaponPosition : Weapon
+{    
     private GameObject _player;
-    private Vector3 _direction;
-    private float _rotationZ;
+
+    private void Start()
+    {
+        _offset = 270;
+    }
 
     public void Init(GameObject player)
     {
         _player = player;
     }
 
-    private void Update()
+    protected override void ChangeWeaponPosition()
     {
-        if(_player != null)
-        {
-            Vector3 PlayerPos = _player.transform.position;
+        if(_player == null) { return; }
+        
+        Vector3 PlayerPos = _player.transform.position;
 
-            _direction = _player.transform.position - transform.position;
-            _rotationZ = Mathf.Atan2(_direction.y,_direction.x) * Mathf.Rad2Deg;
-            
-            if(PlayerPos.x < transform.position.x) 
-            {
-                SetToLeftSide();
-            } 
-            else
-            {
-                SetToRightSide();
-            }
+        _direction = _player.transform.position - transform.position;
+        _rotationZ = Mathf.Atan2(_direction.y,_direction.x) * Mathf.Rad2Deg;
+
+        if(PlayerPos.x < transform.position.x) 
+        {
+            SetToLeftSide();
+        } 
+        else
+        {
+            SetToRightSide();
         }
     }
 

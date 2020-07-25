@@ -1,21 +1,17 @@
 ﻿using UnityEngine;
 
-public class PlayerWeaponPosition : MonoBehaviour
+public class PlayerWeaponPosition : Weapon
 {
     [SerializeField] private Joystick _weaponJoystick;
-    [SerializeField] private RectTransform _joystickHandle;
-    [SerializeField] private Transform _parent;
 
-    private float _offset = 180;
-    private Vector2 _direction;
-    private float _rotationZ;
+    [SerializeField] private RectTransform _joystickHandle;    
 
-    private void Update()
+    private void Start()
     {
-        ChangeWeaponPosition();
+        _offset = 180;
     }
 
-    private void ChangeWeaponPosition()
+    protected override void ChangeWeaponPosition()
     {
         _direction = Vector3.up * _weaponJoystick.Vertical + Vector3.right * _weaponJoystick.Horizontal;
         _rotationZ = Mathf.Atan2(_direction.x, _direction.y) * Mathf.Rad2Deg;
@@ -35,7 +31,7 @@ public class PlayerWeaponPosition : MonoBehaviour
     private void SetToRightSide()
     {       
         transform.rotation = Quaternion.Euler(0f, 0f, -_rotationZ);
-        transform.position = GetPosition(+0.3f);
+        transform.position = GetPosition(0.3f);
     }
 
     private void SetToLeftSide()
