@@ -3,19 +3,33 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour, IDamageable
 { 
     [SerializeField] protected GameObject _enemyExplosion;
+
     [SerializeField] protected Rigidbody2D _rigidbody2D;
+
     [SerializeField] private EnemyWeapon _weapon;
+
     [SerializeField] private EnemyWeaponPosition _weaponPosition;
+
     [SerializeField] private float _speed = 0;
 
+    [SerializeField] protected float _jumpForce;
+
     private AudioManager _audioManager;
+    
     private CameraShake _cameraShake;
+    
+    private float _jumpTime;
 
     protected ScoreManager _scoreManager;
+
     protected GameObject _player;
+
     protected Pooler _pooler;
+
     protected float _health;
+
     protected float _distance;
+
     protected abstract int _scoreWeight { get; }
 
     public void Init(GameObject player, Pooler pooler, CameraShake cameraShake, ScoreManager scoreManager, AudioManager audioManager)
@@ -32,12 +46,35 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     
     private void Start()
     {
-        _distance = UnityEngine.Random.Range(3f, 12f);
+        _distance = UnityEngine.Random.Range(3f, 12f);        
+    }
+
+    private void Update()
+    {
+        if(_jumpTime > 0)
+        {
+            _jumpTime -= Time.deltaTime;
+        }
+        else
+        {
+            Jump();
+            SetJumpTime();
+        }
     }
 
     private void FixedUpdate()
     {
         CheckForPlayerPosition();
+    }
+
+    private void SetJumpTime()
+    {
+        _jumpTime = Random.Range(5, 10);
+    }
+
+    private void Jump()
+    {
+        _rigidbody2D.AddForce(new Vector2(0, _jumpForce));
     }
 
     private void CheckForPlayerPosition()
@@ -60,7 +97,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         {
             _rigidbody2D.velocity = new Vector2(0f, _rigidbody2D.velocity.y);
         }
-    }
+    }    
 
     private bool IsPlayerOnRight()
     {
