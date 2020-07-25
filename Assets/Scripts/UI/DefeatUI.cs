@@ -7,7 +7,10 @@ public class DefeatUI : MonoBehaviour
 {
     [Header("Scripts")]
     [SerializeField] private PlayerHealth _playerHealth;
+
     [SerializeField] private GameSpeed _gameSpeed;
+
+    [SerializeField] private SaveSystem _saveSystem;
 
     [Header("Defeat panel")]
     [SerializeField] private GameObject _defeatMenuPanel = null;
@@ -39,7 +42,7 @@ public class DefeatUI : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         
-        _record = PlayerPrefs.GetInt("Record", 0); // Create new script for Saving data
+        _record = _saveSystem.GetRecord();
         _defeatRecordText.text = _record.ToString();
         
         _defeatMenuPanel.SetActive(true);        
