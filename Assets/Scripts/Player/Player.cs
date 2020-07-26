@@ -1,12 +1,10 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {    
     [Header("Objects")]
     [SerializeField] private GameObject _playerExplosion;
-    
-    [SerializeField] private Slider _healthSlider;
+        
 
     [Header("Scipts")]
     [SerializeField] private AudioManager _audioManager;
@@ -20,27 +18,21 @@ public class Player : MonoBehaviour
     [TagSelector] 
     [SerializeField] private string _lava;
     
-    private void Awake()//where to set Slider max value?
+    private void Awake()
     {        
         _playerHealth.OnPlayerDefeated += Killed;
-        _playerHealth.OnHealthChanged += ChangeHealthSliderValue;
+        _playerHealth.OnDamaged += PlayDamageSound;
     }
 
     private void OnDisable()
     {
         _playerHealth.OnPlayerDefeated += Killed;
-        _playerHealth.OnHealthChanged -= ChangeHealthSliderValue;
+        _playerHealth.OnDamaged -= PlayDamageSound;
     }
 
     private void PlayDamageSound()
     {
         _audioManager.Play(SoundNames.Hurt);
-    }
-
-    private void ChangeHealthSliderValue(float health)
-    {        
-        _healthSlider.value = health;
-        PlayDamageSound();
     }
 
     private void OnCollisionEnter2D(Collision2D other)

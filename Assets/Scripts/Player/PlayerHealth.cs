@@ -1,20 +1,25 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
+    [SerializeField] private Slider _healthSlider;
+
     [SerializeField] CameraShake _cameraShake;
+
     private int _health;
 
     private void Start()
     {
         _health = 100;
+        _healthSlider.maxValue = _health;
         ChangeHealth(_health);
     }
 
     private void ChangeHealth(float health)
-    {
-        OnHealthChanged?.Invoke(health);
+    {        
+        _healthSlider.value = health;
         if(health <= 0)
         {
             Killed();
@@ -29,6 +34,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public void ApplyDamage(int damage)
     {
+        OnDamaged?.Invoke();
         ChangeHealth(_health -= damage);
         ShakeCamera();
     }
@@ -39,5 +45,5 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     }
 
     public event Action OnPlayerDefeated;
-    public event Action<float> OnHealthChanged;
+    public event Action OnDamaged;
 }
