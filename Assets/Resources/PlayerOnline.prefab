@@ -5064,7 +5064,7 @@ GameObject:
   - component: {fileID: 8330185436738769292}
   - component: {fileID: 3840314696043227263}
   m_Layer: 8
-  m_Name: Player
+  m_Name: PlayerOnline
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5196,6 +5196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e932226b377844cbca7ecc3b51c3b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _photonView: {fileID: -7317958833022771356}
   weapon: {fileID: 5233265968630552489}
   fuelParticles: {fileID: 5233265968363624725}
 --- !u!114 &8063633914998885425
@@ -5365,6 +5366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3901fa980e71d4f8e6c5b839cbb64a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _photonView: {fileID: 5399333186287731839}
   parent: {fileID: 5233265968429482937}
   barrel: {fileID: 5233265968217475688}
   BulletOnline: {fileID: 7444725418516393869, guid: 4c87560a78194854b93792a442d6abe3,
