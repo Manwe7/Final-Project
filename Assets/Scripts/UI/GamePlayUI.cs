@@ -15,7 +15,7 @@ public class GamePlayUI : MonoBehaviour
     public void PauseBtn()
     {        
         _pauseMenuPanel.SetActive(true);
-        _gameSpeed.ToNormal();                
+        _gameSpeed.Stop();                
     }
 
     public void SetScoreText(int score)
