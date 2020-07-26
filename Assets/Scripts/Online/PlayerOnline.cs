@@ -6,8 +6,9 @@ using Cinemachine;
 
 public class PlayerOnline : MonoBehaviour, IPunObservable
 {
-    private float _health, _fade = 0f;
-    private PhotonView _photonView;
+    [SerializeField] private PhotonView _photonView;
+
+    private float _health, _fade = 0f;    
 
     private Slider _healthSlider = null;
     private Material _material = null;
@@ -30,8 +31,7 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
         if (!_photonView.IsMine) { return; }
 
         _healthSlider = GameObject.Find("Canvas/PlayerHealthSlider").GetComponent<Slider>();
-        _material = GetComponent<SpriteRenderer>().material;
-        _photonView = GetComponent<PhotonView>();
+        _material = GetComponent<SpriteRenderer>().material;        
 
         _playerMovementOnline = GetComponent<PlayerMovementOnline>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
