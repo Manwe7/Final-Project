@@ -4,18 +4,20 @@ using UnityEngine.SceneManagement;
 public class PauseUI : MonoBehaviour
 {
     [Header("Panels")]
-    [SerializeField] protected GameObject _pauseMenuPanel = null;        
+    [SerializeField] private GameObject _pauseMenuPanel = null;
+
+    [SerializeField] private GameSpeed _gameSpeed; 
 
     public void Resume()
     {
         _pauseMenuPanel.SetActive(false);
-        Time.timeScale = 1f;
+        _gameSpeed.ToNormal();
     }
 
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        Time.timeScale = 1f;
+        _gameSpeed.ToNormal();
     }
 
     public void Exit()
