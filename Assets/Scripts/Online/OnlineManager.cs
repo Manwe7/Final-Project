@@ -4,7 +4,7 @@ using Photon.Pun;
 
 public class OnlineManager : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private GameObject Player = null;
+    [SerializeField] private GameObject Player;
 
     private void Start()
     {
