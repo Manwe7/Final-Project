@@ -3,24 +3,27 @@ using Photon.Pun;
 
 public class PlayerWeaponOnline : MonoBehaviour
 {
+    [SerializeField] private PhotonView _photonView;
+
     [SerializeField] private Transform parent = null, barrel = null;
+
     [SerializeField] private GameObject BulletOnline = null;
+    
     [SerializeField] private float reloadTime = 0;
 
     private Joystick _fixedjoystick = null;
-    private RectTransform _joystickHandle = null;
-    private PhotonView _photonView;
+    private RectTransform _joystickHandle = null;    
     private float _offset = 180;
 
     private bool _reloaded;
 
     private void Awake()
     {
+        _photonView = parent.gameObject.GetComponent<PhotonView>();
         if (!_photonView.IsMine) { return; }
 
         _fixedjoystick = GameObject.Find("Canvas/RotationJoystick").GetComponent<FixedJoystick>();
-        _joystickHandle = GameObject.Find("Canvas/RotationJoystick/Handle").GetComponent<RectTransform>();
-        _photonView = parent.gameObject.GetComponent<PhotonView>();
+        _joystickHandle = GameObject.Find("Canvas/RotationJoystick/Handle").GetComponent<RectTransform>();        
     }
 
     private void Start()
