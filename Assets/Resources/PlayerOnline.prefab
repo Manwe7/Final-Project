@@ -5196,6 +5196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e932226b377844cbca7ecc3b51c3b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerExplosion: {fileID: 6163721950763462551, guid: 0cb7f06f14ac3f64ab1c28b448a8b855,
+    type: 3}
   _photonView: {fileID: -7317958833022771356}
   weapon: {fileID: 5233265968630552489}
   fuelParticles: {fileID: 5233265968363624725}
