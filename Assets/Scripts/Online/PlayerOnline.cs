@@ -144,7 +144,9 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
     {
         if (!respawned)
         {
-            gameObject.transform.position = new Vector3(0, 0, 0);
+            int posX = Random.Range(-55, 55);
+            int posy = Random.Range(-7, 25);
+            gameObject.transform.position = new Vector3(posX, posy, 0);
 
             weapon.SetActive(true);
             fuelParticles.SetActive(true);
