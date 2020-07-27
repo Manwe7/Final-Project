@@ -6,56 +6,77 @@ using Cinemachine;
 
 public class PlayerOnline : MonoBehaviour, IPunObservable
 {
+    [SerializeField] private GameObject _playerExplosion;
+
     [SerializeField] private PhotonView _photonView;
 
-    private float _health, _fade = 0f;    
+    private float _health;
+    
+    private Slider _healthSlider;
 
-    private Slider _healthSlider = null;
-    private Material _material = null;
-    private bool _isFading;
+    private float _remainingLives;
+
+    private GameObject _endPanel;
+
+    private Text _endPanelText;
+
+    private Text _livesAmountText;
+
 
     //Components to DeActivate
-    [SerializeField] private GameObject weapon = null;
-    [SerializeField] private GameObject fuelParticles = null;
+    [SerializeField] private GameObject weapon;
+    [SerializeField] private GameObject fuelParticles;
     private PlayerMovementOnline _playerMovementOnline;
     private SpriteRenderer _spriteRenderer;
     private BoxCollider2D _boxCollider2D;
     private Rigidbody2D _rigidbody2D;
 
-    private bool respawned, killed;
 
-    CinemachineVirtualCamera _cinemachineVirtualCamera;
+    private Vector2 deathPosition;
+    private bool respawned, killed;
+    private CinemachineVirtualCamera _cinemachineVirtualCamera;
 
     private void Awake()
     {
         if (!_photonView.IsMine) { return; }
 
         _healthSlider = GameObject.Find("Canvas/PlayerHealthSlider").GetComponent<Slider>();
-        _material = GetComponent<SpriteRenderer>().material;        
+        _endPanel = GameObject.Find("Canvas/EndPanel");
+        _endPanelText = GameObject.Find("Canvas/EndPanel/Text").GetComponent<Text>();
+
+        if(PhotonNetwork.IsMasterClient)
+        {
+            _livesAmountText = GameObject.Find("CanvasPlayer0Lives").GetComponent<Text>();
+        }
+        else
+        {
+            _livesAmountText = GameObject.Find("CanvasPlayer1Lives").GetComponent<Text>();
+        }
 
         _playerMovementOnline = GetComponent<PlayerMovementOnline>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _boxCollider2D = GetComponent<BoxCollider2D>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
 
-        _cinemachineVirtualCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInChildren<CinemachineVirtualCamera>();
-
-        if (_photonView.IsMine)
-        {
-            _cinemachineVirtualCamera.Follow = gameObject.transform;
-            _cinemachineVirtualCamera.LookAt = gameObject.transform;
-        }
+        _cinemachineVirtualCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInChildren<CinemachineVirtualCamera>();        
     }
 
-    private void OnEnable()
+    private void Start()
     {
         if (!_photonView.IsMine) { return; }
-      
+
+        _endPanel.SetActive(false);
+
         _health = 100;
         _healthSlider.maxValue = _health;
 
-        _isFading = true;
+        _remainingLives = 3;
+        _livesAmountText.text = _remainingLives.ToString();
+
         killed = false;
+
+        _cinemachineVirtualCamera.Follow = gameObject.transform;
+        _cinemachineVirtualCamera.LookAt = gameObject.transform;
     }
 
     private void Update()
@@ -63,7 +84,11 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
         if (!_photonView.IsMine) { return; }
 
         CheckHealth();
-        Fading();        
+
+        if(killed)
+        {
+            SetDeathPosition();
+        }
     }
 
     #region Update methods
@@ -76,27 +101,15 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
         }
     }
 
-    private void Fading()
+    private void SetDeathPosition()
     {
-        //_fade
-        if (_isFading == true)
-        {
-            _fade += Time.deltaTime / 2;
-
-            if (_fade >= 1)
-            {
-                _fade = 1;
-                _isFading = false;
-            }
-
-            _material.SetFloat("__fade", _fade);
-        }
+        Debug.Log("DEAD");
+        gameObject.transform.position = deathPosition;
     }
     #endregion
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        //If touched lava - DIE
         if (other.gameObject.CompareTag("Lava"))
         {
             _photonView.RPC("Killed", RpcTarget.AllViaServer);
@@ -114,7 +127,14 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
     [PunRPC]
     public void Killed()
     {
+        if(killed) { return; }
+                   
+        PhotonNetwork.Instantiate(_playerExplosion.name, transform.position, Quaternion.identity);
+
+        _remainingLives -= 1;
+        _livesAmountText.text = _remainingLives.ToString();
         killed = true;
+        deathPosition = gameObject.transform.position;        
 
         weapon.SetActive(false);
         fuelParticles.SetActive(false);
@@ -123,13 +143,19 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
         _boxCollider2D.enabled = false;
         _rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
 
-        //Some shake
-        //CameraShake.ShakeOnce = true;
         _health = 0;
         _healthSlider.value = _health;
         respawned = false;
-
-        StartCoroutine("WaitForRespawn");
+        
+        if(_remainingLives > 0)
+        {
+            StartCoroutine(WaitForRespawn());
+        }
+        else
+        {            
+            _endPanel.SetActive(true);
+            _endPanelText.text = "DEFEAT";                        
+        }
     }
 
     private IEnumerator WaitForRespawn()
@@ -144,6 +170,8 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
     {
         if (!respawned)
         {
+            killed = false;
+
             int posX = Random.Range(-55, 55);
             int posy = Random.Range(-7, 25);
             gameObject.transform.position = new Vector3(posX, posy, 0);
@@ -156,10 +184,16 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
             _rigidbody2D.gravityScale = 0;
             _playerMovementOnline.enabled = true;
 
-            _health = 100;
+            _health = 100;            
 
             respawned = true;
         }
+    }
+
+    //
+    public void Defeat()
+    {
+
     }
 
     //Server
