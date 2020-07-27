@@ -40,13 +40,12 @@ public class BulletOnline : MonoBehaviour
     }
     
     public void Explode()
-    {        
+    {
+        if(!_photonView.IsMine) { return; }
+        
         gameObject.SetActive(false);
-        if (_photonView.IsMine)
-        {
-            PhotonNetwork.Instantiate(BulletExplosion.name, transform.position, Quaternion.identity);
-            PhotonNetwork.Destroy(gameObject); 
-        }
-        //Destroy(gameObject);
+
+        PhotonNetwork.Instantiate(BulletExplosion.name, transform.position, Quaternion.identity);
+        PhotonNetwork.Destroy(gameObject);
     }
 }
