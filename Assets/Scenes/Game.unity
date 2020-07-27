@@ -20304,6 +20304,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1967396814612908408, guid: cf6b3d1d09bf09a45ae148674c36df5e,
         type: 3}
+      propertyPath: _healthSlider
+      value: 
+      objectReference: {fileID: 710722850}
+    - target: {fileID: 1967396814612908408, guid: cf6b3d1d09bf09a45ae148674c36df5e,
+        type: 3}
       propertyPath: _cameraShake
       value: 
       objectReference: {fileID: 519420034}
@@ -20317,11 +20322,6 @@ PrefabInstance:
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 1803450225}
-    - target: {fileID: 1967396814612908411, guid: cf6b3d1d09bf09a45ae148674c36df5e,
-        type: 3}
-      propertyPath: _healthSlider
-      value: 
-      objectReference: {fileID: 710722850}
     - target: {fileID: 1967396814612908411, guid: cf6b3d1d09bf09a45ae148674c36df5e,
         type: 3}
       propertyPath: _audioManager
@@ -20342,11 +20342,6 @@ PrefabInstance:
       propertyPath: _playerFuelSlider
       value: 
       objectReference: {fileID: 1709646366}
-    - target: {fileID: 1967396814678774734, guid: cf6b3d1d09bf09a45ae148674c36df5e,
-        type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf6b3d1d09bf09a45ae148674c36df5e, type: 3}
 --- !u!1001 &2903049486009405039
