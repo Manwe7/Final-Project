@@ -12,7 +12,7 @@ public class PlayerMovementOnline : MonoBehaviour
     private Rigidbody2D _rigidbody2D = null;
 
     private float moveSpeed = 17;
-    private float maxfuelCapacity = 50;    
+    private float maxfuelCapacity = 50;
     private float _horizontalMove, _verticalMove;
     private float _fuelCapacity;
     private bool _reloadFuel;
@@ -25,7 +25,9 @@ public class PlayerMovementOnline : MonoBehaviour
 
         _fixedjoystick = GameObject.Find("Canvas/MovementJoystick").GetComponent<FixedJoystick>();
         _fuelSlider = GameObject.Find("Canvas/PlayerFuelSlider").GetComponent<Slider>();
-        _rigidbody2D = GetComponent<Rigidbody2D>();        
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+
+        _rigidbody2D.gravityScale = 5;
     }
 
     private void Start()
@@ -41,8 +43,7 @@ public class PlayerMovementOnline : MonoBehaviour
     
     private void Update()
     {
-        if (!_photonView.IsMine)
-        { return; }
+        if (!_photonView.IsMine) { return; }
 
         _fuelSlider.value = _fuelCapacity;
         _verticalMove = _fixedjoystick.Vertical;
@@ -64,31 +65,29 @@ public class PlayerMovementOnline : MonoBehaviour
 
         if (_fuelCapacity <= 0 && _reloadFuel == true)
         { 
-            StartCoroutine(ReloadFuel()); 
+            StartCoroutine(ReloadFuel());
         }
     }
 
     private void FixedUpdate()
     {
-        if (!_photonView.IsMine)
-        { return; }
+        if (!_photonView.IsMine) { return; }
 
-        //Movement
         _rigidbody2D.velocity = new Vector2(_horizontalMove * moveSpeed, _rigidbody2D.velocity.y);
 
         if (_verticalMove > 0.22f && _fuelCapacity > 0)
         {
             _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _verticalMove * 8);
-            _rigidbody2D.gravityScale = 0;
+            //_rigidbody2D.gravityScale = 0;
         }
         else
         {
-            _rigidbody2D.gravityScale = 5;
+            //_rigidbody2D.gravityScale = 5;
         }
 
     }
 
-    IEnumerator ReloadFuel()
+    private IEnumerator ReloadFuel()
     {
         _reloadFuel = false;
         yield return new WaitForSeconds(2f);

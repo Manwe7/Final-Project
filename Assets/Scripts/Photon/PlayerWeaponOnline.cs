@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Photon.Pun;
 
+[RequireComponent(typeof(PhotonView))]
 public class PlayerWeaponOnline : MonoBehaviour
 {
     [SerializeField] private PhotonView _photonView;
@@ -20,6 +21,7 @@ public class PlayerWeaponOnline : MonoBehaviour
     private void Awake()
     {
         _photonView = parent.gameObject.GetComponent<PhotonView>();
+        
         if (!_photonView.IsMine) { return; }
 
         _fixedjoystick = GameObject.Find("Canvas/RotationJoystick").GetComponent<FixedJoystick>();
@@ -35,7 +37,6 @@ public class PlayerWeaponOnline : MonoBehaviour
     {
         if (!_photonView.IsMine) { return; }
 
-        //Change position depending on mouse position
         if (_joystickHandle.anchoredPosition.x < 0 && _joystickHandle.anchoredPosition.x != 0)//(mouse.x < playerScreenPoint.x) 
         {
             LeftSide();
@@ -45,10 +46,8 @@ public class PlayerWeaponOnline : MonoBehaviour
             RightSide();
         }
 
-        //Shoot
         if (_reloaded)
         {
-            //Instantiate(BulletOnline, barrel.position, barrel.rotation);
             Shoot();
             _reloaded = false;
             Invoke("Reload", reloadTime);
@@ -56,6 +55,7 @@ public class PlayerWeaponOnline : MonoBehaviour
 
     }
     
+    [PunRPC]
     public void Shoot()
     {
         GameObject bullet = PhotonNetwork.Instantiate(BulletOnline.name, barrel.position, barrel.rotation);

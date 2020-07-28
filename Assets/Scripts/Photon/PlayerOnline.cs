@@ -6,9 +6,9 @@ using Cinemachine;
 
 public class PlayerOnline : MonoBehaviour, IPunObservable
 {
-    [SerializeField] private GameObject _playerExplosion;
-
     [SerializeField] private PhotonView _photonView;
+    
+    [SerializeField] private GameObject _playerExplosion;    
 
     private float _health;
     
@@ -108,6 +108,7 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
     }
     #endregion
 
+    [PunRPC]
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Lava"))

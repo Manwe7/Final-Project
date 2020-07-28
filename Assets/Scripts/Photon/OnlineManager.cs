@@ -10,23 +10,11 @@ public class OnlineManager : MonoBehaviourPunCallbacks
 
     [SerializeField] private GameObject _pausePanel;
 
-    private void Awake()
-    {
-        // if(PhotonNetwork.IsMasterClient)
-        // {
-        //     _mapSections.enabled = true;
-        // }
-        // else
-        // {
-        //     _mapSections.enabled = false;
-        // }
-    }
-
     private void Start()
     {
         int posX = Random.Range(-55, 55);
         int posy = Random.Range(-7, 25);
-
+        
         GameObject player = PhotonNetwork.Instantiate(_player.name, new Vector2(posX, posy), Quaternion.identity);
         player.name = "Player" + PhotonNetwork.NickName;
     }
@@ -49,15 +37,5 @@ public class OnlineManager : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         SceneManager.LoadScene("Lobby");
-    }
-
-    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
-    {
-        Debug.Log("Player " + newPlayer + " enter the game");
-    }
-
-    public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
-    {
-        Debug.Log("Player " + otherPlayer + " left the game");
     }
 }
