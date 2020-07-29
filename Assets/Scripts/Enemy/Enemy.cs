@@ -2,6 +2,7 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour, IDamageable
 { 
+    [Header("Components")]
     [SerializeField] protected GameObject _enemyExplosion;
 
     [SerializeField] protected Rigidbody2D _rigidbody2D;
@@ -10,7 +11,8 @@ public abstract class Enemy : MonoBehaviour, IDamageable
 
     [SerializeField] private EnemyWeaponPosition _weaponPosition;
 
-    [SerializeField] private float _speed = 0;
+    [Header("Stats")]
+    [SerializeField] private float _speed;
 
     [SerializeField] protected float _jumpForce;
 
@@ -42,11 +44,6 @@ public abstract class Enemy : MonoBehaviour, IDamageable
         
         _weapon.Init(player, audioManager, pooler);
         _weaponPosition.Init(player);
-    }
-    
-    private void Start()
-    {
-        _distance = UnityEngine.Random.Range(3f, 12f);        
     }
 
     private void Update()
