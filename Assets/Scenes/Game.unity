@@ -763,6 +763,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pauseMenuPanel: {fileID: 1914135829}
   _gameSpeed: {fileID: 132967516}
+  _saveSystem: {fileID: 132967518}
+  _gamePlayUI: {fileID: 85062359}
+  _pauseRecordText: {fileID: 1370752052}
 --- !u!114 &85062359
 MonoBehaviour:
   m_ObjectHideFlags: 0
