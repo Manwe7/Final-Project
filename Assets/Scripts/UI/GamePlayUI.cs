@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class GamePlayUI : MonoBehaviour
@@ -15,11 +16,15 @@ public class GamePlayUI : MonoBehaviour
     public void PauseBtn()
     {        
         _pauseMenuPanel.SetActive(true);
-        _gameSpeed.Stop();                
+        _gameSpeed.Stop();
+
+        OnGamePause?.Invoke();
     }
 
     public void SetScoreText(int score)
     {
         _scoreText.text = score.ToString();
     }
+
+    public event Action OnGamePause;
 }
