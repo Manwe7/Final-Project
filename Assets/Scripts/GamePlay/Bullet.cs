@@ -11,7 +11,6 @@ public class Bullet : MonoBehaviour
     [TagSelector]
     [SerializeField] private string _bulletTag;
     
-    
     private IDamageable _damageable;
     private Pooler _pooler;
     
@@ -28,7 +27,7 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag(_bulletTag)) { return; }
-
+        
         _damageable = other.GetComponent<IDamageable>();
         if(_damageable != null)
         {
