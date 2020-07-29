@@ -13,5 +13,10 @@ public abstract class Weapon : MonoBehaviour
         ChangeWeaponPosition();
     }
 
+    protected Vector3 GetPosition(float offsetX)
+    {
+        return new Vector3(_parent.position.x + offsetX, _parent.position.y, _parent.position.z);
+    }
+
     protected abstract void ChangeWeaponPosition();
 }
