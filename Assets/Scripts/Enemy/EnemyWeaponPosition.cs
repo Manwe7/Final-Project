@@ -35,18 +35,13 @@ public class EnemyWeaponPosition : Weapon
 
     private void SetToRightSide()
     {                
-        transform.rotation = Quaternion.Euler(0, 0f, _rotationZ + _offset);  
+        transform.rotation = Quaternion.Euler(0, 0f, _rotationZ + _offset);
         transform.position = GetPosition(0.3f);
     }
 
     private void SetToLeftSide()
     {     
-        transform.rotation = Quaternion.Euler(-180f, 0f, -_rotationZ + _offset);  
+        transform.rotation = Quaternion.Euler(-180f, 0f, -_rotationZ + _offset);
         transform.position = GetPosition(-0.3f);
-    }
-
-    private Vector3 GetPosition(float offsetX)
-    {
-        return new Vector3(_parent.position.x + offsetX, _parent.position.y, _parent.position.z);
     }
 }
