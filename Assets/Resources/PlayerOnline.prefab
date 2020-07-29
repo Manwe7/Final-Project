@@ -4881,7 +4881,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5213,6 +5212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8d3f7d0a6a03d144aed8b6ea69a0b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _photonView: {fileID: -7317958833022771356}
   fuelParticles: {fileID: 5233265968363624725}
 --- !u!114 &-7317958833022771356
 MonoBehaviour:
