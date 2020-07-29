@@ -78,7 +78,7 @@ public class PlayerFlying : MonoBehaviour
 
     private bool CanFly()
     {
-        return _verticalMove > 0.22f && _fuelHandler._fuelCapacity > 0;
+        return _verticalMove > 0.18f && _fuelHandler._fuelCapacity > 0;
     }
 
     private bool IsRestoringFuel()
