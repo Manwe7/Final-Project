@@ -5,15 +5,18 @@ public class ScoreManager : MonoBehaviour
     [Header("Scripts")]
     [SerializeField] private PlayerHealth _playerHealth;
     [SerializeField] private GamePlayUI _gamePlayUI;
-    [SerializeField] private SaveSystem _saveSystem;
-    
-    private bool _isNewRecord = false;
+
+    private bool _isNewRecord;
+
     private int _record;
-    private int _score;   
-    
+
+    private int _score;
+
+    private ISaveRepo<int> _repo;
+
     private void Awake()
     {
-        Application.targetFrameRate = 60;
+        _repo = new RecordRepo();
 
         _playerHealth.OnPlayerDefeated += SaveRecord;        
     }
@@ -32,7 +35,7 @@ public class ScoreManager : MonoBehaviour
     {        
         if (_isNewRecord)
         {
-            _saveSystem.SaveRecord(_score);
+            _repo.Save(_score);
         }
     }
 
