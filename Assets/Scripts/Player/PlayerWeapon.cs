@@ -30,8 +30,7 @@ public class PlayerWeapon : MonoBehaviour
         if (_reloaded)
         {
             _audioManager.Play(SoundNames.PlayerBullet);
-            var bullet = _pooler.GetPooledObject(_playerBullet.name, _barrel.position, _barrel.rotation).GetComponent<Bullet>();
-            bullet.Init(_pooler);
+            _pooler.GetPooledObject(_playerBullet.name, _barrel.position, _barrel.rotation);            
 
             _reloaded = false;
             StartCoroutine(Reload());
