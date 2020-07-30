@@ -7,16 +7,14 @@ public class Bullet : MonoBehaviour
     [SerializeField] private GameObject _explosionName;    
     
     [SerializeField] private float _speed = 0;
-
-    [TagSelector]
-    [SerializeField] private string _bulletTag;
     
     private IDamageable _damageable;
+    
     private Pooler _pooler;
     
-    public void Init(Pooler pooler)
-    {
-        _pooler = pooler;
+    public void Awake()
+    {    
+        _pooler = FindObjectOfType<Pooler>();
     }
 
     private void FixedUpdate()
@@ -25,8 +23,8 @@ public class Bullet : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.CompareTag(_bulletTag)) { return; }
+    {        
+        if(other.GetComponent<Bullet>() != null) { return; }
         
         _damageable = other.GetComponent<IDamageable>();
         if(_damageable != null)
