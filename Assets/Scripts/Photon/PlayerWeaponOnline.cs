@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using Photon.Pun;
 
-[RequireComponent(typeof(PhotonView))]
 public class PlayerWeaponOnline : MonoBehaviour
 {
     [SerializeField] private PhotonView _photonView;
@@ -19,9 +18,7 @@ public class PlayerWeaponOnline : MonoBehaviour
     private bool _reloaded;
 
     private void Awake()
-    {
-        _photonView = parent.gameObject.GetComponent<PhotonView>();
-        
+    {        
         if (!_photonView.IsMine) { return; }
 
         _fixedjoystick = GameObject.Find("Canvas/RotationJoystick").GetComponent<FixedJoystick>();
