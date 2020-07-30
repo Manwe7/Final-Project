@@ -746,7 +746,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerHealth: {fileID: 2108073683}
   _gameSpeed: {fileID: 132967516}
-  _saveSystem: {fileID: 132967518}
   _defeatMenuPanel: {fileID: 1719492560}
   _defeatRecordText: {fileID: 1262428361}
 --- !u!114 &85062358
@@ -763,7 +762,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pauseMenuPanel: {fileID: 1914135829}
   _gameSpeed: {fileID: 132967516}
-  _saveSystem: {fileID: 132967518}
   _gamePlayUI: {fileID: 85062359}
   _pauseRecordText: {fileID: 1370752052}
 --- !u!114 &85062359
@@ -1149,7 +1147,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerHealth: {fileID: 2108073683}
   _gamePlayUI: {fileID: 85062359}
-  _saveSystem: {fileID: 132967518}
 --- !u!114 &132967518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1159,9 +1156,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 132967513}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aab2acb2fa1701d438881804f72f3713, type: 3}
+  m_Script: {fileID: 11500000, guid: 01cbb634771238b4aba1bda806954d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fpsText: {fileID: 1194773485}
 --- !u!1 &152973416
 GameObject:
   m_ObjectHideFlags: 0
@@ -25229,9 +25227,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerFuelSlider: {fileID: 1709646366}
-  _playerFlying: {fileID: 2108073682}
-  _maxfuelCapacity: 50
-  _fuelCapacity: 0
 --- !u!1001 &2113349140
 PrefabInstance:
   m_ObjectHideFlags: 0
