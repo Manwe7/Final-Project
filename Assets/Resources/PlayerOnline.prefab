@@ -5200,6 +5200,10 @@ MonoBehaviour:
     type: 3}
   weapon: {fileID: 5233265968630552489}
   fuelParticles: {fileID: 5233265968363624725}
+  _playerMovementOnline: {fileID: 8063633914998885425}
+  _spriteRenderer: {fileID: 5233265968429482936}
+  _boxCollider2D: {fileID: 5233265968429482939}
+  _rigidbody2D: {fileID: 5233265968429482938}
 --- !u!114 &8063633914998885425
 MonoBehaviour:
   m_ObjectHideFlags: 0
