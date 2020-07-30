@@ -13,20 +13,23 @@ public class BulletOnline : MonoBehaviour
     [SerializeField] private Rigidbody2D _rigidbody2D = null;
     [SerializeField] private PhotonView _photonView;
 
+    private bool exploded;
+
     private void FixedUpdate()
     {
-        //Constant speed
         _rigidbody2D.velocity = transform.up * speed;
     }
 
     [PunRPC]
     private void OnTriggerEnter2D(Collider2D other)
     {        
+        if(exploded) { return; }
+
         if (other.CompareTag("Ground") || other.gameObject.CompareTag("Lava"))
         {
             Explode();
         }
-        //If player send damage
+
         if (other.CompareTag("Player"))
         {
             //comparing by string name is not the best option, I would check tags or components of the bject
@@ -42,7 +45,8 @@ public class BulletOnline : MonoBehaviour
     public void Explode()
     {
         if(!_photonView.IsMine) { return; }
-        
+
+        exploded = true;
         gameObject.SetActive(false);
 
         PhotonNetwork.Instantiate(BulletExplosion.name, transform.position, Quaternion.identity);
