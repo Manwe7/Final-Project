@@ -38,8 +38,7 @@ public class EnemyWeapon : MonoBehaviour
     {
         if (_reloaded)
         {
-            var bullet = _pooler.GetPooledObject(_bullet.name, _barrel.position, _barrel.rotation).GetComponent<Bullet>();
-            bullet.Init(_pooler);
+            _pooler.GetPooledObject(_bullet.name, _barrel.position, _barrel.rotation);
 
             StartCoroutine(Reload());
         }

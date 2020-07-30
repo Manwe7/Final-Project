@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class MegaEnemy : Enemy
+public class MegaEnemy : BaseEnemy
 {
     protected override int _scoreWeight => 15;
 

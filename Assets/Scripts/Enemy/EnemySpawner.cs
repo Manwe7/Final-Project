@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Spawn object Name")]
-    [SerializeField] Enemy _enemyToSpawn;
+    [SerializeField] BaseEnemy _enemyToSpawn;
 
     [Header("Min And Max reload time")]
     [SerializeField] private float maxTime = 0;
@@ -44,7 +44,7 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnObject()
     {
         _time = 0;
-        var enemy = _pooler.GetPooledObject(_enemyToSpawn.name, transform.position, Quaternion.identity).GetComponent<Enemy>();
+        var enemy = _pooler.GetPooledObject(_enemyToSpawn.name, transform.position, Quaternion.identity).GetComponent<BaseEnemy>();
         enemy.Init(_player, _pooler, _cameraShake, _scoreManager, _audioManager);
     }
  

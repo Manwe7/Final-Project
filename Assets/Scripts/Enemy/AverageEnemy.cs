@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class AverageEnemy : Enemy
+public class AverageEnemy : BaseEnemy
 {
     protected override int _scoreWeight => 10;
     
