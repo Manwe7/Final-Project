@@ -10,8 +10,6 @@ public class DefeatUI : MonoBehaviour
 
     [SerializeField] private GameSpeed _gameSpeed;
 
-    [SerializeField] private SaveSystem _saveSystem;
-
     [Header("Defeat panel")]
     [SerializeField] private GameObject _defeatMenuPanel = null;
 
@@ -20,12 +18,16 @@ public class DefeatUI : MonoBehaviour
 
     private int _record;
 
-    private void Start()
+    private IGetRepo<int> _repo;
+
+    private void Awake()
     {
+        _repo = new RecordRepo();
+
         _gameSpeed.ToNormal();
         
         _playerHealth.OnPlayerDefeated += Defeat;
-    }
+    }    
 
     private void OnDisable()
     {
@@ -41,8 +43,8 @@ public class DefeatUI : MonoBehaviour
     private IEnumerator OpenDefeatMenu()
     {
         yield return new WaitForSeconds(1.5f);
-        
-        _record = _saveSystem.GetRecord();
+                
+        _record = _repo.Get();
         _defeatRecordText.text = _record.ToString();
         
         _defeatMenuPanel.SetActive(true);        
