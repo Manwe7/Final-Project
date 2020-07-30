@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerWeaponPosition : Weapon
+public class PlayerWeaponPosition : BaseWeaponPosition
 {
     [SerializeField] private Joystick _weaponJoystick;
 

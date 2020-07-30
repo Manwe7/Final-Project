@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class EnemyWeaponPosition : Weapon
+public class EnemyWeaponPosition : BaseWeaponPosition
 {    
     private GameObject _player;
 
@@ -18,12 +18,12 @@ public class EnemyWeaponPosition : Weapon
     {
         if(_player == null) { return; }
         
-        Vector3 PlayerPos = _player.transform.position;
+        Vector3 playerPos = _player.transform.position;
 
         _direction = _player.transform.position - transform.position;
         _rotationZ = Mathf.Atan2(_direction.y,_direction.x) * Mathf.Rad2Deg;
 
-        if(PlayerPos.x < transform.position.x) 
+        if(playerPos.x < transform.position.x) 
         {
             SetToLeftSide();
         } 
