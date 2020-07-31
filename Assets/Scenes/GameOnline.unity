@@ -2785,8 +2785,9 @@ MonoBehaviour:
   _playerName:
   - {fileID: 1194773485}
   - {fileID: 509353944}
-  _player0Score: {fileID: 2043148740}
-  _player1Score: {fileID: 1425916925}
+  _playerScore:
+  - {fileID: 2043148740}
+  - {fileID: 1425916925}
 --- !u!4 &496909790
 Transform:
   m_ObjectHideFlags: 0
