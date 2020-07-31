@@ -41,8 +41,6 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
 
     private ExitGames.Client.Photon.Hashtable _myCustomProperties = new ExitGames.Client.Photon.Hashtable();
 
-    private Text[] _playerScore = new Text[2];
-
     private void Awake()
     {
         if (!_photonView.IsMine) { return; }
@@ -50,9 +48,6 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
         _healthSlider = GameObject.Find("Canvas/PlayerHealthSlider").GetComponent<Slider>();
         _endPanel = GameObject.Find("Canvas/EndPanel");
         _endPanelText = GameObject.Find("Canvas/EndPanel/Text").GetComponent<Text>();
-
-        _playerScore[0] = GameObject.Find("Canvas/Player0Lives").GetComponent<Text>();
-        _playerScore[1] = GameObject.Find("Canvas/Player1Lives").GetComponent<Text>();
 
         _cinemachineVirtualCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInChildren<CinemachineVirtualCamera>();        
     }
@@ -79,15 +74,6 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
         _remainingLives = value;
         _myCustomProperties[ShowScoreOnline.healthSave] = _remainingLives;        
         PhotonNetwork.SetPlayerCustomProperties(_myCustomProperties);
-
-        // for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
-        // {
-        //     if(PhotonNetwork.PlayerList[i].CustomProperties[ShowScoreOnline.healthSave] != null)
-        //     {
-        //         int remainingLive = (int)PhotonNetwork.PlayerList[i].CustomProperties[ShowScoreOnline.healthSave];
-        //         _playerScore[i].text = remainingLive.ToString();
-        //     }                        
-        // }
     }
 
     private void Update()
@@ -100,6 +86,8 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
         {
             SetDeathPosition();
         }
+
+        EndGamePanel();
     }
 
     #region Update methods
@@ -113,8 +101,7 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
     }
 
     private void SetDeathPosition()
-    {
-        Debug.Log("DEAD");
+    {        
         gameObject.transform.position = deathPosition;
     }
     #endregion
@@ -166,10 +153,36 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
         {
             StartCoroutine(WaitForRespawn());
         }
+    }
+
+    private void EndGamePanel()
+    {
+        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+        {
+            if(PhotonNetwork.PlayerList[i].CustomProperties[ShowScoreOnline.healthSave] != null)
+            {
+                int lives = (int)PhotonNetwork.PlayerList[i].CustomProperties[ShowScoreOnline.healthSave];
+                if(lives <= 0)
+                {
+                    StartCoroutine(StopGame());
+                }
+            }
+        }        
+    }
+
+    private IEnumerator StopGame()
+    {
+        yield return new WaitForSeconds(1.7f);
+        Time.timeScale = 0.1f;
+        _endPanel.SetActive(true);
+        
+        if(_remainingLives > 0)
+        {
+            _endPanelText.text = "VICTORY";    
+        }
         else
-        {            
-            _endPanel.SetActive(true);
-            _endPanelText.text = "DEFEAT";                        
+        {
+            _endPanelText.text = "DEFEAT";
         }
     }
 
@@ -203,12 +216,6 @@ public class PlayerOnline : MonoBehaviour, IPunObservable
 
             respawned = true;
         }
-    }
-
-    //
-    public void Defeat()
-    {
-
     }
 
     //Server
