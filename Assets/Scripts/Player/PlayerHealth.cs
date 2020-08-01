@@ -39,7 +39,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         ShakeCamera();
     }
 
-    public void ShakeCamera()
+    private void ShakeCamera()
     {
         _cameraShake.ShakeCameraOnce();
     }

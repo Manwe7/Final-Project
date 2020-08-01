@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
         
 
     [Header("Scipts")]
-    [SerializeField] private AudioManager _audioManager;
+    [SerializeField] private SoundPlayer _audioManager;
     
     [SerializeField] private PlayerHealth _playerHealth;
     

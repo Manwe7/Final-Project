@@ -1,22 +1,18 @@
-using System.Collections;
 using UnityEngine;
 
-public class PlayerWeapon : MonoBehaviour
+public class PlayerWeapon : BaseWeapon
 {   
     [Header("Scripts")]
-    [SerializeField] private AudioManager _audioManager;
+    [SerializeField] private SoundPlayer _soundPlayer;
+
     [SerializeField] private Pooler _pooler;
     
     [Header("Objects")]
     [SerializeField] private GameObject _playerBullet;
-    [SerializeField] private Transform _barrel;
-
-    [SerializeField] private float _reloadTime;        
-
-    private bool _reloaded;    
 
     private void Start()
     {
+        _reloadTime = 0.3f;
         _reloaded = true;
     }
 
@@ -29,17 +25,10 @@ public class PlayerWeapon : MonoBehaviour
     {
         if (_reloaded)
         {
-            _audioManager.Play(SoundNames.PlayerBullet);
+            _soundPlayer.Play(SoundNames.PlayerBullet);
             _pooler.GetPooledObject(_playerBullet.name, _barrel.position, _barrel.rotation);            
-
-            _reloaded = false;
+            
             StartCoroutine(Reload());
         }
-    }
-
-    private IEnumerator Reload()
-    {        
-        yield return new WaitForSeconds(_reloadTime);
-        _reloaded = true;
     }
 }

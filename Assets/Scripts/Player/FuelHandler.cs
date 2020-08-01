@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,10 +19,11 @@ public class FuelHandler : MonoBehaviour
     
     private bool _isRestoringFuel => _fuelCapacity < _maxfuelCapacity && !_shouldDelayFuelRestoring;
 
-    private bool _canRestoreFuel => _fuelCapacity <= 0 && !_shouldDelayFuelRestoring;
+    private bool _delayRestoreFuel => _fuelCapacity <= 0 && !_shouldDelayFuelRestoring;
 
-    public bool HasFule => _fuelCapacity > 0;
-    
+    public bool HasFuel => _fuelCapacity > 0;
+
+    //private Queue<Action> _fuelTasks = new Queue<Action>();
 
     private void Start()
     {        
@@ -30,15 +33,27 @@ public class FuelHandler : MonoBehaviour
 
     private void Update()
     {
-        if (_canRestoreFuel)
+        if (_delayRestoreFuel)
         {
             StartCoroutine(DelayRestoringFuel());
         }
 
-        SliderValue(_fuelCapacity);
+        SetSliderValue(_fuelCapacity);
+
+        //Debug.Log(_fuelCapacity);
+
+        // if(_fuelTasks.Count == 0)
+        // {
+        //     RestoreFuel();
+        // }
+        // else
+        // {
+        //     var currentTask = _fuelTasks.Dequeue();
+        //     currentTask();
+        // }
     }
 
-    private void SliderValue(float capacity)
+    private void SetSliderValue(float capacity)
     {
         _playerFuelSlider.value = _fuelCapacity;
     }
@@ -52,6 +67,7 @@ public class FuelHandler : MonoBehaviour
 
     public void RestoreFuel()
     {
+        Debug.Log($"is restoring {_isRestoringFuel} {_shouldDelayFuelRestoring} {_fuelCapacity}");
         if(_isRestoringFuel)
         {
             _fuelCapacity += 0.1f;
@@ -61,5 +77,6 @@ public class FuelHandler : MonoBehaviour
     public void SpendFuel()
     {
         _fuelCapacity -= 0.1f;
+        //_fuelTasks.Enqueue(() => _fuelCapacity -= 0.1f);
     }    
 }
