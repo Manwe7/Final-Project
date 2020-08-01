@@ -15,7 +15,7 @@ public class EnemyWeapon : MonoBehaviour
     private bool _reloaded;
     private Pooler _pooler;
 
-    public void Init(GameObject player, AudioManager audioManager, Pooler pooler)
+    public void Init(GameObject player, Pooler pooler)
     {
         _player = player;
         _pooler = pooler;
