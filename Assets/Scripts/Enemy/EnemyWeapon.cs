@@ -1,18 +1,14 @@
 using UnityEngine;
-using System.Collections;
 
-public class EnemyWeapon : MonoBehaviour
+public class EnemyWeapon : BaseWeapon
 {    
-    [SerializeField] private Transform _barrel;
-    [SerializeField] private GameObject _bullet;
-    
     [Header("Min and Max realod time")]
     [SerializeField] private int _minReloadTime;
+
     [SerializeField] private int _maxReloadTime;
 
-    private GameObject _player;
-    private int _reloadTime;
-    private bool _reloaded;
+    private GameObject _player;    
+
     private Pooler _pooler;
 
     public void Init(GameObject player, Pooler pooler)
@@ -39,16 +35,10 @@ public class EnemyWeapon : MonoBehaviour
         if (_reloaded)
         {
             _pooler.GetPooledObject(_bullet.name, _barrel.position, _barrel.rotation);
-
+            
             StartCoroutine(Reload());
+
+            _reloadTime = Random.Range(_minReloadTime, _maxReloadTime);
         }
     }
-
-    protected IEnumerator Reload()
-    {
-        _reloaded = false;
-        _reloadTime = Random.Range(_minReloadTime, _maxReloadTime);
-        yield return new WaitForSeconds(_reloadTime);
-        _reloaded = true;
-    }    
 }
