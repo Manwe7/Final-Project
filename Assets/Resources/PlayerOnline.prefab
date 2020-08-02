@@ -5058,7 +5058,10 @@ GameObject:
   - component: {fileID: 5233265968429482939}
   - component: {fileID: 5233265968429482938}
   - component: {fileID: 2498267659472461099}
+  - component: {fileID: 8009886985840511184}
   - component: {fileID: 8063633914998885425}
+  - component: {fileID: 6194620900347440808}
+  - component: {fileID: 5364500714395845632}
   - component: {fileID: -7317958833022771356}
   - component: {fileID: 8330185436738769292}
   - component: {fileID: 3840314696043227263}
@@ -5196,6 +5199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _photonView: {fileID: -7317958833022771356}
+  _playerHealthOnline: {fileID: 8009886985840511184}
   _playerExplosion: {fileID: 6163721950763462551, guid: 0cb7f06f14ac3f64ab1c28b448a8b855,
     type: 3}
   weapon: {fileID: 5233265968630552489}
@@ -5204,6 +5208,22 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 5233265968429482936}
   _boxCollider2D: {fileID: 5233265968429482939}
   _rigidbody2D: {fileID: 5233265968429482938}
+  killed: 0
+--- !u!114 &8009886985840511184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5233265968429482941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57514182687301044addb7a3a2d96c6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _photonView: {fileID: -7317958833022771356}
+  _playerOnline: {fileID: 2498267659472461099}
+  _health: 100
 --- !u!114 &8063633914998885425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5217,7 +5237,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _photonView: {fileID: -7317958833022771356}
-  fuelParticles: {fileID: 5233265968363624725}
+  _rigidbody2D: {fileID: 5233265968429482938}
+  _moveSpeed: 17
+--- !u!114 &6194620900347440808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5233265968429482941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66ccbdd095d4cd847915518979ce2d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _photonView: {fileID: -7317958833022771356}
+  _rigidbody2D: {fileID: 5233265968429482938}
+  _fuelParticles: {fileID: 5233265968363624725}
+  _fuelHandler: {fileID: 5364500714395845632}
+  _flySpeed: 10
+--- !u!114 &5364500714395845632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5233265968429482941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 128f6b507f96c22478bf68450b7ebf46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _photonView: {fileID: -7317958833022771356}
 --- !u!114 &-7317958833022771356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5283,6 +5334,7 @@ GameObject:
   - component: {fileID: 5233265968630552471}
   - component: {fileID: 5233265968630552470}
   - component: {fileID: 6889596933548061943}
+  - component: {fileID: 6996202038108817362}
   - component: {fileID: 5399333186287731839}
   - component: {fileID: 6139003393393516485}
   m_Layer: 0
@@ -5378,6 +5430,20 @@ MonoBehaviour:
   BulletOnline: {fileID: 7444725418516393869, guid: 4c87560a78194854b93792a442d6abe3,
     type: 3}
   reloadTime: 0.5
+--- !u!114 &6996202038108817362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5233265968630552489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be2446bbbd14b2b4594d42f07c2fb801, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parent: {fileID: 5233265968429482937}
+  _photonView: {fileID: 5399333186287731839}
 --- !u!114 &5399333186287731839
 MonoBehaviour:
   m_ObjectHideFlags: 0
