@@ -29,3 +29,4 @@ Material:
     - _Scale: 50
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
