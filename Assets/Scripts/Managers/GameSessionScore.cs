@@ -3,7 +3,7 @@ using UnityEngine;
 public class GameSessionScore : MonoBehaviour
 {
     [Header("Scripts")]
-    [SerializeField] private PlayerHealth _playerHealth;
+    [SerializeField] private PlayerOfflineScipts.PlayerHealth _playerHealth;
 
     [SerializeField] private GamePlayUI _gamePlayUI;
 
