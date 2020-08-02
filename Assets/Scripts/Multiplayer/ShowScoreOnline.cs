@@ -9,8 +9,6 @@ public class ShowScoreOnline : MonoBehaviourPunCallbacks
 
     [SerializeField] private Text[] _playerScore;
 
-    //public Player _player { get; private set; }
-
     public const string healthSave = "RemainingHealth";
 
     private int _remainingLives;
