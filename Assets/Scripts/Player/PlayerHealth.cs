@@ -2,48 +2,51 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealth : MonoBehaviour, IDamageable
+namespace PlayerOfflineScipts
 {
-    [SerializeField] private Slider _healthSlider;
-
-    [SerializeField] CameraShake _cameraShake;
-
-    private int _health;
-
-    private void Start()
+    public class PlayerHealth : MonoBehaviour, IDamageable
     {
-        _health = 100;
-        _healthSlider.maxValue = _health;
-        ChangeHealth(_health);
-    }
+        [SerializeField] private Slider _healthSlider;
 
-    private void ChangeHealth(float health)
-    {        
-        _healthSlider.value = health;
-        if(health <= 0)
+        [SerializeField] CameraShake _cameraShake;
+
+        private int _health;
+
+        private void Start()
         {
-            Killed();
+            _health = 100;
+            _healthSlider.maxValue = _health;
+            ChangeHealth(_health);
         }
-    }
 
-    private void Killed()
-    {
-        OnPlayerDefeated?.Invoke();
-        _health = 0;
-    }
+        private void ChangeHealth(float health)
+        {        
+            _healthSlider.value = health;
+            if(health <= 0)
+            {
+                Killed();
+            }
+        }
 
-    public void ApplyDamage(int damage)
-    {
-        OnDamaged?.Invoke();
-        ChangeHealth(_health -= damage);
-        ShakeCamera();
-    }
+        private void Killed()
+        {
+            OnPlayerDefeated?.Invoke();
+            _health = 0;
+        }
 
-    private void ShakeCamera()
-    {
-        _cameraShake.ShakeCameraOnce();
-    }
+        public void ApplyDamage(int damage)
+        {
+            OnDamaged?.Invoke();
+            ChangeHealth(_health -= damage);
+            ShakeCamera();
+        }
 
-    public event Action OnPlayerDefeated;
-    public event Action OnDamaged;
+        private void ShakeCamera()
+        {
+            _cameraShake.ShakeCameraOnce();
+        }
+
+        public event Action OnPlayerDefeated;
+        public event Action OnDamaged;
+    }
 }

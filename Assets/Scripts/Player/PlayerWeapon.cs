@@ -1,34 +1,37 @@
 using UnityEngine;
 
-public class PlayerWeapon : BaseWeapon
-{   
-    [Header("Scripts")]
-    [SerializeField] private SoundPlayer _soundPlayer;
-
-    [SerializeField] private Pooler _pooler;
-    
-    [Header("Objects")]
-    [SerializeField] private GameObject _playerBullet;
-
-    private void Start()
+namespace PlayerOfflineScipts
+{
+    public class PlayerWeapon : BaseWeapon
     {
-        _reloadTime = 0.3f;
-        _reloaded = true;
-    }
+        [Header("Scripts")]
+        [SerializeField] private SoundPlayer _soundPlayer;
 
-    private void Update()
-    {        
-        Shoot();
-    }
+        [SerializeField] private Pooler _pooler;
+        
+        [Header("Objects")]
+        [SerializeField] private GameObject _playerBullet;
 
-    private void Shoot()
-    {
-        if (_reloaded)
+        private void Start()
         {
-            _soundPlayer.Play(SoundNames.PlayerBullet);
-            _pooler.GetPooledObject(_playerBullet.name, _barrel.position, _barrel.rotation);            
-            
-            StartCoroutine(Reload());
+            _reloadTime = 0.3f;
+            _reloaded = true;
+        }
+
+        private void Update()
+        {        
+            Shoot();
+        }
+
+        private void Shoot()
+        {
+            if (_reloaded)
+            {
+                _soundPlayer.Play(SoundNames.PlayerBullet);
+                _pooler.GetPooledObject(_playerBullet.name, _barrel.position, _barrel.rotation);            
+                
+                StartCoroutine(Reload());
+            }
         }
     }
 }
