@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class DefeatUI : MonoBehaviour
 {
     [Header("Scripts")]
-    [SerializeField] private PlayerHealth _playerHealth;
+    [SerializeField] private PlayerOfflineScipts.PlayerHealth _playerHealth;
 
     [SerializeField] private GameSpeed _gameSpeed;
 
