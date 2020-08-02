@@ -1100,16 +1100,16 @@ MonoBehaviour:
     Loop: 0
     Source: {fileID: 0}
     SpacialBlend: 0
-  - SoundName: 2
+  - SoundName: 1
     AudioClip: {fileID: 8300000, guid: f6cb1f581b7444b23a05b613a16420d5, type: 3}
-    Volume: 0.4
-    Pitch: 1.7
+    Volume: 0.5
+    Pitch: 1
     Loop: 0
     Source: {fileID: 0}
     SpacialBlend: 0
-  - SoundName: 1
-    AudioClip: {fileID: 8300000, guid: 338a39b127db104418afd92c031739c3, type: 3}
-    Volume: 1
+  - SoundName: 2
+    AudioClip: {fileID: 8300000, guid: 924598cdbb368b648a81952477b3f7a7, type: 3}
+    Volume: 0.5
     Pitch: 1
     Loop: 0
     Source: {fileID: 0}
@@ -4062,7 +4062,7 @@ MonoBehaviour:
   _player: {fileID: 2108073675}
   _pooler: {fileID: 685225117}
   _scoreManager: {fileID: 132967517}
-  _audioManager: {fileID: 132967515}
+  _soundPlayer: {fileID: 132967515}
   _cameraShake: {fileID: 519420034}
 --- !u!114 &532172422
 MonoBehaviour:
@@ -11316,7 +11316,7 @@ MonoBehaviour:
   _player: {fileID: 2108073675}
   _pooler: {fileID: 685225117}
   _scoreManager: {fileID: 132967517}
-  _audioManager: {fileID: 132967515}
+  _soundPlayer: {fileID: 132967515}
   _cameraShake: {fileID: 519420034}
 --- !u!114 &931269419
 MonoBehaviour:
@@ -13244,6 +13244,7 @@ MonoBehaviour:
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
+  m_TargetMovementOnly: 0
   m_ScreenX: 0.5
   m_ScreenY: 0.6
   m_CameraDistance: 10
@@ -13470,12 +13471,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2403b59367aa6084381dbadff08afcff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioManager: {fileID: 132967515}
+  _bullet: {fileID: 0}
+  _barrel: {fileID: 1618587422}
+  _soundPlayer: {fileID: 132967515}
   _pooler: {fileID: 685225117}
   _playerBullet: {fileID: 7444725418516393869, guid: bf81422569591f34b9f89c4007ea2d6a,
     type: 3}
-  _barrel: {fileID: 1618587422}
-  _reloadTime: 0.4
 --- !u!114 &1234875107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16056,7 +16057,7 @@ MonoBehaviour:
   _player: {fileID: 2108073675}
   _pooler: {fileID: 685225117}
   _scoreManager: {fileID: 132967517}
-  _audioManager: {fileID: 132967515}
+  _soundPlayer: {fileID: 132967515}
   _cameraShake: {fileID: 519420034}
 --- !u!114 &1527122969
 MonoBehaviour:
@@ -18532,7 +18533,7 @@ MonoBehaviour:
   _player: {fileID: 2108073675}
   _pooler: {fileID: 685225117}
   _scoreManager: {fileID: 132967517}
-  _audioManager: {fileID: 132967515}
+  _soundPlayer: {fileID: 132967515}
   _cameraShake: {fileID: 519420034}
 --- !u!114 &1876335775
 MonoBehaviour:
@@ -24899,7 +24900,7 @@ MonoBehaviour:
   _player: {fileID: 2108073675}
   _pooler: {fileID: 685225117}
   _scoreManager: {fileID: 132967517}
-  _audioManager: {fileID: 132967515}
+  _soundPlayer: {fileID: 132967515}
   _cameraShake: {fileID: 519420034}
 --- !u!4 &2087924738
 Transform:
