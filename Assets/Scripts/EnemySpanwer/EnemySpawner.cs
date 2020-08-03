@@ -27,7 +27,7 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         SetRandomTime();
-        _time = minTime;
+        _time = 0;
     }
 
     private void Update()
