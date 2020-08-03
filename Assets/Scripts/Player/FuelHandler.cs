@@ -15,9 +15,7 @@ namespace PlayerOfflineScipts
         private float _fuelCapacity;
 
         private bool _shouldDelayFuelRestoring;
-
-        private bool isFlying;
-        
+                
         
         private bool _isRestoringFuel => _fuelCapacity < _maxfuelCapacity && !_shouldDelayFuelRestoring;
 
