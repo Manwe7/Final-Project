@@ -7,9 +7,7 @@ public class EnemyWeapon : BaseWeapon
 
     [SerializeField] private int _maxReloadTime;
 
-    private GameObject _player;    
-
-    private Pooler _pooler;
+    private GameObject _player;
 
     public void Init(GameObject player, Pooler pooler)
     {
@@ -20,6 +18,13 @@ public class EnemyWeapon : BaseWeapon
     private void OnEnable()
     {
         StartCoroutine(Reload());
+
+        OnShoot += SetRandomReloadTime;
+    }
+
+    private void OnDisable()
+    {
+        OnShoot -= SetRandomReloadTime;
     }
 
     private void Update()
@@ -30,15 +35,8 @@ public class EnemyWeapon : BaseWeapon
         }
     }
 
-    private void Shoot()
+    private void SetRandomReloadTime()
     {
-        if (_reloaded)
-        {
-            _pooler.GetPooledObject(_bullet.name, _barrel.position, _barrel.rotation);
-            
-            StartCoroutine(Reload());
-
-            _reloadTime = Random.Range(_minReloadTime, _maxReloadTime);
-        }
+        _reloadTime = Random.Range(_minReloadTime, _maxReloadTime);
     }
 }
