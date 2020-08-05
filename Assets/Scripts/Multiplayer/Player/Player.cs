@@ -12,15 +12,20 @@ namespace PlayerOnlineScripts
         [SerializeField] private PhotonView _photonView;
 
         [SerializeField] private PlayerHealth _playerHealthOnline;
-        
-        [SerializeField] private GameObject _playerExplosion;    
 
+        [Header("Objects")]
+        [SerializeField] protected GameObject _playerExplosion;
+
+        [TagSelector] 
+        [SerializeField] protected string _lava;
+        
         private int _remainingLives;
 
         private GameObject _endPanel;
 
         private Text _endPanelText;
 
+        #region Components to DeActivate
         [Header("Components to DeActivate")]
         [SerializeField] private GameObject weapon;
 
@@ -33,6 +38,7 @@ namespace PlayerOnlineScripts
         [SerializeField] private BoxCollider2D _boxCollider2D;
 
         [SerializeField] private Rigidbody2D _rigidbody2D;
+        #endregion
 
         private Vector2 deathPosition;
 
@@ -42,7 +48,7 @@ namespace PlayerOnlineScripts
 
         private CinemachineVirtualCamera _cinemachineVirtualCamera;
 
-        private ExitGames.Client.Photon.Hashtable _myCustomProperties = new ExitGames.Client.Photon.Hashtable();
+        //private ExitGames.Client.Photon.Hashtable _myCustomProperties = new ExitGames.Client.Photon.Hashtable();
 
         private void Awake()
         {
@@ -50,7 +56,7 @@ namespace PlayerOnlineScripts
 
             FindUIObjects();
             
-            _playerHealthOnline.OnPlayerDefeated += Killed;
+            _playerHealthOnline.OnPlayerDefeated += GetKilled;
         }
 
         private void FindUIObjects()
@@ -67,7 +73,8 @@ namespace PlayerOnlineScripts
 
             _endPanel.SetActive(false);        
 
-            SetLives(3);
+            _remainingLives = 3;
+            OnLivesChange(_remainingLives);
 
             killed = false;
 
@@ -77,15 +84,15 @@ namespace PlayerOnlineScripts
 
         private void OnDestroy()
         {
-            _playerHealthOnline.OnPlayerDefeated -= Killed;
+            _playerHealthOnline.OnPlayerDefeated -= GetKilled;
         }
 
-        private void SetLives(int value)
-        {
-            _remainingLives = value;
-            _myCustomProperties[ShowScoreOnline.healthSave] = _remainingLives;        
-            PhotonNetwork.SetPlayerCustomProperties(_myCustomProperties);
-        }
+        // private void SetLives(int value)
+        // {
+        //     _remainingLives = value;
+        //     _myCustomProperties[ShowScoreOnline.healthSave] = _remainingLives;        
+        //     PhotonNetwork.SetPlayerCustomProperties(_myCustomProperties);
+        // }
 
         private void Update()
         {
@@ -96,7 +103,7 @@ namespace PlayerOnlineScripts
                 SetDeathPosition();
             }
 
-            EndGamePanel();
+            OpenEndGamePanel();
         }
 
         private void SetDeathPosition()
@@ -104,18 +111,17 @@ namespace PlayerOnlineScripts
             gameObject.transform.position = deathPosition;
         }
 
-        //[PunRPC]
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.CompareTag("Lava"))
+            if (other.gameObject.CompareTag(_lava))
             {
                 _playerHealthOnline.GetDamage(1000);
-                _photonView.RPC("Killed", RpcTarget.AllViaServer);
+                _photonView.RPC("GetKilled", RpcTarget.AllViaServer);
             }
         }
 
         [PunRPC]
-        public void Killed()
+        public void GetKilled()
         {
             if(!_photonView.IsMine) { return; }
 
@@ -124,17 +130,12 @@ namespace PlayerOnlineScripts
             PhotonNetwork.Instantiate(_playerExplosion.name, transform.position, Quaternion.identity);
 
             _remainingLives -= 1;
-            SetLives(_remainingLives);
+            OnLivesChange(_remainingLives);            
 
             killed = true;
             deathPosition = gameObject.transform.position;
 
-            weapon.SetActive(false);
-            fuelParticles.SetActive(false);
-            _playerMovementOnline.enabled = false;
-            _spriteRenderer.enabled = false;
-            _boxCollider2D.enabled = false;
-            _rigidbody2D.bodyType = RigidbodyType2D.Kinematic;
+            SetComponentsState(false, RigidbodyType2D.Kinematic);
             
             respawned = false;
             
@@ -144,13 +145,13 @@ namespace PlayerOnlineScripts
             }
         }
 
-        private void EndGamePanel()
+        private void OpenEndGamePanel()
         {
             for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
             {
-                if(PhotonNetwork.PlayerList[i].CustomProperties[ShowScoreOnline.healthSave] != null)
+                if(PhotonNetwork.PlayerList[i].CustomProperties[ShowScoreOnline.healthSaveKey] != null)
                 {
-                    int lives = (int)PhotonNetwork.PlayerList[i].CustomProperties[ShowScoreOnline.healthSave];
+                    int lives = (int)PhotonNetwork.PlayerList[i].CustomProperties[ShowScoreOnline.healthSaveKey];
                     if(lives <= 0)
                     {
                         StartCoroutine(StopGame());
@@ -167,7 +168,7 @@ namespace PlayerOnlineScripts
             
             if(_remainingLives > 0)
             {
-                _endPanelText.text = "VICTORY";    
+                _endPanelText.text = "VICTORY";
             }
             else
             {
@@ -191,15 +192,9 @@ namespace PlayerOnlineScripts
 
                 int posX = UnityEngine.Random.Range(-55, 55);
                 int posy = UnityEngine.Random.Range(-7, 25);
-                gameObject.transform.position = new Vector3(posX, posy, 0);
+                gameObject.transform.position = new Vector3(posX, posy, 0);                
 
-                weapon.SetActive(true);
-                fuelParticles.SetActive(true);
-                _spriteRenderer.enabled = true;
-                _boxCollider2D.enabled = true;
-                _rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
-                _rigidbody2D.gravityScale = 0;
-                _playerMovementOnline.enabled = true;
+                SetComponentsState(true, RigidbodyType2D.Dynamic);
 
                 OnRespawn();
 
@@ -207,6 +202,18 @@ namespace PlayerOnlineScripts
             }
         }
 
+        private void SetComponentsState(bool state, RigidbodyType2D type)
+        {
+            weapon.SetActive(state);
+            fuelParticles.SetActive(state);
+            _spriteRenderer.enabled = state;
+            _boxCollider2D.enabled = state;
+            _playerMovementOnline.enabled = state;
+            _rigidbody2D.bodyType = type;
+        }
+
         public event Action OnRespawn;
+
+        public event Action<int> OnLivesChange;
     }
 }
