@@ -1,19 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
-using System;
 
 namespace PlayerOnlineScripts
 {
-    public class PlayerHealth : MonoBehaviour, IPunObservable
+    public class PlayerHealth : PlayerOfflineScipts.PlayerHealth, IPunObservable
     {
         [SerializeField] private PhotonView _photonView;
 
         [SerializeField] private PlayerOnlineScripts.Player _playerOnline;
-
-        public float _health;
-        
-        private Slider _healthSlider;
 
         private void Awake()
         {
@@ -41,21 +36,21 @@ namespace PlayerOnlineScripts
         {
             if (!_photonView.IsMine) { return; }
 
-            CheckHealth();
+            ChangeHealth();
         }
 
-        private void CheckHealth()
+        private void ChangeHealth()
         {
             if (!_photonView.IsMine) { return; }
 
             _healthSlider.value = _health;
-            if (_health <= 0 && !_playerOnline.killed)
+            if (_health <= 0 && !_playerOnline.killed) //Create event for killed
             {
-                _photonView.RPC("Killed", RpcTarget.AllViaServer);
+                _photonView.RPC("GetKilled", RpcTarget.AllViaServer);
             }
         }
 
-        public void GetDamage(float damage)
+        public void GetDamage(int damage)
         {
             if (_photonView.IsMine)
             {
@@ -63,13 +58,11 @@ namespace PlayerOnlineScripts
             }
         }
 
-        private void Killed()
+        public override void GetKilled()
         {
             if (!_photonView.IsMine) { return; }
-            
-            _health = 0;
-            _healthSlider.value = _health;
-            OnPlayerDefeated?.Invoke();
+
+            base.GetKilled();
         }
 
         //Server
@@ -81,10 +74,10 @@ namespace PlayerOnlineScripts
             }
             else
             {
-                _health = (float)stream.ReceiveNext();
+                _health = (int)stream.ReceiveNext();
             }
         }
 
-        public event Action OnPlayerDefeated;
+        //public event Action OnPlayerDefeated;
     }
 }
