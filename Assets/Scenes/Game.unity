@@ -13471,12 +13471,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2403b59367aa6084381dbadff08afcff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bullet: {fileID: 0}
+  _bullet: {fileID: 7444725418516393869, guid: bf81422569591f34b9f89c4007ea2d6a, type: 3}
   _barrel: {fileID: 1618587422}
-  _soundPlayer: {fileID: 132967515}
   _pooler: {fileID: 685225117}
-  _playerBullet: {fileID: 7444725418516393869, guid: bf81422569591f34b9f89c4007ea2d6a,
-    type: 3}
+  _soundPlayer: {fileID: 132967515}
 --- !u!114 &1234875107
 MonoBehaviour:
   m_ObjectHideFlags: 0
