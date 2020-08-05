@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class BaseWeapon : MonoBehaviour
@@ -7,9 +8,23 @@ public class BaseWeapon : MonoBehaviour
 
     [SerializeField] protected Transform _barrel;
 
+    [SerializeField] protected Pooler _pooler;
+
     protected float _reloadTime;
 
     protected bool _reloaded;
+
+    protected event Action OnShoot;
+
+    protected void Shoot()
+    {
+        if(_reloaded)
+        {
+            _pooler.GetPooledObject(_bullet.name, _barrel.position, _barrel.rotation);
+            StartCoroutine(Reload());
+            OnShoot?.Invoke();
+        }
+    }
 
     protected IEnumerator Reload()
     {
