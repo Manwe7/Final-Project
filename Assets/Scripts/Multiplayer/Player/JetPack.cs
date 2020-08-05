@@ -3,27 +3,13 @@ using UnityEngine;
 
 namespace PlayerOnlineScripts
 {
-    public class JetPack : MonoBehaviour
+    public class JetPack : PlayerOfflineScipts.JetPack
     {
         [SerializeField] private PhotonView _photonView;
         
-        [SerializeField] private Rigidbody2D _rigidbody2D;        
-        
-        [SerializeField] private GameObject _fuelParticles;
-
-        [SerializeField] private FuelHandler _fuelHandler;
-
-        [SerializeField] private float _flySpeed;
-
-        private FixedJoystick _joystick;
-
-        private float _verticalMove;
-
-        private bool _isFlying => _verticalMove > 0.18f && _fuelHandler.HasFuel;
-
         private void Awake()
         {
-            if(!_photonView.IsMine) { return ;}
+            if(!_photonView.IsMine) { return; }
 
             _joystick = GameObject.Find("Canvas/MovementJoystick").GetComponent<FixedJoystick>();
         }
@@ -32,7 +18,7 @@ namespace PlayerOnlineScripts
         {
             if (!_photonView.IsMine) { return; }
 
-            _fuelParticles.SetActive(false);                        
+            SetParticles(false);
         }
 
         private void Update()
@@ -49,13 +35,8 @@ namespace PlayerOnlineScripts
               
             Fly();
         }
-
-        private void SetDirections()
-        {
-            _verticalMove = _joystick.Vertical;
-        }
-
-        private void ControlFuel()
+        
+        public override void ControlFuel()
         {        
             if (_isFlying)
             {
@@ -69,14 +50,6 @@ namespace PlayerOnlineScripts
                 _fuelHandler.RestoreFuel();
                 _fuelParticles.SetActive(false);
             }
-        }
-
-        private void Fly()
-        {                
-            if (_isFlying)
-            {
-                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _verticalMove * _flySpeed);
-            }        
         }
     }
 }
