@@ -35,7 +35,7 @@ namespace PlayerOnlineScripts
 
             if (other.CompareTag("Player"))
             {
-                //comparing by string name is not the best option, I would check tags or components of the bject
+                //comparing by string name is not the best option, I would check tags or components of the object
                 if (gameObject.name != other.gameObject.name + "Bullet")
                 {
                     other.gameObject.GetComponent<PlayerHealth>().GetDamage(10);
