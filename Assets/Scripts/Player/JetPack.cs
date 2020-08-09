@@ -4,24 +4,24 @@ namespace PlayerOfflineScipts
 {
     public class JetPack : MonoBehaviour
     {
-        [SerializeField] private FixedJoystick _joystick;
+        [SerializeField] protected FixedJoystick _joystick;
         
-        [SerializeField] private Rigidbody2D _rigidbody2D;        
+        [SerializeField] protected Rigidbody2D _rigidbody2D;        
         
-        [SerializeField] private GameObject _fuelParticles;
+        [SerializeField] protected GameObject _fuelParticles;
 
-        [SerializeField] private FuelHandler _fuelHandler;
+        [SerializeField] protected FuelHandler _fuelHandler;
 
-        [SerializeField] private float _flySpeed;
+        [SerializeField] protected float _flySpeed;
 
-        private float _verticalMove;
+        protected float _verticalMove;
 
-        private bool _isFlying => _verticalMove > 0.18f && _fuelHandler.HasFuel;
+        protected bool _isFlying => _verticalMove > 0.18f && _fuelHandler.HasFuel;
 
         private void Start()
         {    
-            _fuelParticles.SetActive(false);                        
-        }
+            SetParticles(false);
+        }        
 
         private void Update()
         {
@@ -34,31 +34,36 @@ namespace PlayerOfflineScipts
             Fly();
         }
 
-        private void SetDirections()
+        protected void SetDirections()
         {
             _verticalMove = _joystick.Vertical;
         }
 
-        private void ControlFuel()
+        public virtual void ControlFuel()
         {        
             if (_isFlying)
             {
                 _fuelHandler.SpendFuel();
-                _fuelParticles.SetActive(true);
+                SetParticles(true);
             }
             else
             {
                 _fuelHandler.RestoreFuel();
-                _fuelParticles.SetActive(false);
+                SetParticles(false);
             }
         }
 
-        private void Fly()
+        protected void Fly()
         {                
             if (_isFlying)
             {
                 _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _verticalMove * _flySpeed);
             }        
+        }
+
+        protected void SetParticles(bool status)
+        {
+            _fuelParticles.SetActive(status);
         }
     }
 }
