@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,22 +6,25 @@ namespace PlayerOfflineScipts
 {
     public class FuelHandler : MonoBehaviour
     {
-        [SerializeField] private Slider _playerFuelSlider;
+        [SerializeField] protected Slider _playerFuelSlider;
         
-        private float _maxfuelCapacity = 30;
+        protected float _maxfuelCapacity = 30;
         
-        private float _fuelCapacity;
+        protected float _fuelCapacity;
 
-        private bool _shouldDelayFuelRestoring;
+        protected bool _shouldDelayFuelRestoring;
                 
         
-        private bool _isRestoringFuel => _fuelCapacity < _maxfuelCapacity && !_shouldDelayFuelRestoring;
+        protected bool _isRestoringFuel => _fuelCapacity < _maxfuelCapacity && !_shouldDelayFuelRestoring;
 
-        private bool _delayRestoreFuel => _fuelCapacity <= 0 && !_shouldDelayFuelRestoring;
+        protected bool _delayRestoreFuel => _fuelCapacity <= 0 && !_shouldDelayFuelRestoring;
 
         public bool HasFuel => _fuelCapacity > 0;
 
-        //private Queue<Action> _fuelTasks = new Queue<Action>();
+        private void Awake()
+        {
+            _maxfuelCapacity = 30;
+        }
 
         private void Start()
         {        
@@ -39,35 +40,24 @@ namespace PlayerOfflineScipts
             }
 
             SetSliderValue(_fuelCapacity);
-
-            //Debug.Log(_fuelCapacity);
-
-            // if(_fuelTasks.Count == 0)
-            // {
-            //     RestoreFuel();
-            // }
-            // else
-            // {
-            //     var currentTask = _fuelTasks.Dequeue();
-            //     currentTask();
-            // }
         }
 
-        private void SetSliderValue(float capacity)
+        protected void SetSliderValue(float capacity)
         {
             _playerFuelSlider.value = _fuelCapacity;
         }
 
-        private IEnumerator DelayRestoringFuel()
+        protected IEnumerator DelayRestoringFuel()
         {
             _shouldDelayFuelRestoring = true;
             yield return new WaitForSeconds(1f);
+           
             _shouldDelayFuelRestoring = false;
+            
         }
 
         public void RestoreFuel()
         {
-            //Debug.Log($"is restoring {_isRestoringFuel} {_shouldDelayFuelRestoring} {_fuelCapacity}");
             if(_isRestoringFuel)
             {
                 _fuelCapacity += 0.1f;
@@ -77,7 +67,6 @@ namespace PlayerOfflineScipts
         public void SpendFuel()
         {
             _fuelCapacity -= 0.1f;
-            //_fuelTasks.Enqueue(() => _fuelCapacity -= 0.1f);
         }
     }
 }
