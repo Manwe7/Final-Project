@@ -4,11 +4,11 @@ namespace PlayerOfflineScipts
 {
     public class PlayerWeaponPosition : BaseWeaponPosition
     {
-        [SerializeField] private Joystick _weaponJoystick;
+        [SerializeField] protected Joystick _weaponJoystick;
 
-        [SerializeField] private RectTransform _joystickHandle;
+        [SerializeField] protected RectTransform _joystickHandle;
 
-        private void Start()
+        protected void Start()
         {
             _offset = 180;
         }
