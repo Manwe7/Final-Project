@@ -3,11 +3,7 @@ using UnityEngine;
 namespace PlayerOfflineScipts
 {
     public class Player : MonoBehaviour
-    {    
-        [Header("Objects")]
-        [SerializeField] private GameObject _playerExplosion;
-            
-
+    {
         [Header("Scipts")]
         [SerializeField] private SoundPlayer _audioManager;
         
@@ -17,8 +13,11 @@ namespace PlayerOfflineScipts
         
         [SerializeField] private Pooler _pooler;
 
+        [Header("Objects")]
+        [SerializeField] protected GameObject _playerExplosion;
+
         [TagSelector] 
-        [SerializeField] private string _lava;
+        [SerializeField] protected string _lava;
         
         private void Awake()
         {        
