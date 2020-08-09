@@ -6,11 +6,11 @@ namespace PlayerOfflineScipts
 {
     public class PlayerHealth : MonoBehaviour, IDamageable
     {
-        [SerializeField] private Slider _healthSlider;
+        [SerializeField] protected Slider _healthSlider;
 
-        [SerializeField] CameraShake _cameraShake;
+        [SerializeField] protected CameraShake _cameraShake;
 
-        private int _health;
+        public int _health;
 
         private void Start()
         {
@@ -24,11 +24,11 @@ namespace PlayerOfflineScipts
             _healthSlider.value = health;
             if(health <= 0)
             {
-                Killed();
+                GetKilled();
             }
         }
 
-        private void Killed()
+        public virtual void GetKilled()
         {
             OnPlayerDefeated?.Invoke();
             _health = 0;
