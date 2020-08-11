@@ -5210,7 +5210,6 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 5233265968429482936}
   _boxCollider2D: {fileID: 5233265968429482939}
   _rigidbody2D: {fileID: 5233265968429482938}
-  killed: 0
 --- !u!114 &1356551776149124612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5238,9 +5237,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthSlider: {fileID: 0}
   _cameraShake: {fileID: 0}
+  _health: 100
   _photonView: {fileID: -7317958833022771356}
   _playerOnline: {fileID: 2498267659472461099}
-  _health: 100
 --- !u!114 &8063633914998885425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5308,7 +5307,6 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 8330185436738769292}
-  - {fileID: 2498267659472461099}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
