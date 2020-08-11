@@ -25160,12 +25160,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e912c0fa8fb100d44aedc052b1b0bf39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerExplosion: {fileID: 6163721950763462551, guid: 37afc425dadc19140800cd83bb7b1ef3,
-    type: 3}
   _audioManager: {fileID: 132967515}
   _playerHealth: {fileID: 2108073683}
   _cameraShake: {fileID: 519420034}
   _pooler: {fileID: 685225117}
+  _playerExplosion: {fileID: 6163721950763462551, guid: 37afc425dadc19140800cd83bb7b1ef3,
+    type: 3}
   _lava: Lava
 --- !u!114 &2108073681
 MonoBehaviour:
@@ -25213,6 +25213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthSlider: {fileID: 710722850}
   _cameraShake: {fileID: 519420034}
+  _health: 0
 --- !u!114 &2108073684
 MonoBehaviour:
   m_ObjectHideFlags: 0
