@@ -14,6 +14,11 @@ namespace PlayerOfflineScipts
 
         private void Start()
         {
+            SetLifeProperties();
+        }
+
+        public virtual void SetLifeProperties()
+        {
             _health = 100;
             _healthSlider.maxValue = _health;
             ChangeHealth(_health);

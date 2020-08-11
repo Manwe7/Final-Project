@@ -34,7 +34,7 @@ namespace PlayerOfflineScipts
             Fly();
         }
 
-        protected void SetDirections()
+        public virtual void SetDirections()
         {
             _verticalMove = _joystick.Vertical;
         }
@@ -43,17 +43,19 @@ namespace PlayerOfflineScipts
         {        
             if (_isFlying)
             {
+                _rigidbody2D.gravityScale = 0f;
                 _fuelHandler.SpendFuel();
                 SetParticles(true);
             }
             else
             {
+                _rigidbody2D.gravityScale = 5f;
                 _fuelHandler.RestoreFuel();
                 SetParticles(false);
             }
         }
 
-        protected void Fly()
+        public virtual void Fly()
         {                
             if (_isFlying)
             {

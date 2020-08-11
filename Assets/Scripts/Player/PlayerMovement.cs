@@ -22,7 +22,7 @@ namespace PlayerOfflineScipts
             HorizontalMovement();
         }
 
-        protected void SetDirections()
+        protected void SetDirections() //the same problem as in Jet classes
         {
             _horizontalMove = _joystick.Horizontal;
         }

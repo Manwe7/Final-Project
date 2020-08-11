@@ -21,18 +21,23 @@ namespace PlayerOfflineScipts
 
         public bool HasFuel => _fuelCapacity > 0;
 
-        private void Awake()
-        {
-            _maxfuelCapacity = 30;
-        }
-
         private void Start()
         {        
+            SetFuelProperties();
+        }
+
+        public virtual void SetFuelProperties()
+        {
             _fuelCapacity = _maxfuelCapacity;
             _playerFuelSlider.maxValue = _maxfuelCapacity;
         }
 
         private void Update()
+        {
+            CheckFuelValues();
+        }
+
+        public virtual void CheckFuelValues()
         {
             if (_delayRestoreFuel)
             {
