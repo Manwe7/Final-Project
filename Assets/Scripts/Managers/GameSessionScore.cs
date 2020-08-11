@@ -17,7 +17,7 @@ public class GameSessionScore : MonoBehaviour
 
     private void Awake()
     {
-        _repo = new RecordRepo();
+        //_repo = new RecordRepo();
 
         _playerHealth.OnPlayerDefeated += SaveRecord;        
     }
