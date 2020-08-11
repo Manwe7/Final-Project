@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using Photon.Pun;
 using System.Collections;
 using Cinemachine;
@@ -7,23 +6,19 @@ using System;
 
 namespace PlayerOnlineScripts
 {
-    public class Player : MonoBehaviour
+    public class Player : MonoBehaviourPun
     {
         [SerializeField] private PhotonView _photonView;
 
         [SerializeField] private PlayerHealth _playerHealthOnline;
+
+        [SerializeField] private PlayerLivesOnlineSync _playerLivesOnlineSync;
 
         [Header("Objects")]
         [SerializeField] protected GameObject _playerExplosion;
 
         [TagSelector] 
         [SerializeField] protected string _lava;
-        
-        private int _remainingLives;
-
-        private GameObject _endPanel;
-
-        private Text _endPanelText;
 
         #region Components to DeActivate
         [Header("Components to DeActivate")]
@@ -40,43 +35,28 @@ namespace PlayerOnlineScripts
         [SerializeField] private Rigidbody2D _rigidbody2D;
         #endregion
 
-        private Vector2 deathPosition;
+        private Vector2 _deathPosition;
 
-        private bool respawned;
+        private bool _respawned;
 
-        public bool killed;
+        private bool _killed;
 
         private CinemachineVirtualCamera _cinemachineVirtualCamera;
-
-        //private ExitGames.Client.Photon.Hashtable _myCustomProperties = new ExitGames.Client.Photon.Hashtable();
 
         private void Awake()
         {
             if (!_photonView.IsMine) { return; }
 
-            FindUIObjects();
+            _cinemachineVirtualCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInChildren<CinemachineVirtualCamera>();
             
             _playerHealthOnline.OnPlayerDefeated += GetKilled;
-        }
-
-        private void FindUIObjects()
-        {
-            _endPanel = GameObject.Find("Canvas/EndPanel");
-            _endPanelText = GameObject.Find("Canvas/EndPanel/Text").GetComponent<Text>();
-
-            _cinemachineVirtualCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInChildren<CinemachineVirtualCamera>();
-        }
+        }        
 
         private void Start()
         {
             if (!_photonView.IsMine) { return; }
 
-            _endPanel.SetActive(false);        
-
-            _remainingLives = 3;
-            OnLivesChange(_remainingLives);
-
-            killed = false;
+            _killed = false;
 
             _cinemachineVirtualCamera.Follow = gameObject.transform;
             _cinemachineVirtualCamera.LookAt = gameObject.transform;
@@ -87,28 +67,19 @@ namespace PlayerOnlineScripts
             _playerHealthOnline.OnPlayerDefeated -= GetKilled;
         }
 
-        // private void SetLives(int value)
-        // {
-        //     _remainingLives = value;
-        //     _myCustomProperties[ShowScoreOnline.healthSave] = _remainingLives;        
-        //     PhotonNetwork.SetPlayerCustomProperties(_myCustomProperties);
-        // }
-
         private void Update()
         {
             if (!_photonView.IsMine) { return; }
 
-            if(killed)
+            if(_killed)
             {
                 SetDeathPosition();
-            }
-
-            OpenEndGamePanel();
+            }            
         }
 
         private void SetDeathPosition()
         {        
-            gameObject.transform.position = deathPosition;
+            gameObject.transform.position = _deathPosition;
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -125,54 +96,23 @@ namespace PlayerOnlineScripts
         {
             if(!_photonView.IsMine) { return; }
 
-            if(killed) { return; }
+            if(_killed) { return; }
 
             PhotonNetwork.Instantiate(_playerExplosion.name, transform.position, Quaternion.identity);
 
-            _remainingLives -= 1;
-            OnLivesChange(_remainingLives);            
+            _playerLivesOnlineSync.DecreaseOneLife();
 
-            killed = true;
-            deathPosition = gameObject.transform.position;
+            _killed = true;
+
+            _deathPosition = gameObject.transform.position;
 
             SetComponentsState(false, RigidbodyType2D.Kinematic);
             
-            respawned = false;
+            _respawned = false;
             
-            if(_remainingLives > 0)
+            if(_playerLivesOnlineSync.IsEnoughLives())
             {
                 StartCoroutine(WaitForRespawn());
-            }
-        }
-
-        private void OpenEndGamePanel()
-        {
-            for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
-            {
-                if(PhotonNetwork.PlayerList[i].CustomProperties[ShowScoreOnline.healthSaveKey] != null)
-                {
-                    int lives = (int)PhotonNetwork.PlayerList[i].CustomProperties[ShowScoreOnline.healthSaveKey];
-                    if(lives <= 0)
-                    {
-                        StartCoroutine(StopGame());
-                    }
-                }
-            }        
-        }
-
-        private IEnumerator StopGame()
-        {
-            yield return new WaitForSeconds(1.7f);
-            Time.timeScale = 0.1f;
-            _endPanel.SetActive(true);
-            
-            if(_remainingLives > 0)
-            {
-                _endPanelText.text = "VICTORY";
-            }
-            else
-            {
-                _endPanelText.text = "DEFEAT";
             }
         }
 
@@ -186,22 +126,25 @@ namespace PlayerOnlineScripts
         [PunRPC]
         public void RespawnPlayer()
         {
-            if (!respawned)
+            if(!_photonView.IsMine) { return; }
+            
+            if (!_respawned)
             {
-                killed = false;
+                _killed = false;
 
                 int posX = UnityEngine.Random.Range(-55, 55);
                 int posy = UnityEngine.Random.Range(-7, 25);
                 gameObject.transform.position = new Vector3(posX, posy, 0);                
-
+                
                 SetComponentsState(true, RigidbodyType2D.Dynamic);
 
-                OnRespawn();
+                OnRespawn?.Invoke();
 
-                respawned = true;
+                _respawned = true;
             }
         }
 
+        [PunRPC]
         private void SetComponentsState(bool state, RigidbodyType2D type)
         {
             weapon.SetActive(state);
@@ -213,7 +156,5 @@ namespace PlayerOnlineScripts
         }
 
         public event Action OnRespawn;
-
-        public event Action<int> OnLivesChange;
     }
 }
