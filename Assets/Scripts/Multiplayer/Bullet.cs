@@ -23,7 +23,6 @@ namespace PlayerOnlineScripts
             _rigidbody2D.velocity = transform.up * speed;
         }
 
-        [PunRPC]
         private void OnTriggerEnter2D(Collider2D other)
         {        
             if(exploded) { return; }
@@ -32,7 +31,7 @@ namespace PlayerOnlineScripts
             {
                 Explode();
             }
-
+    
             if (other.CompareTag("Player"))
             {
                 //comparing by string name is not the best option, I would check tags or components of the object
