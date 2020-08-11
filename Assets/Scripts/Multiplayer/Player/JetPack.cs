@@ -12,44 +12,29 @@ namespace PlayerOnlineScripts
             if(!_photonView.IsMine) { return; }
 
             _joystick = GameObject.Find("Canvas/MovementJoystick").GetComponent<FixedJoystick>();
-        }
-        
-        private void Start()
-        {
-            if (!_photonView.IsMine) { return; }
 
             SetParticles(false);
         }
 
-        private void Update()
+        public override void SetDirections()
         {
             if (!_photonView.IsMine) { return; }
 
-            SetDirections();
-            ControlFuel();
-        }
-
-        private void FixedUpdate()
-        {     
-            if (!_photonView.IsMine) { return; }
-              
-            Fly();
+            base.SetDirections();
         }
         
         public override void ControlFuel()
-        {        
-            if (_isFlying)
-            {
-                _rigidbody2D.gravityScale = 0f;
-                _fuelHandler.SpendFuel();
-                _fuelParticles.SetActive(true);
-            }
-            else
-            {
-                _rigidbody2D.gravityScale = 5f;
-                _fuelHandler.RestoreFuel();
-                _fuelParticles.SetActive(false);
-            }
+        {
+            if (!_photonView.IsMine) { return; }
+
+            base.ControlFuel();
+        }
+
+        public override void Fly()
+        {
+            if (!_photonView.IsMine) { return; }
+
+            base.Fly();
         }
     }
 }
