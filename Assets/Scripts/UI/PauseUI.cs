@@ -21,7 +21,7 @@ public class PauseUI : MonoBehaviour
 
     private void Awake()
     {
-        _repo = new RecordRepo();
+        //_repo = new RecordRepo();
         
         _gamePlayUI.OnGamePause += ShowRecord;
     }

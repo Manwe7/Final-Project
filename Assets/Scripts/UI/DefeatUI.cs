@@ -22,7 +22,7 @@ public class DefeatUI : MonoBehaviour
 
     private void Awake()
     {
-        _repo = new RecordRepo();
+        //_repo = new RecordRepo();
 
         _gameSpeed.ToNormal();
         
