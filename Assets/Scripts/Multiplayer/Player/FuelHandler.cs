@@ -15,24 +15,18 @@ namespace PlayerOnlineScripts
             _playerFuelSlider = GameObject.Find("Canvas/PlayerFuelSlider").GetComponent<Slider>();
         }
 
-        private void Start()
+        public override void SetFuelProperties()
         {
             if (!_photonView.IsMine) { return; }
 
-            _fuelCapacity = _maxfuelCapacity;
-            _playerFuelSlider.maxValue = _maxfuelCapacity;
+            base.SetFuelProperties();
         }
 
-        private void Update()
+        public override void CheckFuelValues()
         {
             if (!_photonView.IsMine) { return; }
 
-            if (_delayRestoreFuel)
-            {
-                StartCoroutine(DelayRestoringFuel());
-            }
-
-            SetSliderValue(_fuelCapacity);
+            base.CheckFuelValues();
         }
     }
 }
