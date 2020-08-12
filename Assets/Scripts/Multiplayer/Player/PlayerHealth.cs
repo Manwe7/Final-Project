@@ -4,7 +4,7 @@ using Photon.Pun;
 
 namespace PlayerOnlineScripts
 {
-    public class PlayerHealth : PlayerOfflineScipts.PlayerHealth, IPunObservable
+    public class PlayerHealth : PlayerOfflineScipts.PlayerHealth
     {
         [SerializeField] private PhotonView _photonView;
 
@@ -16,27 +16,19 @@ namespace PlayerOnlineScripts
 
             _healthSlider = GameObject.Find("Canvas/PlayerHealthSlider").GetComponent<Slider>();
 
-            _playerOnline.OnRespawn += Start;
+            _playerOnline.OnRespawn += SetLifeProperties;
         }
 
-        private void Start()
+        public override void SetLifeProperties()
         {
             if (!_photonView.IsMine) { return; }
 
-            _health = 100;
-            _healthSlider.maxValue = _health;
+            base.SetLifeProperties();
         }
 
         private void OnDestroy()
         {
-            _playerOnline.OnRespawn -= Start;
-        }
-
-        private void Update()
-        {
-            if (!_photonView.IsMine) { return; }
-
-            ChangeHealth();
+            _playerOnline.OnRespawn -= SetLifeProperties;
         }
 
         private void ChangeHealth()
@@ -44,7 +36,7 @@ namespace PlayerOnlineScripts
             if (!_photonView.IsMine) { return; }
 
             _healthSlider.value = _health;
-            if (_health <= 0 && !_playerOnline.killed) //Create event for killed
+            if (_health <= 0)
             {
                 _photonView.RPC("GetKilled", RpcTarget.AllViaServer);
             }
@@ -56,6 +48,7 @@ namespace PlayerOnlineScripts
             {
                 _health -= damage;
             }
+            ChangeHealth();
         }
 
         public override void GetKilled()
@@ -64,20 +57,5 @@ namespace PlayerOnlineScripts
 
             base.GetKilled();
         }
-
-        //Server
-        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-        {
-            if (stream.IsWriting)
-            {
-                stream.SendNext(_health);
-            }
-            else
-            {
-                _health = (int)stream.ReceiveNext();
-            }
-        }
-
-        //public event Action OnPlayerDefeated;
     }
 }
