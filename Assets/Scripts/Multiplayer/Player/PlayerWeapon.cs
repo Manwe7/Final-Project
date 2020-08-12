@@ -3,20 +3,17 @@ using Photon.Pun;
 
 namespace PlayerOnlineScripts
 {
-    public class PlayerWeapon : MonoBehaviour
+    public class PlayerWeapon : BaseWeapon
     {
         [SerializeField] private PhotonView _photonView;
 
-        [SerializeField] private Transform parent, barrel;
+        [SerializeField] private Transform _parent;
 
-        [SerializeField] private GameObject BulletOnline;
-        
-        [SerializeField] private float reloadTime = 0;
+        [SerializeField] private GameObject _bulletOnline;
 
-        private bool _reloaded;
-
-        private void Start()
+        private void OnEnable()
         {
+            _reloadTime = 0.3f;
             _reloaded = true;
         }
 
@@ -26,23 +23,16 @@ namespace PlayerOnlineScripts
 
             if (_reloaded)
             {
-                Shoot();
-                _reloaded = false;
-                Invoke("Reload", reloadTime);
+                ShootBullet();
+                StartCoroutine(Reload());
             }
-
         }
         
         [PunRPC]
-        public void Shoot()
+        public void ShootBullet()
         {
-            GameObject bullet = PhotonNetwork.Instantiate(BulletOnline.name, barrel.position, barrel.rotation);
-            bullet.name = parent.gameObject.name + "Bullet";
-        }
-
-        private void Reload()
-        {
-            _reloaded = true;
-        }
+            GameObject bullet = PhotonNetwork.Instantiate(_bulletOnline.name, _barrel.position, _barrel.rotation);
+            bullet.name = _parent.gameObject.name + "Bullet";
+        }        
     }
 }
