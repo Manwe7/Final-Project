@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
-using Photon.Realtime;
 
 public class ShowScoreOnline : MonoBehaviourPunCallbacks
 {
@@ -9,13 +8,33 @@ public class ShowScoreOnline : MonoBehaviourPunCallbacks
 
     [SerializeField] private Text[] _playerScore;
 
-    public const string healthSave = "RemainingHealth";
+    public const string LivesSaveKey = "RemainingLives";
 
     private int _remainingLives;
 
+    private int _savedLives;
+
     public void Update()
+    {        
+        CheckPlayerHealth();
+    }
+
+    private void CheckPlayerHealth()
     {
-        SetPlayerText();
+        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+        {
+            if(PhotonNetwork.PlayerList[i].CustomProperties.ContainsKey(LivesSaveKey))
+            {
+                _remainingLives = (int)PhotonNetwork.PlayerList[i].CustomProperties[LivesSaveKey];
+            }
+            
+            if(_remainingLives != _savedLives)
+            {
+                SetPlayerText();
+            }
+
+            _savedLives = _remainingLives;
+        }
     }
 
     private void SetPlayerText()
@@ -24,11 +43,11 @@ public class ShowScoreOnline : MonoBehaviourPunCallbacks
         {
             _playerName[i].text = PhotonNetwork.PlayerList[i].NickName;
 
-            if(PhotonNetwork.PlayerList[i].CustomProperties[healthSave] != null)
+            if(PhotonNetwork.PlayerList[i].CustomProperties[LivesSaveKey] != null)
             {
-                _remainingLives = (int)PhotonNetwork.PlayerList[i].CustomProperties[healthSave];
-                _playerScore[i].text = _remainingLives.ToString();                            
+                _remainingLives = (int)PhotonNetwork.PlayerList[i].CustomProperties[LivesSaveKey];
+                _playerScore[i].text = _remainingLives.ToString();
             }
-        }        
+        }
     }
 }
