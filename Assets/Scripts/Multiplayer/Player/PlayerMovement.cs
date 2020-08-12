@@ -3,17 +3,9 @@ using Photon.Pun;
 
 namespace PlayerOnlineScripts
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : PlayerOfflineScipts.PlayerMovement
     {
-        [SerializeField] private PhotonView _photonView;        
-
-        [SerializeField] private Rigidbody2D _rigidbody2D = null;
-
-        [SerializeField] private float _moveSpeed;
-
-        private FixedJoystick _joystick = null;
-
-        private float _horizontalMove;
+        [SerializeField] private PhotonView _photonView;
 
         private void Awake()
         {
@@ -32,16 +24,6 @@ namespace PlayerOnlineScripts
             if(!_photonView.IsMine) { return; }
 
             HorizontalMovement();
-        }
-
-        private void SetDirections()
-        {            
-            _horizontalMove = _joystick.Horizontal;
-        }
-
-        private void HorizontalMovement()
-        {
-            _rigidbody2D.velocity = new Vector2(_horizontalMove * _moveSpeed, _rigidbody2D.velocity.y);
         }
     }
 }
