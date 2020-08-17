@@ -25,23 +25,23 @@ public class EnemyWeaponPosition : BaseWeaponPosition
 
         if(playerPos.x < transform.position.x) 
         {
-            SetToLeftSide();
+            SetToLeftSide(-_rotationZ + _offset);
         } 
         else
         {
-            SetToRightSide();
+            SetToRightSide(_rotationZ + _offset);
         }
     }
 
-    private void SetToRightSide()
-    {                
-        transform.rotation = Quaternion.Euler(0, 0f, _rotationZ + _offset);
-        transform.position = GetPosition(0.3f);
-    }
+    // private void SetToRightSide()
+    // {                
+    //     transform.rotation = Quaternion.Euler(0, 0f, _rotationZ + _offset);
+    //     transform.position = GetPosition(0.3f);
+    // }
 
-    private void SetToLeftSide()
-    {     
-        transform.rotation = Quaternion.Euler(-180f, 0f, -_rotationZ + _offset);
-        transform.position = GetPosition(-0.3f);
-    }
+    // private void SetToLeftSide()
+    // {     
+    //     transform.rotation = Quaternion.Euler(-180f, 0f, -_rotationZ + _offset);
+    //     transform.position = GetPosition(-0.3f);
+    // }
 }

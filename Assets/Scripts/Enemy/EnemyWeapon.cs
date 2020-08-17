@@ -1,11 +1,8 @@
 using UnityEngine;
 
 public class EnemyWeapon : BaseWeapon
-{    
-    [Header("Min and Max realod time")]
-    [SerializeField] private int _minReloadTime;
-
-    [SerializeField] private int _maxReloadTime;
+{
+    [SerializeField] private EnemyWeaponSettings _enemyWeaponSettings;
 
     private GameObject _player;
 
@@ -37,6 +34,6 @@ public class EnemyWeapon : BaseWeapon
 
     private void SetRandomReloadTime()
     {
-        _reloadTime = Random.Range(_minReloadTime, _maxReloadTime);
+        _reloadTime = Random.Range(_enemyWeaponSettings._maxReloadTime, _enemyWeaponSettings._maxReloadTime);
     }
 }
