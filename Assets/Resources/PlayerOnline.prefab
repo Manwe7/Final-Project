@@ -5239,6 +5239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthSlider: {fileID: 0}
   _cameraShake: {fileID: 0}
+  _adsManager: {fileID: 0}
   _health: 100
   _photonView: {fileID: -7317958833022771356}
   _playerOnline: {fileID: 2498267659472461099}
@@ -5256,7 +5257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _joystick: {fileID: 0}
   _rigidbody2D: {fileID: 5233265968429482938}
-  _moveSpeed: 17
+  _playerSettings: {fileID: 11400000, guid: 710f5fbdb8c1f7b4a906936928e9dcfa, type: 2}
   _photonView: {fileID: -7317958833022771356}
 --- !u!114 &6194620900347440808
 MonoBehaviour:
@@ -5274,7 +5275,7 @@ MonoBehaviour:
   _rigidbody2D: {fileID: 5233265968429482938}
   _fuelParticles: {fileID: 5233265968363624725}
   _fuelHandler: {fileID: 5364500714395845632}
-  _flySpeed: 10
+  _playerSettings: {fileID: 11400000, guid: 710f5fbdb8c1f7b4a906936928e9dcfa, type: 2}
   _photonView: {fileID: -7317958833022771356}
 --- !u!114 &5364500714395845632
 MonoBehaviour:
