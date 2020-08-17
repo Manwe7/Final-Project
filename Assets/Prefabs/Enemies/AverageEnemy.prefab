@@ -99,10 +99,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eaf4032ff54a904fbb80bcf34cf89d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _barrel: {fileID: 6936943444870025401}
   _bullet: {fileID: 7444725418516393869, guid: d96bd5510566a08409706691545d68b9, type: 3}
-  _minReloadTime: 4
-  _maxReloadTime: 9
+  _barrel: {fileID: 6936943444870025401}
+  _pooler: {fileID: 0}
+  _enemyWeaponSettings: {fileID: 11400000, guid: eb1f48e6706ceb6408ee3aefe8b34027,
+    type: 2}
 --- !u!114 &4210707701555603458
 MonoBehaviour:
   m_ObjectHideFlags: 0
