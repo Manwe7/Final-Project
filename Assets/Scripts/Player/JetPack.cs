@@ -12,7 +12,7 @@ namespace PlayerOfflineScipts
 
         [SerializeField] protected FuelHandler _fuelHandler;
 
-        [SerializeField] protected float _flySpeed;
+        [SerializeField] protected PlayerSettings _playerSettings;
 
         protected float _verticalMove;
 
@@ -59,7 +59,7 @@ namespace PlayerOfflineScipts
         {                
             if (_isFlying)
             {
-                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _verticalMove * _flySpeed);
+                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _verticalMove * _playerSettings._flySpeed);
             }        
         }
 

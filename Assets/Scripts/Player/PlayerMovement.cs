@@ -8,7 +8,7 @@ namespace PlayerOfflineScipts
 
         [SerializeField] protected Rigidbody2D _rigidbody2D = null;
 
-        [SerializeField] protected float _moveSpeed;
+        [SerializeField] protected PlayerSettings _playerSettings;
 
         protected float _horizontalMove;
 
@@ -22,14 +22,14 @@ namespace PlayerOfflineScipts
             HorizontalMovement();
         }
 
-        protected void SetDirections() //the same problem as in Jet classes
+        public virtual void SetDirections()
         {
             _horizontalMove = _joystick.Horizontal;
         }
 
-        protected void HorizontalMovement()
+        public virtual void HorizontalMovement()
         {                
-            _rigidbody2D.velocity = new Vector2(_horizontalMove * _moveSpeed, _rigidbody2D.velocity.y);
+            _rigidbody2D.velocity = new Vector2(_horizontalMove * _playerSettings._moveSpeed, _rigidbody2D.velocity.y);
         }
     }
 }

@@ -22,24 +22,24 @@ namespace PlayerOfflineScipts
 
             if (_joystickHandle.anchoredPosition.x < 0)
             {
-                SetToLeftSide();
+                SetToLeftSide(_rotationZ + _offset);
             }
             else if (_joystickHandle.anchoredPosition.x > 0)
             {
-                SetToRightSide();
+                SetToRightSide(-_rotationZ);
             }
         }
 
-        private void SetToRightSide()
-        {       
-            transform.rotation = Quaternion.Euler(0f, 0f, -_rotationZ);
-            transform.position = GetPosition(0.3f);
-        }
+        // private void SetToRightSide()
+        // {       
+        //     transform.rotation = Quaternion.Euler(0f, 0f, -_rotationZ);
+        //     transform.position = GetPosition(0.3f);
+        // }
 
-        private void SetToLeftSide()
-        {
-            transform.rotation = Quaternion.Euler(-180f, 0f, _rotationZ + _offset);
-            transform.position = GetPosition(-0.3f);
-        }
+        // private void SetToLeftSide()
+        // {
+        //     transform.rotation = Quaternion.Euler(-180f, 0f, _rotationZ + _offset);
+        //     transform.position = GetPosition(-0.3f);
+        // }
     }
 }

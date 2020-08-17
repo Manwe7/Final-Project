@@ -10,11 +10,23 @@ namespace PlayerOfflineScipts
 
         [SerializeField] protected CameraShake _cameraShake;
 
+        [SerializeField] private AdsManager _adsManager;
+
         public int _health;
+
+        private void Awake()
+        {
+            _adsManager.OnAdWatched += SetLifeProperties;
+        }
 
         private void Start()
         {
             SetLifeProperties();
+        }
+
+        private void OnDestroy()
+        {
+            _adsManager.OnAdWatched -= SetLifeProperties;
         }
 
         public virtual void SetLifeProperties()
