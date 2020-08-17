@@ -12,18 +12,20 @@ namespace PlayerOnlineScripts
             _joystick = GameObject.Find("Canvas/MovementJoystick").GetComponent<FixedJoystick>();
         }
 
-        private void Update()
+        public override void SetDirections()
         {
-            if(!_photonView.IsMine) { return; }
-
-            SetDirections();
+            if(_photonView.IsMine)
+            {
+                base.SetDirections();
+            }
         }
 
-        private void FixedUpdate()
+        public override void HorizontalMovement()
         {
-            if(!_photonView.IsMine) { return; }
-
-            HorizontalMovement();
+            if(_photonView.IsMine)
+            {
+                base.HorizontalMovement();
+            }
         }
     }
 }

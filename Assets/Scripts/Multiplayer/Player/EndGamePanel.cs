@@ -30,6 +30,8 @@ namespace PlayerOnlineScripts
 
         private void Start()
         {
+            if (!_photonView.IsMine) { return; }
+            
             _endPanel.SetActive(false);
         }
 

@@ -11,10 +11,20 @@ namespace PlayerOnlineScripts
 
         private int _remainingLives;
 
+        private void Awake()
+        {
+            _player.OnDefeat += DecreaseOneLife;
+        }
+
         private void Start()
         {
             _remainingLives = 3;
             SetLives(_remainingLives);
+        }
+
+        private void OnDestroy()
+        {
+            _player.OnDefeat += DecreaseOneLife;
         }
 
         private void SetLives(int value)

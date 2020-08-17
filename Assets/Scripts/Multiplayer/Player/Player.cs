@@ -100,7 +100,7 @@ namespace PlayerOnlineScripts
 
             PhotonNetwork.Instantiate(_playerExplosion.name, transform.position, Quaternion.identity);
 
-            _playerLivesOnlineSync.DecreaseOneLife();
+            OnDefeat?.Invoke();
 
             _killed = true;
 
@@ -156,5 +156,7 @@ namespace PlayerOnlineScripts
         }
 
         public event Action OnRespawn;
+
+        public event Action OnDefeat;
     }
 }
