@@ -17,11 +17,13 @@ public class PauseUI : MonoBehaviour
 
     private int _record;
 
-    private IGetRepo<int> _repo;
+    private IGetRepo<SaveAttributes> _repoInt;
+
+    SaveAttributes _saveAttributes;
 
     private void Awake()
-    {
-        //_repo = new RecordRepo();
+    {                
+        _repoInt = new SaveClassRepo();
         
         _gamePlayUI.OnGamePause += ShowRecord;
     }
@@ -33,20 +35,22 @@ public class PauseUI : MonoBehaviour
 
     private void ShowRecord()
     {
-        _record = _repo.Get();
+        _saveAttributes = _repoInt.Get();
+        _record = _saveAttributes.Record;
+
         _pauseRecordText.text = _record.ToString();
     }
 
     public void Resume()
     {
         _pauseMenuPanel.SetActive(false);
-        _gameSpeed.ToNormal();
+        _gameSpeed.SetToNormal();
     }
 
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        _gameSpeed.ToNormal();
+        _gameSpeed.SetToNormal();
     }
 
     public void Exit()

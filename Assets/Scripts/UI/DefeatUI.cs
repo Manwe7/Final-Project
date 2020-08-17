@@ -16,15 +16,21 @@ public class DefeatUI : MonoBehaviour
     [Header("Record on defeat panel")]
     [SerializeField] private Text _defeatRecordText;
 
+    [SerializeField] private GameObject _adsPanel;
+
     private int _record;
 
-    private IGetRepo<int> _repo;
+    private bool _isAdsPanelOpened;
+
+    private IRepo<SaveAttributes> _repoInt;
+
+    SaveAttributes _saveAttributes;
 
     private void Awake()
     {
-        //_repo = new RecordRepo();
+        _gameSpeed.SetToNormal();
 
-        _gameSpeed.ToNormal();
+        _repoInt = new SaveClassRepo();
         
         _playerHealth.OnPlayerDefeated += Defeat;
     }    
@@ -36,26 +42,36 @@ public class DefeatUI : MonoBehaviour
 
     private void Defeat()
     {        
-        _gameSpeed.ToHalfSpeed();        
-        StartCoroutine(OpenDefeatMenu());
+        _gameSpeed.SetToHalfSpeed();        
+        StartCoroutine(EndTheGame());
     }
 
-    private IEnumerator OpenDefeatMenu()
+    private IEnumerator EndTheGame()
     {
         yield return new WaitForSeconds(1.5f);
-                
-        _record = _repo.Get();
+
+        _saveAttributes = _repoInt.Get();
+        _record = _saveAttributes.Record;
+
         _defeatRecordText.text = _record.ToString();
         
-        _defeatMenuPanel.SetActive(true);        
-        _gameSpeed.Stop();
+        if(_isAdsPanelOpened)
+        {
+            _defeatMenuPanel.SetActive(true);        
+            _gameSpeed.Stop();            
+        }
+        else
+        {
+            _adsPanel.SetActive(true);
+            _isAdsPanelOpened = true;
+        }
         
     }
 
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);        
-        _gameSpeed.ToNormal();
+        _gameSpeed.SetToNormal();
     }    
 
 
