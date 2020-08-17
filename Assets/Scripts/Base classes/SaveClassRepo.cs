@@ -1,16 +1,7 @@
 ﻿using UnityEngine;
 using System.IO;
-using System;
 
-[Serializable]
-public class SaveAttributes
-{
-    public int Money;
-
-    public int Record;
-}
-
-public abstract class BaseSaveClassRepo : IRepo<SaveAttributes>
+public class SaveClassRepo : IRepo<SaveAttributes>
 {
     public void Save(SaveAttributes value)
     {
@@ -25,11 +16,11 @@ public abstract class BaseSaveClassRepo : IRepo<SaveAttributes>
             string savedString = File.ReadAllText(Application.dataPath + "/save.txt");
             SaveAttributes myObject = JsonUtility.FromJson<SaveAttributes>(savedString);        
 
-            return myObject;
+            return myObject; //base 64 encode
         }
         else
         {
-            return null;
+            return new SaveAttributes(); // create a new one
         }
     }
 

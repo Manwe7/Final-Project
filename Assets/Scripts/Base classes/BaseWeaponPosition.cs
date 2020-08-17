@@ -19,4 +19,16 @@ public abstract class BaseWeaponPosition : MonoBehaviour
     }
 
     protected abstract void ChangeWeaponPosition();
+
+    protected void SetToRightSide(float rotationZ)
+    {
+        transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+        transform.position = GetPosition(0.3f);
+    }
+
+    protected void SetToLeftSide(float rotationZ)
+    {
+        transform.rotation = Quaternion.Euler(-180f, 0f, rotationZ);
+        transform.position = GetPosition(-0.3f);
+    }
 }
