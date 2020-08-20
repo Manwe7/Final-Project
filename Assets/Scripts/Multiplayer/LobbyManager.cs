@@ -6,17 +6,21 @@ using System.Collections;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private Button _createRoom, _randomRoom;
+    [SerializeField] private Button _createRoom, _specificRoom, _randomRoom;
 
-    [SerializeField] private Text _createRoomText, _randomRoomText;
+    [SerializeField] private Text _createRoomText, _specificRoomText, _randomRoomText;
     
     [Header("Nickname Input")]
     [SerializeField] private InputField _nicknameInput;
 
-    [Header("Error panels")]
-    [SerializeField] private GameObject NickNameError;
+    [SerializeField] private InputField _roomNameInput;
 
-    [SerializeField] private GameObject NoRoomError;
+    [Header("Error panels")]
+    [SerializeField] private GameObject _nickNameError;
+
+    [SerializeField] private GameObject _roomNameError;
+
+    [SerializeField] private GameObject _noRoomError;
 
     private byte _enableColor = 245;
 
@@ -35,26 +39,40 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         _createRoom.enabled = status;
         _randomRoom.enabled = status;
+        _specificRoom.enabled = status;
 
         _createRoomText.color = new Color32(0, 255, 255, alhpa);
         _randomRoomText.color = new Color32(0, 255, 255, alhpa);
+        _specificRoomText.color = new Color32(0, 255, 255, alhpa);
     }
 
     private IEnumerator TurnErrorsOff()
     {        
         yield return new WaitForSeconds(1.7f);
-        NickNameError.SetActive(false);
-        NoRoomError.SetActive(false);
+        _nickNameError.SetActive(false);
+        _roomNameError.SetActive(false);
+        _noRoomError.SetActive(false);
     }
 
-    private bool IsNameEmpty()
+    private bool IsNickNameEmpty()
     {
         return _nicknameInput.text == "";
     }
 
-    private void EmptyNameError()
+    private bool IsRoomNameEmpty()
     {
-        NickNameError.SetActive(true);
+        return _roomNameInput.text == "";
+    }
+
+    private void EmptyNickNameError()
+    {
+        _nickNameError.SetActive(true);
+        StartCoroutine(TurnErrorsOff());
+    }
+
+    private void EmptyRoomNameError()
+    {
+        _roomNameError.SetActive(true);
         StartCoroutine(TurnErrorsOff());
     }
 
@@ -72,26 +90,50 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     #region Buttons
     public void CreateRoom()
     {
-        if (IsNameEmpty())
+        if (IsNickNameEmpty())
         {
-            EmptyNameError();
+            EmptyNickNameError();
+            return;
+        }
+
+        if(IsRoomNameEmpty())
+        {
+            EmptyRoomNameError();
             return;
         }
         
         PhotonNetwork.NickName = _nicknameInput.text;
-        PhotonNetwork.CreateRoom(null, new Photon.Realtime.RoomOptions { MaxPlayers = 2 });
+        PhotonNetwork.CreateRoom(_roomNameInput.text, new Photon.Realtime.RoomOptions { MaxPlayers = 2 });
     }
 
     public void RandomRoom()
     {
-        if (IsNameEmpty())
+        if (IsNickNameEmpty())
         {
-            EmptyNameError();
+            EmptyNickNameError();
             return;
         }
-                    
+
         PhotonNetwork.NickName = _nicknameInput.text;
         PhotonNetwork.JoinRandomRoom();
+    }
+
+    public void JoinSpecificRoom()
+    {
+        if (IsNickNameEmpty())
+        {
+            EmptyNickNameError();
+            return;
+        }
+
+        if(IsRoomNameEmpty())
+        {
+            EmptyRoomNameError();
+            return;
+        }
+
+        PhotonNetwork.NickName = _nicknameInput.text;
+        PhotonNetwork.JoinRoom(_roomNameInput.text);
     }
 
     public void Menu()
@@ -103,13 +145,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     #region Network Errors
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        NoRoomError.SetActive(true);
+        _noRoomError.SetActive(true);
         StartCoroutine(TurnErrorsOff());
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
-        CreateRoom(); //Try to create a new one again
+        CreateRoom();
     }
     #endregion
 }
