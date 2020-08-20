@@ -13,12 +13,17 @@ public class GameSessionScore : MonoBehaviour
 
     private int _score;
 
-    private ISaveRepo<int> _repo;
+    private IRepo<SaveAttributes> _repoInt;
+
+    SaveAttributes _saveAttributes;
 
     private void Awake()
-    {
-        //_repo = new RecordRepo();
-
+    {     
+        _repoInt = new SaveClassRepo();
+        
+        _saveAttributes = _repoInt.Get();
+        _record = _saveAttributes.Record;
+           
         _playerHealth.OnPlayerDefeated += SaveRecord;        
     }
 
@@ -36,7 +41,8 @@ public class GameSessionScore : MonoBehaviour
     {        
         if (_isNewRecord)
         {
-            _repo.Save(_score);
+            _saveAttributes.Record = _score;
+            _repoInt.Save(_saveAttributes);
         }
     }
 
