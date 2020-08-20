@@ -3,7 +3,7 @@
 public class EnemySpawnerMovement : MonoBehaviour
 {
     [Header("Spawner move settings")]
-    [SerializeField] private float movementSpeed = 0;
+    [SerializeField] private float movementSpeed = 0; //make Scripable objects
     [SerializeField] private float movementDistance = 0;
 
     private Vector2 _pointA, _pointB;

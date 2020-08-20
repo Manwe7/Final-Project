@@ -3,12 +3,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Spawn object Name")]
-    [SerializeField] BaseEnemy _enemyToSpawn;
-
-    [Header("Min And Max reload time")]
-    [SerializeField] private float maxTime = 0;
-    
-    [SerializeField] private float minTime = 0;
+    [SerializeField] BaseEnemy _enemyToSpawn;    
 
     [Header("Player object")]
     [SerializeField] private GameObject _player;
@@ -22,11 +17,13 @@ public class EnemySpawner : MonoBehaviour
     
     [SerializeField] private CameraShake _cameraShake;
 
+    [SerializeField] private EnemySpawnerSettings _enemySpawnerSettings;
+
     private float _time, _spawnTime;    
 
     private void Start()
     {
-        SetRandomTime();
+        SetSpawnTime();
         _time = 0;
     }
 
@@ -37,7 +34,7 @@ public class EnemySpawner : MonoBehaviour
         if(_time >= _spawnTime)
         {
             SpawnObject();
-            SetRandomTime();
+            SetSpawnTime();
         }
     }
     
@@ -48,8 +45,8 @@ public class EnemySpawner : MonoBehaviour
         enemy.Init(_player, _pooler, _cameraShake, _scoreManager, _soundPlayer);
     }
  
-    private void SetRandomTime()
+    private void SetSpawnTime()
     {
-        _spawnTime = Random.Range(minTime, maxTime);
+        _spawnTime = Random.Range(_enemySpawnerSettings._minTime, _enemySpawnerSettings._maxTime);
     }
 }
