@@ -2,12 +2,12 @@
 
 public class GameSpeed : MonoBehaviour
 {
-    public void ToNormal()
+    public void SetToNormal()
     {
         SetTimeScale(1f);
     }
 
-    public void ToHalfSpeed()
+    public void SetToHalfSpeed()
     {
         SetTimeScale(0.5f);
     }
