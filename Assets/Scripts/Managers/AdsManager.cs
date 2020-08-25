@@ -10,22 +10,22 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
 
     [SerializeField] private GameObject _adsPanel;
 
-    public event Action OnAdWatched;
+    private readonly string _adsID = "3772605";
         
     private void Awake()
     {
         //Set ADS
         Advertisement.AddListener(this);
-        Advertisement.Initialize("3772605", true);
+        Advertisement.Initialize(_adsID, true);
     }
 
     public void WatchAnAd(string p)
     {
-        if (Advertisement.IsReady("3772605"))
+        if (Advertisement.IsReady(_adsID))
         {
             //Set ADS
             Advertisement.AddListener(this);
-            Advertisement.Initialize("3772605", true);
+            Advertisement.Initialize(_adsID, true);
         }
 
         Advertisement.Show(p);
@@ -66,4 +66,6 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
         
     }
     #endregion
+
+    public event Action OnAdWatched;
 }

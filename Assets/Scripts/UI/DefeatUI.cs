@@ -24,7 +24,7 @@ public class DefeatUI : MonoBehaviour
 
     private IRepo<SaveAttributes> _repoInt;
 
-    SaveAttributes _saveAttributes;
+    private SaveAttributes _saveAttributes;
 
     private void Awake()
     {
