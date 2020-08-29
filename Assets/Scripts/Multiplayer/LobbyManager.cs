@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 using System.Collections;
+using PlayerOnlineScripts;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
@@ -33,6 +34,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
 
         ButtonStatus(false, _disableColor);
+
+        if (ProcessDeepLinkMngr.RoomName == null)
+        {
+            _roomNameInput.text = "";
+            return;
+        }
+        _roomNameInput.text = ProcessDeepLinkMngr.RoomName;
     }
 
     private void ButtonStatus(bool status, byte alhpa)
