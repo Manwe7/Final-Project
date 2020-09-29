@@ -11,7 +11,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
     [SerializeField] private GameObject _adsPanel;
 
     private readonly string _adsID = "3772605";
-        
+    
     private void Awake()
     {
         //Set ADS

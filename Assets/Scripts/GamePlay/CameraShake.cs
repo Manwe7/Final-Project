@@ -52,8 +52,9 @@ public class CameraShake : MonoBehaviour
         }
     }
 
-    public void ShakeCameraOnce()
+    public void ShakeCameraOnce(float shakePower)
     {
+        ShakeAmplitude = shakePower;
         _shakeOnce = true;
     }
 }

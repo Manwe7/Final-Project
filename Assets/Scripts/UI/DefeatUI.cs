@@ -43,13 +43,17 @@ public class DefeatUI : MonoBehaviour
     private void Defeat()
     {        
         _gameSpeed.SetToHalfSpeed();        
-        StartCoroutine(EndTheGame());
+        StartCoroutine(StartOpeningDefeatPanel());
     }
 
-    private IEnumerator EndTheGame()
+    private IEnumerator StartOpeningDefeatPanel()
     {
         yield return new WaitForSeconds(1.5f);
-
+        OpenDefeatPanel();
+    }
+    
+    private void OpenDefeatPanel()
+    {
         _saveAttributes = _repoInt.Get();
         _record = _saveAttributes.Record;
 
@@ -72,8 +76,12 @@ public class DefeatUI : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);        
         _gameSpeed.SetToNormal();
-    }    
+    }
 
+    public void CloseAdsPanel()
+    {
+        OpenDefeatPanel();
+    }
 
     public void Exit()
     {
