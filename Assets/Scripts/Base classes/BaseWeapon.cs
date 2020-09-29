@@ -18,12 +18,11 @@ public class BaseWeapon : MonoBehaviour
 
     protected void Shoot()
     {
-        if(_reloaded)
-        {
-            _pooler.GetPooledObject(_bullet.name, _barrel.position, _barrel.rotation);
-            StartCoroutine(Reload());
-            OnShoot?.Invoke();
-        }
+        if (!_reloaded) return;
+        
+        _pooler.GetPooledObject(_bullet.name, _barrel.position, _barrel.rotation);
+        StartCoroutine(Reload());
+        OnShoot?.Invoke();
     }
 
     protected IEnumerator Reload()

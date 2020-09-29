@@ -22,11 +22,11 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageable
     
     private float _jumpTime;
 
-    protected GameSessionScore _scoreManager;
+    private GameSessionScore _scoreManager;
 
-    protected GameObject _player;
+    private GameObject _player;
 
-    protected Pooler _pooler;
+    private Pooler _pooler;
 
     protected float _health;
 
@@ -130,6 +130,6 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageable
 
     private void ShakeCamera()
     {
-        _cameraShake.ShakeCameraOnce();
+        _cameraShake.ShakeCameraOnce(1.7f);
     }
 }
