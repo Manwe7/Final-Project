@@ -29,17 +29,5 @@ namespace PlayerOfflineScipts
                 SetToRightSide(-_rotationZ);
             }
         }
-
-        // private void SetToRightSide()
-        // {       
-        //     transform.rotation = Quaternion.Euler(0f, 0f, -_rotationZ);
-        //     transform.position = GetPosition(0.3f);
-        // }
-
-        // private void SetToLeftSide()
-        // {
-        //     transform.rotation = Quaternion.Euler(-180f, 0f, _rotationZ + _offset);
-        //     transform.position = GetPosition(-0.3f);
-        // }
     }
 }

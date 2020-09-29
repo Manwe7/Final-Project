@@ -4,7 +4,7 @@ namespace PlayerOfflineScipts
 {
     public class JetPack : MonoBehaviour
     {
-        [SerializeField] protected FixedJoystick _joystick;
+        [SerializeField] protected Joystick _joystick;
         
         [SerializeField] protected Rigidbody2D _rigidbody2D;        
         

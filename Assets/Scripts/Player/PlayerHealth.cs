@@ -60,7 +60,7 @@ namespace PlayerOfflineScipts
 
         private void ShakeCamera()
         {
-            _cameraShake.ShakeCameraOnce();
+            _cameraShake.ShakeCameraOnce(2.2f);
         }
 
         public event Action OnPlayerDefeated;

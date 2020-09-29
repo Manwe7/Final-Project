@@ -4,7 +4,7 @@ namespace PlayerOfflineScipts
 {
     public class PlayerMovement : MonoBehaviour
     {
-        [SerializeField] protected FixedJoystick _joystick = null;
+        [SerializeField] protected Joystick _joystick = null;
 
         [SerializeField] protected Rigidbody2D _rigidbody2D = null;
 
@@ -22,12 +22,12 @@ namespace PlayerOfflineScipts
             HorizontalMovement();
         }
 
-        public virtual void SetDirections()
+        protected virtual void SetDirections()
         {
             _horizontalMove = _joystick.Horizontal;
         }
 
-        public virtual void HorizontalMovement()
+        protected virtual void HorizontalMovement()
         {                
             _rigidbody2D.velocity = new Vector2(_horizontalMove * _playerSettings._moveSpeed, _rigidbody2D.velocity.y);
         }

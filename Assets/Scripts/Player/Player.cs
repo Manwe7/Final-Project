@@ -50,7 +50,7 @@ namespace PlayerOfflineScipts
             
             _pooler.GetPooledObject(_playerExplosion.name, transform.position, Quaternion.identity);
 
-            _cameraShake.ShakeCameraOnce();
+            _cameraShake.ShakeCameraOnce(2.2f);
             
             gameObject.SetActive(false);
         }
