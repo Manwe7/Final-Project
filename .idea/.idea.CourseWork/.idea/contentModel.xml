@@ -481,6 +481,7 @@
             <e p="EnemyWeaponSettings.cs" t="Include" />
             <e p="PlayerSettings.cs" t="Include" />
           </e>
+          <e p="ShareRoom.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="DefeatUI.cs" t="Include" />
             <e p="GamePlayUI.cs" t="Include" />
@@ -488,7 +489,6 @@
             <e p="PauseUI.cs" t="Include" />
           </e>
         </e>
-        <e p="ShareRoom.cs" t="Include" />
       </e>
       <e p="CourseWork.sln" t="IncludeFlat" />
       <e p="NativeShare.Editor.csproj" t="IncludeRecursive" />

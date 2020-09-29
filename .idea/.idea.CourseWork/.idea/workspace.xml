@@ -16,6 +16,17 @@
         <option value="$PROJECT_DIR$/Assets/ShareRoom.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ProcessDeepLinkMngr.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/LobbyManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/JetPack.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerWeaponPosition.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Base classes/BaseWeapon.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/CameraShake.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Base classes/BaseEnemy.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerHealth.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/AverageEnemy.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Managers/AdsManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UI/DefeatUI.cs" />
       </list>
     </option>
   </component>
@@ -34,6 +45,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
@@ -73,6 +85,8 @@
       <updated>1598702236622</updated>
       <workItem from="1598702243679" duration="1305000" />
       <workItem from="1598718757049" duration="3494000" />
+      <workItem from="1601394696380" duration="152000" />
+      <workItem from="1601394881609" duration="3765000" />
     </task>
     <servers />
   </component>
