@@ -20,13 +20,14 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerWeaponPosition.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Base classes/BaseWeapon.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/CameraShake.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Base classes/BaseEnemy.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerHealth.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/AverageEnemy.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/AdsManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/DefeatUI.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/CameraShake.cs" />
+        <option value="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Demos/DemoAsteroids/Scripts/Lobby/LobbyTopPanel.cs" />
       </list>
     </option>
   </component>
@@ -87,6 +88,9 @@
       <workItem from="1598718757049" duration="3494000" />
       <workItem from="1601394696380" duration="152000" />
       <workItem from="1601394881609" duration="3765000" />
+      <workItem from="1601576892687" duration="101000" />
+      <workItem from="1601577200229" duration="467000" />
+      <workItem from="1601645099550" duration="1206000" />
     </task>
     <servers />
   </component>
