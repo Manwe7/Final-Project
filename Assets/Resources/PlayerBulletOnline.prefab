@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 7444725418516393869}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -3, z: 0}
-  m_LocalScale: {x: 0.33, y: 0.33, z: 0.33}
+  m_LocalScale: {x: 0.3, y: 0.73, z: 0.33}
   m_Children:
   - {fileID: 7948249875042192479}
   m_Father: {fileID: 0}
@@ -150,7 +150,8 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  observableSearch: 0
+  Synchronization: 2
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: -5180042579945615714}
@@ -204,6 +205,11 @@ PrefabInstance:
     - target: {fileID: 5927531301834169618, guid: de9aa62ff00b04e4dbf6943abfed3ee7,
         type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927531301834169618, guid: de9aa62ff00b04e4dbf6943abfed3ee7,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5927531301834169631, guid: de9aa62ff00b04e4dbf6943abfed3ee7,
