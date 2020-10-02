@@ -72,6 +72,9 @@
           </e>
           <e p="PhotonLibs" t="Include">
             <e p="changes-library.txt" t="Include" />
+            <e p="netstandard2.0" t="Include">
+              <e p="Photon3Unity3D.xml" t="Include" />
+            </e>
             <e p="Photon3Unity3D.xml" t="Include" />
             <e p="WebSocket" t="Include">
               <e p="SocketWebTcp.cs" t="Include" />
@@ -122,6 +125,7 @@
                 </e>
                 <e p="ServerSettingsInspector.cs" t="Include" />
                 <e p="Views" t="Include">
+                  <e p="MonoBehaviourPunEditor.cs" t="Include" />
                   <e p="PhotonAnimatorViewEditor.cs" t="Include" />
                   <e p="PhotonRigidbody2DViewEditor.cs" t="Include" />
                   <e p="PhotonRigidbodyViewEditor.cs" t="Include" />
@@ -130,6 +134,10 @@
                 </e>
               </e>
               <e p="Enums.cs" t="Include" />
+              <e p="Interfaces" t="Include">
+                <e p="IPhotonViewCallbacks.cs" t="Include" />
+                <e p="IPunCallbacks.cs" t="Include" />
+              </e>
               <e p="PhotonHandler.cs" t="Include" />
               <e p="PhotonNetwork.cs" t="Include" />
               <e p="PhotonNetworkPart.cs" t="Include" />
@@ -137,6 +145,9 @@
               <e p="PhotonView.cs" t="Include" />
               <e p="PunClasses.cs" t="Include" />
               <e p="ServerSettings.cs" t="Include" />
+              <e p="Utilities" t="Include">
+                <e p="NestedComponentUtilities.cs" t="Include" />
+              </e>
               <e p="Views" t="Include">
                 <e p="PhotonAnimatorView.cs" t="Include" />
                 <e p="PhotonRigidbody2DView.cs" t="Include" />
@@ -307,6 +318,8 @@
               <e p="Shared Assets" t="Include">
                 <e p="Scripts" t="Include">
                   <e p="DocLinks.cs" t="Include" />
+                  <e p="ThirdPersonCharacter.cs" t="Include" />
+                  <e p="ThirdPersonUserControl.cs" t="Include" />
                 </e>
                 <e p="Skin" t="Include">
                   <e p="3dText.shader" t="Include" />
