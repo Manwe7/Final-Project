@@ -4059,10 +4059,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8b31c25ea97cd429f89ba308b89661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShakeDuration: 0.3
-  ShakeAmplitude: 3
-  ShakeFrequency: 3
-  VirtualCamera: {fileID: 1883944537}
+  _shakeDuration: 0.3
+  _shakeAmplitude: 3
+  _shakeFrequency: 3
+  _virtualCamera: {fileID: 1883944537}
 --- !u!114 &519420035
 MonoBehaviour:
   m_ObjectHideFlags: 0
