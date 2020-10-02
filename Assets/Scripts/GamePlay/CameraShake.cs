@@ -3,58 +3,58 @@ using Cinemachine;
 
 public class CameraShake : MonoBehaviour
 {
-	[SerializeField] private float ShakeDuration = 0.3f;  // Time the Camera Shake effect will last
-    [SerializeField] private float ShakeAmplitude = 1.2f; // Cinemachine Noise Profile Parameter
-    [SerializeField] private float ShakeFrequency = 2.0f; // Cinemachine Noise Profile Parameter
+	[SerializeField] private float _shakeDuration;  // Time the Camera Shake effect will last
+    [SerializeField] private float _shakeAmplitude; // Cinemachine Noise Profile Parameter
+    [SerializeField] private float _shakeFrequency; // Cinemachine Noise Profile Parameter
 
-    [SerializeField] private CinemachineVirtualCamera VirtualCamera = null;
+    [SerializeField] private CinemachineVirtualCamera _virtualCamera;
 
-    private CinemachineBasicMultiChannelPerlin _virtualCameraNoise = null;
+    private CinemachineBasicMultiChannelPerlin _virtualCameraNoise;
     private float _shakeElapsedTime;
-    private bool _shakeOnce = false;
+    private bool _shakeOnce;
     
 	private void Start()
     {
         // Get Virtual Camera Noise Profile
-        if (VirtualCamera != null)
+        if (_virtualCamera != null)
         {
-            _virtualCameraNoise = VirtualCamera.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
+            _virtualCameraNoise = _virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         }
     }
 
 	private void Update()
     {
-        if (_shakeOnce == true)
+        if (_shakeOnce)
         {
-            _shakeElapsedTime = ShakeDuration;
+            _shakeElapsedTime = _shakeDuration;
 			_shakeOnce = false;
         }
 
-        // If the Cinemachine componet is not set, avoid update
-        if (VirtualCamera != null && _virtualCameraNoise != null)
+        // If the Cinemachine component is not set, avoid update
+        if (_virtualCamera == null || _virtualCameraNoise == null) return;
+        
+        
+        // If Camera Shake effect is still playing
+        if (_shakeElapsedTime > 0)
         {
-            // If Camera Shake effect is still playing
-            if (_shakeElapsedTime > 0)
-            {
-                // Set Cinemachine Camera Noise parameters
-                _virtualCameraNoise.m_AmplitudeGain = ShakeAmplitude;
-                _virtualCameraNoise.m_FrequencyGain = ShakeFrequency;
-                // Update Shake Timer
-                _shakeElapsedTime -= Time.deltaTime;
-            }
-            else
-            {
-                // If Camera Shake effect is over, reset variables
-				_shakeOnce = false;
-                _virtualCameraNoise.m_AmplitudeGain = 0f;
-                _shakeElapsedTime = 0f;
-            }
+            // Set Cinemachine Camera Noise parameters
+            _virtualCameraNoise.m_AmplitudeGain = _shakeAmplitude;
+            _virtualCameraNoise.m_FrequencyGain = _shakeFrequency;
+            // Update Shake Timer
+            _shakeElapsedTime -= Time.deltaTime;
+        }
+        else
+        {
+            // If Camera Shake effect is over, reset variables
+            _shakeOnce = false;
+            _virtualCameraNoise.m_AmplitudeGain = 0f;
+            _shakeElapsedTime = 0f;
         }
     }
 
     public void ShakeCameraOnce(float shakePower)
     {
-        ShakeAmplitude = shakePower;
+        _shakeAmplitude = shakePower;
         _shakeOnce = true;
     }
 }
