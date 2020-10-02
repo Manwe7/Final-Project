@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7444725418516393869}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -3, z: 0}
-  m_LocalScale: {x: 0.17, y: 0.17, z: 0.17}
+  m_LocalScale: {x: 0.17, y: 0.5, z: 0.17}
   m_Children:
   - {fileID: 4452324918115028831}
   m_Father: {fileID: 0}
@@ -149,7 +149,6 @@ MonoBehaviour:
   _explosionName: {fileID: 6163721950763462551, guid: 7e729291e00d7d041a5d74759cdd8a24,
     type: 3}
   _speed: 25
-  _bulletTag: Bullet
 --- !u!1001 &8037526464948097600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -167,6 +166,11 @@ PrefabInstance:
       propertyPath: InitialModule.startSize.scalar
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 5927531301834169617, guid: b04740bc79b0c844f97a4d0af390395a,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5927531301834169618, guid: b04740bc79b0c844f97a4d0af390395a,
         type: 3}
       propertyPath: m_Name
@@ -176,6 +180,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927531301834169618, guid: b04740bc79b0c844f97a4d0af390395a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5927531301834169631, guid: b04740bc79b0c844f97a4d0af390395a,
         type: 3}

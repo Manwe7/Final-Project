@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7444725418516393869}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -3, z: 0}
-  m_LocalScale: {x: 0.33, y: 0.33, z: 0.33}
+  m_LocalScale: {x: 0.33, y: 0.73, z: 0.33}
   m_Children:
   - {fileID: 7948249875042192479}
   m_Father: {fileID: 0}
@@ -149,7 +149,6 @@ MonoBehaviour:
   _explosionName: {fileID: 6163721950763462551, guid: 4c1b4a4573f20964bb8ac44bb818984c,
     type: 3}
   _speed: 25
-  _bulletTag: Bullet
 --- !u!1001 &4327688169793999168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -166,6 +165,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927531301834169618, guid: de9aa62ff00b04e4dbf6943abfed3ee7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5927531301834169631, guid: de9aa62ff00b04e4dbf6943abfed3ee7,
         type: 3}
