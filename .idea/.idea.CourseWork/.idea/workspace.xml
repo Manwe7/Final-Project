@@ -33,7 +33,6 @@
         <option value="$PROJECT_DIR$/Assets/PlayerListEntry.cs" />
         <option value="$PROJECT_DIR$/Assets/Photon/PhotonRealtime/Code/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Lobby.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/Lobby.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerLivesOnlineSync.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerHealth.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerWeapon.cs" />
@@ -43,9 +42,10 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/JetPack.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/JetPack.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/OnlineManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/Player.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/JetPack.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/Lobby.cs" />
       </list>
     </option>
   </component>
@@ -112,6 +112,12 @@
       <workItem from="1601646371772" duration="19548000" />
       <workItem from="1601677889814" duration="774000" />
       <workItem from="1601718514433" duration="27614000" />
+      <workItem from="1601807288428" duration="20000" />
+      <workItem from="1601807654091" duration="3000" />
+      <workItem from="1601807877020" duration="1000" />
+      <workItem from="1601807918133" duration="1000" />
+      <workItem from="1601808229536" duration="118000" />
+      <workItem from="1601808678462" duration="1356000" />
     </task>
     <servers />
   </component>
@@ -122,5 +128,11 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1601808751910">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1601808751910" />
   </component>
 </project>
