@@ -2,17 +2,22 @@
 using Photon.Pun;
 
 public class OnlineManager : MonoBehaviourPunCallbacks
-{    
-    [SerializeField] private MapSections _mapSections; //DOES NOT WORK
- 
+{
     [SerializeField] private GameObject _player;
+
+    [SerializeField] private GameObject[] _spawnPoints;
 
     private void Start()
     {
-        int posX = Random.Range(-55, 55);
-        int posy = Random.Range(-7, 25);
+        var player = PhotonNetwork.Instantiate(_player.name, ChoosePos(), Quaternion.identity);
+        player.name = "Player " + PhotonNetwork.NickName;
+    }
+
+    public Vector2 ChoosePos()
+    {
+        var point = Random.Range(0, _spawnPoints.Length);
+        var positionToSpawn = _spawnPoints[point].transform.position;
         
-        GameObject player = PhotonNetwork.Instantiate(_player.name, new Vector2(posX, posy), Quaternion.identity);
-        player.name = "Player" + PhotonNetwork.NickName;
+        return positionToSpawn;
     }
 }
