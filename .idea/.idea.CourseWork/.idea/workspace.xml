@@ -10,24 +10,42 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WarOfShapesGame.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/ShareRoom.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ProcessDeepLinkMngr.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/LobbyManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/JetPack.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerWeaponPosition.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Base classes/BaseWeapon.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Base classes/BaseEnemy.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerHealth.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/AverageEnemy.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Managers/AdsManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UI/DefeatUI.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/CameraShake.cs" />
         <option value="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Demos/DemoAsteroids/Scripts/Lobby/LobbyTopPanel.cs" />
+        <option value="$PROJECT_DIR$/Assets/RoomListEntry.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WarOfShapesGame.cs" />
+        <option value="$PROJECT_DIR$/Assets/PlayerListEntry.cs" />
+        <option value="$PROJECT_DIR$/Assets/Photon/PhotonRealtime/Code/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/Lobby.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/Lobby.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerLivesOnlineSync.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerHealth.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerWeapon.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerHealth.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/ShowScoreOnline.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Bullet.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerMovement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/JetPack.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/OnlineManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/JetPack.cs" />
       </list>
     </option>
   </component>
@@ -91,6 +109,9 @@
       <workItem from="1601576892687" duration="101000" />
       <workItem from="1601577200229" duration="467000" />
       <workItem from="1601645099550" duration="1206000" />
+      <workItem from="1601646371772" duration="19548000" />
+      <workItem from="1601677889814" duration="774000" />
+      <workItem from="1601718514433" duration="27614000" />
     </task>
     <servers />
   </component>

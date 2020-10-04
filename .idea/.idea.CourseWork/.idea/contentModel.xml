@@ -450,6 +450,11 @@
             <e p="IRepo.cs" t="Include" />
             <e p="ISaveRepo.cs" t="Include" />
           </e>
+          <e p="Lobby" t="Include">
+            <e p="Lobby.cs" t="Include" />
+            <e p="PlayerListEntry.cs" t="Include" />
+            <e p="RoomListEntry.cs" t="Include" />
+          </e>
           <e p="Managers" t="Include">
             <e p="AdsManager.cs" t="Include" />
             <e p="GameSessionScore.cs" t="Include" />
@@ -501,6 +506,7 @@
             <e p="MainMenuUI.cs" t="Include" />
             <e p="PauseUI.cs" t="Include" />
           </e>
+          <e p="WarOfShapesGame.cs" t="Include" />
         </e>
       </e>
       <e p="CourseWork.sln" t="IncludeFlat" />
