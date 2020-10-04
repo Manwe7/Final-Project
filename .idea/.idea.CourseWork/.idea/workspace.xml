@@ -11,7 +11,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WarOfShapesGame.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/LobbyConstants.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -46,6 +46,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/OnlineManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/Lobby.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/LobbyConstants.cs" />
       </list>
     </option>
   </component>
@@ -117,7 +118,7 @@
       <workItem from="1601807877020" duration="1000" />
       <workItem from="1601807918133" duration="1000" />
       <workItem from="1601808229536" duration="118000" />
-      <workItem from="1601808678462" duration="1356000" />
+      <workItem from="1601808678462" duration="2067000" />
     </task>
     <servers />
   </component>

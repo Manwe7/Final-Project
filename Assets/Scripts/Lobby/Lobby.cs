@@ -46,6 +46,9 @@ public class Lobby : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject _specificRoomPanel;
 
     [SerializeField] private InputField _specificRoomNameInputField;
+
+    [Header("Game Speed")] 
+    [SerializeField] private GameSpeed _gameSpeed;
     
     private Dictionary<string, RoomInfo> _cachedRoomList;
     private Dictionary<string, GameObject> _roomListEntries;
@@ -53,6 +56,8 @@ public class Lobby : MonoBehaviourPunCallbacks
     
     public void Awake()
     {
+        _gameSpeed.SetToNormal();
+        
         PhotonNetwork.AutomaticallySyncScene = true;
 
         _cachedRoomList = new Dictionary<string, RoomInfo>();
@@ -94,7 +99,7 @@ public class Lobby : MonoBehaviourPunCallbacks
     {
         string roomName = "Room " + Random.Range(1000, 10000);
 
-        RoomOptions options = new RoomOptions {MaxPlayers = 8};
+        RoomOptions options = new RoomOptions {MaxPlayers = 2};
 
         PhotonNetwork.CreateRoom(roomName, options, null);
     }
@@ -116,7 +121,7 @@ public class Lobby : MonoBehaviourPunCallbacks
             entry.GetComponent<PlayerListEntry>().Initialize(p.ActorNumber, p.NickName);
 
             object isPlayerReady;
-            if (p.CustomProperties.TryGetValue(WarOfShapesGame.PlayerIsReady, out isPlayerReady))
+            if (p.CustomProperties.TryGetValue(LobbyConstants.PlayerIsReady, out isPlayerReady))
             {
                 entry.GetComponent<PlayerListEntry>().SetPlayerReady((bool) isPlayerReady);
             }
@@ -128,7 +133,7 @@ public class Lobby : MonoBehaviourPunCallbacks
 
         Hashtable props = new Hashtable
         {
-            {WarOfShapesGame.PlayerLoadedLevel, false}
+            {LobbyConstants.PlayerLoadedLevel, false}
         };
         PhotonNetwork.LocalPlayer.SetCustomProperties(props);
     }
@@ -185,7 +190,7 @@ public class Lobby : MonoBehaviourPunCallbacks
         if (_playerListEntries.TryGetValue(targetPlayer.ActorNumber, out entry))
         {
             object isPlayerReady;
-            if (changedProps.TryGetValue(WarOfShapesGame.PlayerIsReady, out isPlayerReady))
+            if (changedProps.TryGetValue(LobbyConstants.PlayerIsReady, out isPlayerReady))
             {
                 entry.GetComponent<PlayerListEntry>().SetPlayerReady((bool) isPlayerReady);
             }
@@ -301,7 +306,7 @@ public class Lobby : MonoBehaviourPunCallbacks
         foreach (Player p in PhotonNetwork.PlayerList)
         {
             object isPlayerReady;
-            if (p.CustomProperties.TryGetValue(WarOfShapesGame.PlayerIsReady, out isPlayerReady))
+            if (p.CustomProperties.TryGetValue(LobbyConstants.PlayerIsReady, out isPlayerReady))
             {
                 if (!(bool) isPlayerReady)
                 {
