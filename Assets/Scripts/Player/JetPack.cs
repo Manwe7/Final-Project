@@ -16,7 +16,7 @@ namespace PlayerOfflineScipts
 
         protected float _verticalMove;
 
-        protected bool _isFlying => _verticalMove > 0.18f && _fuelHandler.HasFuel;
+        protected bool IsFlying => _verticalMove > 0.18f && _fuelHandler.HasFuel;
 
         private void Start()
         {    
@@ -34,14 +34,14 @@ namespace PlayerOfflineScipts
             Fly();
         }
 
-        public virtual void SetDirections()
+        protected virtual void SetDirections()
         {
             _verticalMove = _joystick.Vertical;
         }
 
-        public virtual void ControlFuel()
+        protected virtual void ControlFuel()
         {        
-            if (_isFlying)
+            if (IsFlying)
             {
                 _rigidbody2D.gravityScale = 0f;
                 _fuelHandler.SpendFuel();
@@ -55,12 +55,12 @@ namespace PlayerOfflineScipts
             }
         }
 
-        public virtual void Fly()
+        protected virtual void Fly()
         {                
-            if (_isFlying)
+            if (IsFlying)
             {
                 _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _verticalMove * _playerSettings._flySpeed);
-            }        
+            }
         }
 
         protected void SetParticles(bool status)

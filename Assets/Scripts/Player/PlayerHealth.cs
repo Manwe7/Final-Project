@@ -29,14 +29,14 @@ namespace PlayerOfflineScipts
             _adsManager.OnAdWatched -= SetLifeProperties;
         }
 
-        public virtual void SetLifeProperties()
+        protected virtual void SetLifeProperties()
         {
             _health = 100;
             _healthSlider.maxValue = _health;
             ChangeHealth(_health);
         }
 
-        private void ChangeHealth(float health)
+        protected virtual void ChangeHealth(float health)
         {        
             _healthSlider.value = health;
             if(health <= 0)
@@ -45,7 +45,7 @@ namespace PlayerOfflineScipts
             }
         }
 
-        public virtual void GetKilled()
+        protected virtual void GetKilled()
         {
             OnPlayerDefeated?.Invoke();
             _health = 0;
