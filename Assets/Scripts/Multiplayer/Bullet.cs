@@ -6,51 +6,56 @@ namespace PlayerOnlineScripts
     public class Bullet : MonoBehaviour
     {
         [Header("Explosion")]
-        [SerializeField] private GameObject BulletExplosion = null;
+        [SerializeField] private GameObject _bulletExplosion;
 
         [Header("Movement speed")]
-        [SerializeField] private float speed = 0;
+        [SerializeField] private float _speed;
         
         [Header("Components")]
-        [SerializeField] private Rigidbody2D _rigidbody2D = null;
+        [SerializeField] private Rigidbody2D _rigidbody2D;
 
         [SerializeField] private PhotonView _photonView;
 
-        private bool exploded;
+        private bool _exploded;
 
+        public Photon.Realtime.Player Owner { get; private set; }
+
+        public void Init(Photon.Realtime.Player owner)
+        {
+            Owner = owner;
+        }
+        
         private void FixedUpdate()
         {
-            _rigidbody2D.velocity = transform.up * speed;
+            _rigidbody2D.velocity = transform.up * _speed;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {        
-            if(exploded) { return; }
+            if(_exploded) { return; }
 
             if (other.CompareTag("Ground") || other.gameObject.CompareTag("Lava"))
             {
                 Explode();
             }
-    
+
             if (other.CompareTag("Player"))
             {
-                //comparing by string name is not the best option, I would check tags or components of the object
-                if (gameObject.name != other.gameObject.name + "Bullet")
-                {
-                    other.gameObject.GetComponent<PlayerHealth>().GetDamage(10);
-                    Explode();
-                }
+                if(Equals(_photonView.Owner, other.GetComponent<PhotonView>().Owner)) return;
+                
+                PhotonNetwork.Instantiate(_bulletExplosion.name, transform.position, Quaternion.identity);
+                Destroy(gameObject);
             }
         }
-        
+
         public void Explode()
         {
-            if(!_photonView.IsMine) { return; }
-
-            exploded = true;
+            if(!_photonView.IsMine) return;
+            
+            _exploded = true;
             gameObject.SetActive(false);
 
-            PhotonNetwork.Instantiate(BulletExplosion.name, transform.position, Quaternion.identity);
+            PhotonNetwork.Instantiate(_bulletExplosion.name, transform.position, Quaternion.identity);
             PhotonNetwork.Destroy(gameObject);
         }
     }
