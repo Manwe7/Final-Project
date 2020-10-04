@@ -33,7 +33,7 @@ public class PlayerListEntry : MonoBehaviour
         }
         else
         {
-            Hashtable initialProps = new Hashtable() {{WarOfShapesGame.PlayerIsReady, _isPlayerReady}, {WarOfShapesGame.PlayerLives, WarOfShapesGame.PlayerMaxLives}};
+            Hashtable initialProps = new Hashtable() {{LobbyConstants.PlayerIsReady, _isPlayerReady}, {LobbyConstants.PlayerLives, LobbyConstants.PlayerMaxLives}};
             PhotonNetwork.LocalPlayer.SetCustomProperties(initialProps);
             PhotonNetwork.LocalPlayer.SetScore(0);
 
@@ -42,7 +42,7 @@ public class PlayerListEntry : MonoBehaviour
                 _isPlayerReady = !_isPlayerReady;
                 SetPlayerReady(_isPlayerReady);
 
-                Hashtable props = new Hashtable() {{WarOfShapesGame.PlayerIsReady, _isPlayerReady}};
+                Hashtable props = new Hashtable() {{LobbyConstants.PlayerIsReady, _isPlayerReady}};
                 PhotonNetwork.LocalPlayer.SetCustomProperties(props);
 
                 if (PhotonNetwork.IsMasterClient)
