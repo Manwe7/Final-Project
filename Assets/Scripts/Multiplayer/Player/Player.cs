@@ -22,13 +22,15 @@ namespace PlayerOnlineScripts
 
         #region Components to DeActivate
         [Header("Components to DeActivate")]
-        [SerializeField] private GameObject weapon;
+        [SerializeField] private GameObject _weapon;
 
-        [SerializeField] private GameObject fuelParticles;
+        [SerializeField] private GameObject _fuelParticles;
 
         [SerializeField] private PlayerMovement _playerMovementOnline;
 
         [SerializeField] private SpriteRenderer _spriteRenderer;
+
+        [SerializeField] private SpriteRenderer _blackSprite;
 
         [SerializeField] private BoxCollider2D _boxCollider2D;
 
@@ -49,8 +51,8 @@ namespace PlayerOnlineScripts
 
             _cinemachineVirtualCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponentInChildren<CinemachineVirtualCamera>();
             
-            _playerHealthOnline.OnPlayerDefeated += GetKilled;
-        }        
+            _playerHealthOnline.OnPlayerDefeated += KillPlayer;
+        }
 
         private void Start()
         {
@@ -64,7 +66,7 @@ namespace PlayerOnlineScripts
 
         private void OnDestroy()
         {
-            _playerHealthOnline.OnPlayerDefeated -= GetKilled;
+            _playerHealthOnline.OnPlayerDefeated -= KillPlayer;
         }
 
         private void Update()
@@ -84,25 +86,31 @@ namespace PlayerOnlineScripts
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.CompareTag(_lava))
-            {
-                _playerHealthOnline.GetDamage(1000);
-                _photonView.RPC("GetKilled", RpcTarget.AllViaServer);
-            }
+            if (!other.gameObject.CompareTag(_lava)) return;
+            
+            if (!_photonView.IsMine) return;
+                
+            _playerHealthOnline.GetDamage(1000);
+            _photonView.RPC("GetKilled", RpcTarget.AllViaServer);
+        }
+
+        private void KillPlayer()
+        {
+            if(!_photonView.IsMine) return;
+            
+            _photonView.RPC("GetKilled", RpcTarget.AllViaServer);
         }
 
         [PunRPC]
         public void GetKilled()
         {
-            if(!_photonView.IsMine) { return; }
-
             if(_killed) { return; }
 
+            _killed = true;
+            
             PhotonNetwork.Instantiate(_playerExplosion.name, transform.position, Quaternion.identity);
 
             OnDefeat?.Invoke();
-
-            _killed = true;
 
             _deathPosition = gameObject.transform.position;
 
@@ -120,21 +128,21 @@ namespace PlayerOnlineScripts
         {
             yield return new WaitForSeconds(3f);
 
-            _photonView.RPC("RespawnPlayer", RpcTarget.AllViaServer);
+            if (_photonView.IsMine)
+            {
+                _photonView.RPC("RespawnPlayer", RpcTarget.AllViaServer);
+            }
         }
 
         [PunRPC]
         public void RespawnPlayer()
         {
-            if(!_photonView.IsMine) { return; }
-            
             if (!_respawned)
             {
                 _killed = false;
 
-                int posX = UnityEngine.Random.Range(-55, 55);
-                int posy = UnityEngine.Random.Range(-7, 25);
-                gameObject.transform.position = new Vector3(posX, posy, 0);                
+                var pos = GameObject.Find("Managers").GetComponent<OnlineManager>().ChoosePos();
+                gameObject.transform.position = pos;
                 
                 SetComponentsState(true, RigidbodyType2D.Dynamic);
 
@@ -147,9 +155,10 @@ namespace PlayerOnlineScripts
         [PunRPC]
         private void SetComponentsState(bool state, RigidbodyType2D type)
         {
-            weapon.SetActive(state);
-            fuelParticles.SetActive(state);
+            _weapon.SetActive(state);
+            _fuelParticles.SetActive(state);
             _spriteRenderer.enabled = state;
+            _blackSprite.enabled = state;
             _boxCollider2D.enabled = state;
             _playerMovementOnline.enabled = state;
             _rigidbody2D.bodyType = type;

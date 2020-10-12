@@ -16,25 +16,33 @@ namespace PlayerOnlineScripts
             SetParticles(false);
         }
 
-        public override void SetDirections()
+        protected override void SetDirections()
         {
             if (!_photonView.IsMine) { return; }
 
             base.SetDirections();
         }
-        
-        public override void ControlFuel()
+
+        protected override void ControlFuel()
         {
             if (!_photonView.IsMine) { return; }
 
             base.ControlFuel();
         }
 
-        public override void Fly()
+        protected override void Fly()
         {
             if (!_photonView.IsMine) { return; }
 
-            base.Fly();
+            //base.Fly(); //Sync between players is not stable with Gravity ON
+            if (IsFlying)
+            {
+                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _verticalMove * _playerSettings._flySpeed);
+            }
+            else
+            {
+                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, -_playerSettings._flySpeed * 1.7f);
+            }
         }
     }
 }

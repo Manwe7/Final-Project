@@ -9,9 +9,12 @@ namespace PlayerOnlineScripts
 
         private void Awake()
         {
-            _joystick = GameObject.Find("Canvas/MovementJoystick").GetComponent<FixedJoystick>();
+            if (_photonView.IsMine)
+            {
+                _joystick = GameObject.Find("Canvas/MovementJoystick").GetComponent<FixedJoystick>();
+            }
         }
-
+        
         protected override void SetDirections()
         {
             if(_photonView.IsMine)
@@ -19,7 +22,7 @@ namespace PlayerOnlineScripts
                 base.SetDirections();
             }
         }
-
+        
         protected override void HorizontalMovement()
         {
             if(_photonView.IsMine)

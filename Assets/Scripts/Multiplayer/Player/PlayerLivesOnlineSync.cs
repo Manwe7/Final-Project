@@ -6,8 +6,10 @@ namespace PlayerOnlineScripts
     public class PlayerLivesOnlineSync : MonoBehaviour
     {
         [SerializeField] private Player _player;
+        
+        [SerializeField] private PhotonView _photonView;
 
-        private ExitGames.Client.Photon.Hashtable _myCustomProperties = new ExitGames.Client.Photon.Hashtable();
+        private readonly ExitGames.Client.Photon.Hashtable _myCustomProperties = new ExitGames.Client.Photon.Hashtable();
 
         private int _remainingLives;
 
@@ -18,6 +20,8 @@ namespace PlayerOnlineScripts
 
         private void Start()
         {
+            if(!_photonView.IsMine) return;
+
             _remainingLives = 3;
             SetLives(_remainingLives);
         }
@@ -29,12 +33,16 @@ namespace PlayerOnlineScripts
 
         private void SetLives(int value)
         {
+            if(!_photonView.IsMine) return;
+            
             _myCustomProperties[ShowScoreOnline.LivesSaveKey] = value;
             PhotonNetwork.SetPlayerCustomProperties(_myCustomProperties);
         }
 
-        public void DecreaseOneLife()
+        private void DecreaseOneLife()
         {
+            if(!_photonView.IsMine) return;
+            
             _remainingLives -= 1;
             SetLives(_remainingLives);
         }

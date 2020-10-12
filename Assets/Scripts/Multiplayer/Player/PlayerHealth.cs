@@ -8,20 +8,21 @@ namespace PlayerOnlineScripts
     {
         [SerializeField] private PhotonView _photonView;
 
-        [SerializeField] private PlayerOnlineScripts.Player _playerOnline;
+        [SerializeField] private Player _playerOnline;
 
         private void Awake()
         {
-            if (!_photonView.IsMine) { return; }
+            if (!_photonView.IsMine) return;
 
             _healthSlider = GameObject.Find("Canvas/PlayerHealthSlider").GetComponent<Slider>();
+            _cameraShake = GameObject.Find("Main Camera").GetComponent<CameraShake>();
 
             _playerOnline.OnRespawn += SetLifeProperties;
         }
 
-        public override void SetLifeProperties()
+        protected override void SetLifeProperties()
         {
-            if (!_photonView.IsMine) { return; }
+            if (!_photonView.IsMine) return;
 
             base.SetLifeProperties();
         }
@@ -31,12 +32,12 @@ namespace PlayerOnlineScripts
             _playerOnline.OnRespawn -= SetLifeProperties;
         }
 
-        private void ChangeHealth()
+        protected override void ChangeHealth(float health)
         {
-            if (!_photonView.IsMine) { return; }
+            if (!_photonView.IsMine) return;
 
-            _healthSlider.value = _health;
-            if (_health <= 0)
+            _healthSlider.value = health;
+            if (health <= 0)
             {
                 _photonView.RPC("GetKilled", RpcTarget.AllViaServer);
             }
@@ -44,18 +45,32 @@ namespace PlayerOnlineScripts
 
         public void GetDamage(int damage)
         {
+            _cameraShake.ShakeCameraOnce(1.7f);
             if (_photonView.IsMine)
             {
                 _health -= damage;
             }
-            ChangeHealth();
+            ChangeHealth(_health);
         }
 
-        public override void GetKilled()
+        protected override void GetKilled()
         {
-            if (!_photonView.IsMine) { return; }
+            if (!_photonView.IsMine) return;
 
             base.GetKilled();
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if(!_photonView.IsMine) return;
+
+            if (!other.CompareTag("Bullet")) return;
+            
+            if(Equals(_photonView.Owner, other.GetComponent<PhotonView>().Owner)) return;
+            
+            GetDamage(10);
+            other.gameObject.SetActive(false);
+            other.GetComponent<Bullet>().Explode();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace PlayerOnlineScripts
 
         private void OnEnable()
         {
-            _reloadTime = 0.3f;
+            _reloadTime = 0.5f;
             _reloaded = true;
         }
 
@@ -21,18 +21,20 @@ namespace PlayerOnlineScripts
         {
             if (!_photonView.IsMine) { return; }
 
-            if (_reloaded)
-            {
-                ShootBullet();
-                StartCoroutine(Reload());
-            }
+            if (!_reloaded) return;
+            
+            _photonView.RPC("ShootBullet", RpcTarget.All);
+            StartCoroutine(Reload());
         }
         
         [PunRPC]
         public void ShootBullet()
         {
-            GameObject bullet = PhotonNetwork.Instantiate(_bulletOnline.name, _barrel.position, _barrel.rotation);
-            bullet.name = _parent.gameObject.name + "Bullet";
+            if (!_photonView.IsMine) return;
+            
+            var bullet = PhotonNetwork.Instantiate(_bulletOnline.name, _barrel.position, _barrel.rotation);
+            //bullet.name = _parent.gameObject.name + "Bullet";
+            bullet.GetComponent<Bullet>().Init(_photonView.Owner);
         }        
     }
 }
