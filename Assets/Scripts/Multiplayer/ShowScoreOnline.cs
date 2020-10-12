@@ -14,9 +14,22 @@ public class ShowScoreOnline : MonoBehaviourPunCallbacks
 
     private int _savedLives;
 
-    public void Update()
+    private void Update()
     {        
         CheckPlayerHealth();
+
+        CheckForEmptyText();
+    }
+
+    private void CheckForEmptyText()
+    {
+        foreach (var t in _playerScore)
+        {
+            if (t.text == "")
+            {
+                SetPlayerText();
+            }
+        }
     }
 
     private void CheckPlayerHealth()
