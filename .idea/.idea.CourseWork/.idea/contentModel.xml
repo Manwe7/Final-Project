@@ -452,10 +452,10 @@
           </e>
           <e p="Lobby" t="Include">
             <e p="Lobby.cs" t="Include" />
+            <e p="LobbyConstants.cs" t="Include" />
             <e p="PlayerListEntry.cs" t="Include" />
             <e p="RoomListEntry.cs" t="Include" />
           </e>
-          <e p="LobbyConstants.cs" t="Include" />
           <e p="Managers" t="Include">
             <e p="AdsManager.cs" t="Include" />
             <e p="GameSessionScore.cs" t="Include" />

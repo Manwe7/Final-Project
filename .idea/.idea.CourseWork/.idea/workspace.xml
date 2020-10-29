@@ -10,9 +10,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/LobbyConstants.cs" root0="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -38,7 +35,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerWeapon.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerHealth.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/ShowScoreOnline.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Bullet.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player/JetPack.cs" />
@@ -47,6 +43,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/Lobby.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LobbyConstants.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Bullet.cs" />
       </list>
     </option>
   </component>
@@ -119,6 +116,8 @@
       <workItem from="1601807918133" duration="1000" />
       <workItem from="1601808229536" duration="118000" />
       <workItem from="1601808678462" duration="2663000" />
+      <workItem from="1603049019993" duration="30000" />
+      <workItem from="1603049362866" duration="1773000" />
     </task>
     <servers />
   </component>
