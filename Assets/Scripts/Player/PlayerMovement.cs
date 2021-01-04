@@ -6,12 +6,10 @@ namespace PlayerOfflineScipts
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] protected Joystick _joystick;
-
         [SerializeField] protected Rigidbody2D _rigidbody2D;
-
         [SerializeField] protected PlayerSettings _playerSettings;
 
-        protected float _horizontalMove;
+        private float _horizontalMove;
 
         private void Update()
         {

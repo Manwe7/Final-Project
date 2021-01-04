@@ -5,7 +5,6 @@ namespace PlayerOfflineScipts
     public class PlayerWeaponPosition : BaseWeaponPosition
     {
         [SerializeField] protected Joystick _weaponJoystick;
-
         [SerializeField] protected RectTransform _joystickHandle;
 
         protected void Start()

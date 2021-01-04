@@ -15,14 +15,14 @@ namespace PlayerOnlineScripts
             _playerFuelSlider = GameObject.Find("Canvas/PlayerFuelSlider").GetComponent<Slider>();
         }
 
-        public override void SetFuelProperties()
+        protected override void SetFuelProperties()
         {
             if (!_photonView.IsMine) { return; }
 
             base.SetFuelProperties();
         }
 
-        public override void CheckFuelValues()
+        protected override void CheckFuelValues()
         {
             if (!_photonView.IsMine) { return; }
 

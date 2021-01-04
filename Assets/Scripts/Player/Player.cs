@@ -4,13 +4,10 @@ namespace PlayerOfflineScipts
 {
     public class Player : MonoBehaviour
     {
-        [Header("Scipts")]
+        [Header("Scripts")]
         [SerializeField] private SoundPlayer _audioManager;
-        
         [SerializeField] private PlayerHealth _playerHealth;
-        
         [SerializeField] private CameraShake _cameraShake;
-        
         [SerializeField] private Pooler _pooler;
 
         [Header("Objects")]

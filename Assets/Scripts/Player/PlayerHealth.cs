@@ -8,9 +8,7 @@ namespace PlayerOfflineScipts
     public class PlayerHealth : MonoBehaviour, IDamageable
     {
         [SerializeField] protected Slider _healthSlider;
-
         [SerializeField] protected CameraShake _cameraShake;
-
         [SerializeField] private AdsManager _adsManager;
 
         public int _health;

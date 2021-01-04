@@ -7,17 +7,13 @@ namespace PlayerOfflineScipts
     public class FuelHandler : MonoBehaviour
     {
         [SerializeField] protected Slider _playerFuelSlider;
-        
-        protected float _maxfuelCapacity = 30;
-        
-        protected float _fuelCapacity;
 
-        protected bool _shouldDelayFuelRestoring;
-                
-        
-        protected bool _isRestoringFuel => _fuelCapacity < _maxfuelCapacity && !_shouldDelayFuelRestoring;
+        private float _maxFuelCapacity = 30;
+        private float _fuelCapacity;
+        private bool _shouldDelayFuelRestoring;
 
-        protected bool _delayRestoreFuel => _fuelCapacity <= 0 && !_shouldDelayFuelRestoring;
+        private bool IsRestoringFuel => _fuelCapacity < _maxFuelCapacity && !_shouldDelayFuelRestoring;
+        private bool DelayRestoreFuel => _fuelCapacity <= 0 && !_shouldDelayFuelRestoring;
 
         public bool HasFuel => _fuelCapacity > 0;
 
@@ -26,10 +22,10 @@ namespace PlayerOfflineScipts
             SetFuelProperties();
         }
 
-        public virtual void SetFuelProperties()
+        protected virtual void SetFuelProperties()
         {
-            _fuelCapacity = _maxfuelCapacity;
-            _playerFuelSlider.maxValue = _maxfuelCapacity;
+            _fuelCapacity = _maxFuelCapacity;
+            _playerFuelSlider.maxValue = _maxFuelCapacity;
         }
 
         private void Update()
@@ -37,9 +33,9 @@ namespace PlayerOfflineScipts
             CheckFuelValues();
         }
 
-        public virtual void CheckFuelValues()
+        protected virtual void CheckFuelValues()
         {
-            if (_delayRestoreFuel)
+            if (DelayRestoreFuel)
             {
                 StartCoroutine(DelayRestoringFuel());
             }
@@ -47,12 +43,12 @@ namespace PlayerOfflineScipts
             SetSliderValue(_fuelCapacity);
         }
 
-        protected void SetSliderValue(float capacity)
+        private void SetSliderValue(float capacity)
         {
             _playerFuelSlider.value = _fuelCapacity;
         }
 
-        protected IEnumerator DelayRestoringFuel()
+        private IEnumerator DelayRestoringFuel()
         {
             _shouldDelayFuelRestoring = true;
             yield return new WaitForSeconds(1f);
@@ -63,7 +59,7 @@ namespace PlayerOfflineScipts
 
         public void RestoreFuel()
         {
-            if(_isRestoringFuel)
+            if(IsRestoringFuel)
             {
                 _fuelCapacity += 0.1f;
             }

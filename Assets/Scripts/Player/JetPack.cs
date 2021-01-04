@@ -6,17 +6,12 @@ namespace PlayerOfflineScipts
     public class JetPack : MonoBehaviour
     {
         [SerializeField] protected Joystick _joystick;
-        
-        [SerializeField] protected Rigidbody2D _rigidbody2D;        
-        
+        [SerializeField] protected Rigidbody2D _rigidbody2D;
         [SerializeField] protected GameObject _fuelParticles;
-
         [SerializeField] protected FuelHandler _fuelHandler;
-
         [SerializeField] protected PlayerSettings _playerSettings;
 
         protected float _verticalMove;
-
         protected bool IsFlying => _verticalMove > 0.18f && _fuelHandler.HasFuel;
 
         private void Start()
