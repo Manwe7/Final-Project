@@ -35,6 +35,22 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameSessionScore.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Pooler.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/SoundPlayer.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/EndGamePanel.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/JetPack.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/Player.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerHealth.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerLivesOnlineSync.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerWeapon.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/AutoDestroyOnline.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Bullet.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/LobbyManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/ShowScoreOnline.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/FuelHandler.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/JetPack.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerHealth.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerWeaponPosition.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mc5Geqqoz7Sc1bq4okBWIsbpD2" />

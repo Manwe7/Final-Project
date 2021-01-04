@@ -10,7 +10,6 @@ public class PauseUI : MonoBehaviour
 
     [Header("Scripts")]
     [SerializeField] private GameSpeed _gameSpeed;
-
     [SerializeField] private GamePlayUI _gamePlayUI;
 
     [Header("Record on pause panel")]

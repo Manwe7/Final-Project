@@ -8,7 +8,6 @@ public class DefeatUI : MonoBehaviour
 {
     [Header("Scripts")]
     [SerializeField] private PlayerOfflineScipts.PlayerHealth _playerHealth;
-
     [SerializeField] private GameSpeed _gameSpeed;
 
     [Header("Defeat panel")]
@@ -16,15 +15,11 @@ public class DefeatUI : MonoBehaviour
 
     [Header("Record on defeat panel")]
     [SerializeField] private Text _defeatRecordText;
-
     [SerializeField] private GameObject _adsPanel;
 
     private int _record;
-
     private bool _isAdsPanelOpened;
-
     private IRepo<SaveAttributes> _repoInt;
-
     private SaveAttributes _saveAttributes;
 
     private void Awake()
