@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxTime: 7
   _minTime: 17
+  _movementSpeed: 5
+  _movementDistance: 7

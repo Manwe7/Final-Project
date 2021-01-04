@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using System;
+using Interfaces;
 
 public class SaveClassRepo : IRepo<SaveAttributes>
 {
