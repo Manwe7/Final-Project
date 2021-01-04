@@ -12,8 +12,9 @@ public class FloatingPlatform : MonoBehaviour
 
     private void Start()
     {
-        _pointA = new Vector2(transform.position.x, transform.position.y + 4f);
-        _pointB = new Vector2(transform.position.x, transform.position.y - 4f);
+        var position = transform.position;
+        _pointA = new Vector2(position.x, position.y + 4f);
+        _pointB = new Vector2(position.x, position.y - 4f);
     }
 
     private void Update()

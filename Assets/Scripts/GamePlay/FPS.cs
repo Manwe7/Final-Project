@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class FPS : MonoBehaviour
 {
-    [SerializeField] private Text _fpsText = null;
-    private float deltaTime;
+    [SerializeField] private Text _fpsText;
+    private float _deltaTime;
 
     private void Awake()
     {
@@ -18,8 +18,8 @@ public class FPS : MonoBehaviour
 
     private void ShowFPS()
     {
-        deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
-        float fps = 1.0f / deltaTime;
-        _fpsText.text = Mathf.Ceil(fps).ToString();
+        _deltaTime += (Time.deltaTime - _deltaTime) * 0.1f;
+        var fps = 1.0f / _deltaTime;
+        _fpsText.text = $"{Mathf.Ceil(fps)}";
     }
 }

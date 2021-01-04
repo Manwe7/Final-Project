@@ -1,3 +1,4 @@
+using ScriptableObjects;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -9,14 +10,10 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject _player;
 
     [Header("Scripts")]
-    [SerializeField] private Pooler _pooler;    
-    
-    [SerializeField] private GameSessionScore _scoreManager;    
-    
-    [SerializeField] private SoundPlayer _soundPlayer;    
-    
+    [SerializeField] private Pooler _pooler;
+    [SerializeField] private GameSessionScore _scoreManager;
+    [SerializeField] private SoundPlayer _soundPlayer;
     [SerializeField] private CameraShake _cameraShake;
-
     [SerializeField] private EnemySpawnerSettings _enemySpawnerSettings;
 
     private float _time, _spawnTime;    
@@ -31,11 +28,10 @@ public class EnemySpawner : MonoBehaviour
     {        
         _time += Time.deltaTime;
 
-        if(_time >= _spawnTime)
-        {
-            SpawnObject();
-            SetSpawnTime();
-        }
+        if (!(_time >= _spawnTime)) return;
+        
+        SpawnObject();
+        SetSpawnTime();
     }
     
     private void SpawnObject()

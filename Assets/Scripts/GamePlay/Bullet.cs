@@ -1,15 +1,13 @@
+using Interfaces;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rigidbody2D;
-
-    [SerializeField] private GameObject _explosionName;    
-    
-    [SerializeField] private float _speed = 0;
+    [SerializeField] private GameObject _explosionName;
+    [SerializeField] private float _speed;
     
     private IDamageable _damageable;
-    
     private Pooler _pooler;
     
     public void Awake()
@@ -27,10 +25,7 @@ public class Bullet : MonoBehaviour
         if(other.GetComponent<Bullet>() != null) { return; }
         
         _damageable = other.GetComponent<IDamageable>();
-        if(_damageable != null)
-        {
-            _damageable.ApplyDamage(10);
-        }        
+        _damageable?.ApplyDamage(10);
         Explode();
     }
 

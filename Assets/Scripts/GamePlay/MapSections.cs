@@ -3,42 +3,40 @@
 public class MapSections : MonoBehaviour
 {
     [Header("Sections")]
-    [SerializeField] private GameObject[] LeftSection = null;
-    [SerializeField] private GameObject[] CenterSection = null;    
-    [SerializeField] private GameObject[] RightSection = null;
+    [SerializeField] private GameObject[] _leftSection;
+    [SerializeField] private GameObject[] _centerSection;    
+    [SerializeField] private GameObject[] _rightSection;
 
-    private int _leftSectionMap, _CenterSectionMap, _rightSectionMap;
+    private int _leftSectionMap, _centerSectionMap, _rightSectionMap;
 
     private void Start()
     {
         DeActivateAllSections();
-
         SelectRandomMap();
-
-        ActivateChoosenMap();        
+        ActivateChosenMap();        
     }
 
     private void DeActivateAllSections()
     {
-        for (int i = 0; i < LeftSection.Length; i++)
+        for (var i = 0; i < _leftSection.Length; i++)
         {
-            LeftSection[i].SetActive(false);
-            CenterSection[i].SetActive(false);
-            RightSection[i].SetActive(false);
+            _leftSection[i].SetActive(false);
+            _centerSection[i].SetActive(false);
+            _rightSection[i].SetActive(false);
         }
     }
 
     private void SelectRandomMap()
     {
-        _leftSectionMap = Random.Range(0, LeftSection.Length);
-        _CenterSectionMap = Random.Range(0, CenterSection.Length);
-        _rightSectionMap = Random.Range(0, RightSection.Length);
+        _leftSectionMap = Random.Range(0, _leftSection.Length);
+        _centerSectionMap = Random.Range(0, _centerSection.Length);
+        _rightSectionMap = Random.Range(0, _rightSection.Length);
     }
 
-    private void ActivateChoosenMap()
+    private void ActivateChosenMap()
     {
-        LeftSection[_leftSectionMap].SetActive(true);
-        CenterSection[_CenterSectionMap].SetActive(true);
-        RightSection[_rightSectionMap].SetActive(true);
+        _leftSection[_leftSectionMap].SetActive(true);
+        _centerSection[_centerSectionMap].SetActive(true);
+        _rightSection[_rightSectionMap].SetActive(true);
     }
 }

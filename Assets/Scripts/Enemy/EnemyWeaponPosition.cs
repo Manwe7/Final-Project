@@ -18,7 +18,7 @@ public class EnemyWeaponPosition : BaseWeaponPosition
     {
         if(_player == null) { return; }
         
-        Vector3 playerPos = _player.transform.position;
+        var playerPos = _player.transform.position;
 
         _direction = _player.transform.position - transform.position;
         _rotationZ = Mathf.Atan2(_direction.y,_direction.x) * Mathf.Rad2Deg;
@@ -32,16 +32,4 @@ public class EnemyWeaponPosition : BaseWeaponPosition
             SetToRightSide(_rotationZ + _offset);
         }
     }
-
-    // private void SetToRightSide()
-    // {                
-    //     transform.rotation = Quaternion.Euler(0, 0f, _rotationZ + _offset);
-    //     transform.position = GetPosition(0.3f);
-    // }
-
-    // private void SetToLeftSide()
-    // {     
-    //     transform.rotation = Quaternion.Euler(-180f, 0f, -_rotationZ + _offset);
-    //     transform.position = GetPosition(-0.3f);
-    // }
 }

@@ -1,3 +1,4 @@
+using ScriptableObjects;
 using UnityEngine;
 
 public class EnemyWeapon : BaseWeapon
@@ -34,6 +35,6 @@ public class EnemyWeapon : BaseWeapon
 
     private void SetRandomReloadTime()
     {
-        _reloadTime = Random.Range(_enemyWeaponSettings._maxReloadTime, _enemyWeaponSettings._maxReloadTime);
+        _reloadTime = Random.Range(_enemyWeaponSettings._minReloadTime, _enemyWeaponSettings._maxReloadTime);
     }
 }
