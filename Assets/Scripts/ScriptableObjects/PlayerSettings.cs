@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "PlayerSettings")]
-public class PlayerSettings : ScriptableObject
+namespace ScriptableObjects
 {
-    public float _moveSpeed;
+    [CreateAssetMenu(menuName = "PlayerSettings")]
+    public class PlayerSettings : ScriptableObject
+    {
+        public float _moveSpeed;
 
-    public float _flySpeed;
+        public float _flySpeed;
+    }
 }

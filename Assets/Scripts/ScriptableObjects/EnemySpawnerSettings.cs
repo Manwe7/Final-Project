@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "EnemySpawnerSettings")]
-public class EnemySpawnerSettings : ScriptableObject
+namespace ScriptableObjects
 {
-    public float _maxTime;
-    
-    public float _minTime;
+    [CreateAssetMenu(menuName = "EnemySpawnerSettings")]
+    public class EnemySpawnerSettings : ScriptableObject
+    {
+        public float _maxTime;
+        public float _minTime;
+        public float _movementSpeed;
+        public float _movementDistance;
+    }
 }

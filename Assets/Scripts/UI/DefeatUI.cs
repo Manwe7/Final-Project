@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using Interfaces;
 using UnityEngine.UI;
 
 public class DefeatUI : MonoBehaviour

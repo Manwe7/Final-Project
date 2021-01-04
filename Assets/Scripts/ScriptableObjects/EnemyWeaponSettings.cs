@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "EnemyWeaponSettings")]
-public class EnemyWeaponSettings : ScriptableObject
+namespace ScriptableObjects
 {
-    public int _minReloadTime;
+    [CreateAssetMenu(menuName = "EnemyWeaponSettings")]
+    public class EnemyWeaponSettings : ScriptableObject
+    {
+        public int _minReloadTime;
 
-    public int _maxReloadTime;
+        public int _maxReloadTime;
+    }
 }
