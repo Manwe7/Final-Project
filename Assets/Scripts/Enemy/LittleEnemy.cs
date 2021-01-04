@@ -2,7 +2,7 @@
 
 public class LittleEnemy : BaseEnemy
 {
-    protected override int _scoreWeight => 5;
+    protected override int ScoreWeight => 5;
 
     private void OnEnable()
     {

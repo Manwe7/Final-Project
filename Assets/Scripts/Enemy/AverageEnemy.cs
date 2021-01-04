@@ -2,7 +2,7 @@
 
 public class AverageEnemy : BaseEnemy
 {
-    protected override int _scoreWeight => 10;
+    protected override int ScoreWeight => 10;
     
     private void OnEnable()
     {        

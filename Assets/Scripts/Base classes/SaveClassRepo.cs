@@ -11,14 +11,14 @@ public class SaveClassRepo : IRepo<SaveAttributes>
 
     public void Save(SaveAttributes value)
     {
-        string json = JsonUtility.ToJson(value);
+        var json = JsonUtility.ToJson(value);
         File.WriteAllText(_filePath, json);
 
         //Encode json
-        byte[] bytesToEncode = Encoding.UTF8.GetBytes(json);
-        string encodedText = Convert.ToBase64String(bytesToEncode);
+        var bytesToEncode = Encoding.UTF8.GetBytes(json);
+        var encodedText = Convert.ToBase64String(bytesToEncode);
         
-        //Save to playreprefs
+        //Save to player prefs
         PlayerPrefs.SetString(_backUpKey, encodedText);
     }
 
@@ -26,29 +26,25 @@ public class SaveClassRepo : IRepo<SaveAttributes>
     {
         if(File.Exists(_filePath))
         {          
-            string savedString = File.ReadAllText(_filePath);
-            SaveAttributes myObject = JsonUtility.FromJson<SaveAttributes>(savedString);
+            var savedString = File.ReadAllText(_filePath);
+            var myObject = JsonUtility.FromJson<SaveAttributes>(savedString);
 
-            string backUp = PlayerPrefs.GetString(_backUpKey, "");
+            var backUp = PlayerPrefs.GetString(_backUpKey, "");
             
             //Decode json
-            byte[] decodedBytes = Convert.FromBase64String(backUp);
-            string decodedText = Encoding.UTF8.GetString(decodedBytes);
+            var decodedBytes = Convert.FromBase64String(backUp);
+            var decodedText = Encoding.UTF8.GetString(decodedBytes);
 
-            if(savedString != decodedText)
-            {
-                savedString = backUp;
-                SaveAttributes backUpObject = JsonUtility.FromJson<SaveAttributes>(savedString);
+            if (savedString == decodedText) return myObject;
+            
+            savedString = backUp;
+            var backUpObject = JsonUtility.FromJson<SaveAttributes>(savedString);
 
-                return backUpObject;
-            }
+            return backUpObject;
 
-            return myObject;
         }
-        else
-        {
-            return new SaveAttributes();
-        }
+      
+        return new SaveAttributes();
     }
 
     //Saves JSON in assets

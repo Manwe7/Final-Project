@@ -1,38 +1,29 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public abstract class BaseEnemy : MonoBehaviour, IDamageable
 { 
     [Header("Components")]
     [SerializeField] protected GameObject _enemyExplosion;
-
     [SerializeField] protected Rigidbody2D _rigidbody2D;
-
     [SerializeField] private EnemyWeapon _weapon;
-
     [SerializeField] private EnemyWeaponPosition _weaponPosition;
 
     [Header("Stats")]
     [SerializeField] private float _speed;
-
     [SerializeField] protected float _jumpForce;
 
     private SoundPlayer _soundPlayer;
-    
     private CameraShake _cameraShake;
-    
-    private float _jumpTime;
-
     private GameSessionScore _scoreManager;
-
     private GameObject _player;
-
     private Pooler _pooler;
-
+    private float _jumpTime;
     protected float _health;
-
     protected float _distance;
 
-    protected abstract int _scoreWeight { get; }
+    protected abstract int ScoreWeight { get; }
 
     public void Init(GameObject player, Pooler pooler, CameraShake cameraShake, GameSessionScore scoreManager, SoundPlayer soundPlayer)
     {
@@ -103,7 +94,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageable
 
     private bool IsOnDistance()
     {
-        return Mathf.Round(_player.transform.position.x + _distance) == Mathf.Round(transform.position.x);
+        return Math.Abs(Mathf.Round(_player.transform.position.x + _distance) - Mathf.Round(transform.position.x)) < 0.1f;
     }
 
     private void MoveToPlayer(float speed)
@@ -117,15 +108,14 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageable
         _soundPlayer.Play(SoundNames.Hurt);
         _health -= damage;
 
-        if (_health <= 0)
-        {
-            _soundPlayer.Play(SoundNames.EnemyDeath); 
-            _scoreManager.AddScore(_scoreWeight);
+        if (!(_health <= 0)) return;
+        
+        _soundPlayer.Play(SoundNames.EnemyDeath); 
+        _scoreManager.AddScore(ScoreWeight);
 
-            _pooler.GetPooledObject(_enemyExplosion.name, transform.position, Quaternion.identity);            
+        _pooler.GetPooledObject(_enemyExplosion.name, transform.position, Quaternion.identity);            
 
-            gameObject.SetActive(false);
-        }
+        gameObject.SetActive(false);
     }
 
     private void ShakeCamera()

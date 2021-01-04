@@ -2,7 +2,7 @@
 
 public class MegaEnemy : BaseEnemy
 {
-    protected override int _scoreWeight => 15;
+    protected override int ScoreWeight => 15;
 
     private void OnEnable()
     {
