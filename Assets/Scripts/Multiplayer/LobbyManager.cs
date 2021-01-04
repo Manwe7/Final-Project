@@ -8,23 +8,18 @@ using PlayerOnlineScripts;
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Button _createRoom, _specificRoom, _randomRoom;
-
     [SerializeField] private Text _createRoomText, _specificRoomText, _randomRoomText;
     
     [Header("Nickname Input")]
     [SerializeField] private InputField _nicknameInput;
-
     [SerializeField] private InputField _roomNameInput;
 
     [Header("Error panels")]
     [SerializeField] private GameObject _nickNameError;
-
     [SerializeField] private GameObject _roomNameError;
-
     [SerializeField] private GameObject _noRoomError;
 
     private byte _enableColor = 245;
-
     private byte _disableColor = 150;
 
     private void Start()

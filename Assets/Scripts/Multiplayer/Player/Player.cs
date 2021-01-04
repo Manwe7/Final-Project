@@ -9,9 +9,7 @@ namespace PlayerOnlineScripts
     public class Player : MonoBehaviourPun
     {
         [SerializeField] private PhotonView _photonView;
-
         [SerializeField] private PlayerHealth _playerHealthOnline;
-
         [SerializeField] private PlayerLivesOnlineSync _playerLivesOnlineSync;
 
         [Header("Objects")]
@@ -23,26 +21,17 @@ namespace PlayerOnlineScripts
         #region Components to DeActivate
         [Header("Components to DeActivate")]
         [SerializeField] private GameObject _weapon;
-
         [SerializeField] private GameObject _fuelParticles;
-
         [SerializeField] private PlayerMovement _playerMovementOnline;
-
         [SerializeField] private SpriteRenderer _spriteRenderer;
-
         [SerializeField] private SpriteRenderer _blackSprite;
-
         [SerializeField] private BoxCollider2D _boxCollider2D;
-
         [SerializeField] private Rigidbody2D _rigidbody2D;
         #endregion
 
         private Vector2 _deathPosition;
-
         private bool _respawned;
-
         private bool _killed;
-
         private CinemachineVirtualCamera _cinemachineVirtualCamera;
 
         private void Awake()

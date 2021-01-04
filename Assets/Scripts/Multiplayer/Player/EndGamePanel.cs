@@ -8,11 +8,9 @@ namespace PlayerOnlineScripts
     public class EndGamePanel : MonoBehaviourPun
     {
         [SerializeField] private PlayerLivesOnlineSync _playerLivesOnlineSync;
-
         [SerializeField] private PhotonView _photonView;
 
         private GameObject _endPanel;
-
         private Text _endPanelText;
 
         private void Awake()
@@ -44,11 +42,11 @@ namespace PlayerOnlineScripts
 
         private void OpenEndGamePanel()
         {
-            for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+            for (var i = 0; i < PhotonNetwork.PlayerList.Length; i++)
             {
                 if(PhotonNetwork.PlayerList[i].CustomProperties[ShowScoreOnline.LivesSaveKey] != null)
                 {
-                    int lives = (int)PhotonNetwork.PlayerList[i].CustomProperties[ShowScoreOnline.LivesSaveKey];
+                    var lives = (int)PhotonNetwork.PlayerList[i].CustomProperties[ShowScoreOnline.LivesSaveKey];
                     if(lives <= 0)
                     {
                         StartCoroutine(StopGame());
@@ -63,14 +61,7 @@ namespace PlayerOnlineScripts
             Time.timeScale = 0.1f;
             _endPanel.SetActive(true);
             
-            if(_playerLivesOnlineSync.IsEnoughLives())
-            {
-                _endPanelText.text = "VICTORY";
-            }
-            else
-            {
-                _endPanelText.text = "DEFEAT";
-            }
+            _endPanelText.text = _playerLivesOnlineSync.IsEnoughLives() ? "VICTORY" : "DEFEAT";
         }
     }
 }

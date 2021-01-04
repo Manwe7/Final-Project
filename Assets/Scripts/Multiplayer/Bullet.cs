@@ -13,7 +13,6 @@ namespace PlayerOnlineScripts
         
         [Header("Components")]
         [SerializeField] private Rigidbody2D _rigidbody2D;
-
         [SerializeField] private PhotonView _photonView;
 
         private bool _exploded;

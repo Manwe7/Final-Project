@@ -6,11 +6,9 @@ namespace PlayerOnlineScripts
     public class PlayerLivesOnlineSync : MonoBehaviour
     {
         [SerializeField] private Player _player;
-        
         [SerializeField] private PhotonView _photonView;
 
         private readonly ExitGames.Client.Photon.Hashtable _myCustomProperties = new ExitGames.Client.Photon.Hashtable();
-
         private int _remainingLives;
 
         private void Awake()

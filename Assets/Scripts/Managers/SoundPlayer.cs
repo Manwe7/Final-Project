@@ -21,7 +21,7 @@ public class SoundPlayer: MonoBehaviour
     
     public void Play(SoundNames soundName)
     {
-        Sound s = Array.Find(sounds, sound => sound.SoundName == soundName);
+        var s = Array.Find(sounds, sound => sound.SoundName == soundName);
         
         if(s == null)
         {

@@ -7,7 +7,6 @@ namespace PlayerOnlineScripts
     public class PlayerHealth : PlayerOfflineScipts.PlayerHealth
     {
         [SerializeField] private PhotonView _photonView;
-
         [SerializeField] private Player _playerOnline;
 
         private void Awake()

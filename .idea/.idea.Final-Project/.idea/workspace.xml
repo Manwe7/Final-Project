@@ -29,6 +29,12 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Interfaces/ISaveRepo.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Interfaces/IDamageable.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/Lobby.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/PlayerListEntry.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/RoomListEntry.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/AdsManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameSessionScore.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Pooler.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/SoundPlayer.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mc5Geqqoz7Sc1bq4okBWIsbpD2" />

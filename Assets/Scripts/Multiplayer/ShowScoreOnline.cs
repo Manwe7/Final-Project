@@ -34,7 +34,7 @@ public class ShowScoreOnline : MonoBehaviourPunCallbacks
 
     private void CheckPlayerHealth()
     {
-        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+        for (var i = 0; i < PhotonNetwork.PlayerList.Length; i++)
         {
             if(PhotonNetwork.PlayerList[i].CustomProperties.ContainsKey(LivesSaveKey))
             {
@@ -52,7 +52,7 @@ public class ShowScoreOnline : MonoBehaviourPunCallbacks
 
     private void SetPlayerText()
     {
-        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+        for (var i = 0; i < PhotonNetwork.PlayerList.Length; i++)
         {
             _playerName[i].text = PhotonNetwork.PlayerList[i].NickName;
 

@@ -5,27 +5,25 @@ using UnityEngine.Advertisements;
 public class AdsManager : MonoBehaviour, IUnityAdsListener
 {
     [SerializeField] private GameSpeed _gameSpeed;
-
     [SerializeField] private GameObject _player;
-
     [SerializeField] private GameObject _adsPanel;
 
-    private readonly string _adsID = "3772605";
-    
+    private const string AdsID = "3772605";
+
     private void Awake()
     {
         //Set ADS
         Advertisement.AddListener(this);
-        Advertisement.Initialize(_adsID, true);
+        Advertisement.Initialize(AdsID, true);
     }
 
     public void WatchAnAd(string p)
     {
-        if (Advertisement.IsReady(_adsID))
+        if (Advertisement.IsReady(AdsID))
         {
             //Set ADS
             Advertisement.AddListener(this);
-            Advertisement.Initialize(_adsID, true);
+            Advertisement.Initialize(AdsID, true);
         }
 
         Advertisement.Show(p);

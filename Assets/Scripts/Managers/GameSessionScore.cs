@@ -5,18 +5,14 @@ public class GameSessionScore : MonoBehaviour
 {
     [Header("Scripts")]
     [SerializeField] private PlayerOfflineScipts.PlayerHealth _playerHealth;
-
     [SerializeField] private GamePlayUI _gamePlayUI;
 
     private bool _isNewRecord;
-
     private int _record;
-
     private int _score;
 
     private IRepo<SaveAttributes> _repoInt;
-
-    SaveAttributes _saveAttributes;
+    private SaveAttributes _saveAttributes;
 
     private void Awake()
     {     
@@ -39,12 +35,11 @@ public class GameSessionScore : MonoBehaviour
     }
     
     private void SaveRecord()
-    {        
-        if (_isNewRecord)
-        {
-            _saveAttributes.Record = _score;
-            _repoInt.Save(_saveAttributes);
-        }
+    {
+        if (!_isNewRecord) return;
+        
+        _saveAttributes.Record = _score;
+        _repoInt.Save(_saveAttributes);
     }
 
     public void AddScore(int score)
@@ -52,10 +47,9 @@ public class GameSessionScore : MonoBehaviour
         _score += score;
         _gamePlayUI.SetScoreText(_score);
 
-        if (_record < _score)
-        {
-            _record = _score;
-            _isNewRecord = true;
-        }        
+        if (_record >= _score) return;
+        
+        _record = _score;
+        _isNewRecord = true;
     }
 }

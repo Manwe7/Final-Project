@@ -7,7 +7,7 @@ public class AutoDestroyOnline : MonoBehaviour
 
     private void OnEnable()
     {
-        Invoke("SelfDestroy", 4f);
+        Invoke(nameof(SelfDestroy), 4f);
     }
 
     private void SelfDestroy()

@@ -6,9 +6,6 @@ namespace PlayerOnlineScripts
     public class PlayerWeapon : BaseWeapon
     {
         [SerializeField] private PhotonView _photonView;
-
-        [SerializeField] private Transform _parent;
-
         [SerializeField] private GameObject _bulletOnline;
 
         private void OnEnable()
@@ -33,7 +30,6 @@ namespace PlayerOnlineScripts
             if (!_photonView.IsMine) return;
             
             var bullet = PhotonNetwork.Instantiate(_bulletOnline.name, _barrel.position, _barrel.rotation);
-            //bullet.name = _parent.gameObject.name + "Bullet";
             bullet.GetComponent<Bullet>().Init(_photonView.Owner);
         }        
     }

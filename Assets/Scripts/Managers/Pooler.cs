@@ -10,20 +10,19 @@ public class Pooler : MonoBehaviour
         public int amountToPool;
     }
 
-
     [SerializeField] private Transform _container = null;    
     
     public List<GameObjectToPool> _itemsToPool;
     private List<GameObject> _pooledObjects;
 
-    public static Pooler Instance;
+    private static Pooler _instance;
 
     private void Awake()
     {
         #region Singleton
-        if (Instance == null)
+        if (_instance == null)
         {
-            Instance = this;
+            _instance = this;
         }
         else
         {
@@ -35,12 +34,11 @@ public class Pooler : MonoBehaviour
     private void Start()
     {       
         _pooledObjects = new List<GameObject>();
-        foreach (GameObjectToPool item in _itemsToPool)
+        foreach (var item in _itemsToPool)
         {
-            for (int i = 0; i < item.amountToPool; i++)
+            for (var i = 0; i < item.amountToPool; i++)
             {
-                GameObject obj = Instantiate(item.objectToPool);
-                obj.transform.parent = _container;
+                var obj = Instantiate(item.objectToPool, _container, true);
                 obj.name = item.objectToPool.name;
                 obj.SetActive(false);
                 _pooledObjects.Add(obj);
@@ -48,11 +46,11 @@ public class Pooler : MonoBehaviour
         }
     }
 
-    public GameObject GetPooledObject(string name, Vector3 position, Quaternion rotation)
+    public GameObject GetPooledObject(string objectName, Vector3 position, Quaternion rotation)
     {
-        for (int i = 0; i < _pooledObjects.Count; i++)
+        for (var i = 0; i < _pooledObjects.Count; i++)
         {
-            if (!_pooledObjects[i].activeInHierarchy && _pooledObjects[i].name == name)
+            if (!_pooledObjects[i].activeInHierarchy && _pooledObjects[i].name == objectName)
             {
                 _pooledObjects[i].transform.position = position;
                 _pooledObjects[i].transform.rotation = rotation;
@@ -62,16 +60,15 @@ public class Pooler : MonoBehaviour
         }
         foreach (GameObjectToPool item in _itemsToPool)
         {
-            if (item.objectToPool.name == name)
+            if (item.objectToPool.name == objectName)
             {
-                GameObject gameObject = Instantiate(item.objectToPool);
-                gameObject.transform.parent = _container;
-                gameObject.name = item.objectToPool.name;
-                gameObject.transform.position = position;
-                gameObject.transform.rotation = rotation;
-                gameObject.SetActive(true);
-                _pooledObjects.Add(gameObject);
-                return gameObject;
+                var pooledObject = Instantiate(item.objectToPool, _container, true);
+                pooledObject.name = item.objectToPool.name;
+                pooledObject.transform.position = position;
+                pooledObject.transform.rotation = rotation;
+                pooledObject.SetActive(true);
+                _pooledObjects.Add(pooledObject);
+                return pooledObject;
             }
         }
         return null;
