@@ -1,4 +1,7 @@
-﻿public interface ISaveRepo<T>
+﻿namespace Interfaces
 {
-    void Save(T value);
+    public interface ISaveRepo<T>
+    {
+        void Save(T value);
+    }
 }

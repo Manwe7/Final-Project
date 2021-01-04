@@ -10,7 +10,6 @@ public class Lobby : MonoBehaviourPunCallbacks
 {
     [Header("Login Panel")] 
     [SerializeField] private GameObject _loginPanel;
-
     [SerializeField] private InputField _nickNameInputField;
     
     [Header("Selection Panel")]
@@ -18,9 +17,7 @@ public class Lobby : MonoBehaviourPunCallbacks
     
     [Header("Create room panel")]
     [SerializeField] private GameObject _createRoomPanel;
-    
     [SerializeField] private InputField _roomNameInputField;
-    
     [SerializeField] private InputField _maxPlayersInputField;
     
     [Header("Join Random Room Panel")]
@@ -28,23 +25,17 @@ public class Lobby : MonoBehaviourPunCallbacks
     
     [Header("Inside Room Panel")]
     [SerializeField] private GameObject _insideRoomPanel;
-    
     [SerializeField] private GameObject _playerListContent;
-
     [SerializeField] private Button _startGameButton;
-    
     [SerializeField] private GameObject _playerListEntryPrefab;
     
     [Header("Room List Panel")]
     [SerializeField] private GameObject _roomListPanel;
-
     [SerializeField] private GameObject _roomListContent;
-    
     [SerializeField] private GameObject _roomListEntryPrefab;
 
     [Header("Specific Room")] 
     [SerializeField] private GameObject _specificRoomPanel;
-
     [SerializeField] private InputField _specificRoomNameInputField;
 
     [Header("Game Speed")] 
@@ -97,9 +88,9 @@ public class Lobby : MonoBehaviourPunCallbacks
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        string roomName = "Room " + Random.Range(1000, 10000);
+        var roomName = "Room " + Random.Range(1000, 10000);
 
-        RoomOptions options = new RoomOptions {MaxPlayers = 2};
+        var options = new RoomOptions {MaxPlayers = 2};
 
         PhotonNetwork.CreateRoom(roomName, options, null);
     }
@@ -115,7 +106,7 @@ public class Lobby : MonoBehaviourPunCallbacks
 
         foreach (Player p in PhotonNetwork.PlayerList)
         {
-            GameObject entry = Instantiate(_playerListEntryPrefab);
+            var entry = Instantiate(_playerListEntryPrefab);
             entry.transform.SetParent(_playerListContent.transform);
             entry.transform.localScale = Vector3.one;
             entry.GetComponent<PlayerListEntry>().Initialize(p.ActorNumber, p.NickName);
@@ -153,7 +144,7 @@ public class Lobby : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        GameObject entry = Instantiate(_playerListEntryPrefab);
+        var entry = Instantiate(_playerListEntryPrefab);
         entry.transform.SetParent(_playerListContent.transform);
         entry.transform.localScale = Vector3.one;
         entry.GetComponent<PlayerListEntry>().Initialize(newPlayer.ActorNumber, newPlayer.NickName);
@@ -303,7 +294,7 @@ public class Lobby : MonoBehaviourPunCallbacks
             return false;
         }
         
-        foreach (Player p in PhotonNetwork.PlayerList)
+        foreach (var p in PhotonNetwork.PlayerList)
         {
             object isPlayerReady;
             if (p.CustomProperties.TryGetValue(LobbyConstants.PlayerIsReady, out isPlayerReady))
@@ -324,7 +315,7 @@ public class Lobby : MonoBehaviourPunCallbacks
 
     private void ClearRoomListView()
     {
-        foreach (GameObject entry in _roomListEntries.Values)
+        foreach (var entry in _roomListEntries.Values)
         {
             Destroy(entry.gameObject);
         }
@@ -350,7 +341,7 @@ public class Lobby : MonoBehaviourPunCallbacks
     
     private void UpdateCachedRoomList(List<RoomInfo> roomList)
     {
-        foreach (RoomInfo info in roomList)
+        foreach (var info in roomList)
         {
             // Remove room from cached room list if it got closed, became invisible or was marked as removed
             if (!info.IsOpen || !info.IsVisible || info.RemovedFromList)
@@ -378,9 +369,9 @@ public class Lobby : MonoBehaviourPunCallbacks
     
     private void UpdateRoomListView()
     {
-        foreach (RoomInfo info in _cachedRoomList.Values)
+        foreach (var info in _cachedRoomList.Values)
         {
-            GameObject entry = Instantiate(_roomListEntryPrefab);
+            var entry = Instantiate(_roomListEntryPrefab);
             entry.transform.SetParent(_roomListContent.transform);
             entry.transform.localScale = Vector3.one;
             entry.GetComponent<RoomListEntry>().Initialize(info.Name, (byte)info.PlayerCount, info.MaxPlayers);

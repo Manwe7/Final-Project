@@ -11,7 +11,6 @@ public class PlayerListEntry : MonoBehaviour
 {
     [Header("UI References")]
     [SerializeField] public Text _playerNameText;
-
     [SerializeField] public Image _playerColorImage;
     [SerializeField] public Button _playerReadyButton;
     [SerializeField] public Image _playerReadyImage;
@@ -67,7 +66,7 @@ public class PlayerListEntry : MonoBehaviour
 
     private void OnPlayerNumberingChanged()
     {
-        foreach (Player p in PhotonNetwork.PlayerList)
+        foreach (var p in PhotonNetwork.PlayerList)
         {
             if (p.ActorNumber == _ownerId)
             {

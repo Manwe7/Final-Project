@@ -23,11 +23,11 @@ public class RoomListEntry : MonoBehaviour
         });
     }
     
-    public void Initialize(string name, byte currentPlayers, byte maxPlayers)
+    public void Initialize(string playerName, byte currentPlayers, byte maxPlayers)
     {
-        _roomName = name;
+        _roomName = playerName;
 
-        _roomNameText.text = name;
+        _roomNameText.text = playerName;
         _roomPlayersText.text = currentPlayers + " / " + maxPlayers;
     }
 }

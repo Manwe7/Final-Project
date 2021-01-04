@@ -1,4 +1,7 @@
-﻿public interface IGetRepo<T>
+﻿namespace Interfaces
 {
-    T Get();
+    public interface IGetRepo<T>
+    {
+        T Get();
+    }
 }

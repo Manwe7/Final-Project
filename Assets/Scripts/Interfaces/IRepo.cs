@@ -1,4 +1,7 @@
-﻿public interface IRepo<T>: IGetRepo<T>, ISaveRepo<T>
+﻿namespace Interfaces
 {
+    public interface IRepo<T>: IGetRepo<T>, ISaveRepo<T>
+    {
 
+    }
 }
