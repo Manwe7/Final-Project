@@ -40,8 +40,8 @@ public class ProcessDeepLinkMngr : MonoBehaviour
         // Decode the URL to determine action. 
         // In this example, the app expects a link formatted like this:
         // unitydl://mylink?scene1
-        var sceneName = url.Split("?"[0])[1];
-        var roomName = url.Split(("?"[0]))[2];
+        string sceneName = url.Split("?"[0])[1];
+        string roomName = url.Split(("?"[0]))[2];
         //PlayerPrefs.SetString("roomName", roomName);
         RoomName = roomName;
         

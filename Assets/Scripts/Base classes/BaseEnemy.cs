@@ -70,7 +70,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageable
     {
         if (_player != null)
         {
-            var moveSpeed = _speed;
+            float moveSpeed = _speed;
             if(!IsPlayerOnRight() && !IsOnDistance())
             {
                 moveSpeed *= -1f;

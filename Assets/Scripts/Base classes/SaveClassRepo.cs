@@ -12,12 +12,12 @@ public class SaveClassRepo : IRepo<SaveAttributes>
 
     public void Save(SaveAttributes value)
     {
-        var json = JsonUtility.ToJson(value);
+        string json = JsonUtility.ToJson(value);
         File.WriteAllText(_filePath, json);
 
         //Encode json
-        var bytesToEncode = Encoding.UTF8.GetBytes(json);
-        var encodedText = Convert.ToBase64String(bytesToEncode);
+        byte[] bytesToEncode = Encoding.UTF8.GetBytes(json);
+        string encodedText = Convert.ToBase64String(bytesToEncode);
         
         //Save to player prefs
         PlayerPrefs.SetString(_backUpKey, encodedText);
@@ -27,14 +27,14 @@ public class SaveClassRepo : IRepo<SaveAttributes>
     {
         if(File.Exists(_filePath))
         {          
-            var savedString = File.ReadAllText(_filePath);
+            string savedString = File.ReadAllText(_filePath);
             var myObject = JsonUtility.FromJson<SaveAttributes>(savedString);
 
-            var backUp = PlayerPrefs.GetString(_backUpKey, "");
+            string backUp = PlayerPrefs.GetString(_backUpKey, "");
             
             //Decode json
-            var decodedBytes = Convert.FromBase64String(backUp);
-            var decodedText = Encoding.UTF8.GetString(decodedBytes);
+            byte[] decodedBytes = Convert.FromBase64String(backUp);
+            string decodedText = Encoding.UTF8.GetString(decodedBytes);
 
             if (savedString == decodedText) return myObject;
             

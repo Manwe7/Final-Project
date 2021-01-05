@@ -15,7 +15,7 @@ public class OnlineManager : MonoBehaviourPunCallbacks
 
     public Vector2 ChoosePos()
     {
-        var point = Random.Range(0, _spawnPoints.Length);
+        int point = Random.Range(0, _spawnPoints.Length);
         var positionToSpawn = _spawnPoints[point].transform.position;
         
         return positionToSpawn;

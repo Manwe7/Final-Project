@@ -88,7 +88,7 @@ public class Lobby : MonoBehaviourPunCallbacks
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        var roomName = "Room " + Random.Range(1000, 10000);
+        string roomName = "Room " + Random.Range(1000, 10000);
 
         var options = new RoomOptions {MaxPlayers = 2};
 

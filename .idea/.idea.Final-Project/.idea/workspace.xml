@@ -51,6 +51,8 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerHealth.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerWeaponPosition.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/DefeatUI.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/PauseUI.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mc5Geqqoz7Sc1bq4okBWIsbpD2" />

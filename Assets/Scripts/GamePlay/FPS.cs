@@ -19,7 +19,7 @@ public class FPS : MonoBehaviour
     private void ShowFPS()
     {
         _deltaTime += (Time.deltaTime - _deltaTime) * 0.1f;
-        var fps = 1.0f / _deltaTime;
+        float fps = 1.0f / _deltaTime;
         _fpsText.text = $"{Mathf.Ceil(fps)}";
     }
 }

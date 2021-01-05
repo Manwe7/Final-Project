@@ -42,11 +42,11 @@ namespace PlayerOnlineScripts
 
         private void OpenEndGamePanel()
         {
-            for (var i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+            for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
             {
                 if(PhotonNetwork.PlayerList[i].CustomProperties[ShowScoreOnline.LivesSaveKey] != null)
                 {
-                    var lives = (int)PhotonNetwork.PlayerList[i].CustomProperties[ShowScoreOnline.LivesSaveKey];
+                    int lives = (int)PhotonNetwork.PlayerList[i].CustomProperties[ShowScoreOnline.LivesSaveKey];
                     if(lives <= 0)
                     {
                         StartCoroutine(StopGame());

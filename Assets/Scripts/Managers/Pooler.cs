@@ -36,7 +36,7 @@ public class Pooler : MonoBehaviour
         _pooledObjects = new List<GameObject>();
         foreach (var item in _itemsToPool)
         {
-            for (var i = 0; i < item.amountToPool; i++)
+            for (int i = 0; i < item.amountToPool; i++)
             {
                 var obj = Instantiate(item.objectToPool, _container, true);
                 obj.name = item.objectToPool.name;
@@ -48,7 +48,7 @@ public class Pooler : MonoBehaviour
 
     public GameObject GetPooledObject(string objectName, Vector3 position, Quaternion rotation)
     {
-        for (var i = 0; i < _pooledObjects.Count; i++)
+        for (int i = 0; i < _pooledObjects.Count; i++)
         {
             if (!_pooledObjects[i].activeInHierarchy && _pooledObjects[i].name == objectName)
             {

@@ -18,7 +18,7 @@ public class MapSections : MonoBehaviour
 
     private void DeActivateAllSections()
     {
-        for (var i = 0; i < _leftSection.Length; i++)
+        for (int i = 0; i < _leftSection.Length; i++)
         {
             _leftSection[i].SetActive(false);
             _centerSection[i].SetActive(false);
