@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Photon.Pun;
+using Weapon;
 
 namespace PlayerOnlineScripts
 {

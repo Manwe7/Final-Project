@@ -412,9 +412,6 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="Base classes" t="Include">
-            <e p="BaseEnemy.cs" t="Include" />
-            <e p="BaseWeapon.cs" t="Include" />
-            <e p="BaseWeaponPosition.cs" t="Include" />
             <e p="SaveClassRepo.cs" t="Include" />
           </e>
           <e p="Constants" t="Include">
@@ -423,12 +420,11 @@
           </e>
           <e p="Enemy" t="Include">
             <e p="AverageEnemy.cs" t="Include" />
-            <e p="EnemyWeapon.cs" t="Include" />
-            <e p="EnemyWeaponPosition.cs" t="Include" />
+            <e p="BaseEnemy.cs" t="Include" />
             <e p="LittleEnemy.cs" t="Include" />
             <e p="MegaEnemy.cs" t="Include" />
           </e>
-          <e p="EnemySpanwer" t="Include">
+          <e p="EnemySpawner" t="Include">
             <e p="EnemySpawner.cs" t="Include" />
             <e p="EnemySpawnerMovement.cs" t="Include" />
           </e>
@@ -487,8 +483,6 @@
             <e p="Player.cs" t="Include" />
             <e p="PlayerHealth.cs" t="Include" />
             <e p="PlayerMovement.cs" t="Include" />
-            <e p="PlayerWeapon.cs" t="Include" />
-            <e p="PlayerWeaponPosition.cs" t="Include" />
           </e>
           <e p="ProcessDeepLinkMngr.cs" t="Include" />
           <e p="Repositories" t="Include">
@@ -506,6 +500,14 @@
             <e p="GamePlayUI.cs" t="Include" />
             <e p="MainMenuUI.cs" t="Include" />
             <e p="PauseUI.cs" t="Include" />
+          </e>
+          <e p="Weapon" t="Include">
+            <e p="BaseWeapon.cs" t="Include" />
+            <e p="BaseWeaponPosition.cs" t="Include" />
+            <e p="EnemyWeapon.cs" t="Include" />
+            <e p="EnemyWeaponPosition.cs" t="Include" />
+            <e p="PlayerWeapon.cs" t="Include" />
+            <e p="PlayerWeaponPosition.cs" t="Include" />
           </e>
         </e>
       </e>

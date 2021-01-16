@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 
-public class AverageEnemy : BaseEnemy
+namespace Enemy
 {
-    protected override int ScoreWeight => 10;
+    public class AverageEnemy : BaseEnemy
+    {
+        protected override int ScoreWeight => 10;
     
-    private void OnEnable()
-    {        
-        _health = Random.Range(30, 40);
-        _distance = Random.Range(3f, 12f);
+        private void OnEnable()
+        {        
+            _health = Random.Range(30, 40);
+            _distance = Random.Range(3f, 12f);
+        }
     }
 }

@@ -1,4 +1,5 @@
 using Interfaces;
+using UI;
 using UnityEngine;
 
 public class GameSessionScore : MonoBehaviour

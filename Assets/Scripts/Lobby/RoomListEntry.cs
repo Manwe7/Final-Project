@@ -2,32 +2,35 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RoomListEntry : MonoBehaviour
+namespace Lobby
 {
-    [SerializeField] private Text _roomNameText;
-    [SerializeField] private Text _roomPlayersText;
-    [SerializeField] private Button _joinRoomButton;
-
-    private string _roomName;
-    
-    public void Start()
+    public class RoomListEntry : MonoBehaviour
     {
-        _joinRoomButton.onClick.AddListener(() =>
+        [SerializeField] private Text _roomNameText;
+        [SerializeField] private Text _roomPlayersText;
+        [SerializeField] private Button _joinRoomButton;
+
+        private string _roomName;
+    
+        public void Start()
         {
-            if (PhotonNetwork.InLobby)
+            _joinRoomButton.onClick.AddListener(() =>
             {
-                PhotonNetwork.LeaveLobby();
-            }
+                if (PhotonNetwork.InLobby)
+                {
+                    PhotonNetwork.LeaveLobby();
+                }
 
-            PhotonNetwork.JoinRoom(_roomName);
-        });
-    }
+                PhotonNetwork.JoinRoom(_roomName);
+            });
+        }
     
-    public void Initialize(string playerName, byte currentPlayers, byte maxPlayers)
-    {
-        _roomName = playerName;
+        public void Initialize(string playerName, byte currentPlayers, byte maxPlayers)
+        {
+            _roomName = playerName;
 
-        _roomNameText.text = playerName;
-        _roomPlayersText.text = currentPlayers + " / " + maxPlayers;
+            _roomNameText.text = playerName;
+            _roomPlayersText.text = currentPlayers + " / " + maxPlayers;
+        }
     }
 }

@@ -1,60 +1,63 @@
 ﻿using Interfaces;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class PauseUI : MonoBehaviour
+namespace UI
 {
-    [Header("Panels")]
-    [SerializeField] private GameObject _pauseMenuPanel = null;
+    public class PauseUI : MonoBehaviour
+    {
+        [Header("Panels")]
+        [SerializeField] private GameObject _pauseMenuPanel = null;
 
-    [Header("Scripts")]
-    [SerializeField] private GameSpeed _gameSpeed;
-    [SerializeField] private GamePlayUI _gamePlayUI;
+        [Header("Scripts")]
+        [SerializeField] private GameSpeed _gameSpeed;
+        [SerializeField] private GamePlayUI _gamePlayUI;
 
-    [Header("Record on pause panel")]
-    [SerializeField] private Text _pauseRecordText;
+        [Header("Record on pause panel")]
+        [SerializeField] private Text _pauseRecordText;
 
-    private int _record;
+        private int _record;
 
-    private IGetRepo<SaveAttributes> _repoInt;
+        private IGetRepo<SaveAttributes> _repoInt;
 
-    SaveAttributes _saveAttributes;
+        SaveAttributes _saveAttributes;
 
-    private void Awake()
-    {                
-        _repoInt = new SaveClassRepo();
+        private void Awake()
+        {                
+            _repoInt = new SaveClassRepo();
         
-        _gamePlayUI.OnGamePause += ShowRecord;
-    }
+            _gamePlayUI.OnGamePause += ShowRecord;
+        }
 
-    private void OnDestroy()
-    {
-        _gamePlayUI.OnGamePause -= ShowRecord;
-    }
+        private void OnDestroy()
+        {
+            _gamePlayUI.OnGamePause -= ShowRecord;
+        }
 
-    private void ShowRecord()
-    {
-        _saveAttributes = _repoInt.Get();
-        _record = _saveAttributes.Record;
+        private void ShowRecord()
+        {
+            _saveAttributes = _repoInt.Get();
+            _record = _saveAttributes.Record;
 
-        _pauseRecordText.text = _record.ToString();
-    }
+            _pauseRecordText.text = _record.ToString();
+        }
 
-    public void Resume()
-    {
-        _pauseMenuPanel.SetActive(false);
-        _gameSpeed.SetToNormal();
-    }
+        public void Resume()
+        {
+            _pauseMenuPanel.SetActive(false);
+            _gameSpeed.SetToNormal();
+        }
 
-    public void Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        _gameSpeed.SetToNormal();
-    }
+        public void Restart()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            _gameSpeed.SetToNormal();
+        }
 
-    public void Exit()
-    {
-        SceneManager.LoadScene(SceneNames.Menu);
+        public void Exit()
+        {
+            SceneManager.LoadScene(SceneNames.Menu);
+        }
     }
 }

@@ -1,83 +1,84 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-
-using ExitGames.Client.Photon;
+﻿using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Pun.Demo.Asteroids;
-using Photon.Realtime;
 using Photon.Pun.UtilityScripts;
+using UnityEngine;
+using UnityEngine.UI;
 
-public class PlayerListEntry : MonoBehaviour
+namespace Lobby
 {
-    [Header("UI References")]
-    [SerializeField] public Text _playerNameText;
-    [SerializeField] public Image _playerColorImage;
-    [SerializeField] public Button _playerReadyButton;
-    [SerializeField] public Image _playerReadyImage;
-
-    private int _ownerId;
-    private bool _isPlayerReady;
-
-    #region Unity
-    public void OnEnable()
+    public class PlayerListEntry : MonoBehaviour
     {
-        PlayerNumbering.OnPlayerNumberingChanged += OnPlayerNumberingChanged;
-    }
+        [Header("UI References")]
+        [SerializeField] public Text _playerNameText;
+        [SerializeField] public Image _playerColorImage;
+        [SerializeField] public Button _playerReadyButton;
+        [SerializeField] public Image _playerReadyImage;
 
-    public void Start()
-    {
-        if (PhotonNetwork.LocalPlayer.ActorNumber != _ownerId)
+        private int _ownerId;
+        private bool _isPlayerReady;
+
+        #region Unity
+        public void OnEnable()
         {
-            _playerReadyButton.gameObject.SetActive(false);
+            PlayerNumbering.OnPlayerNumberingChanged += OnPlayerNumberingChanged;
         }
-        else
+
+        public void Start()
         {
-            Hashtable initialProps = new Hashtable() {{LobbyConstants.PlayerIsReady, _isPlayerReady}, {LobbyConstants.PlayerLives, LobbyConstants.PlayerMaxLives}};
-            PhotonNetwork.LocalPlayer.SetCustomProperties(initialProps);
-            PhotonNetwork.LocalPlayer.SetScore(0);
-
-            _playerReadyButton.onClick.AddListener(() =>
+            if (PhotonNetwork.LocalPlayer.ActorNumber != _ownerId)
             {
-                _isPlayerReady = !_isPlayerReady;
-                SetPlayerReady(_isPlayerReady);
+                _playerReadyButton.gameObject.SetActive(false);
+            }
+            else
+            {
+                Hashtable initialProps = new Hashtable() {{LobbyConstants.PlayerIsReady, _isPlayerReady}, {LobbyConstants.PlayerLives, LobbyConstants.PlayerMaxLives}};
+                PhotonNetwork.LocalPlayer.SetCustomProperties(initialProps);
+                PhotonNetwork.LocalPlayer.SetScore(0);
 
-                Hashtable props = new Hashtable() {{LobbyConstants.PlayerIsReady, _isPlayerReady}};
-                PhotonNetwork.LocalPlayer.SetCustomProperties(props);
-
-                if (PhotonNetwork.IsMasterClient)
+                _playerReadyButton.onClick.AddListener(() =>
                 {
-                    FindObjectOfType<Lobby>().LocalPlayerPropertiesUpdated();
-                }
-            });
-        }
-    }
+                    _isPlayerReady = !_isPlayerReady;
+                    SetPlayerReady(_isPlayerReady);
 
-    public void OnDisable()
-    {
-        PlayerNumbering.OnPlayerNumberingChanged -= OnPlayerNumberingChanged;
-    }
-    #endregion
-    
-    public void Initialize(int playerId, string playerName)
-    {
-        _ownerId = playerId;
-        _playerNameText.text = playerName;
-    }
+                    Hashtable props = new Hashtable() {{LobbyConstants.PlayerIsReady, _isPlayerReady}};
+                    PhotonNetwork.LocalPlayer.SetCustomProperties(props);
 
-    private void OnPlayerNumberingChanged()
-    {
-        foreach (var p in PhotonNetwork.PlayerList)
-        {
-            if (p.ActorNumber == _ownerId)
-            {
-                _playerColorImage.color = AsteroidsGame.GetColor(p.GetPlayerNumber());
+                    if (PhotonNetwork.IsMasterClient)
+                    {
+                        FindObjectOfType<global::Lobby.Lobby>().LocalPlayerPropertiesUpdated();
+                    }
+                });
             }
         }
-    }
 
-    public void SetPlayerReady(bool playerReady)
-    {
-        _playerReadyButton.GetComponentInChildren<Text>().text = playerReady ? "Ready!" : "Ready?";
-        _playerReadyImage.enabled = playerReady;
+        public void OnDisable()
+        {
+            PlayerNumbering.OnPlayerNumberingChanged -= OnPlayerNumberingChanged;
+        }
+        #endregion
+    
+        public void Initialize(int playerId, string playerName)
+        {
+            _ownerId = playerId;
+            _playerNameText.text = playerName;
+        }
+
+        private void OnPlayerNumberingChanged()
+        {
+            foreach (var p in PhotonNetwork.PlayerList)
+            {
+                if (p.ActorNumber == _ownerId)
+                {
+                    _playerColorImage.color = AsteroidsGame.GetColor(p.GetPlayerNumber());
+                }
+            }
+        }
+
+        public void SetPlayerReady(bool playerReady)
+        {
+            _playerReadyButton.GetComponentInChildren<Text>().text = playerReady ? "Ready!" : "Ready?";
+            _playerReadyImage.enabled = playerReady;
+        }
     }
 }

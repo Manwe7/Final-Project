@@ -9,28 +9,12 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/Base classes/BaseEnemy.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Base classes/BaseWeaponPosition.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Base classes/SaveClassRepo.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Constants/Sound.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyWeaponPosition.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/EnemySpanwer/EnemySpawner.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/PlayerSettings.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/EnemySpawnerSettings.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/EnemySpanwer/EnemySpawnerMovement.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/EnemyWeaponSettings.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyWeapon.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/Bullet.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/FloatingPlatform.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/FPS.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/MapSections.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Interfaces/IRepo.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Interfaces/IGetRepo.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Interfaces/ISaveRepo.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Interfaces/IDamageable.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/Lobby.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/PlayerListEntry.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/RoomListEntry.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/AdsManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameSessionScore.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Pooler.cs" />
@@ -51,8 +35,31 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerHealth.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerWeaponPosition.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Base classes/BaseEnemy.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Base classes/SaveClassRepo.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/MapSections.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/AverageEnemy.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyWeaponPosition.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyWeapon.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/LittleEnemy.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/MegaEnemy.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/BaseWeapon.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/BaseWeaponPosition.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/PlayerWeaponPosition.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/EnemyWeapon.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/EnemyWeaponPosition.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/EnemySpanwer/EnemySpawner.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/EnemySpawner/EnemySpawner.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/EnemySpawner/EnemySpawnerMovement.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/Lobby.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyConstants.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/PlayerListEntry.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/RoomListEntry.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/GamePlayUI.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/DefeatUI.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/MainMenuUI.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/PauseUI.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/BaseEnemy.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mc5Geqqoz7Sc1bq4okBWIsbpD2" />

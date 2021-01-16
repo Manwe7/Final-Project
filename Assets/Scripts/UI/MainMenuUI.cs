@@ -1,20 +1,23 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenuUI : MonoBehaviour
+namespace UI
 {
-    public void Play()
+    public class MainMenuUI : MonoBehaviour
     {
-        SceneManager.LoadScene(SceneNames.Game);
-    }
+        public void Play()
+        {
+            SceneManager.LoadScene(SceneNames.Game);
+        }
 
-    public void Lobby()
-    {
-        SceneManager.LoadScene(SceneNames.Lobby);
-    }
+        public void Lobby()
+        {
+            SceneManager.LoadScene(SceneNames.Lobby);
+        }
 
-    public void Exit()
-    {
-        Application.Quit();
+        public void Exit()
+        {
+            Application.Quit();
+        }
     }
 }

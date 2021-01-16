@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 
-public class MegaEnemy : BaseEnemy
+namespace Enemy
 {
-    protected override int ScoreWeight => 15;
-
-    private void OnEnable()
+    public class MegaEnemy : BaseEnemy
     {
-        _health = Random.Range(50, 60);
-        _distance = Random.Range(3f, 12f);
-    }
+        protected override int ScoreWeight => 15;
+
+        private void OnEnable()
+        {
+            _health = Random.Range(50, 60);
+            _distance = Random.Range(3f, 12f);
+        }
  
+    }
 }
