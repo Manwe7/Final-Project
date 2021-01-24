@@ -1,5 +1,6 @@
 ﻿using System;
 using Interfaces;
+using Managers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,26 +14,32 @@ namespace PlayerOfflineScipts
 
         public int _health;
 
-        private void Awake()
-        {
-            _adsManager.OnAdWatched += SetLifeProperties;
-        }
-
         private void Start()
         {
             SetLifeProperties();
+        }
+
+        #region Event Subscription
+
+        private void OnEnable()
+        {
+            _adsManager.OnAdWatched += SetLifeProperties;
         }
 
         private void OnDestroy()
         {
             _adsManager.OnAdWatched -= SetLifeProperties;
         }
+        
+        #endregion
 
         protected virtual void SetLifeProperties()
         {
             _health = 100;
             _healthSlider.maxValue = _health;
             ChangeHealth(_health);
+            
+            gameObject.SetActive(true);
         }
 
         protected virtual void ChangeHealth(float health)

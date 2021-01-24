@@ -924,6 +924,7 @@ MonoBehaviour:
   _gamePlayButtons: {fileID: 85062361}
   _playerHealth: {fileID: 2108073683}
   _gameSpeed: {fileID: 132967516}
+  _adsManager: {fileID: 931972090}
   _defeatMenuPanel: {fileID: 1719492560}
   _defeatRecordText: {fileID: 1262428361}
   _adsPanel: {fileID: 995422297}
@@ -14064,7 +14065,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1719492562
 MonoBehaviour:
@@ -15464,7 +15465,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1914135831
 MonoBehaviour:

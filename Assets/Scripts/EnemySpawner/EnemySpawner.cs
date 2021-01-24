@@ -7,7 +7,7 @@ namespace EnemySpawner
     public class EnemySpawner : MonoBehaviour
     {
         [Header("Spawn object Name")]
-        [SerializeField] BaseEnemy _enemyToSpawn;    
+        [SerializeField] private BaseEnemy _enemyToSpawn;    
 
         [Header("Player object")]
         [SerializeField] private GameObject _player;
@@ -40,7 +40,7 @@ namespace EnemySpawner
         private void SpawnObject()
         {
             _time = 0;
-            var enemy = _pooler.GetPooledObject(_enemyToSpawn.name, transform.position, Quaternion.identity).GetComponent<BaseEnemy>();
+            BaseEnemy enemy = _pooler.GetPooledObject(_enemyToSpawn.name, transform.position, Quaternion.identity).GetComponent<BaseEnemy>();
             enemy.Init(_player, _pooler, _cameraShake, _scoreManager, _soundPlayer);
         }
  

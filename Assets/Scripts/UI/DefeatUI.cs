@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Interfaces;
+using Managers;
 using UnityEngine;
 using UnityEngine.UI;
 using PlayerOfflineScipts;
@@ -12,6 +13,7 @@ namespace UI
         [SerializeField] private GamePlayButtons _gamePlayButtons = null;
         [SerializeField] private PlayerHealth _playerHealth = null;
         [SerializeField] private GameSpeed _gameSpeed = null;
+        [SerializeField] private AdsManager _adsManager = null;
 
         [Header("Defeat panel")]
         [SerializeField] private GameObject _defeatMenuPanel = null;
@@ -46,11 +48,13 @@ namespace UI
         
         private void OnEnable()
         {
+            _adsManager.OnAdWatched += TurnAdsPanelOff;
             _playerHealth.OnPlayerDefeated += Defeat;
         }
 
         private void OnDisable()
         {
+            _adsManager.OnAdWatched -= TurnAdsPanelOff;
             _playerHealth.OnPlayerDefeated -= Defeat;
         }
         
@@ -86,6 +90,12 @@ namespace UI
                 _isAdsPanelOpened = true;
             }
         
+        }
+
+        private void TurnAdsPanelOff()
+        {
+            _gameSpeed.ResumeTime();
+            _adsPanel.SetActive(false);
         }
 
         public void CloseAdsPanel()

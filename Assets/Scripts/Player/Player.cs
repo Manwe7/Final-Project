@@ -15,9 +15,11 @@ namespace PlayerOfflineScipts
 
         [TagSelector] 
         [SerializeField] protected string _lava;
+
+        #region Event Subscription
         
-        private void Awake()
-        {        
+        private void OnEnable()
+        {
             _playerHealth.OnPlayerDefeated += Killed;
             _playerHealth.OnDamaged += PlayDamageSound;
         }
@@ -27,6 +29,8 @@ namespace PlayerOfflineScipts
             _playerHealth.OnPlayerDefeated += Killed;
             _playerHealth.OnDamaged -= PlayDamageSound;
         }
+        
+        #endregion
 
         private void PlayDamageSound()
         {
@@ -46,7 +50,6 @@ namespace PlayerOfflineScipts
             _audioManager.Play(SoundNames.PlayerDeath);
             
             _pooler.GetPooledObject(_playerExplosion.name, transform.position, Quaternion.identity);
-
             _cameraShake.ShakeCameraOnce(2.2f);
             
             gameObject.SetActive(false);
