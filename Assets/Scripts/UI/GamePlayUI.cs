@@ -18,7 +18,7 @@ namespace UI
         public void PauseBtn()
         {        
             _pauseMenuPanel.SetActive(true);
-            _gameSpeed.Stop();
+            _gameSpeed.StopTime();
 
             OnGamePause?.Invoke();
         }

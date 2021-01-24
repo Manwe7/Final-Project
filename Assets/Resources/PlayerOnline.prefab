@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1189564010176926767}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_Children: []
   m_Father: {fileID: 5233265968429482937}
   m_RootOrder: 0
@@ -107,7 +107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2464570543798112379}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 0, z: 0}
+  m_LocalPosition: {x: -0.05, y: 0, z: 0}
   m_LocalScale: {x: 0.9, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 5233265967289660566}
@@ -190,7 +190,7 @@ Transform:
   m_GameObject: {fileID: 4832961665972954017}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.95, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.95, z: 1}
   m_Children: []
   m_Father: {fileID: 5233265968630552471}
   m_RootOrder: 0
@@ -5332,7 +5332,7 @@ Transform:
   m_GameObject: {fileID: 5233265968429482941}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 1321385248151007933}
   - {fileID: 5233265968630552471}
@@ -5717,7 +5717,6 @@ MonoBehaviour:
   _barrel: {fileID: 5233265968217475688}
   _pooler: {fileID: 0}
   _photonView: {fileID: 5399333186287731839}
-  _parent: {fileID: 5233265968429482937}
   _bulletOnline: {fileID: 7444725418516393869, guid: 4c87560a78194854b93792a442d6abe3,
     type: 3}
 --- !u!114 &6996202038108817362

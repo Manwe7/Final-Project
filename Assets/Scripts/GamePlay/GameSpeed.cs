@@ -2,7 +2,12 @@
 
 public class GameSpeed : MonoBehaviour
 {
-    public void SetToNormal()
+    private void Awake()
+    {
+        ResumeTime();
+    }
+
+    public void ResumeTime()
     {
         SetTimeScale(1f);
     }
@@ -12,12 +17,12 @@ public class GameSpeed : MonoBehaviour
         SetTimeScale(0.5f);
     }
 
-    public void Stop()
+    public void StopTime()
     {
         SetTimeScale(0f);
     }
 
-    private void SetTimeScale(float value)
+    private static void SetTimeScale(float value)
     {
         Time.timeScale = value;
     }

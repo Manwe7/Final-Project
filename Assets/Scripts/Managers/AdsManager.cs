@@ -41,7 +41,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
             _player.transform.position = new Vector3(0, 0, 0);
             
             OnAdWatched?.Invoke();
-            _gameSpeed.SetToNormal();            
+            _gameSpeed.ResumeTime();            
         }
         else if(showResult == ShowResult.Failed)
         {

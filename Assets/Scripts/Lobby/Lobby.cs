@@ -49,7 +49,7 @@ namespace Lobby
     
         public void Awake()
         {
-            _gameSpeed.SetToNormal();
+            _gameSpeed.ResumeTime();
         
             PhotonNetwork.AutomaticallySyncScene = true;
 

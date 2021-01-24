@@ -9,9 +9,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/FloatingPlatform.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/FPS.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Interfaces/IRepo.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Interfaces/IGetRepo.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Interfaces/ISaveRepo.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Interfaces/IDamageable.cs" />
@@ -56,10 +53,13 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/PlayerListEntry.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/RoomListEntry.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/GamePlayUI.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/DefeatUI.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/MainMenuUI.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/PauseUI.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/BaseEnemy.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/PlayerWeapon.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/GamePlayButtons.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/GameSpeed.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/PauseUI.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/DefeatUI.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mc5Geqqoz7Sc1bq4okBWIsbpD2" />

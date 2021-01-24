@@ -7,7 +7,13 @@ namespace PlayerOfflineScipts
     {
         [Header("Scripts")]
         [SerializeField] private SoundPlayer _soundPlayer;
-
+        [SerializeField] private Joystick _weaponJoystick;
+        
+        [Header("Stats")]
+        [SerializeField] private float _handleOffsetToShoot;
+        
+        private float _vertical, _horizontal;
+        
         private void OnEnable()
         {
             OnShoot += PlayShootSound;
@@ -23,7 +29,13 @@ namespace PlayerOfflineScipts
 
         private void Update()
         {        
-            Shoot();
+            _vertical = _weaponJoystick.Vertical;
+            _horizontal = _weaponJoystick.Horizontal;
+            
+            if(Mathf.Abs(_vertical) > _handleOffsetToShoot || Mathf.Abs(_horizontal) > _handleOffsetToShoot)
+            {
+                Shoot();
+            }
         }
 
         private void PlayShootSound()

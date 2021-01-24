@@ -1,22 +1,24 @@
-﻿using Interfaces;
+﻿using System;
+using Interfaces;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace UI
 {
     public class PauseUI : MonoBehaviour
     {
-        [Header("Panels")]
-        [SerializeField] private GameObject _pauseMenuPanel = null;
-
         [Header("Scripts")]
-        [SerializeField] private GameSpeed _gameSpeed;
-        [SerializeField] private GamePlayUI _gamePlayUI;
+        [SerializeField] private GamePlayButtons _gamePlayButtons = null;
+        [SerializeField] private GamePlayUI _gamePlayUI = null;
 
         [Header("Record on pause panel")]
-        [SerializeField] private Text _pauseRecordText;
+        [SerializeField] private Text _pauseRecordText = null;
 
+        [Header("Buttons")] 
+        [SerializeField] private Button _resumeButton = null;
+        [SerializeField] private Button _restartButton = null;
+        [SerializeField] private Button _exitButton = null;
+        
         private int _record;
 
         private IGetRepo<SaveAttributes> _repoInt;
@@ -26,7 +28,21 @@ namespace UI
         private void Awake()
         {                
             _repoInt = new SaveClassRepo();
+
+            AddListenersToButtons();
+        }
         
+        private void AddListenersToButtons()
+        {
+            _restartButton.onClick.AddListener(_gamePlayButtons.Resume);
+            _restartButton.onClick.AddListener(_gamePlayButtons.Restart);
+            _exitButton.onClick.AddListener(_gamePlayButtons.Exit);
+        }
+
+        #region Event subscription
+        
+        private void OnEnable()
+        {
             _gamePlayUI.OnGamePause += ShowRecord;
         }
 
@@ -34,6 +50,8 @@ namespace UI
         {
             _gamePlayUI.OnGamePause -= ShowRecord;
         }
+        
+        #endregion
 
         private void ShowRecord()
         {
@@ -43,21 +61,6 @@ namespace UI
             _pauseRecordText.text = _record.ToString();
         }
 
-        public void Resume()
-        {
-            _pauseMenuPanel.SetActive(false);
-            _gameSpeed.SetToNormal();
-        }
-
-        public void Restart()
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            _gameSpeed.SetToNormal();
-        }
-
-        public void Exit()
-        {
-            SceneManager.LoadScene(SceneNames.Menu);
-        }
+        
     }
 }
