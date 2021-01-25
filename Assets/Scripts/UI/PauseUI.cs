@@ -34,7 +34,7 @@ namespace UI
         
         private void AddListenersToButtons()
         {
-            _restartButton.onClick.AddListener(_gamePlayButtons.Resume);
+            _resumeButton.onClick.AddListener(_gamePlayButtons.Resume);
             _restartButton.onClick.AddListener(_gamePlayButtons.Restart);
             _exitButton.onClick.AddListener(_gamePlayButtons.Exit);
         }

@@ -53,13 +53,13 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/BaseEnemy.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/PlayerWeapon.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/GameSpeed.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/PauseUI.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/GamePlayButtons.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EnemySpawner/EnemySpawner.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/AdsManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/DefeatUI.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerHealth.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/PauseUI.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mc5Geqqoz7Sc1bq4okBWIsbpD2" />
