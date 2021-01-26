@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using BaseClasses;
+using UnityEngine;
 
-namespace Weapon
+namespace Enemy.Weapon
 {
     public class EnemyWeaponPosition : BaseWeaponPosition
     {    
@@ -20,7 +21,7 @@ namespace Weapon
         {
             if(_player == null) { return; }
         
-            var playerPos = _player.transform.position;
+            Vector3 playerPos = _player.transform.position;
 
             _direction = _player.transform.position - transform.position;
             _rotationZ = Mathf.Atan2(_direction.y,_direction.x) * Mathf.Rad2Deg;

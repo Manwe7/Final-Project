@@ -1,17 +1,25 @@
-﻿using UnityEngine;
+﻿using Multiplayer.Player;
+using UnityEngine;
 using Photon.Pun;
 
 namespace PlayerOnlineScripts
 {
-    public class PlayerMovement : PlayerOfflineScipts.PlayerMovement
+    public class PlayerMovement : BasePlayer.PlayerMovement
     {
         [SerializeField] private PhotonView _photonView;
 
+        [TagSelector]
+        [SerializeField] private string _propertiesTag;
+        
+        private PlayerOnlineProperties _playerOnlineProperties;
+        
         private void Awake()
         {
             if (_photonView.IsMine)
             {
-                _joystick = GameObject.Find("Canvas/MovementJoystick").GetComponent<FixedJoystick>();
+                _playerOnlineProperties = GameObject.FindWithTag(_propertiesTag).GetComponent<PlayerOnlineProperties>();
+
+                _joystick = _playerOnlineProperties.MovementJoystick;
             }
         }
         

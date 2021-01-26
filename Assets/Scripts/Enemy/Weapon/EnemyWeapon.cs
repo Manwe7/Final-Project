@@ -1,7 +1,8 @@
+using BaseClasses;
 using ScriptableObjects;
 using UnityEngine;
 
-namespace Weapon
+namespace Enemy.Weapon
 {
     public class EnemyWeapon : BaseWeapon
     {

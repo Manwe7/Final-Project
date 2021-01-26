@@ -1,20 +1,28 @@
-﻿using UnityEngine;
+﻿using Multiplayer.Player;
+using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
 namespace PlayerOnlineScripts
 {
-    public class PlayerHealth : PlayerOfflineScipts.PlayerHealth
+    public class PlayerHealth : BasePlayer.PlayerHealth
     {
         [SerializeField] private PhotonView _photonView;
         [SerializeField] private Player _playerOnline;
 
+        [TagSelector]
+        [SerializeField] private string _propertiesTag;
+        
+        private PlayerOnlineProperties _playerOnlineProperties;
+        
         private void Awake()
         {
             if (!_photonView.IsMine) return;
 
-            _healthSlider = GameObject.Find("Canvas/PlayerHealthSlider").GetComponent<Slider>();
-            _cameraShake = GameObject.Find("Main Camera").GetComponent<CameraShake>();
+            _playerOnlineProperties = GameObject.FindWithTag(_propertiesTag).GetComponent<PlayerOnlineProperties>();
+            
+            _healthSlider = _playerOnlineProperties.HealthSlider;
+            _cameraShake = _playerOnlineProperties.Camera.GetComponent<CameraShake>();
 
             _playerOnline.OnRespawn += SetLifeProperties;
         }
@@ -70,6 +78,16 @@ namespace PlayerOnlineScripts
             GetDamage(10);
             other.gameObject.SetActive(false);
             other.GetComponent<Bullet>().Explode();
+        }
+
+        private void OnEnable()
+        {
+            //To override parent method
+        }
+
+        private void OnDisable()
+        {
+            //To override parent method
         }
     }
 }

@@ -7,59 +7,62 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerOnlineProperties.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/Interfaces/ISaveRepo.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Interfaces/IDamageable.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameSessionScore.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Pooler.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/SoundPlayer.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/EndGamePanel.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/JetPack.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/Player.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerHealth.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerLivesOnlineSync.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerWeapon.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/AutoDestroyOnline.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Bullet.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/LobbyManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/ShowScoreOnline.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/FuelHandler.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/JetPack.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerWeaponPosition.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Base classes/BaseEnemy.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Base classes/SaveClassRepo.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/MapSections.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/AverageEnemy.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyWeaponPosition.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyWeapon.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/LittleEnemy.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/MegaEnemy.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/BaseWeapon.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/BaseWeaponPosition.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/PlayerWeaponPosition.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/EnemyWeapon.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/EnemyWeaponPosition.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EnemySpanwer/EnemySpawner.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EnemySpawner/EnemySpawnerMovement.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/Lobby.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyConstants.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/PlayerListEntry.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/RoomListEntry.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/GamePlayUI.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/MainMenuUI.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/BaseEnemy.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/PlayerWeapon.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/GameSpeed.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/GamePlayButtons.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EnemySpawner/EnemySpawner.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/AdsManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/DefeatUI.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerHealth.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/PauseUI.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/Bullet.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerMovement.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/FuelHandler.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/EndGamePanel.cs" />
+      <option value="$PROJECT_DIR$/Assets/PlayerOnlineProperties.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerHealth.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/JetPack.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerOnlineProperties.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerWeaponPosition.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/PlayerWeaponPosition.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/PlayerWeapon.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/FuelHandler.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/JetPack.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerHealth.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/Lobby.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/FuelHandler.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/JetPack.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/Player.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/PlayerHealth.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/PlayerMovement.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/Weapon/PlayerWeapon.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/Weapon/PlayerWeaponPosition.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Base classes/BaseWeapon.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerWeapon.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BaseClasses/BaseWeapon.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BaseClasses/BaseWeaponPosition.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BaseClasses/SaveClassRepo.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/Weapon/EnemyWeapon.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/Weapon/EnemyWeaponPosition.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mc5Geqqoz7Sc1bq4okBWIsbpD2" />

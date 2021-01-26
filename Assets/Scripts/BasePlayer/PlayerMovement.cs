@@ -1,7 +1,7 @@
 ﻿using ScriptableObjects;
 using UnityEngine;
 
-namespace PlayerOfflineScipts
+namespace BasePlayer
 {
     public class PlayerMovement : MonoBehaviour
     {

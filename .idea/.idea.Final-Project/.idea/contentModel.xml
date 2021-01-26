@@ -411,8 +411,22 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
-          <e p="Base classes" t="Include">
+          <e p="BaseClasses" t="Include">
+            <e p="BaseEnemy.cs" t="Include" />
+            <e p="BaseWeapon.cs" t="Include" />
+            <e p="BaseWeaponPosition.cs" t="Include" />
             <e p="SaveClassRepo.cs" t="Include" />
+          </e>
+          <e p="BasePlayer" t="Include">
+            <e p="FuelHandler.cs" t="Include" />
+            <e p="JetPack.cs" t="Include" />
+            <e p="Player.cs" t="Include" />
+            <e p="PlayerHealth.cs" t="Include" />
+            <e p="PlayerMovement.cs" t="Include" />
+            <e p="Weapon" t="Include">
+              <e p="PlayerWeapon.cs" t="Include" />
+              <e p="PlayerWeaponPosition.cs" t="Include" />
+            </e>
           </e>
           <e p="Constants" t="Include">
             <e p="SceneNames.cs" t="Include" />
@@ -420,9 +434,12 @@
           </e>
           <e p="Enemy" t="Include">
             <e p="AverageEnemy.cs" t="Include" />
-            <e p="BaseEnemy.cs" t="Include" />
             <e p="LittleEnemy.cs" t="Include" />
             <e p="MegaEnemy.cs" t="Include" />
+            <e p="Weapon" t="Include">
+              <e p="EnemyWeapon.cs" t="Include" />
+              <e p="EnemyWeaponPosition.cs" t="Include" />
+            </e>
           </e>
           <e p="EnemySpawner" t="Include">
             <e p="EnemySpawner.cs" t="Include" />
@@ -472,17 +489,11 @@
               <e p="PlayerHealth.cs" t="Include" />
               <e p="PlayerLivesOnlineSync.cs" t="Include" />
               <e p="PlayerMovement.cs" t="Include" />
+              <e p="PlayerOnlineProperties.cs" t="Include" />
               <e p="PlayerWeapon.cs" t="Include" />
               <e p="PlayerWeaponPosition.cs" t="Include" />
             </e>
             <e p="ShowScoreOnline.cs" t="Include" />
-          </e>
-          <e p="Player" t="Include">
-            <e p="FuelHandler.cs" t="Include" />
-            <e p="JetPack.cs" t="Include" />
-            <e p="Player.cs" t="Include" />
-            <e p="PlayerHealth.cs" t="Include" />
-            <e p="PlayerMovement.cs" t="Include" />
           </e>
           <e p="ProcessDeepLinkMngr.cs" t="Include" />
           <e p="Repositories" t="Include">
@@ -501,14 +512,6 @@
             <e p="GamePlayUI.cs" t="Include" />
             <e p="MainMenuUI.cs" t="Include" />
             <e p="PauseUI.cs" t="Include" />
-          </e>
-          <e p="Weapon" t="Include">
-            <e p="BaseWeapon.cs" t="Include" />
-            <e p="BaseWeaponPosition.cs" t="Include" />
-            <e p="EnemyWeapon.cs" t="Include" />
-            <e p="EnemyWeaponPosition.cs" t="Include" />
-            <e p="PlayerWeapon.cs" t="Include" />
-            <e p="PlayerWeaponPosition.cs" t="Include" />
           </e>
         </e>
         <e p="TextMesh Pro" t="Include">

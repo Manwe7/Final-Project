@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using BaseClasses;
+using UnityEngine;
 
 namespace Enemy
 {

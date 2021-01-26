@@ -1,3 +1,5 @@
+using BaseClasses;
+using BasePlayer;
 using Interfaces;
 using UI;
 using UnityEngine;
@@ -5,7 +7,7 @@ using UnityEngine;
 public class GameSessionScore : MonoBehaviour
 {
     [Header("Scripts")]
-    [SerializeField] private PlayerOfflineScipts.PlayerHealth _playerHealth;
+    [SerializeField] private PlayerHealth _playerHealth;
     [SerializeField] private GamePlayUI _gamePlayUI;
 
     private bool _isNewRecord;

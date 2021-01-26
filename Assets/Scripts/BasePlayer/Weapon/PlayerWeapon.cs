@@ -1,7 +1,7 @@
+using BaseClasses;
 using UnityEngine;
-using Weapon;
 
-namespace PlayerOfflineScipts
+namespace BasePlayer.Weapon
 {
     public class PlayerWeapon : BaseWeapon
     {

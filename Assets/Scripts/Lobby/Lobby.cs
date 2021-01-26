@@ -108,7 +108,7 @@ namespace Lobby
 
             foreach (Player p in PhotonNetwork.PlayerList)
             {
-                var entry = Instantiate(_playerListEntryPrefab);
+                GameObject entry = Instantiate(_playerListEntryPrefab);
                 entry.transform.SetParent(_playerListContent.transform);
                 entry.transform.localScale = Vector3.one;
                 entry.GetComponent<PlayerListEntry>().Initialize(p.ActorNumber, p.NickName);
@@ -146,7 +146,7 @@ namespace Lobby
 
         public override void OnPlayerEnteredRoom(Player newPlayer)
         {
-            var entry = Instantiate(_playerListEntryPrefab);
+            GameObject entry = Instantiate(_playerListEntryPrefab);
             entry.transform.SetParent(_playerListContent.transform);
             entry.transform.localScale = Vector3.one;
             entry.GetComponent<PlayerListEntry>().Initialize(newPlayer.ActorNumber, newPlayer.NickName);

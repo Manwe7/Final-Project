@@ -1,17 +1,25 @@
-﻿using Photon.Pun;
+﻿using Multiplayer.Player;
+using Photon.Pun;
 using UnityEngine;
 
 namespace PlayerOnlineScripts
 {
-    public class JetPack : PlayerOfflineScipts.JetPack
+    public class JetPack : BasePlayer.JetPack
     {
         [SerializeField] private PhotonView _photonView;
+        
+        [TagSelector]
+        [SerializeField] private string _propertiesTag;
+        
+        private PlayerOnlineProperties _playerOnlineProperties;
         
         private void Awake()
         {
             if(!_photonView.IsMine) { return; }
 
-            _joystick = GameObject.Find("Canvas/MovementJoystick").GetComponent<FixedJoystick>();
+            _playerOnlineProperties = GameObject.FindWithTag(_propertiesTag).GetComponent<PlayerOnlineProperties>();
+            
+            _joystick = _playerOnlineProperties.MovementJoystick;
 
             SetParticles(false);
         }
@@ -41,7 +49,7 @@ namespace PlayerOnlineScripts
             }
             else
             {
-                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, -_playerSettings._flySpeed * 1.7f);
+                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, -_playerSettings._flySpeed * 1.1f);
             }
         }
     }

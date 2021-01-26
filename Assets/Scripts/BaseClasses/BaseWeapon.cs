@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Weapon
+namespace BaseClasses
 {
     public class BaseWeapon : MonoBehaviour
     {

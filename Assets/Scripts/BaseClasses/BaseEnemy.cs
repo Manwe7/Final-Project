@@ -1,10 +1,10 @@
 using System;
+using Enemy.Weapon;
 using Interfaces;
 using UnityEngine;
-using Weapon;
 using Random = UnityEngine.Random;
 
-namespace Enemy
+namespace BaseClasses
 {
     public abstract class BaseEnemy : MonoBehaviour, IDamageable
     { 

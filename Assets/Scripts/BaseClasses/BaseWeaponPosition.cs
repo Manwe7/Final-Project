@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Weapon
+namespace BaseClasses
 {
     public abstract class BaseWeaponPosition : MonoBehaviour
     {

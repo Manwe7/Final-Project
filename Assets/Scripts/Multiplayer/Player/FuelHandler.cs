@@ -1,18 +1,26 @@
-﻿using Photon.Pun;
+﻿using Multiplayer.Player;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace PlayerOnlineScripts
 {
-    public class FuelHandler : PlayerOfflineScipts.FuelHandler
+    public class FuelHandler : BasePlayer.FuelHandler
     {
         [SerializeField] private PhotonView _photonView;
+        
+        [TagSelector]
+        [SerializeField] private string _propertiesTag;
+        
+        private PlayerOnlineProperties _playerOnlineProperties;
         
         private void Awake()
         {
             if(!_photonView.IsMine) { return ;}
 
-            _playerFuelSlider = GameObject.Find("Canvas/PlayerFuelSlider").GetComponent<Slider>();
+            _playerOnlineProperties = GameObject.FindWithTag(_propertiesTag).GetComponent<PlayerOnlineProperties>();
+
+            _playerFuelSlider = _playerOnlineProperties.FuelSlider;
         }
 
         protected override void SetFuelProperties()

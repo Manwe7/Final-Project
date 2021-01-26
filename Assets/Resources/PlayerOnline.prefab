@@ -246,6 +246,144 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &5149516385036429595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8488342869245334125}
+  - component: {fileID: 4332394813009496585}
+  m_Layer: 8
+  m_Name: Trail
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8488342869245334125
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5149516385036429595}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5233265968429482937}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!96 &4332394813009496585
+TrailRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5149516385036429595}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -880269255
+  m_SortingLayer: 3
+  m_SortingOrder: 0
+  m_Time: 0.3
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 1.4
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -1.5210557
+        outSlope: -1.5210557
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.08884299
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 0, g: 1, b: 1, a: 1}
+      key1: {r: 0, g: 1, b: 1, a: 0}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_MinVertexDistance: 0.1
+  m_Autodestruct: 0
+  m_Emitting: 1
 --- !u!1 &5233265967289660585
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,7 +516,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5233265968363624722
 Transform:
   m_ObjectHideFlags: 0
@@ -5337,6 +5475,7 @@ Transform:
   - {fileID: 1321385248151007933}
   - {fileID: 5233265968630552471}
   - {fileID: 5233265968363624722}
+  - {fileID: 8488342869245334125}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5495,6 +5634,7 @@ MonoBehaviour:
   _health: 100
   _photonView: {fileID: -7317958833022771356}
   _playerOnline: {fileID: 2498267659472461099}
+  _propertiesTag: Properties
 --- !u!114 &8063633914998885425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5511,6 +5651,7 @@ MonoBehaviour:
   _rigidbody2D: {fileID: 5233265968429482938}
   _playerSettings: {fileID: 11400000, guid: 710f5fbdb8c1f7b4a906936928e9dcfa, type: 2}
   _photonView: {fileID: -7317958833022771356}
+  _propertiesTag: Properties
 --- !u!114 &6194620900347440808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5525,10 +5666,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _joystick: {fileID: 0}
   _rigidbody2D: {fileID: 5233265968429482938}
-  _fuelParticles: {fileID: 5233265968363624725}
+  _fuelParticles: {fileID: 5149516385036429595}
   _fuelHandler: {fileID: 5364500714395845632}
   _playerSettings: {fileID: 11400000, guid: 710f5fbdb8c1f7b4a906936928e9dcfa, type: 2}
   _photonView: {fileID: -7317958833022771356}
+  _propertiesTag: Properties
 --- !u!114 &5364500714395845632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5543,6 +5685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerFuelSlider: {fileID: 0}
   _photonView: {fileID: -7317958833022771356}
+  _propertiesTag: Properties
 --- !u!114 &7706509320394812999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5557,6 +5700,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerLivesOnlineSync: {fileID: 1356551776149124612}
   _photonView: {fileID: -7317958833022771356}
+  _propertiesTag: Properties
 --- !u!114 &-7317958833022771356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5719,6 +5863,8 @@ MonoBehaviour:
   _photonView: {fileID: 5399333186287731839}
   _bulletOnline: {fileID: 7444725418516393869, guid: 4c87560a78194854b93792a442d6abe3,
     type: 3}
+  _handleOffsetToShoot: 0
+  _propertiesTag: Properties
 --- !u!114 &6996202038108817362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5735,6 +5881,7 @@ MonoBehaviour:
   _weaponJoystick: {fileID: 0}
   _joystickHandle: {fileID: 0}
   _photonView: {fileID: 5399333186287731839}
+  _propertiesTag: Properties
 --- !u!114 &5399333186287731839
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,18 +1,25 @@
 ﻿using Photon.Pun;
 using UnityEngine;
 
-namespace PlayerOnlineScripts
+namespace Multiplayer.Player
 {
-    public class PlayerWeaponPosition : PlayerOfflineScipts.PlayerWeaponPosition
+    public class PlayerWeaponPosition : BasePlayer.Weapon.PlayerWeaponPosition
     {
         [SerializeField] private PhotonView _photonView;
 
+        [TagSelector]
+        [SerializeField] private string _propertiesTag;
+        
+        private PlayerOnlineProperties _playerOnlineProperties;
+        
         private void Awake()
         {        
             if (!_photonView.IsMine) { return; }
 
-            _weaponJoystick = GameObject.Find("Canvas/RotationJoystick").GetComponent<FixedJoystick>();
-            _joystickHandle = GameObject.Find("Canvas/RotationJoystick/Handle").GetComponent<RectTransform>();
+            _playerOnlineProperties = GameObject.FindWithTag(_propertiesTag).GetComponent<PlayerOnlineProperties>();
+            
+            _weaponJoystick = _playerOnlineProperties.WeaponJoystick;
+            _joystickHandle = _playerOnlineProperties.JoystickHandle;
         }
 
         protected override void ChangeWeaponPosition()

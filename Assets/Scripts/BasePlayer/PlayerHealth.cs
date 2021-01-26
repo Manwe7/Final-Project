@@ -4,7 +4,7 @@ using Managers;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PlayerOfflineScipts
+namespace BasePlayer
 {
     public class PlayerHealth : MonoBehaviour, IDamageable
     {

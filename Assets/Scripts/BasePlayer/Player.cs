@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace PlayerOfflineScipts
+namespace BasePlayer
 {
     public class Player : MonoBehaviour
     {

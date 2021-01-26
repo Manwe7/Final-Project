@@ -1,14 +1,35 @@
-﻿using UnityEngine;
+﻿using BaseClasses;
 using Photon.Pun;
-using Weapon;
+using UnityEngine;
 
-namespace PlayerOnlineScripts
+namespace Multiplayer.Player
 {
     public class PlayerWeapon : BaseWeapon
     {
         [SerializeField] private PhotonView _photonView;
         [SerializeField] private GameObject _bulletOnline;
 
+        [Header("Stats")]
+        [SerializeField] private float _handleOffsetToShoot;
+        
+        [TagSelector]
+        [SerializeField] private string _propertiesTag;
+        
+        private PlayerOnlineProperties _playerOnlineProperties;
+        
+        private Joystick _weaponJoystick;
+        
+        private float _vertical, _horizontal;
+        
+        private void Awake()
+        {        
+            if (!_photonView.IsMine) { return; }
+
+            _playerOnlineProperties = GameObject.FindWithTag(_propertiesTag).GetComponent<PlayerOnlineProperties>();
+            
+            _weaponJoystick = _playerOnlineProperties.WeaponJoystick;
+        }
+        
         private void OnEnable()
         {
             _reloadTime = 0.5f;
@@ -17,12 +38,18 @@ namespace PlayerOnlineScripts
 
         private void Update()
         {
+            _vertical = _weaponJoystick.Vertical;
+            _horizontal = _weaponJoystick.Horizontal;
+            
             if (!_photonView.IsMine) { return; }
 
             if (!_reloaded) return;
             
-            _photonView.RPC("ShootBullet", RpcTarget.All);
-            StartCoroutine(Reload());
+            if(Mathf.Abs(_vertical) > _handleOffsetToShoot || Mathf.Abs(_horizontal) > _handleOffsetToShoot)
+            {
+                _photonView.RPC("ShootBullet", RpcTarget.All);
+                StartCoroutine(Reload());
+            }
         }
         
         [PunRPC]
@@ -30,8 +57,8 @@ namespace PlayerOnlineScripts
         {
             if (!_photonView.IsMine) return;
             
-            var bullet = PhotonNetwork.Instantiate(_bulletOnline.name, _barrel.position, _barrel.rotation);
-            bullet.GetComponent<Bullet>().Init(_photonView.Owner);
+            GameObject bullet = PhotonNetwork.Instantiate(_bulletOnline.name, _barrel.position, _barrel.rotation);
+            bullet.GetComponent<PlayerOnlineScripts.Bullet>().Init(_photonView.Owner);
         }        
     }
 }

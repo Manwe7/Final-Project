@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PlayerOfflineScipts
+namespace BasePlayer
 {
     public class FuelHandler : MonoBehaviour
     {

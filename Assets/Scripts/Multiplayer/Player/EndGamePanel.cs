@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using Photon.Pun;
 using System.Collections;
+using Multiplayer.Player;
 
 namespace PlayerOnlineScripts
 {
@@ -10,6 +11,11 @@ namespace PlayerOnlineScripts
         [SerializeField] private PlayerLivesOnlineSync _playerLivesOnlineSync;
         [SerializeField] private PhotonView _photonView;
 
+        [TagSelector]
+        [SerializeField] private string _propertiesTag;
+        
+        private PlayerOnlineProperties _playerOnlineProperties;
+        
         private GameObject _endPanel;
         private Text _endPanelText;
 
@@ -17,13 +23,15 @@ namespace PlayerOnlineScripts
         {
             if (!_photonView.IsMine) { return; }
 
+            _playerOnlineProperties = GameObject.FindWithTag(_propertiesTag).GetComponent<PlayerOnlineProperties>();
+            
             FindUIObjects();
         }
 
         private void FindUIObjects()
         {
-            _endPanel = GameObject.Find("Canvas/EndPanel");
-            _endPanelText = GameObject.Find("Canvas/EndPanel/Text").GetComponent<Text>();
+            _endPanel = _playerOnlineProperties.EndPanel;
+            _endPanelText = _playerOnlineProperties.EndPanelText;
         }
 
         private void Start()

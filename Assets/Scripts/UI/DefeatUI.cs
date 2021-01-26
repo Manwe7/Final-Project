@@ -1,9 +1,10 @@
 ﻿using System.Collections;
+using BaseClasses;
+using BasePlayer;
 using Interfaces;
 using Managers;
 using UnityEngine;
 using UnityEngine.UI;
-using PlayerOfflineScipts;
 
 namespace UI
 {
