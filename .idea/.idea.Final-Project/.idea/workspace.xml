@@ -9,7 +9,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/Interfaces/IGetRepo.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Interfaces/ISaveRepo.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Interfaces/IDamageable.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameSessionScore.cs" />
@@ -60,6 +59,7 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerHealth.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/PauseUI.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/Bullet.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mc5Geqqoz7Sc1bq4okBWIsbpD2" />

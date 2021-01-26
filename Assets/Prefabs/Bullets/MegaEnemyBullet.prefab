@@ -149,6 +149,7 @@ MonoBehaviour:
   _explosionName: {fileID: 6163721950763462551, guid: ef5d5da408ccb1e4492bf84b8070eb16,
     type: 3}
   _speed: 25
+  _tagToAvoid: Enemy
 --- !u!1001 &8037526464948097600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -158,13 +159,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5927531301834169616, guid: b04740bc79b0c844f97a4d0af390395a,
         type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 1
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5927531301834169616, guid: b04740bc79b0c844f97a4d0af390395a,
         type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5927531301834169618, guid: b04740bc79b0c844f97a4d0af390395a,
         type: 3}
@@ -179,6 +180,11 @@ PrefabInstance:
     - target: {fileID: 5927531301834169618, guid: b04740bc79b0c844f97a4d0af390395a,
         type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927531301834169631, guid: b04740bc79b0c844f97a4d0af390395a,
+        type: 3}
+      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5927531301834169631, guid: b04740bc79b0c844f97a4d0af390395a,
@@ -198,6 +204,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5927531301834169631, guid: b04740bc79b0c844f97a4d0af390395a,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927531301834169631, guid: b04740bc79b0c844f97a4d0af390395a,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -209,16 +220,6 @@ PrefabInstance:
     - target: {fileID: 5927531301834169631, guid: b04740bc79b0c844f97a4d0af390395a,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5927531301834169631, guid: b04740bc79b0c844f97a4d0af390395a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5927531301834169631, guid: b04740bc79b0c844f97a4d0af390395a,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5927531301834169631, guid: b04740bc79b0c844f97a4d0af390395a,
