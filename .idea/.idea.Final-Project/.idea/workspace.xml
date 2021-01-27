@@ -12,8 +12,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/LittleEnemy.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/MegaEnemy.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/BaseWeapon.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/BaseWeaponPosition.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/EnemyWeapon.cs" />
@@ -38,7 +36,6 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/EndGamePanel.cs" />
       <option value="$PROJECT_DIR$/Assets/PlayerOnlineProperties.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerHealth.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/JetPack.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerOnlineProperties.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerWeaponPosition.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/PlayerWeaponPosition.cs" />
@@ -63,6 +60,9 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/BaseClasses/SaveClassRepo.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/Weapon/EnemyWeapon.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/Weapon/EnemyWeaponPosition.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/AverageEnemy.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BaseClasses/BaseEnemy.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/JetPack.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mc5Geqqoz7Sc1bq4okBWIsbpD2" />
