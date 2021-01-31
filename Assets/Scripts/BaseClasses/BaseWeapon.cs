@@ -7,13 +7,10 @@ namespace BaseClasses
     public class BaseWeapon : MonoBehaviour
     {
         [SerializeField] protected GameObject _bullet;
-
         [SerializeField] protected Transform _barrel;
-
         [SerializeField] protected Pooler _pooler;
 
         protected float _reloadTime;
-
         protected bool _reloaded;
 
         protected event Action OnShoot;

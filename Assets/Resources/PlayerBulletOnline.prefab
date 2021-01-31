@@ -207,6 +207,7 @@ MonoBehaviour:
   _speed: 25
   _rigidbody2D: {fileID: 5518891196149967445}
   _photonView: {fileID: -6247200342417290527}
+  _soundPlayer: SoundPlayer
 --- !u!1001 &4327688169793999168
 PrefabInstance:
   m_ObjectHideFlags: 0

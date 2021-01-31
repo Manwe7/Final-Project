@@ -9,13 +9,10 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerOnlineProperties.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/EntrySceneUI.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/BaseWeapon.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/BaseWeaponPosition.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/EnemyWeapon.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/EnemyWeaponPosition.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EnemySpanwer/EnemySpawner.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EnemySpawner/EnemySpawnerMovement.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyConstants.cs" />
@@ -30,7 +27,6 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/AdsManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/DefeatUI.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/PauseUI.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/Bullet.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerMovement.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/FuelHandler.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/EndGamePanel.cs" />
@@ -51,11 +47,9 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/Player.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/PlayerHealth.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/PlayerMovement.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/Weapon/PlayerWeapon.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/Weapon/PlayerWeaponPosition.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Base classes/BaseWeapon.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerWeapon.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/BaseClasses/BaseWeapon.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BaseClasses/BaseWeaponPosition.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BaseClasses/SaveClassRepo.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/Weapon/EnemyWeapon.cs" />
@@ -63,6 +57,13 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/AverageEnemy.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BaseClasses/BaseEnemy.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/JetPack.cs" />
+      <option value="$PROJECT_DIR$/Assets/EntryScene.cs" />
+      <option value="$PROJECT_DIR$/Assets/EntrySceneUI.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/EntrySceneUI.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/Weapon/PlayerWeapon.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BaseClasses/BaseWeapon.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Bullet.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/Bullet.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mc5Geqqoz7Sc1bq4okBWIsbpD2" />

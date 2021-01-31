@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using Interfaces;
 using UnityEngine;
 
@@ -8,7 +10,11 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float _speed;
 
     [TagSelector]
-    [SerializeField] private string _tagToAvoid; 
+    [SerializeField] private string _tagToAvoid;
+
+    [Header("Components to disable")] 
+    [SerializeField] private Collider2D _collider2D;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
     
     private IDamageable _damageable;
     private Pooler _pooler;
@@ -16,6 +22,12 @@ public class Bullet : MonoBehaviour
     public void Awake()
     {    
         _pooler = FindObjectOfType<Pooler>();
+    }
+
+    private void OnEnable()
+    {
+        _spriteRenderer.enabled = true;
+        _collider2D.enabled = true;
     }
 
     private void FixedUpdate()
@@ -29,12 +41,17 @@ public class Bullet : MonoBehaviour
         
         _damageable = other.GetComponent<IDamageable>();
         _damageable?.ApplyDamage(10);
-        Explode();
+        StartCoroutine(Explode());
     }
 
-    private void Explode()
+    private IEnumerator Explode()
     {
+        _spriteRenderer.enabled = false;
+        _collider2D.enabled = false;
         _pooler.GetPooledObject(_explosionName.name, transform.position, Quaternion.identity);
+        
+        yield return new WaitForSeconds(0.55f);
+        
         gameObject.SetActive(false);
     }
 }

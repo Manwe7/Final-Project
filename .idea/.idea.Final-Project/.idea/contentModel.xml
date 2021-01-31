@@ -508,6 +508,7 @@
           <e p="ShareRoom.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="DefeatUI.cs" t="Include" />
+            <e p="EntrySceneUI.cs" t="Include" />
             <e p="GamePlayButtons.cs" t="Include" />
             <e p="GamePlayUI.cs" t="Include" />
             <e p="MainMenuUI.cs" t="Include" />

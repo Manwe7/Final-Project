@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3819143012375225158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3819143012375225159}
+  - component: {fileID: 3819143012375225156}
+  m_Layer: 0
+  m_Name: SoundsPlayer
+  m_TagString: SoundPlayer
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3819143012375225159
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3819143012375225158}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3819143012375225156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3819143012375225158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 850ebce736f971d4b981ac99ec7ee902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - SoundName: 0
+    AudioClip: {fileID: 8300000, guid: eb7eeece060078941beb01e2a2bc20cd, type: 3}
+    Volume: 0.7
+    Pitch: 1
+    Loop: 0
+    Source: {fileID: 0}
+    SpacialBlend: 0
+  - SoundName: 1
+    AudioClip: {fileID: 8300000, guid: 30bb2dbe2f912d945a23c2223080fe27, type: 3}
+    Volume: 0.5
+    Pitch: 1
+    Loop: 0
+    Source: {fileID: 0}
+    SpacialBlend: 0
+  - SoundName: 2
+    AudioClip: {fileID: 8300000, guid: f0a2d98fd26cbf44bb24fbb355e13701, type: 3}
+    Volume: 0.5
+    Pitch: 1
+    Loop: 0
+    Source: {fileID: 0}
+    SpacialBlend: 0
+  - SoundName: 3
+    AudioClip: {fileID: 8300000, guid: 4f75eef817bb9cf4e8a00ede6d88ed5e, type: 3}
+    Volume: 0.3
+    Pitch: 1
+    Loop: 0
+    Source: {fileID: 0}
+    SpacialBlend: 0

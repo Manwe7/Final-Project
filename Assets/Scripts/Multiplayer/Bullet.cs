@@ -15,9 +15,18 @@ namespace PlayerOnlineScripts
         [SerializeField] private Rigidbody2D _rigidbody2D;
         [SerializeField] private PhotonView _photonView;
 
+        [TagSelector] 
+        [SerializeField] private string _soundPlayer;
+        
         private bool _exploded;
 
         public Photon.Realtime.Player Owner { get; private set; }
+
+        private void Start()
+        {
+            SoundPlayer soundPlayer = GameObject.FindWithTag(_soundPlayer).GetComponent<SoundPlayer>();
+            soundPlayer.Play(SoundNames.PlayerBullet);
+        }
 
         public void Init(Photon.Realtime.Player owner)
         {
