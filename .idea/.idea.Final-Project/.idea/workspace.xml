@@ -13,7 +13,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/EnemySpanwer/EnemySpawner.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EnemySpawner/EnemySpawnerMovement.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyConstants.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/PlayerListEntry.cs" />
@@ -64,6 +63,7 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/BaseClasses/BaseWeapon.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Bullet.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/Bullet.cs" />
+      <option value="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Demos/DemoAsteroids/Prefabs/RoomListEntry.prefab" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mc5Geqqoz7Sc1bq4okBWIsbpD2" />
