@@ -12,7 +12,7 @@ namespace BasePlayer
         [SerializeField] protected CameraShake _cameraShake;
         [SerializeField] private AdsManager _adsManager;
 
-        public int _health { get; private set; }
+        protected int _health;
 
         private void Start()
         {
