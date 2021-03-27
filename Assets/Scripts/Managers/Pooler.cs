@@ -6,6 +6,7 @@ public class Pooler : MonoBehaviour
     [System.Serializable]
     public class GameObjectToPool
     {
+        public string Name;
         public GameObject objectToPool;
         public int amountToPool;
     }

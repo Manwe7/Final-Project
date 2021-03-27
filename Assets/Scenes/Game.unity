@@ -754,11 +754,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 519420032}
+  - {fileID: 638479933}
+  - {fileID: 80450632}
   - {fileID: 685225112}
   - {fileID: 132967514}
-  - {fileID: 638479933}
   - {fileID: 85062360}
-  - {fileID: 80450632}
   - {fileID: 931972091}
   - {fileID: 152973419}
   m_Father: {fileID: 0}
@@ -856,7 +856,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 68351470}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &85062361
 MonoBehaviour:
@@ -1221,7 +1221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &129834984
 Transform:
   m_ObjectHideFlags: 0
@@ -1318,7 +1318,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 68351470}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &132967516
 MonoBehaviour:
@@ -4911,7 +4911,7 @@ Transform:
   m_Children:
   - {fileID: 1845280465}
   m_Father: {fileID: 68351470}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &685225117
 MonoBehaviour:
@@ -4927,49 +4927,64 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _container: {fileID: 1845280465}
   _itemsToPool:
-  - objectToPool: {fileID: 6936943444921490501, guid: 7a1f9264141a91340bd1cc43decd5ced,
+  - Name: LittleEnemy
+    objectToPool: {fileID: 6936943444921490501, guid: 7a1f9264141a91340bd1cc43decd5ced,
       type: 3}
     amountToPool: 5
-  - objectToPool: {fileID: 6936943444921490501, guid: c1d7e25e15138994897b3fd5ee4c9bae,
+  - Name: AverageEnemy
+    objectToPool: {fileID: 6936943444921490501, guid: c1d7e25e15138994897b3fd5ee4c9bae,
       type: 3}
     amountToPool: 5
-  - objectToPool: {fileID: 6936943444921490501, guid: 8b63c8d354c14c54ea6a1cf1892376a4,
+  - Name: MegaEnemy
+    objectToPool: {fileID: 6936943444921490501, guid: 8b63c8d354c14c54ea6a1cf1892376a4,
       type: 3}
     amountToPool: 5
-  - objectToPool: {fileID: 7444725418516393869, guid: 6034abc6a4127184291822f8e5610c97,
+  - Name: LittleEnemyBullet
+    objectToPool: {fileID: 7444725418516393869, guid: 6034abc6a4127184291822f8e5610c97,
       type: 3}
     amountToPool: 5
-  - objectToPool: {fileID: 7444725418516393869, guid: d96bd5510566a08409706691545d68b9,
+  - Name: AverageEnemyBullet
+    objectToPool: {fileID: 7444725418516393869, guid: d96bd5510566a08409706691545d68b9,
       type: 3}
     amountToPool: 5
-  - objectToPool: {fileID: 7444725418516393869, guid: 1b1c7a62a5d117f4594780ebc82a6025,
+  - Name: MegaEnemyBullet
+    objectToPool: {fileID: 7444725418516393869, guid: 1b1c7a62a5d117f4594780ebc82a6025,
       type: 3}
     amountToPool: 5
-  - objectToPool: {fileID: 6163721950763462551, guid: 3fc0344637719544cb556c71ec2c4f19,
+  - Name: LittleEnemyExplosion
+    objectToPool: {fileID: 6163721950763462551, guid: 3fc0344637719544cb556c71ec2c4f19,
       type: 3}
     amountToPool: 5
-  - objectToPool: {fileID: 6163721950763462551, guid: d0924fad08d74d943813ef63229933e4,
+  - Name: AverageEnemyExplosion
+    objectToPool: {fileID: 6163721950763462551, guid: d0924fad08d74d943813ef63229933e4,
       type: 3}
     amountToPool: 5
-  - objectToPool: {fileID: 6163721950763462551, guid: 76c7ded1f269feb448fb0808af3bba2b,
+  - Name: MegaEnemyExplosion
+    objectToPool: {fileID: 6163721950763462551, guid: 76c7ded1f269feb448fb0808af3bba2b,
       type: 3}
     amountToPool: 5
-  - objectToPool: {fileID: 6163721950763462551, guid: 7e729291e00d7d041a5d74759cdd8a24,
+  - Name: LittleEnemyBulletExplosion
+    objectToPool: {fileID: 6163721950763462551, guid: 7e729291e00d7d041a5d74759cdd8a24,
       type: 3}
     amountToPool: 5
-  - objectToPool: {fileID: 6163721950763462551, guid: 05acbfa993974dd4ab0a8cf7e93b444a,
+  - Name: AverageEnemyBulletExplosion
+    objectToPool: {fileID: 6163721950763462551, guid: 05acbfa993974dd4ab0a8cf7e93b444a,
       type: 3}
     amountToPool: 5
-  - objectToPool: {fileID: 6163721950763462551, guid: ef5d5da408ccb1e4492bf84b8070eb16,
+  - Name: MegaEnemyBulletExplosion
+    objectToPool: {fileID: 6163721950763462551, guid: ef5d5da408ccb1e4492bf84b8070eb16,
       type: 3}
     amountToPool: 5
-  - objectToPool: {fileID: 7444725418516393869, guid: bf81422569591f34b9f89c4007ea2d6a,
+  - Name: PlayerBullet
+    objectToPool: {fileID: 7444725418516393869, guid: bf81422569591f34b9f89c4007ea2d6a,
       type: 3}
     amountToPool: 5
-  - objectToPool: {fileID: 6163721950763462551, guid: 4c1b4a4573f20964bb8ac44bb818984c,
+  - Name: PlayerBulletExplosion
+    objectToPool: {fileID: 6163721950763462551, guid: 4c1b4a4573f20964bb8ac44bb818984c,
       type: 3}
     amountToPool: 5
-  - objectToPool: {fileID: 6163721950763462551, guid: 37afc425dadc19140800cd83bb7b1ef3,
+  - Name: PlayerExplosion
+    objectToPool: {fileID: 6163721950763462551, guid: 37afc425dadc19140800cd83bb7b1ef3,
       type: 3}
     amountToPool: 5
 --- !u!1001 &692844725
@@ -14414,7 +14429,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ab8c2fdfd9e8094409d6d70d18850b0a, type: 2}
+  - {fileID: 2100000, guid: 6c35310d79b59ac489883db2dcf780c1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15830,6 +15845,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 85062358}
+    - target: {fileID: 3560130802309943373, guid: c1cff48ee99be2346969cf3a4278def5,
+        type: 3}
+      propertyPath: m_Name
+      value: PauseRecordText
+      objectReference: {fileID: 0}
     - target: {fileID: 3560130802926539312, guid: c1cff48ee99be2346969cf3a4278def5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -15857,7 +15877,7 @@ PrefabInstance:
     - target: {fileID: 3819143012375225159, guid: 5d7607d665d794945a4b8ec92bde3647,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3819143012375225159, guid: 5d7607d665d794945a4b8ec92bde3647,
         type: 3}
@@ -16472,7 +16492,7 @@ PrefabInstance:
     - target: {fileID: 9155865881855462074, guid: 7da12c2d7dda7424dbbbbac526f76c05,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9155865881855462074, guid: 7da12c2d7dda7424dbbbbac526f76c05,
         type: 3}
