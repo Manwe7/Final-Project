@@ -1435,6 +1435,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pausePanel: {fileID: 1016524179}
+  _exitButton: {fileID: 2764600391331894108}
+  _pauseButton: {fileID: 1579233318}
+  _resumeButton: {fileID: 2764600391663921375}
 --- !u!1 &509353942
 GameObject:
   m_ObjectHideFlags: 0
@@ -4111,6 +4114,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1579233316}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1579233318 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4575630154806342445, guid: fea4965df1f12ea4eb429306e9b722c8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1579233316}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1607056954
 GameObject:
   m_ObjectHideFlags: 0

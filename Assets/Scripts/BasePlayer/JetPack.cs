@@ -16,7 +16,7 @@ namespace BasePlayer
 
         private void Start()
         {    
-            SetParticles(false);
+            _fuelParticles.SetActive(IsFlying);
         }        
 
         private void Update()
@@ -36,19 +36,21 @@ namespace BasePlayer
         }
 
         protected virtual void ControlFuel()
-        {        
+        {
             if (IsFlying)
             {
                 _rigidbody2D.gravityScale = 0f;
                 _fuelHandler.SpendFuel();
-                SetParticles(true);
             }
             else
             {
                 _rigidbody2D.gravityScale = 5f;
                 _fuelHandler.RestoreFuel();
-                SetParticles(false);
             }
+            
+            if(_fuelParticles.activeSelf && IsFlying || !_fuelParticles.activeSelf && !IsFlying) return;
+            
+            _fuelParticles.SetActive(IsFlying);
         }
 
         protected virtual void Fly()
@@ -57,11 +59,6 @@ namespace BasePlayer
             {
                 _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _verticalMove * _playerSettings._flySpeed);
             }
-        }
-
-        protected void SetParticles(bool status)
-        {
-            _fuelParticles.SetActive(status);
         }
     }
 }

@@ -40,10 +40,10 @@ namespace BasePlayer
                 StartCoroutine(DelayRestoringFuel());
             }
 
-            SetSliderValue(_fuelCapacity);
+            SetSliderValue();
         }
 
-        private void SetSliderValue(float capacity)
+        private void SetSliderValue()
         {
             _playerFuelSlider.value = _fuelCapacity;
         }

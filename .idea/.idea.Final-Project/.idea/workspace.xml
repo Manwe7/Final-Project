@@ -13,7 +13,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/EnemySpawner/EnemySpawnerMovement.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyConstants.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/PlayerListEntry.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/RoomListEntry.cs" />
@@ -30,7 +29,6 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/FuelHandler.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/EndGamePanel.cs" />
       <option value="$PROJECT_DIR$/Assets/PlayerOnlineProperties.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerHealth.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerOnlineProperties.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerWeaponPosition.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/PlayerWeaponPosition.cs" />
@@ -42,7 +40,6 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/Lobby.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/FuelHandler.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/JetPack.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/Player.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/PlayerMovement.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/Weapon/PlayerWeaponPosition.cs" />
@@ -53,7 +50,6 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/Weapon/EnemyWeaponPosition.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/AverageEnemy.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BaseClasses/BaseEnemy.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/JetPack.cs" />
       <option value="$PROJECT_DIR$/Assets/EntryScene.cs" />
       <option value="$PROJECT_DIR$/Assets/EntrySceneUI.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/EntrySceneUI.cs" />
@@ -64,6 +60,10 @@
       <option value="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Demos/DemoAsteroids/Prefabs/RoomListEntry.prefab" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/PlayerHealth.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerWeapon.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerHealth.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/JetPack.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/JetPack.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/OnlineUI.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mc5Geqqoz7Sc1bq4okBWIsbpD2" />

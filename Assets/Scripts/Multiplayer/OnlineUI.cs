@@ -1,23 +1,37 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class OnlineUI : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject _pausePanel;
 
-    public void PauseGame()
+    [Header("Buttons")] 
+    [SerializeField] private Button _exitButton;
+    [SerializeField] private Button _pauseButton;
+    [SerializeField] private Button _resumeButton;
+
+    private void Awake()
+    {
+        _exitButton.onClick.AddListener(LeaveRoom);
+        _pauseButton.onClick.AddListener(PauseGame);
+        _resumeButton.onClick.AddListener(ResumeGame);
+    }
+
+    private void PauseGame()
     {
         _pausePanel.SetActive(true);
     }
 
-    public void ResumeGame()
+    private void ResumeGame()
     {
         _pausePanel.SetActive(false);
     }
 
     public void LeaveRoom()
-    { 
+    {
         PhotonNetwork.LeaveRoom();
     }
 

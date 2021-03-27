@@ -36,6 +36,8 @@ namespace PlayerOnlineScripts
 
         private void OnDestroy()
         {
+            if (!_photonView.IsMine) return;
+            
             _playerOnline.OnRespawn -= SetLifeProperties;
         }
 
@@ -52,6 +54,8 @@ namespace PlayerOnlineScripts
 
         public void GetDamage(int damage)
         {
+            if (!_photonView.IsMine) return;
+            
             _cameraShake.ShakeCameraOnce(1.7f);
             if (_photonView.IsMine)
             {
