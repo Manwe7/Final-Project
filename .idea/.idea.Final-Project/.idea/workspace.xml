@@ -47,7 +47,6 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/PlayerMovement.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/Weapon/PlayerWeaponPosition.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Base classes/BaseWeapon.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerWeapon.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BaseClasses/BaseWeaponPosition.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BaseClasses/SaveClassRepo.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/Weapon/EnemyWeapon.cs" />
@@ -64,6 +63,7 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/Bullet.cs" />
       <option value="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Demos/DemoAsteroids/Prefabs/RoomListEntry.prefab" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/PlayerHealth.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerWeapon.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mc5Geqqoz7Sc1bq4okBWIsbpD2" />
