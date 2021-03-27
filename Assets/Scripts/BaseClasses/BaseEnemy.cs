@@ -17,6 +17,9 @@ namespace BaseClasses
         [Header("Stats")]
         [SerializeField] private float _speed;
         [SerializeField] protected float _jumpForce;
+        [Space]
+        [SerializeField] protected float _maxXDistance = 15;
+        [SerializeField] protected float _maxYDistance = 15;
 
         private SoundPlayer _soundPlayer;
         private CameraShake _cameraShake;
@@ -71,7 +74,7 @@ namespace BaseClasses
 
         private void CheckForPlayerPosition()
         {
-            if (_player != null)
+            if (_player != null && IsPlayerInXRange() && IsPlayerInYRange())
             {
                 float moveSpeed = _speed;
                 if(!IsPlayerOnRight() && !IsOnDistance())
@@ -99,6 +102,32 @@ namespace BaseClasses
         private bool IsOnDistance()
         {
             return Math.Abs(Mathf.Round(_player.transform.position.x + _distance) - Mathf.Round(transform.position.x)) < 0.1f;
+        }
+        
+        public bool IsPlayerInXRange()
+        {
+            if(_player.transform.position.x < transform.position.x) //Player in left side
+            {
+                return _player.transform.position.x > transform.position.x - _maxXDistance;
+            }
+            if(_player.transform.position.x >= transform.position.x) // Player on right side
+            {
+                return _player.transform.position.x < transform.position.x + _maxXDistance;
+            }
+            return false;
+        }
+        
+        public bool IsPlayerInYRange()
+        {
+            if(_player.transform.position.y < transform.position.y) //Player is under
+            {
+                return _player.transform.position.y > transform.position.y - _maxYDistance;
+            }
+            if(_player.transform.position.y >= transform.position.y) //Player is on top
+            {
+                return _player.transform.position.y < transform.position.y + _maxYDistance;
+            }
+            return false;
         }
 
         private void MoveToPlayer(float speed)

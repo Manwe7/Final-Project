@@ -433,6 +433,7 @@ MonoBehaviour:
   _pooler: {fileID: 0}
   _enemyWeaponSettings: {fileID: 11400000, guid: eb1f48e6706ceb6408ee3aefe8b34027,
     type: 2}
+  _baseEnemy: {fileID: -4817017333465109856}
 --- !u!114 &4210707701555603458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -795,3 +796,5 @@ MonoBehaviour:
   _weaponPosition: {fileID: 4210707701555603458}
   _speed: 4
   _jumpForce: 25000
+  _maxXDistance: 20
+  _maxYDistance: 10

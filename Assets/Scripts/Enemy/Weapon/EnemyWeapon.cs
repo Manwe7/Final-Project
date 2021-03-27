@@ -8,6 +8,7 @@ namespace Enemy.Weapon
     public class EnemyWeapon : BaseWeapon
     {
         [SerializeField] private EnemyWeaponSettings _enemyWeaponSettings;
+        [SerializeField] private BaseEnemy _baseEnemy;
 
         private GameObject _player;
 
@@ -39,10 +40,9 @@ namespace Enemy.Weapon
 
         private void Update()
         {
-            if(_player != null)
-            {
-                Shoot();
-            }
+            if(_player == null || !_baseEnemy.IsPlayerInXRange() || !_baseEnemy.IsPlayerInYRange()) { return; }
+            
+            Shoot();
         }
 
         private void SetRandomReloadTime()
