@@ -3,7 +3,7 @@ using Enemy;
 using ScriptableObjects;
 using UnityEngine;
 
-namespace EnemySpawner
+namespace Spawners
 {
     public class EnemySpawner : MonoBehaviour
     {

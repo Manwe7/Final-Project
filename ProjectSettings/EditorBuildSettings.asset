@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOnline.unity
     guid: 350d6062bdb564844995d9ba8c887708
+  - enabled: 1
+    path: Assets/Scenes/DifficultyLevel.unity
+    guid: 752ba60a3e60c694682297fafb4b2bc3
   m_configObjects: {}

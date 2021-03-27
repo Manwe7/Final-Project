@@ -1,6 +1,4 @@
-using BaseClasses;
 using BasePlayer;
-using Interfaces;
 using UI;
 using UnityEngine;
 
@@ -14,16 +12,10 @@ public class GameSessionScore : MonoBehaviour
     private int _record;
     private int _score;
 
-    private IRepo<SaveAttributes> _repoInt;
-    private SaveAttributes _saveAttributes;
-
     private void Awake()
-    {     
-        _repoInt = new SaveClassRepo();
-        
-        _saveAttributes = _repoInt.Get();
-        _record = _saveAttributes.Record;
-           
+    {
+        _record = PlayerPrefs.GetInt(SaveAttributes.RecordDifficulty1);
+
         _playerHealth.OnPlayerDefeated += SaveRecord;        
     }
 
@@ -41,8 +33,7 @@ public class GameSessionScore : MonoBehaviour
     {
         if (!_isNewRecord) return;
         
-        _saveAttributes.Record = _score;
-        _repoInt.Save(_saveAttributes);
+        PlayerPrefs.SetInt(SaveAttributes.RecordDifficulty1, _record);
     }
 
     public void AddScore(int score)

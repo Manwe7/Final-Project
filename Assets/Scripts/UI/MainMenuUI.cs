@@ -17,7 +17,7 @@ namespace UI
 
         private void Play()
         {
-            SceneManager.LoadScene(SceneNames.Game);
+            SceneManager.LoadScene(SceneNames.Difficulty);
         }
 
         private void Lobby()

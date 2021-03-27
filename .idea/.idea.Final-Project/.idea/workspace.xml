@@ -8,25 +8,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/DifficultyLevel/RecordPresenter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/DifficultyManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerOnlineProperties.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/EntrySceneUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.1/Scripts/Runtime/TextMeshProUGUI.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/RoomListEntry.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/GamePlayUI.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/BaseEnemy.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/GameSpeed.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/GamePlayButtons.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/EnemySpawner/EnemySpawner.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/AdsManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/DefeatUI.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/PauseUI.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerMovement.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/FuelHandler.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/EndGamePanel.cs" />
-      <option value="$PROJECT_DIR$/Assets/PlayerOnlineProperties.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerOnlineProperties.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerWeaponPosition.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/PlayerWeaponPosition.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/PlayerWeapon.cs" />
@@ -58,12 +47,26 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/JetPack.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/OnlineUI.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/FuelHandler.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/MainMenuUI.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/Pooler.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BaseClasses/BaseWeapon.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/FloatingPlatform.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/Weapon/EnemyWeapon.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BaseClasses/BaseEnemy.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/PauseUI.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/DefeatUI.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/SaveAttributes.cs" />
+      <option value="$PROJECT_DIR$/Assets/DifficultyChooser.cs" />
+      <option value="$PROJECT_DIR$/Assets/RecordPresenter.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameSessionScore.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/DifficultyLevel/RecordPresenter.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Constants/SceneNames.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/MainMenuUI.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/DifficultyLevel/DifficultyChooser.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/EnemySpawner/EnemySpawner.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Spawners/EnemySpawner.cs" />
+      <option value="$PROJECT_DIR$/Assets/DifficultyManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/EnemySpawnerSettings.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Spawners/EnemySpawnerMovement.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mc5Geqqoz7Sc1bq4okBWIsbpD2" />

@@ -20,22 +20,16 @@ namespace UI
         [SerializeField] private GameObject _defeatMenuPanel = null;
 
         [Header("Record on defeat panel")]
-        [SerializeField] private Text _defeatRecordText = null;
         [SerializeField] private GameObject _adsPanel = null;
 
         [Header("Buttons")]
         [SerializeField] private Button _restartButton = null;
         [SerializeField] private Button _exitButton = null;
 
-        private int _record = 0;
-        private bool _isAdsPanelOpened = false;
-        private IRepo<SaveAttributes> _repoInt;
-        private SaveAttributes _saveAttributes;
+        private bool _isAdsPanelOpened;
 
         private void Awake()
         {
-            _repoInt = new SaveClassRepo();
-
             AddListenersToButtons();
         }
 
@@ -75,11 +69,6 @@ namespace UI
     
         private void OpenDefeatPanel()
         {
-            _saveAttributes = _repoInt.Get();
-            _record = _saveAttributes.Record;
-
-            _defeatRecordText.text = _record.ToString();
-        
             if(_isAdsPanelOpened)
             {
                 _defeatMenuPanel.SetActive(true);        

@@ -8,6 +8,8 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="DesignManager.cs" t="Include" />
+        <e p="DifficultyManager.cs" t="Include" />
         <e p="Editor" t="Include">
           <e p="TagSelectorPropertyDrawer.cs" t="Include" />
         </e>
@@ -441,10 +443,6 @@
               <e p="EnemyWeaponPosition.cs" t="Include" />
             </e>
           </e>
-          <e p="EnemySpawner" t="Include">
-            <e p="EnemySpawner.cs" t="Include" />
-            <e p="EnemySpawnerMovement.cs" t="Include" />
-          </e>
           <e p="Extentions" t="Include">
             <e p="TagSelectorAttribute.cs" t="Include" />
           </e>
@@ -496,9 +494,6 @@
             <e p="ShowScoreOnline.cs" t="Include" />
           </e>
           <e p="ProcessDeepLinkMngr.cs" t="Include" />
-          <e p="Repositories" t="Include">
-            <e p="RecordRepo.cs" t="Include" />
-          </e>
           <e p="SaveAttributes.cs" t="Include" />
           <e p="ScriptableObjects" t="Include">
             <e p="EnemySpawnerSettings.cs" t="Include" />
@@ -506,8 +501,16 @@
             <e p="PlayerSettings.cs" t="Include" />
           </e>
           <e p="ShareRoom.cs" t="Include" />
+          <e p="Spawners" t="Include">
+            <e p="EnemySpawner.cs" t="Include" />
+            <e p="EnemySpawnerMovement.cs" t="Include" />
+          </e>
           <e p="UI" t="Include">
             <e p="DefeatUI.cs" t="Include" />
+            <e p="DifficultyLevel" t="Include">
+              <e p="DifficultyChooser.cs" t="Include" />
+              <e p="RecordPresenter.cs" t="Include" />
+            </e>
             <e p="EntrySceneUI.cs" t="Include" />
             <e p="GamePlayButtons.cs" t="Include" />
             <e p="GamePlayUI.cs" t="Include" />
