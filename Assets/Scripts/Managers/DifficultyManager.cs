@@ -24,6 +24,7 @@ namespace Managers
                     EnableBigEnemySpawners(true);
                     break;
                 case 2:
+                    EnableBigEnemySpawners(true);
                     EnableFlyingEnemySpawners(true);
                     break;
             }
@@ -41,7 +42,7 @@ namespace Managers
             foreach (var spawner in _bigEnemySpawners)
             {
                 spawner.enabled = status;
-                spawner.gameObject.SetActive(false);
+                spawner.gameObject.SetActive(status);
             }
         }
 
@@ -50,7 +51,7 @@ namespace Managers
             foreach (var spawner in _flyingEnemySpawners)
             {
                 spawner.enabled = status;
-                spawner.gameObject.SetActive(false);
+                spawner.gameObject.SetActive(status);
             }
         }
     }

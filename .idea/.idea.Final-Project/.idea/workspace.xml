@@ -16,9 +16,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerHealth.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/Lobby.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/Player.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/PlayerMovement.cs" />
@@ -46,7 +43,6 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/BaseClasses/BaseWeapon.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/FloatingPlatform.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/Weapon/EnemyWeapon.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/BaseClasses/BaseEnemy.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/PauseUI.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/DefeatUI.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/SaveAttributes.cs" />
@@ -66,6 +62,10 @@
       <option value="$PROJECT_DIR$/Assets/DesignManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/GamePlayButtons.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/DesignManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/MegaEnemy.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/BaseClasses/BaseEnemy.cs" />
+      <option value="$PROJECT_DIR$/Assets/FlyingEnemy.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/FlyingEnemy.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/DifficultyManager.cs" />
     </changedPaths>
   </component>

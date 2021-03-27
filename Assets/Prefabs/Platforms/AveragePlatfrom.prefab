@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8075322053900742331}
   - component: {fileID: 7172835032048596048}
   - component: {fileID: 3432919181567757047}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AveragePlatfrom (1)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 674798787728962503}
   - component: {fileID: 3605957764609090520}
   - component: {fileID: 3587018538862876527}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AveragePlatfrom
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 6040799494666704383}
   - component: {fileID: 3462477194970880862}
   - component: {fileID: 887165880271721506}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AveragePlatfrom
   m_TagString: Ground
   m_Icon: {fileID: 0}

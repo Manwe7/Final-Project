@@ -12,6 +12,5 @@ namespace Enemy
             _health = Random.Range(50, 60);
             _distance = Random.Range(3f, 12f);
         }
- 
     }
 }

@@ -20,6 +20,8 @@ namespace BaseClasses
         [Space]
         [SerializeField] protected float _maxXDistance = 15;
         [SerializeField] protected float _maxYDistance = 15;
+        [Space] 
+        [SerializeField] private bool _isFlying;
 
         private SoundPlayer _soundPlayer;
         private CameraShake _cameraShake;
@@ -42,6 +44,11 @@ namespace BaseClasses
         
             _weapon.Init(player, pooler);
             _weaponPosition.Init(player);
+
+            if (_isFlying)
+            {
+                GetComponent<Pathfinding.AIDestinationSetter>().target = player.transform;
+            }
         }
 
         private void Update()

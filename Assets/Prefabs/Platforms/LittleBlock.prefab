@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4161608497814893432}
   - component: {fileID: 4879852509286490610}
   - component: {fileID: 2136459470708146542}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LittleBlock
   m_TagString: Ground
   m_Icon: {fileID: 0}

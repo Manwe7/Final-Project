@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3641191521949723306}
   - component: {fileID: 212536926929382428}
   - component: {fileID: 963274051358877918}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LittlePlatform
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 2731211121203484330}
   - component: {fileID: 4687419343405640917}
   - component: {fileID: 5816341949997763541}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LittlePlatform (1)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 6012356478062335008}
   - component: {fileID: 3506093918984477313}
   - component: {fileID: 930782586667144701}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LittlePlatform
   m_TagString: Ground
   m_Icon: {fileID: 0}
