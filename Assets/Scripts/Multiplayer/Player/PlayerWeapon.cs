@@ -38,11 +38,11 @@ namespace Multiplayer.Player
 
         private void Update()
         {
+            if (!_photonView.IsMine) { return; }
+            
             _vertical = _weaponJoystick.Vertical;
             _horizontal = _weaponJoystick.Horizontal;
             
-            if (!_photonView.IsMine) { return; }
-
             if (!_reloaded) return;
             
             if(Mathf.Abs(_vertical) > _handleOffsetToShoot || Mathf.Abs(_horizontal) > _handleOffsetToShoot)
