@@ -1,6 +1,7 @@
 using BaseClasses;
 using ScriptableObjects;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Enemy.Weapon
 {
@@ -14,6 +15,14 @@ namespace Enemy.Weapon
         {
             _player = player;
             _pooler = pooler;
+        }
+
+        private void Awake()
+        {
+            _minReloadTime = _enemyWeaponSettings._minReloadTime;
+            _maxReloadTime = _enemyWeaponSettings._maxReloadTime;
+            
+            SetRandomReloadTime();
         }
 
         private void OnEnable()
@@ -38,7 +47,7 @@ namespace Enemy.Weapon
 
         private void SetRandomReloadTime()
         {
-            _reloadTime = Random.Range(_enemyWeaponSettings._minReloadTime, _enemyWeaponSettings._maxReloadTime);
+            _reloadTime = Random.Range(_minReloadTime, _maxReloadTime);
         }
     }
 }

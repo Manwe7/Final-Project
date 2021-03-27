@@ -16,7 +16,7 @@ namespace BasePlayer.Weapon
         private void OnEnable()
         {
             _reloadTime = 0.3f;
-            _reloaded = true;
+            _isReloaded = true;
         }
 
         private void Update()

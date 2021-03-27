@@ -33,7 +33,7 @@ namespace Multiplayer.Player
         private void OnEnable()
         {
             _reloadTime = 0.5f;
-            _reloaded = true;
+            _isReloaded = true;
         }
 
         private void Update()
@@ -43,7 +43,7 @@ namespace Multiplayer.Player
             _vertical = _weaponJoystick.Vertical;
             _horizontal = _weaponJoystick.Horizontal;
             
-            if (!_reloaded) return;
+            if (!_isReloaded) return;
             
             if(Mathf.Abs(_vertical) > _handleOffsetToShoot || Mathf.Abs(_horizontal) > _handleOffsetToShoot)
             {

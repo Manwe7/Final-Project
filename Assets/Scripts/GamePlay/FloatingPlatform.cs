@@ -8,13 +8,16 @@ public class FloatingPlatform : MonoBehaviour
     [TagSelector]
     [SerializeField] private string _enemyTag;
 
+    [SerializeField] private float _maxHeight = 4f;
+    [SerializeField] private float _minHeight = 4f;
+    
     private Vector2 _pointA, _pointB;
 
     private void Start()
     {
         var position = transform.position;
-        _pointA = new Vector2(position.x, position.y + 4f);
-        _pointB = new Vector2(position.x, position.y - 4f);
+        _pointA = new Vector2(position.x, position.y + _maxHeight);
+        _pointB = new Vector2(position.x, position.y - _minHeight);
     }
 
     private void Update()

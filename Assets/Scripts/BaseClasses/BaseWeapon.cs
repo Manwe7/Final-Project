@@ -4,20 +4,23 @@ using UnityEngine;
 
 namespace BaseClasses
 {
-    public class BaseWeapon : MonoBehaviour
+    public abstract class BaseWeapon : MonoBehaviour
     {
         [SerializeField] protected GameObject _bullet;
         [SerializeField] protected Transform _barrel;
         [SerializeField] protected Pooler _pooler;
 
         protected float _reloadTime;
-        protected bool _reloaded;
+        protected bool _isReloaded;
+
+        protected float _minReloadTime;
+        protected float _maxReloadTime;
 
         protected event Action OnShoot;
 
         protected void Shoot()
         {
-            if (!_reloaded) return;
+            if (!_isReloaded) return;
         
             _pooler.GetPooledObject(_bullet.name, _barrel.position, _barrel.rotation);
             StartCoroutine(Reload());
@@ -26,9 +29,9 @@ namespace BaseClasses
 
         protected IEnumerator Reload()
         {
-            _reloaded = false;
+            _isReloaded = false;
             yield return new WaitForSeconds(_reloadTime);
-            _reloaded = true;
+            _isReloaded = true;
         }
     }
 }
