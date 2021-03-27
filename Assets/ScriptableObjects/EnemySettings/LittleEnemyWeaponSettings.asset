@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec3f7fd474341f54dbbaf3ad56a77f13, type: 3}
   m_Name: LittleEnemyWeaponSettings
   m_EditorClassIdentifier: 
-  _minReloadTime: 6
-  _maxReloadTime: 8
+  _minReloadTime: 3
+  _maxReloadTime: 4

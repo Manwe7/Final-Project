@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639559257e3a424418adac6f12ab1e76, type: 3}
   m_Name: AverageEnemySpawnerSettings
   m_EditorClassIdentifier: 
-  _maxTime: 7
-  _minTime: 17
+  _maxTime: 16
+  _minTime: 10
   _movementSpeed: 5
   _movementDistance: 7

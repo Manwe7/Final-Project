@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639559257e3a424418adac6f12ab1e76, type: 3}
   m_Name: MegaEnemySpawnerSettings
   m_EditorClassIdentifier: 
-  _maxTime: 20
-  _minTime: 25
+  _maxTime: 18
+  _minTime: 12
   _movementSpeed: 5
   _movementDistance: 7

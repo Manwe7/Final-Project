@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639559257e3a424418adac6f12ab1e76, type: 3}
   m_Name: LittleEnemySpawnerSettings
   m_EditorClassIdentifier: 
-  _maxTime: 12
-  _minTime: 22
+  _maxTime: 14
+  _minTime: 8
   _movementSpeed: 5
   _movementDistance: 7
