@@ -1602,10 +1602,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 132967514}
-  - component: {fileID: 132967517}
   - component: {fileID: 132967516}
   - component: {fileID: 132967518}
+  - component: {fileID: 132967517}
   - component: {fileID: 132967515}
+  - component: {fileID: 132967519}
   m_Layer: 0
   m_Name: Managers
   m_TagString: GameController
@@ -1682,6 +1683,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fpsText: {fileID: 1194773485}
+--- !u!114 &132967519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132967513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7539e54ada7ca545bf17bccce36045c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _platformsTag: Ground
+  _blueMaterial: {fileID: 2100000, guid: c4bf154ab0a8bee49b22c881ead8fa33, type: 2}
+  _yellowMaterial: {fileID: 2100000, guid: 13baecc141a73174d823d85cd56d077a, type: 2}
+  _orangeMaterial: {fileID: 2100000, guid: 01ee6e39d43ad0b488d2234f8c907836, type: 2}
+  _redMaterial: {fileID: 2100000, guid: 45ef89154688e004b88bd98962bd37db, type: 2}
+  _violetMaterial: {fileID: 0}
 --- !u!1 &152973416
 GameObject:
   m_ObjectHideFlags: 0

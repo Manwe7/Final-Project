@@ -9,18 +9,13 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/DifficultyLevel/RecordPresenter.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/DifficultyManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/DifficultyManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerOnlineProperties.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/EntrySceneUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.1/Scripts/Runtime/TextMeshProUGUI.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerWeaponPosition.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/PlayerWeaponPosition.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Weapon/PlayerWeapon.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/FuelHandler.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Player/JetPack.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/Player.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerHealth.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" />
@@ -67,6 +62,11 @@
       <option value="$PROJECT_DIR$/Assets/DifficultyManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/EnemySpawnerSettings.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Spawners/EnemySpawnerMovement.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/MapSections.cs" />
+      <option value="$PROJECT_DIR$/Assets/DesignManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/GamePlayButtons.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/DesignManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/DifficultyManager.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mc5Geqqoz7Sc1bq4okBWIsbpD2" />

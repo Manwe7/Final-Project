@@ -25,7 +25,7 @@ namespace UI
 
         public void Exit()
         {
-            SceneManager.LoadScene(SceneNames.Menu);
+            SceneManager.LoadScene(SceneNames.Difficulty);
         }
     }
 }

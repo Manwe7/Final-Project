@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OrangeWallGlow
+  m_Name: YellowWallGlow
   m_Shader: {fileID: -6465566751694194690, guid: cdb2bef6a0516c64a93300913ce90623,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
@@ -42,5 +42,5 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats: []
     m_Colors:
-    - Color_966BB22D: {r: 3.2490096, g: 0.54787225, b: 0, a: 0}
+    - Color_966BB22D: {r: 2.1185474, g: 1.9632612, b: 0, a: 0}
   m_BuildTextureStacks: []

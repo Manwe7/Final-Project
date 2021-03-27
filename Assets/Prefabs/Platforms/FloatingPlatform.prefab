@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2999569935520702891}
   m_Layer: 0
   m_Name: FloatingPlatform
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,6 +95,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerTag: Player
   _enemyTag: Enemy
+  _maxHeight: 4
+  _minHeight: 4
 --- !u!1 &8211307815942707206
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +109,7 @@ GameObject:
   - component: {fileID: 1479492834878074530}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
