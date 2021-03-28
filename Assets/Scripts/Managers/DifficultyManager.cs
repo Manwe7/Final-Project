@@ -8,15 +8,15 @@ namespace Managers
         [SerializeField] private EnemySpawner[] _bigEnemySpawners;
         [SerializeField] private EnemySpawner[] _flyingEnemySpawners;
     
-        private int _difficultyLevel;
+        public int DifficultyLevel { get; private set; }
     
         private void Awake()
         {
-            _difficultyLevel = PlayerPrefs.GetInt(SaveAttributes.DifficultyLevel, 0);
+            DifficultyLevel = PlayerPrefs.GetInt(SaveAttributes.DifficultyLevel, 0);
 
             TurnOffSpawners();
         
-            switch (_difficultyLevel)
+            switch (DifficultyLevel)
             {
                 case 0:
                     break;

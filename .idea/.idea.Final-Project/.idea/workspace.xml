@@ -44,12 +44,8 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/FloatingPlatform.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/Weapon/EnemyWeapon.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/PauseUI.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/DefeatUI.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/SaveAttributes.cs" />
       <option value="$PROJECT_DIR$/Assets/DifficultyChooser.cs" />
       <option value="$PROJECT_DIR$/Assets/RecordPresenter.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameSessionScore.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/DifficultyLevel/RecordPresenter.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Constants/SceneNames.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/MainMenuUI.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/DifficultyLevel/DifficultyChooser.cs" />
@@ -58,7 +54,6 @@
       <option value="$PROJECT_DIR$/Assets/DifficultyManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/EnemySpawnerSettings.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Spawners/EnemySpawnerMovement.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/MapSections.cs" />
       <option value="$PROJECT_DIR$/Assets/DesignManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/GamePlayButtons.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/DesignManager.cs" />
@@ -66,7 +61,12 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/BaseClasses/BaseEnemy.cs" />
       <option value="$PROJECT_DIR$/Assets/FlyingEnemy.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/FlyingEnemy.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/DifficultyLevel/RecordPresenter.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/SaveAttributes.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/DifficultyManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameSessionScore.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/MapSections.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/DefeatUI.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mc5Geqqoz7Sc1bq4okBWIsbpD2" />

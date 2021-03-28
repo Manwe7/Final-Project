@@ -9,6 +9,8 @@ namespace GamePlay
         [SerializeField] private GameObject[] _centerSection;    
         [SerializeField] private GameObject[] _rightSection;
 
+        [SerializeField] private AstarPath _astarPath;
+
         private int _leftSectionMap, _centerSectionMap, _rightSectionMap;
 
         private void Awake()
@@ -41,7 +43,7 @@ namespace GamePlay
             _centerSection[_centerSectionMap].SetActive(true);
             _rightSection[_rightSectionMap].SetActive(true);
             
-            print("activate");
+            _astarPath.Scan();
         }
     }
 }

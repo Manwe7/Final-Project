@@ -1,28 +1,26 @@
+using BaseClasses;
+using Interfaces;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UI.DifficultyLevel
 {
     public class RecordPresenter : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI _record1Text;
-        [SerializeField] private TextMeshProUGUI _record2Text;
-        [SerializeField] private TextMeshProUGUI _record3Text;
-
-        private int _record1;
-        private int _record2;
-        private int _record3;
+        [SerializeField] private TextMeshProUGUI[] _recordTexts;
+        
+        private IRepo<SaveAttributes> _repo;
+        private SaveAttributes _saveAttributes;
         
         private void Awake()
         {
-            _record1 = PlayerPrefs.GetInt(SaveAttributes.RecordDifficulty1, 0);
-            _record2 = PlayerPrefs.GetInt(SaveAttributes.RecordDifficulty2, 0);
-            _record3 = PlayerPrefs.GetInt(SaveAttributes.RecordDifficulty3, 0);
-
-            _record1Text.text = $"{_record1}";
-            _record2Text.text = $"{_record2}";
-            _record3Text.text = $"{_record3}";
+            _repo = new SaveClassRepo();
+            _saveAttributes = _repo.Get();
+            
+            for (int i = 0; i < _recordTexts.Length; i++)
+            {
+                _recordTexts[i].text = $"{_saveAttributes.Records[i]}";
+            }
         }
     }
 }

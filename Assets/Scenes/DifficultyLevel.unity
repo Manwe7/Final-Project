@@ -856,9 +856,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95022c17ffc2a764cb71fe483d758a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _record1Text: {fileID: 1019773987}
-  _record2Text: {fileID: 1648381185}
-  _record3Text: {fileID: 1002490442}
+  _recordTexts:
+  - {fileID: 1019773987}
+  - {fileID: 1648381185}
+  - {fileID: 1002490442}
 --- !u!4 &1343128704 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5181375117540669135, guid: f9992e5afb5e41a419d05a6e64fff8d6,

@@ -18,9 +18,10 @@ namespace UI
 
         [Header("Defeat panel")]
         [SerializeField] private GameObject _defeatMenuPanel = null;
-
-        [Header("Record on defeat panel")]
         [SerializeField] private GameObject _adsPanel = null;
+
+        [Header("Record on defeat panel")] 
+        [SerializeField] private Text _recordText;
 
         [Header("Buttons")]
         [SerializeField] private Button _restartButton = null;
@@ -91,6 +92,12 @@ namespace UI
         public void CloseAdsPanel()
         {
             OpenDefeatPanel();
+        }
+
+        public void ShowRecord(int record)
+        {
+            print("show");
+            _recordText.text = $"{record}";
         }
     }
 }
