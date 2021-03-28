@@ -616,6 +616,7 @@
         <e p="Scripts" t="Include">
           <e p="Audio" t="Include">
             <e p="Melody.cs" t="Include" />
+            <e p="MenuMelody.cs" t="Include" />
           </e>
           <e p="BaseClasses" t="Include">
             <e p="BaseEnemy.cs" t="Include" />

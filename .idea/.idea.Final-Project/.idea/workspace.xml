@@ -13,14 +13,11 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerOnlineProperties.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/EntrySceneUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.1/Scripts/Runtime/TextMeshProUGUI.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Melody.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Audio/MenuMelody.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Audio/Melody.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/Lobby.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/Player.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/PlayerMovement.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/BasePlayer/Weapon/PlayerWeaponPosition.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Base classes/BaseWeapon.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BaseClasses/BaseWeaponPosition.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/BaseClasses/SaveClassRepo.cs" />
@@ -68,6 +65,10 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/MapSections.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/DefeatUI.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/DifficultyLevel/DifficultyChooser.cs" />
+      <option value="$PROJECT_DIR$/Assets/Melody.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Audio/Melody.cs" />
+      <option value="$PROJECT_DIR$/Assets/MenuMelody.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Audio/MenuMelody.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mc5Geqqoz7Sc1bq4okBWIsbpD2" />

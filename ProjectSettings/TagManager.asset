@@ -10,6 +10,7 @@ TagManager:
   - Bullet
   - Properties
   - SoundPlayer
+  - MenuMelody
   layers:
   - Default
   - TransparentFX
