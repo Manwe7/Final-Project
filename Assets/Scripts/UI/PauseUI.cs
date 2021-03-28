@@ -1,7 +1,4 @@
-﻿using System;
-using BaseClasses;
-using Interfaces;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI
@@ -10,7 +7,7 @@ namespace UI
     {
         [Header("Scripts")]
         [SerializeField] private GamePlayButtons _gamePlayButtons = null;
-        
+
         [Header("Buttons")] 
         [SerializeField] private Button _resumeButton = null;
         [SerializeField] private Button _restartButton = null;

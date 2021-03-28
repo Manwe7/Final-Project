@@ -72,3 +72,10 @@ MonoBehaviour:
     Loop: 0
     Source: {fileID: 0}
     SpacialBlend: 0
+  - SoundName: 4
+    AudioClip: {fileID: 8300000, guid: ed52a8511f523be40b62247786524926, type: 3}
+    Volume: 0.35
+    Pitch: 1
+    Loop: 0
+    Source: {fileID: 0}
+    SpacialBlend: 0

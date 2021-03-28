@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,6 +12,9 @@ public class OnlineUI : MonoBehaviourPunCallbacks
     [SerializeField] private Button _pauseButton;
     [SerializeField] private Button _resumeButton;
 
+    [Header("scripts")] 
+    [SerializeField] private SoundPlayer _soundPlayer;
+
     private void Awake()
     {
         _exitButton.onClick.AddListener(LeaveRoom);
@@ -22,16 +24,19 @@ public class OnlineUI : MonoBehaviourPunCallbacks
 
     private void PauseGame()
     {
+        _soundPlayer.Play(SoundNames.Button);
         _pausePanel.SetActive(true);
     }
 
     private void ResumeGame()
     {
+        _soundPlayer.Play(SoundNames.Button);
         _pausePanel.SetActive(false);
     }
 
     public void LeaveRoom()
     {
+        _soundPlayer.Play(SoundNames.Button);
         PhotonNetwork.LeaveRoom();
     }
 

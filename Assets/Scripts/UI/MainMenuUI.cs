@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,6 +10,9 @@ namespace UI
         [SerializeField] private Button _playSoloButton;
         [SerializeField] private Button _openLobbyButton;
 
+        [Header("Scripts")]
+        [SerializeField] private SoundPlayer _soundPlayer;
+
         private void Awake()
         {
             _playSoloButton.onClick.AddListener(Play);
@@ -17,12 +21,20 @@ namespace UI
 
         private void Play()
         {
-            SceneManager.LoadScene(SceneNames.Difficulty);
+            _soundPlayer.Play(SoundNames.Button);
+            StartCoroutine(LoadScene(SceneNames.Difficulty));
         }
 
         private void Lobby()
         {
-            SceneManager.LoadScene(SceneNames.Lobby);
+            _soundPlayer.Play(SoundNames.Button);
+            StartCoroutine(LoadScene(SceneNames.Lobby));
+        }
+
+        private IEnumerator LoadScene(string scene)
+        {
+            yield return new WaitForSecondsRealtime(0.3f);
+            SceneManager.LoadScene(scene);
         }
     }
 }

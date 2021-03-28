@@ -1010,6 +1010,7 @@ MonoBehaviour:
   _pauseMenuPanel: {fileID: 1914135829}
   _scoreText: {fileID: 1729503914}
   _gameSpeed: {fileID: 132967516}
+  _soundPlayer: {fileID: 638479934}
 --- !u!4 &85062360
 Transform:
   m_ObjectHideFlags: 0
@@ -1038,6 +1039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pauseMenuPanel: {fileID: 1914135829}
   _gameSpeed: {fileID: 132967516}
+  _soundPlayer: {fileID: 638479934}
 --- !u!1001 &89032446
 PrefabInstance:
   m_ObjectHideFlags: 0

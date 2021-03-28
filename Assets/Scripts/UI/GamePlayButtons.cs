@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace UI
@@ -10,22 +11,32 @@ namespace UI
 
         [Header("Scripts")]
         [SerializeField] private GameSpeed _gameSpeed = null;
+        [SerializeField] private SoundPlayer _soundPlayer;
         
         public void Resume()
         {
+            _soundPlayer.Play(SoundNames.Button);
             _pauseMenuPanel.SetActive(false);
             _gameSpeed.ResumeTime();
         }
 
         public void Restart()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            _soundPlayer.Play(SoundNames.Button);
+            StartCoroutine(LoadScene(SceneManager.GetActiveScene().name));
             _gameSpeed.ResumeTime();
         }
 
         public void Exit()
         {
-            SceneManager.LoadScene(SceneNames.Difficulty);
+            _soundPlayer.Play(SoundNames.Button);
+            StartCoroutine(LoadScene(SceneNames.Difficulty));
+        }
+        
+        private IEnumerator LoadScene(string scene)
+        {
+            yield return new WaitForSecondsRealtime(0.3f);
+            SceneManager.LoadScene(scene);
         }
     }
 }

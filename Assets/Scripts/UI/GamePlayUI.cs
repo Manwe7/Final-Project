@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI
@@ -14,20 +13,19 @@ namespace UI
 
         [Header("Scripts")]
         [SerializeField] private GameSpeed _gameSpeed;
+        [SerializeField] private SoundPlayer _soundPlayer;
 
         public void PauseBtn()
         {        
             _pauseMenuPanel.SetActive(true);
             _gameSpeed.StopTime();
-
-            OnGamePause?.Invoke();
+            
+            _soundPlayer.Play(SoundNames.Button);
         }
 
         public void SetScoreText(int score)
         {
             _scoreText.text = score.ToString();
         }
-
-        public event Action OnGamePause;
     }
 }

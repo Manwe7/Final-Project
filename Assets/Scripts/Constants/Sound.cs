@@ -20,5 +20,6 @@ public enum SoundNames
     PlayerDeath,
     EnemyDeath,
     PlayerBullet,
-    Hurt
+    Hurt,
+    Button
 }

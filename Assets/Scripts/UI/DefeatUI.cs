@@ -64,7 +64,7 @@ namespace UI
 
         private IEnumerator StartOpeningDefeatPanel()
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSecondsRealtime(1.5f);
             OpenDefeatPanel();
         }
     
@@ -96,7 +96,6 @@ namespace UI
 
         public void ShowRecord(int record)
         {
-            print("show");
             _recordText.text = $"{record}";
         }
     }

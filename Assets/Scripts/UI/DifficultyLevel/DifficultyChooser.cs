@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,6 +13,9 @@ namespace UI.DifficultyLevel
         [Space] 
         [SerializeField] private Button _startButton;
         [SerializeField] private Button _menuButton;
+
+        [Header("Scripts")] 
+        [SerializeField] private SoundPlayer _soundPlayer;
     
         private void Awake()
         {
@@ -37,12 +41,14 @@ namespace UI.DifficultyLevel
 
         private void StartGame()
         {
-            SceneManager.LoadScene(SceneNames.Game);
+            _soundPlayer.Play(SoundNames.Button);
+            StartCoroutine(LoadScene(SceneNames.Game));
         }
 
         private void OpenMenuScene()
         {
-            SceneManager.LoadScene(SceneNames.Menu);
+            _soundPlayer.Play(SoundNames.Button);
+            StartCoroutine(LoadScene(SceneNames.Menu));
         }
 
         private void ChooseDifficulty(int difficultyNum)
@@ -50,6 +56,8 @@ namespace UI.DifficultyLevel
             PlayerPrefs.SetInt(SaveAttributes.DifficultyLevel, difficultyNum);
 
             ActivateButton(difficultyNum);
+            
+            _soundPlayer.Play(SoundNames.Button);
         }
 
         private void ActivateButton(int num)
@@ -60,6 +68,12 @@ namespace UI.DifficultyLevel
             }
 
             _buttonImages[num].color = new Color32(0, 200, 255, 255);
+        }
+        
+        private IEnumerator LoadScene(string scene)
+        {
+            yield return new WaitForSeconds(0.3f);
+            SceneManager.LoadScene(scene);
         }
     }
 }
