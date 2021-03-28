@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using BaseClasses;
 using BasePlayer;
+using GamePlay;
 using Interfaces;
 using Managers;
 using UnityEngine;

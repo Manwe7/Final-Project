@@ -1,29 +1,32 @@
 ﻿using UnityEngine;
 
-public class GameSpeed : MonoBehaviour
+namespace GamePlay
 {
-    private void Awake()
+    public class GameSpeed : MonoBehaviour
     {
-        ResumeTime();
-    }
+        private void Awake()
+        {
+            ResumeTime();
+        }
 
-    public void ResumeTime()
-    {
-        SetTimeScale(1f);
-    }
+        public void ResumeTime()
+        {
+            SetTimeScale(1f);
+        }
 
-    public void SetToHalfSpeed()
-    {
-        SetTimeScale(0.5f);
-    }
+        public void SetToHalfSpeed()
+        {
+            SetTimeScale(0.5f);
+        }
 
-    public void StopTime()
-    {
-        SetTimeScale(0f);
-    }
+        public void StopTime()
+        {
+            SetTimeScale(0f);
+        }
 
-    private static void SetTimeScale(float value)
-    {
-        Time.timeScale = value;
+        private static void SetTimeScale(float value)
+        {
+            Time.timeScale = value;
+        }
     }
 }

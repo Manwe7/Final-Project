@@ -18,7 +18,6 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Assets/Scripts/BaseClasses/SaveClassRepo.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/Weapon/EnemyWeaponPosition.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Enemy/AverageEnemy.cs" />
       <option value="$PROJECT_DIR$/Assets/EntryScene.cs" />
@@ -57,18 +56,19 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/DifficultyManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameSessionScore.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/MapSections.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/DefeatUI.cs" />
       <option value="$PROJECT_DIR$/Assets/Melody.cs" />
       <option value="$PROJECT_DIR$/Assets/MenuMelody.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Audio/MenuMelody.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Constants/Sound.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/PauseUI.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/DifficultyLevel/DifficultyChooser.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/GamePlayUI.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/MainMenuUI.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Audio/Melody.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Multiplayer/OnlineUI.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/GamePlayButtons.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/MainMenuUI.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/DefeatUI.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/DifficultyLevel/DifficultyChooser.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/GameSpeed.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mc5Geqqoz7Sc1bq4okBWIsbpD2" />

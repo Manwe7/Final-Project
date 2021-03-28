@@ -1073,6 +1073,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1207046936}
   - component: {fileID: 1207046937}
+  - component: {fileID: 1207046938}
   m_Layer: 0
   m_Name: ScriptsUI
   m_TagString: Untagged
@@ -1109,6 +1110,18 @@ MonoBehaviour:
   _playSoloButton: {fileID: 385481444}
   _openLobbyButton: {fileID: 1576696634}
   _soundPlayer: {fileID: 1372533621}
+--- !u!114 &1207046938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207046935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b38a25099d245254b8d23f76771a6809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1343128704 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5181375117540669135, guid: f9992e5afb5e41a419d05a6e64fff8d6,

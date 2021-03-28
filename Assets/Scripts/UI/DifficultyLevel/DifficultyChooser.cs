@@ -72,7 +72,7 @@ namespace UI.DifficultyLevel
         
         private IEnumerator LoadScene(string scene)
         {
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSecondsRealtime(0.3f);
             SceneManager.LoadScene(scene);
         }
     }
