@@ -13,6 +13,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Multiplayer/Player/PlayerOnlineProperties.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/EntrySceneUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.1/Scripts/Runtime/TextMeshProUGUI.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Melody.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -48,7 +49,6 @@
       <option value="$PROJECT_DIR$/Assets/RecordPresenter.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Constants/SceneNames.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/MainMenuUI.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/UI/DifficultyLevel/DifficultyChooser.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/EnemySpawner/EnemySpawner.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Spawners/EnemySpawner.cs" />
       <option value="$PROJECT_DIR$/Assets/DifficultyManager.cs" />
@@ -67,6 +67,7 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Managers/GameSessionScore.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GamePlay/MapSections.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/UI/DefeatUI.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/UI/DifficultyLevel/DifficultyChooser.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1mc5Geqqoz7Sc1bq4okBWIsbpD2" />

@@ -11,6 +11,7 @@ namespace UI.DifficultyLevel
 
         [Space] 
         [SerializeField] private Button _startButton;
+        [SerializeField] private Button _menuButton;
     
         private void Awake()
         {
@@ -22,6 +23,7 @@ namespace UI.DifficultyLevel
         private void AssignButtons()
         {
             _startButton.onClick.AddListener(StartGame);
+            _menuButton.onClick.AddListener(OpenMenuScene);
             
             for (int i = 0; i < _difficultyButtons.Length; i++)
             {
@@ -36,6 +38,11 @@ namespace UI.DifficultyLevel
         private void StartGame()
         {
             SceneManager.LoadScene(SceneNames.Game);
+        }
+
+        private void OpenMenuScene()
+        {
+            SceneManager.LoadScene(SceneNames.Menu);
         }
 
         private void ChooseDifficulty(int difficultyNum)
