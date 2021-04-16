@@ -35,6 +35,7 @@ namespace UI.DifficultyLevel
                 _difficultyButtons[i].onClick.AddListener(() =>
                 {
                     ChooseDifficulty(num);
+                    _soundPlayer.Play(SoundNames.Button);
                 });
             }
         }
@@ -56,8 +57,6 @@ namespace UI.DifficultyLevel
             PlayerPrefs.SetInt(SaveAttributes.DifficultyLevel, difficultyNum);
 
             ActivateButton(difficultyNum);
-            
-            _soundPlayer.Play(SoundNames.Button);
         }
 
         private void ActivateButton(int num)
