@@ -43,6 +43,9 @@ namespace Lobby
 
         [Header("Game Speed")] 
         [SerializeField] private GameSpeed _gameSpeed;
+
+        [Header("Loading Text")] 
+        [SerializeField] private GameObject _loadingPanel;
     
         private Dictionary<string, RoomInfo> _cachedRoomList;
         private Dictionary<string, GameObject> _roomListEntries;
@@ -241,6 +244,8 @@ namespace Lobby
             {
                 PhotonNetwork.LocalPlayer.NickName = playerName;
                 PhotonNetwork.ConnectUsingSettings();
+
+                _loadingPanel.SetActive(true);
             }
             else
             {
