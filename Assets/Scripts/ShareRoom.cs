@@ -3,14 +3,16 @@ using UnityEngine.UI;
 
 public class ShareRoom : MonoBehaviour
 {
+    [Header("UI")]
+    [SerializeField] private Button _shareRoomButton;
     [SerializeField] private InputField _roomNameInput;
 
-    private bool IsRoomNameEmpty()
+    private void Awake()
     {
-        return _roomNameInput.text == "";
+        _shareRoomButton.onClick.AddListener(ShareRoomName);
     }
-
-    public void ShareRoomName()
+    
+    private void ShareRoomName()
     {
         if(IsRoomNameEmpty()) return;
         
@@ -18,4 +20,6 @@ public class ShareRoom : MonoBehaviour
 			.SetSubject("Join the room").SetText("https://perfect-crawler-287812.web.app/" + "?room=" + _roomNameInput.text)
 			.Share();
     }
+    
+    private bool IsRoomNameEmpty() => _roomNameInput.text == "";
 }

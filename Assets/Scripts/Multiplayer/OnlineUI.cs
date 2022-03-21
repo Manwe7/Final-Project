@@ -43,5 +43,6 @@ public class OnlineUI : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         SceneManager.LoadScene("Lobby");
+        base.OnLeftRoom();
     }
 }

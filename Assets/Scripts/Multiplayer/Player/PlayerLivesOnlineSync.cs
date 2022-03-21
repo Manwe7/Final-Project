@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Multiplayer;
+using UnityEngine;
 using Photon.Pun;
 
 namespace PlayerOnlineScripts
@@ -15,6 +16,11 @@ namespace PlayerOnlineScripts
         {
             _player.OnDefeat += DecreaseOneLife;
         }
+        
+        private void OnDestroy()
+        {
+            _player.OnDefeat += DecreaseOneLife;
+        }
 
         private void Start()
         {
@@ -23,12 +29,7 @@ namespace PlayerOnlineScripts
             _remainingLives = 3;
             SetLives(_remainingLives);
         }
-
-        private void OnDestroy()
-        {
-            _player.OnDefeat += DecreaseOneLife;
-        }
-
+        
         private void SetLives(int value)
         {
             if(!_photonView.IsMine) return;

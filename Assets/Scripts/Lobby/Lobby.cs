@@ -1,36 +1,49 @@
-﻿using System.Collections.Generic;
-using ExitGames.Client.Photon;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using GamePlay;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
+using Random = UnityEngine.Random;
 
 namespace Lobby
 {
     public class Lobby : MonoBehaviourPunCallbacks
     {
+        [Header("Scripts")] 
+        [SerializeField] private GameSpeed _gameSpeed;
+        
         [Header("Login Panel")] 
+        [SerializeField] private Button _loginButton;
         [SerializeField] private GameObject _loginPanel;
         [SerializeField] private InputField _nickNameInputField;
     
         [Header("Selection Panel")]
         [SerializeField] private GameObject _selectionPanel;
-    
+        [SerializeField] private Button _createRoomOptionButton;
+        [SerializeField] private Button _specificRoomOptionButton;
+        [SerializeField] private Button _joinRandomRoomOptionButton;
+        [SerializeField] private Button _roomListOptionButton;
+
         [Header("Create room panel")]
         [SerializeField] private GameObject _createRoomPanel;
         [SerializeField] private InputField _roomNameInputField;
         [SerializeField] private InputField _maxPlayersInputField;
-    
+        [SerializeField] private Button _createRoomButton;
+
         [Header("Join Random Room Panel")]
         [SerializeField] private GameObject _joinRandomRoomPanel;
     
         [Header("Inside Room Panel")]
         [SerializeField] private GameObject _insideRoomPanel;
         [SerializeField] private GameObject _playerListContent;
-        [SerializeField] private Button _startGameButton;
         [SerializeField] private GameObject _playerListEntryPrefab;
+        [SerializeField] private Button _startGameButton;
+        [SerializeField] private Button _leaveGameButton;
     
         [Header("Room List Panel")]
         [SerializeField] private GameObject _roomListPanel;
@@ -40,18 +53,31 @@ namespace Lobby
         [Header("Specific Room")] 
         [SerializeField] private GameObject _specificRoomPanel;
         [SerializeField] private InputField _specificRoomNameInputField;
-
-        [Header("Game Speed")] 
-        [SerializeField] private GameSpeed _gameSpeed;
+        [SerializeField] private Button _joinSpecificRoomButton;
 
         [Header("Loading Text")] 
         [SerializeField] private GameObject _loadingPanel;
+
+        [Header("Error panels")] 
+        [SerializeField] private GameObject _nickNameErrorPanel;
+        [SerializeField] private GameObject _roomNameErrorPanel;
+        [SerializeField] private GameObject _noRoomErrorPanel;
+
+        [Header("Back buttons")] 
+        [SerializeField] private Button[] _backButtons;
+        [SerializeField] private Button _backToMenu;
     
         private Dictionary<string, RoomInfo> _cachedRoomList;
         private Dictionary<string, GameObject> _roomListEntries;
         private Dictionary<int, GameObject> _playerListEntries;
+        
+        // Used in PlayerListEntry
+        public void LocalPlayerPropertiesUpdated()
+        {
+            _startGameButton.gameObject.SetActive(CheckPlayersReady());
+        }
     
-        public void Awake()
+        private void Awake()
         {
             _gameSpeed.ResumeTime();
         
@@ -59,6 +85,41 @@ namespace Lobby
 
             _cachedRoomList = new Dictionary<string, RoomInfo>();
             _roomListEntries = new Dictionary<string, GameObject>();
+
+            AssignButtons();
+            
+            if (PhotonNetwork.IsConnected)
+            {
+                SetActivePanel(_selectionPanel.name);
+            }
+        }
+
+        private void AssignButtons()
+        {
+            _backToMenu.onClick.AddListener(OpenMenu);
+            
+            _loginButton.onClick.AddListener(Login);
+            _createRoomButton.onClick.AddListener(CreateRoom);
+            _joinSpecificRoomButton.onClick.AddListener(JoinSpecificRoom);
+            _startGameButton.onClick.AddListener(StartGame);
+            _leaveGameButton.onClick.AddListener(LeaveGame);
+
+            _createRoomOptionButton.onClick.AddListener(()=> SetActivePanel("CreateRoomPanel"));
+            _specificRoomOptionButton.onClick.AddListener(OpenSpecificRoomPanel);
+            _joinRandomRoomOptionButton.onClick.AddListener(OpenJoinRandomRoomPanel);
+            _roomListOptionButton.onClick.AddListener(OpenRoomListPanel);
+
+            foreach (Button button in _backButtons)
+            {
+                button.onClick.AddListener(OpenLoginPanel);
+            }
+        }
+
+        private IEnumerator ShowErrorPanel(GameObject panel)
+        {
+            panel.SetActive(true);
+            yield return new WaitForSeconds(1.7f);
+            panel.SetActive(false);
         }
     
         #region PUN CALLBACKS
@@ -89,7 +150,7 @@ namespace Lobby
 
         public override void OnJoinRoomFailed(short returnCode, string message)
         {
-            SetActivePanel(_selectionPanel.name);
+            StartCoroutine(ShowErrorPanel(_noRoomErrorPanel));
         }
 
         public override void OnJoinRandomFailed(short returnCode, string message)
@@ -106,31 +167,28 @@ namespace Lobby
             SetActivePanel(_insideRoomPanel.name);
 
             if (_playerListEntries == null)
-            {
                 _playerListEntries = new Dictionary<int, GameObject>();
-            }
-
-            foreach (Player p in PhotonNetwork.PlayerList)
+            
+            foreach (Player player in PhotonNetwork.PlayerList)
             {
                 GameObject entry = Instantiate(_playerListEntryPrefab);
                 entry.transform.SetParent(_playerListContent.transform);
                 entry.transform.localScale = Vector3.one;
-                entry.GetComponent<PlayerListEntry>().Initialize(p.ActorNumber, p.NickName);
+                entry.GetComponent<PlayerListEntry>().Initialize(player.ActorNumber, player.NickName);
 
-                object isPlayerReady;
-                if (p.CustomProperties.TryGetValue(LobbyConstants.PlayerIsReady, out isPlayerReady))
+                if (player.CustomProperties.TryGetValue(LobbyConstants.PlayerIsReady, out object isPlayerReady))
                 {
                     entry.GetComponent<PlayerListEntry>().SetPlayerReady((bool) isPlayerReady);
                 }
 
-                _playerListEntries.Add(p.ActorNumber, entry);
+                _playerListEntries.Add(player.ActorNumber, entry);
             }
 
             _startGameButton.gameObject.SetActive(CheckPlayersReady());
 
             Hashtable props = new Hashtable
             {
-                {LobbyConstants.PlayerLoadedLevel, false}
+                { LobbyConstants.PlayerLoadedLevel, false }
             };
             PhotonNetwork.LocalPlayer.SetCustomProperties(props);
         }
@@ -198,9 +256,14 @@ namespace Lobby
 
         #endregion
 
-        #region UI CALLBACKS
+        #region Buttons
 
-        public void OnBackButtonClicked()
+        private void OpenMenu()
+        {
+            SceneManager.LoadScene(SceneNames.Menu);
+        }
+        
+        private void OpenLoginPanel()
         {
             if (PhotonNetwork.InLobby)
             {
@@ -209,61 +272,15 @@ namespace Lobby
 
             SetActivePanel(_selectionPanel.name);
         }
-
-        public void OnCreateRoomButtonClicked()
-        {
-            string roomName = _roomNameInputField.text;
-            roomName = (roomName.Equals(string.Empty)) ? "Room " + Random.Range(1000, 10000) : roomName;
-
-            byte maxPlayers;
-            byte.TryParse(_maxPlayersInputField.text, out maxPlayers);
-            maxPlayers = (byte) Mathf.Clamp(maxPlayers, 2, 8);
-
-            RoomOptions options = new RoomOptions {MaxPlayers = maxPlayers, PlayerTtl = 10000};
-
-            PhotonNetwork.CreateRoom(roomName, options, null);
-        }
-
-        public void OnJoinRandomRoomButtonClicked()
+        
+        private void OpenJoinRandomRoomPanel()
         {
             SetActivePanel(_joinRandomRoomPanel.name);
 
             PhotonNetwork.JoinRandomRoom();
         }
-
-        public void OnLeaveGameButtonClicked()
-        {
-            PhotonNetwork.LeaveRoom();
-        }
-
-        public void OnLoginButtonClicked()
-        {
-            string playerName = _nickNameInputField.text;
-
-            if (!playerName.Equals(""))
-            {
-                PhotonNetwork.LocalPlayer.NickName = playerName;
-                PhotonNetwork.ConnectUsingSettings();
-
-                _loadingPanel.SetActive(true);
-            }
-            else
-            {
-                Debug.LogError("Player Name is invalid.");
-            }
-        }
-
-        public void OnRoomListButtonClicked()
-        {
-            if (!PhotonNetwork.InLobby)
-            {
-                PhotonNetwork.JoinLobby();
-            }
-
-            SetActivePanel(_roomListPanel.name);
-        }
-
-        public void OnSpecificRoomButtonClicked()
+        
+        private void OpenSpecificRoomPanel()
         {
             SetActivePanel(_specificRoomPanel.name);
         
@@ -275,26 +292,73 @@ namespace Lobby
             _specificRoomNameInputField.text = ProcessDeepLinkMngr.RoomName;
         }
 
-        public void OnStartGameButtonClicked()
+        private void OpenRoomListPanel()
+        {
+            if (!PhotonNetwork.InLobby)
+            {
+                PhotonNetwork.JoinLobby();
+            }
+
+            SetActivePanel(_roomListPanel.name);
+        }
+        
+        private void JoinSpecificRoom()
+        {
+            PhotonNetwork.JoinRoom(_specificRoomNameInputField.text);
+        }
+
+        private void CreateRoom()
+        {
+            string roomName = _roomNameInputField.text;
+
+            if (roomName.Equals(string.Empty))
+            {
+                StartCoroutine(ShowErrorPanel(_roomNameErrorPanel));
+                return;
+            }
+            
+            roomName = (roomName.Equals(string.Empty)) ? "Room " + Random.Range(1000, 10000) : roomName;
+
+            byte.TryParse(_maxPlayersInputField.text, out byte maxPlayers);
+            maxPlayers = (byte) Mathf.Clamp(maxPlayers, 2, 2);
+
+            RoomOptions options = new RoomOptions { MaxPlayers = maxPlayers, PlayerTtl = 10000 };
+
+            PhotonNetwork.CreateRoom(roomName, options, null);
+        }
+
+        private void Login()
+        {
+            string playerName = _nickNameInputField.text;
+
+            if (!playerName.Equals(string.Empty))
+            {
+                PhotonNetwork.LocalPlayer.NickName = playerName;
+                PhotonNetwork.ConnectUsingSettings();
+
+                _loadingPanel.SetActive(true);
+            }
+            else
+            {
+                StartCoroutine(ShowErrorPanel(_nickNameErrorPanel));
+            }
+        }
+        
+        private void StartGame()
         {
             PhotonNetwork.CurrentRoom.IsOpen = false;
             PhotonNetwork.CurrentRoom.IsVisible = false;
 
             PhotonNetwork.LoadLevel("GameOnline");
         }
+        
+        private void LeaveGame()
+        {
+            PhotonNetwork.LeaveRoom();
+        }
 
         #endregion
 
-        public void JoinSpecificRoom()
-        {
-            PhotonNetwork.JoinRoom(_specificRoomNameInputField.text);
-        }
-
-        public void BackToMenu()
-        {
-            SceneManager.LoadScene(SceneNames.Menu);
-        }
-    
         private bool CheckPlayersReady()
         {
             if (!PhotonNetwork.IsMasterClient)
@@ -330,13 +394,8 @@ namespace Lobby
 
             _roomListEntries.Clear();
         }
-    
-        public void LocalPlayerPropertiesUpdated()
-        {
-            _startGameButton.gameObject.SetActive(CheckPlayersReady());
-        }
-    
-        public void SetActivePanel(string activePanel)
+
+        private void SetActivePanel(string activePanel)
         {
             _loginPanel.SetActive(activePanel.Equals(_loginPanel.name));
             _selectionPanel.SetActive(activePanel.Equals(_selectionPanel.name));

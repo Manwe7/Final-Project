@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using Photon.Pun;
 using System.Collections;
+using Multiplayer;
 using Multiplayer.Player;
 
 namespace PlayerOnlineScripts

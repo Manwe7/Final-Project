@@ -21,7 +21,7 @@ namespace PlayerOnlineScripts
             
             _joystick = _playerOnlineProperties.MovementJoystick;
 
-            _fuelParticles.SetActive(IsFlying);
+            // _fuelParticles.SetActive(IsFlying);
         }
 
         protected override void SetDirections()
@@ -37,8 +37,8 @@ namespace PlayerOnlineScripts
 
             base.ControlFuel();
 
-            if(_fuelParticles.activeSelf && IsFlying || !_fuelParticles.activeSelf && !IsFlying) return;
-            _photonView.RPC("SetGlobalParticles", RpcTarget.All);
+            // if(_fuelParticles.activeSelf && IsFlying || !_fuelParticles.activeSelf && !IsFlying) return;
+            // _photonView.RPC("SetGlobalParticles", RpcTarget.All);
         }
 
         protected override void Fly()
@@ -56,12 +56,12 @@ namespace PlayerOnlineScripts
             }
         }
 
-        [PunRPC]
-        private void SetGlobalParticles()
-        {
-            if (!_photonView.IsMine) return;
-
-            _fuelParticles.SetActive(IsFlying);
-        }
+        // [PunRPC]
+        // private void SetGlobalParticles()
+        // {
+        //     if (!_photonView.IsMine) return;
+        //
+        //     _fuelParticles.SetActive(IsFlying);
+        // }
     }
 }

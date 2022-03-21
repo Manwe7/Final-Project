@@ -2,6 +2,7 @@
 using Photon.Pun;
 using Photon.Pun.Demo.Asteroids;
 using Photon.Pun.UtilityScripts;
+using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,10 +19,14 @@ namespace Lobby
         private int _ownerId;
         private bool _isPlayerReady;
 
-        #region Unity
-        public void OnEnable()
+        private void OnEnable()
         {
             PlayerNumbering.OnPlayerNumberingChanged += OnPlayerNumberingChanged;
+        }
+        
+        private void OnDisable()
+        {
+            PlayerNumbering.OnPlayerNumberingChanged -= OnPlayerNumberingChanged;
         }
 
         public void Start()
@@ -32,7 +37,7 @@ namespace Lobby
             }
             else
             {
-                Hashtable initialProps = new Hashtable() {{LobbyConstants.PlayerIsReady, _isPlayerReady}, {LobbyConstants.PlayerLives, LobbyConstants.PlayerMaxLives}};
+                Hashtable initialProps = new Hashtable { { LobbyConstants.PlayerIsReady, _isPlayerReady } };
                 PhotonNetwork.LocalPlayer.SetCustomProperties(initialProps);
                 PhotonNetwork.LocalPlayer.SetScore(0);
 
@@ -46,18 +51,12 @@ namespace Lobby
 
                     if (PhotonNetwork.IsMasterClient)
                     {
-                        FindObjectOfType<global::Lobby.Lobby>().LocalPlayerPropertiesUpdated();
+                        FindObjectOfType<Lobby>().LocalPlayerPropertiesUpdated();
                     }
                 });
             }
         }
-
-        public void OnDisable()
-        {
-            PlayerNumbering.OnPlayerNumberingChanged -= OnPlayerNumberingChanged;
-        }
-        #endregion
-    
+        
         public void Initialize(int playerId, string playerName)
         {
             _ownerId = playerId;
@@ -66,11 +65,11 @@ namespace Lobby
 
         private void OnPlayerNumberingChanged()
         {
-            foreach (var p in PhotonNetwork.PlayerList)
+            foreach (Player player in PhotonNetwork.PlayerList)
             {
-                if (p.ActorNumber == _ownerId)
+                if (player.ActorNumber == _ownerId)
                 {
-                    _playerColorImage.color = AsteroidsGame.GetColor(p.GetPlayerNumber());
+                    _playerColorImage.color = AsteroidsGame.GetColor(player.GetPlayerNumber());
                 }
             }
         }
