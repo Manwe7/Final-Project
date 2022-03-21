@@ -204,7 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletExplosion: {fileID: 6163721950763462551, guid: 67fab149359909e47892c87b16cb1d09,
     type: 3}
-  _speed: 25
+  _speed: 22
   _rigidbody2D: {fileID: 5518891196149967445}
   _photonView: {fileID: -6247200342417290527}
   _soundPlayer: SoundPlayer

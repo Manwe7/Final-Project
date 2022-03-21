@@ -4180,6 +4180,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseBtn
       objectReference: {fileID: 0}
+    - target: {fileID: 4575630154806342445, guid: fea4965df1f12ea4eb429306e9b722c8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fea4965df1f12ea4eb429306e9b722c8, type: 3}
 --- !u!224 &1579233317 stripped
@@ -4283,19 +4288,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1607056957}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 496909791}
-        m_TargetAssemblyTypeName: OnlineUI, Assembly-CSharp
-        m_MethodName: LeaveRoom
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1607056957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5911,19 +5904,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2764600391331894083}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 496909791}
-        m_TargetAssemblyTypeName: OnlineUI, Assembly-CSharp
-        m_MethodName: LeaveRoom
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!224 &2764600391331894109
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6219,19 +6200,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2764600391663921374}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 496909791}
-        m_TargetAssemblyTypeName: OnlineUI, Assembly-CSharp
-        m_MethodName: ResumeGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!224 &2764600391711141044
 RectTransform:
   m_ObjectHideFlags: 0
