@@ -25,7 +25,7 @@ namespace PlayerOnlineScripts
         
         protected override void SetDirections()
         {
-            if(_photonView.IsMine)
+            if (_photonView.IsMine)
             {
                 base.SetDirections();
             }
@@ -33,7 +33,7 @@ namespace PlayerOnlineScripts
         
         protected override void HorizontalMovement()
         {
-            if(_photonView.IsMine)
+            if (_photonView.IsMine)
             {
                 base.HorizontalMovement();
             }

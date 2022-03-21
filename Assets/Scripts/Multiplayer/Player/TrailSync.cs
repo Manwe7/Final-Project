@@ -18,6 +18,8 @@ namespace Multiplayer.Player
         {
             Vector2 diff = transform.position - _lastPos;
 
+            _lastPos = transform.position;
+            
             _trial.SetActive(Mathf.Abs(diff.y) > Threshold);
         }
     }

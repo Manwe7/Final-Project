@@ -23,7 +23,7 @@ namespace Multiplayer.Player
         
         private void Awake()
         {        
-            if (!_photonView.IsMine) { return; }
+            if (!_photonView.IsMine) return;
 
             _playerOnlineProperties = GameObject.FindWithTag(_propertiesTag).GetComponent<PlayerOnlineProperties>();
             
@@ -38,14 +38,14 @@ namespace Multiplayer.Player
 
         private void Update()
         {
-            if (!_photonView.IsMine) { return; }
+            if (!_photonView.IsMine) return;
             
             _vertical = _weaponJoystick.Vertical;
             _horizontal = _weaponJoystick.Horizontal;
             
             if (!_isReloaded) return;
             
-            if(Mathf.Abs(_vertical) > _handleOffsetToShoot || Mathf.Abs(_horizontal) > _handleOffsetToShoot)
+            if (Mathf.Abs(_vertical) > _handleOffsetToShoot || Mathf.Abs(_horizontal) > _handleOffsetToShoot)
             {
                 _photonView.RPC("ShootBullet", RpcTarget.All);
                 StartCoroutine(Reload());
@@ -57,8 +57,7 @@ namespace Multiplayer.Player
         {
             if (!_photonView.IsMine) return;
             
-            GameObject bullet = PhotonNetwork.Instantiate(_bulletOnline.name, _barrel.position, _barrel.rotation);
-            bullet.GetComponent<PlayerOnlineScripts.Bullet>().Init(_photonView.Owner);
+            PhotonNetwork.Instantiate(_bulletOnline.name, _barrel.position, _barrel.rotation);
         }        
     }
 }

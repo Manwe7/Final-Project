@@ -20,8 +20,6 @@ namespace PlayerOnlineScripts
             _playerOnlineProperties = GameObject.FindWithTag(_propertiesTag).GetComponent<PlayerOnlineProperties>();
             
             _joystick = _playerOnlineProperties.MovementJoystick;
-
-            // _fuelParticles.SetActive(IsFlying);
         }
 
         protected override void SetDirections()
@@ -36,9 +34,6 @@ namespace PlayerOnlineScripts
             if (!_photonView.IsMine) { return; }
 
             base.ControlFuel();
-
-            // if(_fuelParticles.activeSelf && IsFlying || !_fuelParticles.activeSelf && !IsFlying) return;
-            // _photonView.RPC("SetGlobalParticles", RpcTarget.All);
         }
 
         protected override void Fly()
@@ -55,13 +50,5 @@ namespace PlayerOnlineScripts
                 _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, -_playerSettings._flySpeed * 1.1f);
             }
         }
-
-        // [PunRPC]
-        // private void SetGlobalParticles()
-        // {
-        //     if (!_photonView.IsMine) return;
-        //
-        //     _fuelParticles.SetActive(IsFlying);
-        // }
     }
 }

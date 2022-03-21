@@ -48,7 +48,7 @@ namespace BasePlayer
                 _fuelHandler.RestoreFuel();
             }
             
-            if(_fuelParticles.activeSelf && IsFlying || !_fuelParticles.activeSelf && !IsFlying) return;
+            if (_fuelParticles.activeSelf && IsFlying || !_fuelParticles.activeSelf && !IsFlying) return;
             
             _fuelParticles.SetActive(IsFlying);
         }

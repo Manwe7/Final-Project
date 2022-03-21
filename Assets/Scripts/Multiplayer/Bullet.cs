@@ -20,17 +20,10 @@ namespace PlayerOnlineScripts
         
         private bool _exploded;
 
-        public Photon.Realtime.Player Owner { get; private set; }
-
         private void Start()
         {
             SoundPlayer soundPlayer = GameObject.FindWithTag(_soundPlayer).GetComponent<SoundPlayer>();
             soundPlayer.Play(SoundNames.PlayerBullet);
-        }
-
-        public void Init(Photon.Realtime.Player owner)
-        {
-            Owner = owner;
         }
         
         private void FixedUpdate()
@@ -40,7 +33,7 @@ namespace PlayerOnlineScripts
 
         private void OnTriggerEnter2D(Collider2D other)
         {        
-            if(_exploded) { return; }
+            if (_exploded) { return; }
 
             if (other.CompareTag("Ground") || other.gameObject.CompareTag("Lava"))
             {
@@ -49,7 +42,7 @@ namespace PlayerOnlineScripts
 
             if (other.CompareTag("Player"))
             {
-                if(Equals(_photonView.Owner, other.GetComponent<PhotonView>().Owner)) return;
+                if (Equals(_photonView.Owner, other.GetComponent<PhotonView>().Owner)) return;
                 
                 PhotonNetwork.Instantiate(_bulletExplosion.name, transform.position, Quaternion.identity);
                 Destroy(gameObject);
@@ -58,7 +51,7 @@ namespace PlayerOnlineScripts
 
         public void Explode()
         {
-            if(!_photonView.IsMine) return;
+            if (!_photonView.IsMine) return;
             
             _exploded = true;
             gameObject.SetActive(false);
